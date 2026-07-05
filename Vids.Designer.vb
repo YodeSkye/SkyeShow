@@ -43,11 +43,11 @@ Inherits System.Windows.Forms.Form
         ' 
         ' cmiFullScreen
         ' 
-        cmiFullScreen.Image = My.Resources.Resources.imageFullScreen
+        cmiFullScreen.Image = My.Resources.Resources.ImageFullscreen
         cmiFullScreen.Name = "cmiFullScreen"
         cmiFullScreen.ShortcutKeyDisplayString = "ESC"
         cmiFullScreen.Size = New Size(203, 22)
-        cmiFullScreen.Text = "Full Screen"
+        cmiFullScreen.Text = "Fullscreen"
         ' 
         ' cmiSeparator1
         ' 

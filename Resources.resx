@@ -157,9 +157,6 @@
   <data name="imageLog" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imageLog.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="imageFullScreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>My Project\imageFullScreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="imagePause" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imagePause.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -243,5 +240,8 @@
   </data>
   <data name="ImageVideo32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\ImageVideo32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImageFullscreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>My Project\ImageFullscreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

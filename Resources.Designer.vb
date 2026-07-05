@@ -227,9 +227,9 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
-        Friend Shared ReadOnly Property imageFullScreen() As System.Drawing.Bitmap
+        Friend Shared ReadOnly Property ImageFullscreen() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("imageFullScreen", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("ImageFullscreen", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

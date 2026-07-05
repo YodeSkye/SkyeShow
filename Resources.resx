@@ -124,9 +124,6 @@
   <data name="imageHide" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imageHide.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="imageInfo32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>My Project\imageInfo32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="imageCopy" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imageCopy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -184,9 +181,6 @@
   <data name="imagePause" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imagePause.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="imageInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>My Project\imageInfo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="imageGo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imageGo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -201,9 +195,6 @@
   </data>
   <data name="imageVideoList" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imageVideoList.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>My Project\iconInfo.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="imageClose" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imageClose.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -246,5 +237,14 @@
   </data>
   <data name="ImageApp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\ImageApp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>My Project\iconInfo.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImageInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>My Project\ImageInfo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="imageInfo32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>My Project\imageInfo32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

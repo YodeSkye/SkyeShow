@@ -50,7 +50,7 @@ Inherits System.Windows.Forms.Form
         cmPics.Items.AddRange(New ToolStripItem() {cmiFullScreen, cmiSeparator1, cmiQuickHide, cmiQuickShift, cmiQuickRestore, cmiSeparator2, cmiTimer, cmiAdvance, cmiShowFileInfo, cmiViewImage, cmiSeparator3, cmiDeleteImage, cmiSeparator4, cmiClose})
         cmPics.Name = "contextmenuImageForm"
         cmPics.RenderMode = ToolStripRenderMode.Professional
-        cmPics.Size = New Size(204, 248)
+        cmPics.Size = New Size(204, 270)
         ' 
         ' cmiFullScreen
         ' 
@@ -114,11 +114,11 @@ Inherits System.Windows.Forms.Form
         ' 
         ' cmiShowFileInfo
         ' 
-        cmiShowFileInfo.Image = My.Resources.Resources.imageShowFileInfo
+        cmiShowFileInfo.Image = My.Resources.Resources.ImageImage
         cmiShowFileInfo.Name = "cmiShowFileInfo"
         cmiShowFileInfo.ShortcutKeyDisplayString = "?"
         cmiShowFileInfo.Size = New Size(203, 22)
-        cmiShowFileInfo.Text = "Show File Info"
+        cmiShowFileInfo.Text = "Show Image Info"
         ' 
         ' cmiViewImage
         ' 
@@ -180,7 +180,7 @@ Inherits System.Windows.Forms.Form
         Controls.Add(picbx)
         Font = New Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         FormBorderStyle = FormBorderStyle.None
-        Icon = My.Resources.Resources.iconImage
+        Icon = My.Resources.Resources.IconImage
         Margin = New Padding(3, 4, 3, 4)
         MaximizeBox = False
         MinimizeBox = False

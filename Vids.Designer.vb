@@ -39,7 +39,7 @@ Inherits System.Windows.Forms.Form
         cmVids.Items.AddRange(New ToolStripItem() {cmiFullScreen, cmiSeparator1, cmiQuickHide, cmiQuickShift, cmiQuickRestore, cmiSeparator2, cmiPlay, cmiAdvance, cmiShowFileInfo, cmiViewVideo, cmiMuteVideo, cmiSeparator3, cmiDeleteVideo, cmiSeparator4, cmiClose})
         cmVids.Name = "contextmenuVideo"
         cmVids.RenderMode = ToolStripRenderMode.Professional
-        cmVids.Size = New Size(204, 270)
+        cmVids.Size = New Size(204, 292)
         ' 
         ' cmiFullScreen
         ' 
@@ -102,11 +102,11 @@ Inherits System.Windows.Forms.Form
         ' 
         ' cmiShowFileInfo
         ' 
-        cmiShowFileInfo.Image = My.Resources.Resources.imageShowFileInfo
+        cmiShowFileInfo.Image = My.Resources.Resources.ImageVideo
         cmiShowFileInfo.Name = "cmiShowFileInfo"
         cmiShowFileInfo.ShortcutKeyDisplayString = "?"
         cmiShowFileInfo.Size = New Size(203, 22)
-        cmiShowFileInfo.Text = "Show File Info"
+        cmiShowFileInfo.Text = "Show Video Info"
         ' 
         ' cmiViewVideo
         ' 
@@ -190,7 +190,7 @@ Inherits System.Windows.Forms.Form
         Controls.Add(lblTime)
         Font = New Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         FormBorderStyle = FormBorderStyle.None
-        Icon = My.Resources.Resources.iconVideo
+        Icon = My.Resources.Resources.IconVideo
         Margin = New Padding(3, 4, 3, 4)
         MaximizeBox = False
         MinimizeBox = False

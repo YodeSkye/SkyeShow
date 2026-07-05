@@ -127,14 +127,8 @@
   <data name="imageCopy" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imageCopy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="imageImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>My Project\imageImage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="imageSave" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imageSave.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="imageVideo32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>My Project\imageVideo32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="imageAdd" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imageAdd.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -142,23 +136,14 @@
   <data name="imageSearch" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imageSearch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="iconImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>My Project\iconImage.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="imageQuickShift" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imageQuickShift.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="imageMaximizeWindow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imageMaximizeWindow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="imageImage32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>My Project\imageImage32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="imageSoundMute" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imageSoundMute.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconVideo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>My Project\iconVideo.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="imagePlay" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imagePlay.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -214,9 +199,6 @@
   <data name="imageRestore" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imageRestore.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="imageVideo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>My Project\imageVideo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="imageStartAll" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imageStartAll.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -246,5 +228,23 @@
   </data>
   <data name="imageInfo32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imageInfo32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IconImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>My Project\IconImage.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IconVideo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>My Project\IconVideo.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImageImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>My Project\ImageImage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImageImage32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>My Project\ImageImage32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImageVideo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>My Project\ImageVideo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImageVideo32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>My Project\ImageVideo32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

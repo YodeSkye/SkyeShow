@@ -22,7 +22,7 @@ Namespace My.Resources
     '''<summary>
     '''  A strongly-typed resource class, for looking up localized strings, etc.
     '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0"),  _
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0"),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute()>  _
     Friend Class Resources
@@ -67,9 +67,9 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         '''</summary>
-        Friend Shared ReadOnly Property iconApp() As System.Drawing.Icon
+        Friend Shared ReadOnly Property IconApp() As System.Drawing.Icon
             Get
-                Dim obj As Object = ResourceManager.GetObject("iconApp", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("IconApp", resourceCulture)
                 Return CType(obj,System.Drawing.Icon)
             End Get
         End Property
@@ -77,9 +77,9 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         '''</summary>
-        Friend Shared ReadOnly Property iconAppError() As System.Drawing.Icon
+        Friend Shared ReadOnly Property IconAppError() As System.Drawing.Icon
             Get
-                Dim obj As Object = ResourceManager.GetObject("iconAppError", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("IconAppError", resourceCulture)
                 Return CType(obj,System.Drawing.Icon)
             End Get
         End Property
@@ -87,9 +87,9 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         '''</summary>
-        Friend Shared ReadOnly Property iconAppHidden() As System.Drawing.Icon
+        Friend Shared ReadOnly Property IconAppHidden() As System.Drawing.Icon
             Get
-                Dim obj As Object = ResourceManager.GetObject("iconAppHidden", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("IconAppHidden", resourceCulture)
                 Return CType(obj,System.Drawing.Icon)
             End Get
         End Property
@@ -97,9 +97,9 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         '''</summary>
-        Friend Shared ReadOnly Property iconAppLoading() As System.Drawing.Icon
+        Friend Shared ReadOnly Property IconAppLoading() As System.Drawing.Icon
             Get
-                Dim obj As Object = ResourceManager.GetObject("iconAppLoading", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("IconAppLoading", resourceCulture)
                 Return CType(obj,System.Drawing.Icon)
             End Get
         End Property
@@ -177,9 +177,9 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
-        Friend Shared ReadOnly Property imageApp() As System.Drawing.Bitmap
+        Friend Shared ReadOnly Property ImageApp() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("imageApp", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("ImageApp", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

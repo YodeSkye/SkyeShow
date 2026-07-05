@@ -29,7 +29,8 @@ Partial Class Splash
         ' Label1
         ' 
         Label1.Font = New Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label1.Image = My.Resources.Resources.imageApp
+        Label1.ForeColor = Color.White
+        Label1.Image = My.Resources.Resources.ImageApp
         Label1.ImageAlign = ContentAlignment.BottomRight
         Label1.Location = New Point(38, 36)
         Label1.Name = "Label1"
@@ -41,6 +42,7 @@ Partial Class Splash
         ' Label2
         ' 
         Label2.Font = New Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Label2.ForeColor = Color.White
         Label2.ImageAlign = ContentAlignment.BottomRight
         Label2.Location = New Point(107, 36)
         Label2.Name = "Label2"
@@ -53,7 +55,7 @@ Partial Class Splash
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        BackColor = SystemColors.ActiveCaption
+        BackColor = Color.MediumVioletRed
         ClientSize = New Size(200, 100)
         Controls.Add(Label2)
         Controls.Add(Label1)

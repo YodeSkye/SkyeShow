@@ -139,9 +139,6 @@
   <data name="imageVideo32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imageVideo32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="iconAppLoading" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>My Project\iconAppLoading.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="imageAdd" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imageAdd.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -157,17 +154,11 @@
   <data name="imageMaximizeWindow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imageMaximizeWindow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="iconAppError" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>My Project\iconAppError.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="imageImage32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imageImage32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="imageSoundMute" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imageSoundMute.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconAppHidden" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>My Project\iconAppHidden.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="iconVideo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\iconVideo.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -205,9 +196,6 @@
   <data name="iconLog" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\iconLog.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="imageApp" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>My Project\imageApp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="imageFolder" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imageFolder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -226,9 +214,6 @@
   <data name="imageError" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imageError.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="iconApp" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>My Project\iconApp.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="imageSound" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imageSound.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -246,5 +231,20 @@
   </data>
   <data name="imageAdvance" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imageAdvance.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IconApp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>My Project\IconApp.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IconAppError" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>My Project\IconAppError.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IconAppHidden" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>My Project\IconAppHidden.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IconAppLoading" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>My Project\IconAppLoading.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImageApp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>My Project\ImageApp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -283,7 +283,7 @@ Partial Friend Class MainForm
 		Me.tabcontrolSettingsImages.Images.Add("imageImage", My.Resources.Resources.imageImage)
 		Me.tabcontrolSettingsImages.Images.Add("imageVideo", My.Resources.Resources.imageVideo)
 		Me.tcSettings.ImageList = Me.tabcontrolSettingsImages
-		Me.tpApp.Text = TabTextSpacer + "All (AppWide)" + TabTextSpacer
+		Me.tpApp.Text = TabTextSpacer + "App" + TabTextSpacer
 		Me.tpApp.ImageKey = "imageApp"
 		Me.tpPics.Text = TabTextSpacer + "Pictures" + TabTextSpacer
 		Me.tpPics.ImageKey = "imageImage"

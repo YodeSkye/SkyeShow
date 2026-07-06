@@ -202,7 +202,7 @@ Partial Friend Class VidList
 				My.App.FrmMain.UpdateSettings()
 			End If
 			If My.App.VideoFiles(Me.lvVideoList.SelectedIndices(0)).Enabled Then
-				Debug.Print(My.App.AppMode.Videos.ToString + " --> PlayVideo --> " + Me.lvVideoList.SelectedIndices(0).ToString)
+				Debug.Print("PlayVideo --> " + Me.lvVideoList.SelectedIndices(0).ToString)
 				My.App.VideoIndex = Me.lvVideoList.SelectedIndices(0)
 				If My.App.FrmVidsVisible Then
 					My.App.frmVids.NextVideo(My.App.PlayOption.BySelection)

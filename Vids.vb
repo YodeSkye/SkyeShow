@@ -353,12 +353,12 @@ Partial Friend Class Vids
                 If FullScreen AndAlso My.App.appHideCursorWhenFullscreen AndAlso mHoverLocation = e.Location Then
                     If Not TimerHideMouse.Enabled Then
                         TimerHideMouse.Start()
-                        Debug.Print(My.App.AppMode.Videos.ToString + "--> frmMouseMove--> Hide Timer Started")
+                        Debug.Print("frmMouseMove--> Hide Timer Started")
                     End If
                 Else
                     If TimerHideMouse.Enabled Then
                         TimerHideMouse.Stop()
-                        Debug.Print(My.App.AppMode.Videos.ToString + "--> frmMouseMove--> Hide Timer STOPPED")
+                        Debug.Print("frmMouseMove--> Hide Timer STOPPED")
                     End If
                     mHoverLocation = e.Location
                 End If
@@ -463,11 +463,12 @@ Partial Friend Class Vids
     Private Sub CMIViewVideoMouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles cmiViewVideo.MouseUp
         Select Case e.Button
             Case MouseButtons.Left
-                If My.App.ViewFile(My.App.AppMode.Videos) Then
+                If App.ViewFile(App.VideoFiles(App.VideoIndex).Path) Then
                     If FullScreen Then ToggleFullScreen()
                     TogglePlayState(True)
                 End If
-            Case MouseButtons.Right : If My.App.OpenFileLocation(My.App.AppMode.Videos) And FullScreen Then ToggleFullScreen()
+            Case MouseButtons.Right
+                If App.OpenFileLocation(App.AppMode.Videos) And FullScreen Then ToggleFullScreen()
         End Select
     End Sub
     Private Sub CMIMuteVideoMouseUp(sender As Object, e As MouseEventArgs) Handles cmiMuteVideo.MouseUp
@@ -483,7 +484,7 @@ Partial Friend Class Vids
                 NextVideo(My.App.PlayOption.Forward)
                 '				NextVideo(My.SkyeShow.PlayOption.ByPlayMode)
                 My.App.VideoIndexPrevious = -1
-                My.App.DeleteFile(My.App.AppMode.Videos, file)
+                My.App.DeleteFile(file)
                 My.App.FrmMain.UpdateSettings()
             End If
             SetDeleteVideoConfirm()
@@ -496,14 +497,14 @@ Partial Friend Class Vids
 
     'Handlers
     Private Async Sub OnPlaybackStarted()
-        Debug.Print(My.App.AppMode.Videos.ToString + "--> PlaybackStarted")
+        Debug.Print("PlaybackStarted")
         SetVolume()
         Await Task.Delay(200)
         SetSize()
         ShowVideoTime()
     End Sub
     Private Sub OnPlaybackEnded()
-        Debug.Print(My.App.AppMode.Videos.ToString + "--> PlaybackEnded")
+        Debug.Print("PlaybackEnded")
         SetDeleteVideoConfirm(True)
         My.App.HideBalloon()
         NextVideo(My.App.PlayOption.ByPlayMode)
@@ -514,7 +515,7 @@ Partial Friend Class Vids
         End If
     End Sub
     Private Sub TimerHideMouseTick(ByVal sender As Object, ByVal e As EventArgs) Handles TimerHideMouse.Tick
-        Debug.Print(My.App.AppMode.Videos.ToString + "--> timerHideMouseTick")
+        Debug.Print("timerHideMouseTick")
         Me.TimerHideMouse.Stop()
 
         If Not (Cursor.Position.X < Me.Left Or Cursor.Position.Y < Me.Top Or Cursor.Position.X >= Me.Left + Me.Width Or Cursor.Position.Y >= Me.Top + Me.Height Or Me.cmVids.Visible) Then
@@ -572,7 +573,7 @@ Partial Friend Class Vids
                 Try
                     _player.Stop()
                     _player.Play(My.App.VideoFiles(My.App.VideoIndex).Path)
-                    Debug.Print(My.App.AppMode.Videos.ToString + "--> NextVideo--> " + Location.ToString)
+                    Debug.Print("NextVideo--> " + Location.ToString)
                     PlayState = False
                     TogglePlayState()
                     My.App.VideoFilesSetViewed(My.App.VideoIndex)
@@ -863,14 +864,14 @@ Partial Friend Class Vids
             mHide = True
             mHidePosition = Control.MousePosition
             Cursor.Hide()
-            Debug.Print(My.App.AppMode.Videos.ToString + "--> HideCursor")
+            Debug.Print("HideCursor")
         End If
     End Sub
     Private Sub ShowCursor()
         If mHide Then
             mHide = False
             Cursor.Show()
-            Debug.Print(My.App.AppMode.Videos.ToString + "--> ShowCursor")
+            Debug.Print("ShowCursor")
         End If
     End Sub
     Private Sub SetDeleteVideoConfirm(Optional forcereset As Boolean = False)

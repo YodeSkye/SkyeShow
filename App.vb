@@ -1,6 +1,7 @@
 
 Imports System.Diagnostics
 Imports System.Reflection
+Imports System.Runtime
 Imports LibVLCSharp.[Shared]
 
 Namespace My
@@ -274,7 +275,7 @@ Namespace My
 			Try : frmVids.Show() : Catch : End Try
 		End Sub
 		Friend Sub ShowVideoFromCommandLine()
-			Debug.Print(AppMode.SkyeShow.ToString + " --> ShowVideoFromCommandLine " + CommandLinePath.ToUpper)
+			Debug.Print("ShowVideoFromCommandLine " + CommandLinePath.ToUpper)
 			Dim video As New VideoFileType(CommandLinePath)
 			CommandLinePath = String.Empty
 			VideoFiles.Add(video)
@@ -630,14 +631,14 @@ Namespace My
 				Case True
 					If Not ScreenSaverRunning Then
 						ScreenSaverRunning = True
-						Debug.Print(My.App.AppMode.SkyeShow.ToString + " --> ScreenSaverWatcherTick --> SS Activated @ " & Now)
+						Debug.Print("ScreenSaverWatcherTick --> SS Activated @ " & Now)
 						WriteToLog("ScreenSaver Activated")
 						WorkSpaceSuspendedActions()
 					End If
 				Case False
 					If ScreenSaverRunning Then
 						ScreenSaverRunning = False
-						Debug.Print(My.App.AppMode.SkyeShow.ToString + " --> ScreenSaverWatcherTick --> SS DeActivated @ " & Now)
+						Debug.Print("ScreenSaverWatcherTick --> SS DeActivated @ " & Now)
 						WriteToLog("ScreenSaver DeActivated")
 					End If
 			End Select
@@ -645,12 +646,12 @@ Namespace My
 		Private Sub WorkStationLockedHandler(sender As Object, e As Microsoft.Win32.SessionSwitchEventArgs)
 			If e.Reason = Microsoft.Win32.SessionSwitchReason.SessionLock Then
 				WorkStationLocked = True
-				Debug.Print(My.App.AppMode.SkyeShow.ToString + " --> SessionSwitch --> Workstation Locked @ " & Now)
+				Debug.Print("SessionSwitch --> Workstation Locked @ " & Now)
 				WriteToLog("WorkStation Locked")
 				WorkSpaceSuspendedActions()
 			ElseIf e.Reason = Microsoft.Win32.SessionSwitchReason.SessionUnlock Then
 				WorkStationLocked = False
-				Debug.Print(My.App.AppMode.SkyeShow.ToString + " --> SessionSwitch --> Workstation UNLocked @ " & Now)
+				Debug.Print("SessionSwitch --> Workstation UNLocked @ " & Now)
 				WriteToLog("WorkStation UnLocked")
 			End If
 		End Sub
@@ -665,7 +666,7 @@ Namespace My
             Skye.Common.RegistryHelper.BaseKey = "Software\" + My.Application.Info.ProductName ' Use standard registry key for release builds
 #End If
 			WriteToLog(My.Application.Info.ProductName + " Started")
-			Debug.Print(My.App.AppMode.SkyeShow.ToString + " --> OnStartup --> Alternate Start = " + My.Application.AlternateStart.ToString)
+			Debug.Print("OnStartup --> Alternate Start = " + My.Application.AlternateStart.ToString)
 			FrmBalloonTimer.Interval = 6000
 			ScreenSaverWatcher.Interval = 1000
 			GetSettings()
@@ -1082,10 +1083,6 @@ Namespace My
 			SettingsRegKey.Flush()
 			SettingsRegKey.Close()
 		End Sub
-		''' <summary>
-		''' Register / UNRegister HotKeys with Windows.
-		''' </summary>
-		''' <param name="mode">True = Register, False = UNRegister, Default = True</param>
 		Friend Sub RegisterHotKeys(Optional mode As Boolean = True)
 			If hkEnabled Then
 				Dim status As Boolean
@@ -1267,7 +1264,7 @@ Namespace My
 				FrmLog.Close()
 			End If
 		End Sub
-		Friend Sub DeleteFile(AppMode As AppMode, file As String)
+		Friend Sub DeleteFile(file As String)
 			Try
 				If My.Computer.FileSystem.FileExists(file) Then My.Computer.FileSystem.DeleteFile(file, FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.SendToRecycleBin)
 			Catch ex As Exception : WriteToLog("Error Deleting File '" + file + "'; " + Microsoft.VisualBasic.vbCr + ex.Message)
@@ -1300,7 +1297,7 @@ Namespace My
 				End Select
 			End If
 			If FrmVidListVisible() AndAlso appActionOnScreenSave = ScreenSaveActions.Close Then frmVidList.Close()
-			Debug.Print(My.App.AppMode.SkyeShow.ToString + " --> SSActive @ " & Now)
+			Debug.Print("SSActive @ " & Now)
 		End Sub
 		Friend Sub SwapValues(ByRef x As Integer, ByRef y As Integer)
 			x = x Xor y
@@ -1333,22 +1330,20 @@ Namespace My
 			End Select
 			Return False
 		End Function
-		Friend Function ViewFile(tool As AppMode) As Boolean '
-			Dim psi As New Diagnostics.ProcessStartInfo
-			Select Case tool
-				Case AppMode.Pictures : psi.FileName = ImageFiles(ImageIndex)
-				Case AppMode.Videos : psi.FileName = VideoFiles(VideoIndex).Path
-				Case Else : Return False
-			End Select
-			psi.UseShellExecute = True
-			psi.WindowStyle = Diagnostics.ProcessWindowStyle.Normal
-			Try : Diagnostics.Process.Start(psi)
+		Friend Function ViewFile(path As String) As Boolean
+			Try
+				Dim psi As New Diagnostics.ProcessStartInfo With {
+					.FileName = path,
+					.UseShellExecute = True,
+					.WindowStyle = Diagnostics.ProcessWindowStyle.Normal
+				}
+				Diagnostics.Process.Start(psi)
+				Return True
 			Catch ex As Exception
-				WriteToLog("Error Opening File '" + psi.FileName + "'")
+				WriteToLog("Error Opening File '" & path & "'")
 				SetErrorAlert()
 				Return False
 			End Try
-			Return True
 		End Function
 		Friend Function OpenFileLocation(tool As AppMode) As Boolean
 			Dim filepath As String

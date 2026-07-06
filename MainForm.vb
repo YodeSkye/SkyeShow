@@ -904,7 +904,7 @@ Partial Friend Class MainForm
 			Select Case e.Button
 				Case MouseButtons.Left
 					My.App.SetErrorAlert()
-					Debug.Print(My.App.AppMode.SkyeShow.ToString + " --> btnErrorTestMouseUp --> TEST ERROR - DO NOT PANIC!!")
+					Debug.Print("btnErrorTestMouseUp --> TEST ERROR - DO NOT PANIC!!")
 					MsgBox("Just Checking, DO NOT PANIC!!", MsgBoxStyle.Critical, "Test Error")
 					My.App.WriteToLog("Test Error - DO NOT PANIC!!")
 					My.App.ShowLog()

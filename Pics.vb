@@ -144,7 +144,7 @@ Partial Friend Class Pics
 		End If
 	End Sub
 	Private Sub FrmMouseMove(ByVal sender As Object, ByVal e As MouseEventArgs) Handles picbx.MouseMove, lblCountdown.MouseMove
-		Debug.Print(My.App.AppMode.Pictures.ToString + "--> frmMouseMove")
+		Debug.Print("frmMouseMove")
 		If mMove Then
 			If mMoveMode = 1 Then
 				mPosition = Control.MousePosition
@@ -173,12 +173,12 @@ Partial Friend Class Pics
 				If FullScreen AndAlso My.App.appHideCursorWhenFullscreen AndAlso mHoverLocation = e.Location Then
 					If Not TimerHideMouse.Enabled Then
 						TimerHideMouse.Start()
-						Debug.Print(My.App.AppMode.Pictures.ToString + "--> frmMouseMove--> Hide Timer Started")
+						Debug.Print("frmMouseMove--> Hide Timer Started")
 					End If
 				Else
 					If TimerHideMouse.Enabled Then
 						TimerHideMouse.Stop()
-						Debug.Print(My.App.AppMode.Pictures.ToString, "--> frmMouseMove--> Hide Timer STOPPED")
+						Debug.Print("frmMouseMove--> Hide Timer STOPPED")
 					End If
 					mHoverLocation = e.Location
 				End If
@@ -186,7 +186,7 @@ Partial Friend Class Pics
 		End If
 	End Sub
 	Private Sub FrmMouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles picbx.MouseUp, lblCountdown.MouseUp
-		Debug.Print(My.App.AppMode.Pictures.ToString + "--> frmMouseUp")
+		Debug.Print("frmMouseUp")
 		My.App.HideBalloon()
 		If mMove Then
 			mMove = False
@@ -257,9 +257,9 @@ Partial Friend Class Pics
 	Private Sub CMIViewImageMouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles cmiViewImage.MouseUp
 		Select Case e.Button
 			Case MouseButtons.Left
-				If My.App.ViewFile(My.App.AppMode.Pictures) And FullScreen Then ToggleFullScreen()
+				If App.ViewFile(App.ImageFiles(My.App.ImageIndex)) And FullScreen Then ToggleFullScreen()
 				NextImage(My.App.PlayOption.ByPlayMode)
-			Case MouseButtons.Right : If My.App.OpenFileLocation(My.App.AppMode.Pictures) And FullScreen Then ToggleFullScreen()
+			Case MouseButtons.Right : If App.OpenFileLocation(App.AppMode.Pictures) And FullScreen Then ToggleFullScreen()
 		End Select
 	End Sub
 	Private Sub CMIDeleteImageMouseUp(sender As Object, e As MouseEventArgs) Handles cmiDeleteImage.MouseUp
@@ -270,7 +270,7 @@ Partial Friend Class Pics
 				My.App.ImageRepeatList.Remove(file)
 				NextImage(My.App.PlayOption.BySelection)
 				My.App.ImageIndexPrevious = -1
-				My.App.DeleteFile(My.App.AppMode.Pictures, file)
+				My.App.DeleteFile(file)
 				My.App.FrmMain.UpdateSettings()
 			End If
 			SetDeleteImageConfirm()
@@ -293,7 +293,7 @@ Partial Friend Class Pics
 		ShowImageTimerCountdown()
 	End Sub
 	Private Sub TimerHideMouseTick(ByVal sender As Object, ByVal e As EventArgs) Handles TimerHideMouse.Tick
-		Debug.Print(My.App.AppMode.Pictures.ToString + "--> timerHideMouseTick")
+		Debug.Print("timerHideMouseTick")
 		Me.TimerHideMouse.Stop()
 
 		If Not (Cursor.Position.X < Me.Left Or Cursor.Position.Y < Me.Top Or Cursor.Position.X >= Me.Left + Me.Width Or Cursor.Position.Y >= Me.Top + Me.Height Or Me.cmPics.Visible) Then
@@ -643,14 +643,14 @@ Partial Friend Class Pics
 			mHide = True
 			mHidePosition = Control.MousePosition
 			Cursor.Hide()
-			Debug.Print(My.App.AppMode.Pictures.ToString + "--> HideCursor")
+			Debug.Print("HideCursor")
 		End If
 	End Sub
 	Private Sub ShowCursor()
 		If mHide Then
 			mHide = False
 			Cursor.Show()
-			Debug.Print(My.App.AppMode.Pictures.ToString + "--> ShowCursor")
+			Debug.Print("ShowCursor")
 		End If
 	End Sub
 	Private Sub SetDeleteImageConfirm(Optional forcereset As Boolean = False)

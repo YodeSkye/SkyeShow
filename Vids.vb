@@ -228,13 +228,13 @@ Partial Friend Class Vids
         TimerHideMouse.Stop()
         TimerQuickHide.Stop()
         My.App.VideoIsOnTop = True
-        If My.App.frmMain.BackgroundworkerGetFiles.IsBusy Then My.App.frmMain.cmiPlayVids.Enabled = False
-        If My.App.frmMain.Visible Then My.App.frmMain.Focus()
+        If My.App.FrmMain.BackgroundworkerGetFiles.IsBusy Then My.App.FrmMain.cmiPlayVids.Enabled = False
+        If My.App.FrmMain.Visible Then My.App.FrmMain.Focus()
         _player?.Stop()
         TryCast(_player, VLCPlayer)?.Dispose()
     End Sub
     Private Sub FrmDisposed(ByVal sender As Object, ByVal e As EventArgs)
-        My.App.frmMain.ToggleContextMenu()
+        My.App.FrmMain.ToggleContextMenu()
         My.App.frmVids = Nothing
     End Sub
     Private Sub FrmLostFocus(ByVal sender As Object, ByVal e As EventArgs)
@@ -266,14 +266,14 @@ Partial Friend Class Vids
                     If Not FullScreen Then
                         My.App.vidLocationMode = CType(My.App.vidLocationMode - 1, My.App.LocationMode)
                         If My.App.vidLocationMode < 0 Then My.App.vidLocationMode = CType(My.App.LocationModeCount, App.LocationMode)
-                        If My.App.frmMain.Visible Then My.App.frmMain.UpdateSettings()
+                        If My.App.FrmMain.Visible Then My.App.FrmMain.UpdateSettings()
                         SetSize()
                     End If
                 Case Keys.PageDown
                     If Not FullScreen Then
                         My.App.vidLocationMode = CType(My.App.vidLocationMode + 1, My.App.LocationMode)
                         If My.App.vidLocationMode > My.App.LocationModeCount Then My.App.vidLocationMode = 0
-                        If My.App.frmMain.Visible Then My.App.frmMain.UpdateSettings()
+                        If My.App.FrmMain.Visible Then My.App.FrmMain.UpdateSettings()
                         SetSize()
                     End If
                 Case Keys.Home : QuickRestore()
@@ -377,7 +377,7 @@ Partial Friend Class Vids
                     Else : My.App.vidLocation.Y = Me.Location.Y
                     End If
                     My.App.vidLocationMode = My.App.LocationMode.Manual
-                    My.App.frmMain.UpdateSettings()
+                    My.App.FrmMain.UpdateSettings()
                 End If
             ElseIf mMoveMode = 2 Then : If mResize Then Me.cmVids.Close()
             End If
@@ -390,7 +390,7 @@ Partial Friend Class Vids
             End Select
             SetVideoTime()
             ShowVideoTime()
-            If My.App.frmMain.Visible Then My.App.frmMain.UpdateSettings()
+            If My.App.FrmMain.Visible Then My.App.FrmMain.UpdateSettings()
         End If
     End Sub
 
@@ -473,7 +473,7 @@ Partial Friend Class Vids
     Private Sub CMIMuteVideoMouseUp(sender As Object, e As MouseEventArgs) Handles cmiMuteVideo.MouseUp
         My.App.vidVolumeMute = Not My.App.vidVolumeMute
         SetVolume()
-        My.frmMain.UpdateSettingsVideos()
+        My.FrmMain.UpdateSettingsVideos()
     End Sub
     Private Sub CMIDeleteVideoMouseUp(sender As Object, e As MouseEventArgs) Handles cmiDeleteVideo.MouseUp
         If e.Button = MouseButtons.Left Then
@@ -484,7 +484,7 @@ Partial Friend Class Vids
                 '				NextVideo(My.SkyeShow.PlayOption.ByPlayMode)
                 My.App.VideoIndexPrevious = -1
                 My.App.DeleteFile(My.App.AppMode.Videos, file)
-                My.App.frmMain.UpdateSettings()
+                My.App.FrmMain.UpdateSettings()
             End If
             SetDeleteVideoConfirm()
         Else : SetDeleteVideoConfirm(True)
@@ -560,7 +560,7 @@ Partial Friend Class Vids
                     If Microsoft.VisualBasic.FileIO.FileSystem.FileExists(My.App.VideoFiles(My.App.VideoIndex).Path) Then : Exit Do
                     Else
                         My.App.VideoFilesSetState(My.App.VideoIndex, My.App.VideoFileState.PathNotFound)
-                        If My.App.frmMain.Visible Then My.App.frmMain.UpdateSettings()
+                        If My.App.FrmMain.Visible Then My.App.FrmMain.UpdateSettings()
                         If My.App.FrmVidListVisible Then My.App.frmVidList.GetData(True)
                         If My.App.VideoFilesCount = 0 Or opt = My.App.PlayOption.BySelection Then
                             Me.Close()
@@ -568,7 +568,7 @@ Partial Friend Class Vids
                         End If
                     End If
                 Loop
-                My.App.UpdateLog() 'Use this to log each video selection to catch mysterious video errors that causes program termination.
+                App.WriteToLog(VideoIndexLogText)
                 Try
                     _player.Stop()
                     _player.Play(My.App.VideoFiles(My.App.VideoIndex).Path)
@@ -577,7 +577,7 @@ Partial Friend Class Vids
                     TogglePlayState()
                     My.App.VideoFilesSetViewed(My.App.VideoIndex)
                 Catch ex As Exception
-                    My.App.WriteToLog(My.App.AppMode.Videos, "Video Load Error" + Chr(13) + ex.ToString)
+                    My.App.WriteToLog("Video Load Error" + Chr(13) + ex.ToString)
                     My.App.SetErrorAlert()
                     My.App.VideoFilesSetState(My.App.VideoIndex, My.App.VideoFileState.DisplayError)
                     If My.App.VideoFilesCount = 0 Then : My.App.frmVids.Close()
@@ -824,7 +824,7 @@ Partial Friend Class Vids
         If Not FullScreen Then
             My.App.vidLocationMode = CType(My.App.vidLocationMode + 6, My.App.LocationMode)
             If My.App.vidLocationMode > My.App.LocationModeCount Then My.App.vidLocationMode = CType(My.App.vidLocationMode - My.App.LocationModeCount, My.App.LocationMode)
-            If My.App.frmMain.Visible Then My.App.frmMain.UpdateSettings()
+            If My.App.FrmMain.Visible Then My.App.FrmMain.UpdateSettings()
             SetSize()
         End If
     End Sub
@@ -832,7 +832,7 @@ Partial Friend Class Vids
         ShowCursor()
         If FullScreen Then ToggleFullScreen()
         TogglePlayState(True)
-        My.App.frmMain.RestoreSettings()
+        My.App.FrmMain.RestoreSettings()
         SetSize()
         TogglePlayState()
     End Sub
@@ -844,13 +844,13 @@ Partial Friend Class Vids
             Me.cmiQuickHide.Checked = False
             Me.TopMost = True
             My.App.VideoIsOnTop = True
-            My.App.frmMain.AppNotify()
+            My.App.FrmMain.AppNotify()
         Else
             TogglePlayState(True)
             Me.SendToBack()
             Me.SendToBack()
             My.App.VideoIsOnTop = False
-            My.App.frmMain.AppNotify()
+            My.App.FrmMain.AppNotify()
         End If
     End Sub
     'Private Sub DisposeVideo()

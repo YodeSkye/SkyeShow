@@ -23,7 +23,7 @@ Partial Friend Class VidList
 		Me.lvVideoList.Columns(0).Width = Me.lvVideoList.Width - 4
 	End Sub
 	Private Sub FrmDisposed(ByVal sender As Object, ByVal e As EventArgs)
-		My.App.frmMain.ToggleContextMenu()
+		My.App.FrmMain.ToggleContextMenu()
 		My.App.frmVidList = Nothing
 	End Sub
 	Private Sub FrmMouseDown(sender As Object, e As MouseEventArgs) Handles MyBase.MouseDown 'Only needed on forms with no title bar, or when you want to move by dragging form contents
@@ -190,7 +190,7 @@ Partial Friend Class VidList
 		Me.lvVideoList.EndUpdate()
 		'End Update ListView
 		Me.lvVideoList.EnsureVisible(ItemIndex)
-		My.App.WriteToLog(My.App.AppMode.Videos, "Video List View Generated In " + Skye.Common.GenerateLogTime(StartTime, My.Computer.Clock.LocalTime.TimeOfDay), True)
+		My.App.WriteToLog("Video List View Generated In " + Skye.Common.GenerateLogTime(StartTime, My.Computer.Clock.LocalTime.TimeOfDay))
 		If Not err AndAlso My.App.FrmVidsVisible Then My.App.frmVids.TogglePlayState()
 		Me.btnRefresh.Enabled = True
 		IsGettingData = False
@@ -199,7 +199,7 @@ Partial Friend Class VidList
 		If Me.lvVideoList.SelectedIndices.Count = 1 Then
 			If My.App.VideoFiles(Me.lvVideoList.SelectedIndices(0)).State = My.App.VideoFileState.DisplayError Then
 				My.App.VideoFiles(Me.lvVideoList.SelectedIndices(0)) = My.App.VideoFileReEnable(Me.lvVideoList.SelectedIndices(0))
-				My.App.frmMain.UpdateSettings()
+				My.App.FrmMain.UpdateSettings()
 			End If
 			If My.App.VideoFiles(Me.lvVideoList.SelectedIndices(0)).Enabled Then
 				Debug.Print(My.App.AppMode.Videos.ToString + " --> PlayVideo --> " + Me.lvVideoList.SelectedIndices(0).ToString)
@@ -208,7 +208,7 @@ Partial Friend Class VidList
 					My.App.frmVids.NextVideo(My.App.PlayOption.BySelection)
 				Else
 					My.App.ShowVideos(True)
-					My.App.frmMain.ToggleContextMenu()
+					My.App.FrmMain.ToggleContextMenu()
 				End If
 			End If
 		End If

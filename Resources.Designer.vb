@@ -207,6 +207,16 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Friend Shared ReadOnly Property ImageDeleteLog32() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("ImageDeleteLog32", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Friend Shared ReadOnly Property imageError() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("imageError", resourceCulture)
@@ -310,6 +320,26 @@ Namespace My.Resources
         Friend Shared ReadOnly Property imageMaximizeWindow() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("imageMaximizeWindow", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend Shared ReadOnly Property ImageOK() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("ImageOK", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend Shared ReadOnly Property ImageOK16() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("ImageOK16", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

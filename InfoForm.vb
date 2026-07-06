@@ -106,7 +106,7 @@ Partial Friend Class InfoForm
 		End If
 	End Sub
 	Private Sub BtnDeleteLogClick(ByVal sender As Object, ByVal e As EventArgs) Handles btnClearLog.Click
-		My.App.ClearLog()
+		'My.App.DeleteLog()
 	End Sub
 	Private Sub BtnCloseClick(ByVal sender As Object, ByVal e As EventArgs) Handles btnClose.Click
 		Me.Close()

@@ -58,14 +58,14 @@ Partial Friend Class Pics
 					If Not FullScreen Then
 						My.App.picLocationMode = CType(My.App.picLocationMode - 1, My.App.LocationMode)
 						If My.App.picLocationMode < 0 Then My.App.picLocationMode = CType(My.App.LocationModeCount, App.LocationMode) 'My.App.LocationMode.Manual
-						If My.App.frmMain.Visible Then My.App.frmMain.UpdateSettings()
+						If My.App.FrmMain.Visible Then My.App.FrmMain.UpdateSettings()
 						DrawImage()
 					End If
 				Case Keys.PageDown
 					If Not FullScreen Then
 						My.App.picLocationMode = CType(My.App.picLocationMode + 1, My.App.LocationMode)
 						If My.App.picLocationMode > My.App.LocationModeCount Then My.App.picLocationMode = 0
-						If My.App.frmMain.Visible Then My.App.frmMain.UpdateSettings()
+						If My.App.FrmMain.Visible Then My.App.FrmMain.UpdateSettings()
 						DrawImage()
 					End If
 				Case Keys.Home : QuickRestore()
@@ -88,11 +88,11 @@ Partial Friend Class Pics
 		TimerQuickHide.Stop()
 		DisposeGraphics()
 		My.App.ImageIsOnTop = True
-		If My.App.frmMain.BackgroundworkerGetFiles.IsBusy Then My.App.frmMain.cmiViewPics.Enabled = False
-		If My.App.frmMain.Visible Then My.App.frmMain.Focus()
+		If My.App.FrmMain.BackgroundworkerGetFiles.IsBusy Then My.App.FrmMain.cmiViewPics.Enabled = False
+		If My.App.FrmMain.Visible Then My.App.FrmMain.Focus()
 	End Sub
 	Private Sub FrmDisposed(ByVal sender As Object, ByVal e As EventArgs)
-		My.App.frmMain.ToggleContextMenu()
+		My.App.FrmMain.ToggleContextMenu()
 		'		My.SkyeShow.SetScreenSaverWatcher
 		My.App.frmPics = Nothing
 	End Sub
@@ -199,7 +199,7 @@ Partial Friend Class Pics
 					Else : My.App.picLocation.Y = Me.Location.Y
 					End If
 					My.App.picLocationMode = My.App.LocationMode.Manual
-					My.App.frmMain.UpdateSettings()
+					My.App.FrmMain.UpdateSettings()
 				End If
 			ElseIf mMoveMode = 2 Then : If mResize Then Me.cmPics.Close()
 			End If
@@ -271,7 +271,7 @@ Partial Friend Class Pics
 				NextImage(My.App.PlayOption.BySelection)
 				My.App.ImageIndexPrevious = -1
 				My.App.DeleteFile(My.App.AppMode.Pictures, file)
-				My.App.frmMain.UpdateSettings()
+				My.App.FrmMain.UpdateSettings()
 			End If
 			SetDeleteImageConfirm()
 		Else
@@ -444,7 +444,7 @@ Partial Friend Class Pics
 		If Me.cmiQuickHide.Checked Then : QuickShow()
 		Else : SetTimer()
 		End If
-		If My.App.frmMain.Visible Then My.App.frmMain.UpdateSettings()
+		If My.App.FrmMain.Visible Then My.App.FrmMain.UpdateSettings()
 	End Sub
 	Friend Sub ToggleFullScreen()
 		FullScreen = Not FullScreen
@@ -554,23 +554,23 @@ Partial Friend Class Pics
 						Else
 							My.App.ImageFiles.RemoveAt(My.App.ImageIndex)
 							If opt = My.App.PlayOption.Forward Then My.App.ImageIndex -= 1
-							If My.App.frmMain.Visible Then My.App.frmMain.UpdateSettings()
+							If My.App.FrmMain.Visible Then My.App.FrmMain.UpdateSettings()
 						End If
 					Loop
-					My.App.UpdateLog() 'Use this to log each image selection to catch mysterious image display(esp. GIFs) errors that causes program termination.
+					App.WriteToLog(App.ImageIndexLogText)
 					imageRaw = Image.FromFile(My.App.ImageFiles.Item(My.App.ImageIndex))
 					DrawImage()
 					SetTimer()
 					If Not My.App.ImageRepeatList.Contains(My.App.ImageFiles(My.App.ImageIndex)) Then
 						My.App.ImageRepeatList.Add(My.App.ImageFiles(My.App.ImageIndex))
-						My.App.frmMain.UpdateSettings()
+						My.App.FrmMain.UpdateSettings()
 					End If
 					'My.Debug.ShowMessage(My.SkyeShow.Tools.Images, "NextImage", "Repeat Count : " + My.SkyeShow.ImageRepeatList.Count.ToString)
 				Catch ex As Exception
-					My.App.WriteToLog(My.App.AppMode.Pictures, "Image Load Error" + Chr(13) + ex.ToString)
+					My.App.WriteToLog("Image Load Error" + Chr(13) + ex.ToString)
 					My.App.SetErrorAlert()
 					My.App.ImageFiles.RemoveAt(My.App.ImageIndex)
-					My.App.frmMain.UpdateSettings()
+					My.App.FrmMain.UpdateSettings()
 					If My.App.ImageFiles.Count = 0 Then : Me.Close()
 					Else : NextImage(My.App.PlayOption.ByPlayMode)
 					End If
@@ -598,7 +598,7 @@ Partial Friend Class Pics
 			My.App.picLocationMode = CType(My.App.picLocationMode + 6, My.App.LocationMode)
 			'If My.SkyeShow.picLocationMode > My.SkyeShow.LocationMode.Manual Then My.SkyeShow.picLocationMode = CType(My.SkyeShow.picLocationMode - My.SkyeShow.LocationMode.Manual, My.SkyeShow.LocationMode)
 			If My.App.picLocationMode > My.App.LocationModeCount Then My.App.picLocationMode = CType(My.App.picLocationMode - My.App.LocationModeCount, My.App.LocationMode)
-			If My.App.frmMain.Visible Then My.App.frmMain.UpdateSettings()
+			If My.App.FrmMain.Visible Then My.App.FrmMain.UpdateSettings()
 			DrawImage()
 		End If
 	End Sub
@@ -606,7 +606,7 @@ Partial Friend Class Pics
 		ShowCursor()
 		If FullScreen Then ToggleFullScreen()
 		Me.Hide()
-		My.App.frmMain.RestoreSettings()
+		My.App.FrmMain.RestoreSettings()
 		DrawImage()
 	End Sub
 	Private Sub OnTop(mode As Boolean)
@@ -615,18 +615,18 @@ Partial Friend Class Pics
 			Me.TimerQuickHide.Stop()
 			Me.TopMost = True
 			My.App.ImageIsOnTop = True
-			My.App.frmMain.AppNotify()
+			My.App.FrmMain.AppNotify()
 		Else
 			Me.SendToBack()
 			Me.SendToBack()
 			My.App.ImageIsOnTop = False
-			My.App.frmMain.AppNotify()
+			My.App.FrmMain.AppNotify()
 		End If
 	End Sub
 	Private Sub SetTimerAutoStart()
 		If My.App.picTimerAutoStart And Not My.App.picTimerEnabled Then
 			My.App.picTimerEnabled = True
-			My.App.frmMain.UpdateSettings()
+			My.App.FrmMain.UpdateSettings()
 		End If
 	End Sub
 	Private Sub DisposeGraphics()

@@ -9,7 +9,17 @@ Namespace My
 
 #Region "Pics"
 
-		'Declarations Saved In Registry
+		' DECLARATIONS
+		Friend Const ImageTimerCountdownBorderPadding As Integer = 5
+		Friend ImageFiles As New Collections.Generic.List(Of String)
+		Friend ImageExtensions As New Collections.Generic.List(Of String)
+		Friend ImageIndex As Integer = -1
+		Friend ImageIndexPrevious As Integer = -1
+		Friend ImageRepeatList As New Collections.Generic.List(Of String)
+		Friend ImageIsOnTop As Boolean = True
+		Friend frmPics As Pics
+
+		' Saved Settings
 		Friend picFolders As New Collections.Generic.List(Of String)
 		Friend picLocation As System.Drawing.Point
 		Friend picLocationMode As LocationMode
@@ -24,17 +34,7 @@ Namespace My
 		Friend picTimerCountdownLocationMode As LocationMode
 		Friend picTimerInterval As Integer
 
-		'Declarations
-		Friend Const ImageTimerCountdownBorderPadding As Integer = 5
-		Friend ImageFiles As New Collections.Generic.List(Of String)
-		Friend ImageExtensions As New Collections.Generic.List(Of String)
-		Friend ImageIndex As Integer = -1
-		Friend ImageIndexPrevious As Integer = -1
-		Friend ImageRepeatList As New Collections.Generic.List(Of String)
-		Friend ImageIsOnTop As Boolean = True
-		Friend frmPics As Pics
-
-		'Procedures
+		' METHODS
 		Friend Sub ShowImages()
 			frmPics = New Pics
 			frmPics.Show()
@@ -52,11 +52,11 @@ Namespace My
 						file.Close()
 						file.Dispose()
 						writer = Nothing
-						My.App.WriteToLog(My.App.AppMode.Pictures, "Image List Saved (" + My.App.ImageFiles.Count.ToString + ") (" + Skye.Common.GenerateLogTime(starttime, My.Computer.Clock.LocalTime.TimeOfDay) + ")", True)
+						My.App.WriteToLog("Image List Saved (" + My.App.ImageFiles.Count.ToString + ") (" + Skye.Common.GenerateLogTime(starttime, My.Computer.Clock.LocalTime.TimeOfDay) + ")")
 						starttime = TimeSpan.Zero
 					End If
 				End If
-			Catch ex As Exception : WriteToLog(AppMode.Pictures, "Cannot Save Image List: " + ex.Message, True)
+			Catch ex As Exception : WriteToLog("Cannot Save Image List: " + ex.Message)
 			End Try
 		End Sub
 		Friend Sub LoadImageFileList()
@@ -69,10 +69,10 @@ Namespace My
 					file.Close()
 					file.Dispose()
 					reader = Nothing
-					My.App.WriteToLog(My.App.AppMode.Pictures, "Image List Loaded (" + My.App.ImageFiles.Count.ToString + ") (" + Skye.Common.GenerateLogTime(starttime, My.Computer.Clock.LocalTime.TimeOfDay) + ")", True)
+					My.App.WriteToLog("Image List Loaded (" + My.App.ImageFiles.Count.ToString + ") (" + Skye.Common.GenerateLogTime(starttime, My.Computer.Clock.LocalTime.TimeOfDay) + ")")
 					starttime = TimeSpan.Zero
 				End If
-			Catch ex As Exception : WriteToLog(AppMode.Pictures, "Cannot Load Image List: " + ex.Message, True)
+			Catch ex As Exception : WriteToLog("Cannot Load Image List: " + ex.Message)
 			End Try
 		End Sub
 		Friend Sub SaveImageRepeatList()
@@ -88,11 +88,11 @@ Namespace My
 						file.Close()
 						file.Dispose()
 						writer = Nothing
-						My.App.WriteToLog(My.App.AppMode.Pictures, "Viewed Image List Saved (" + My.App.ImageRepeatList.Count.ToString + ") (" + Skye.Common.GenerateLogTime(starttime, My.Computer.Clock.LocalTime.TimeOfDay) + ")", True)
+						My.App.WriteToLog("Viewed Image List Saved (" + My.App.ImageRepeatList.Count.ToString + ") (" + Skye.Common.GenerateLogTime(starttime, My.Computer.Clock.LocalTime.TimeOfDay) + ")")
 						starttime = TimeSpan.Zero
 					End If
 				End If
-			Catch ex As Exception : WriteToLog(AppMode.Pictures, "Cannot Save Viewed Image List: " + ex.Message, True)
+			Catch ex As Exception : WriteToLog("Cannot Save Viewed Image List: " + ex.Message)
 			End Try
 		End Sub
 		Friend Sub LoadImageRepeatList()
@@ -105,10 +105,10 @@ Namespace My
 					file.Close()
 					file.Dispose()
 					reader = Nothing
-					My.App.WriteToLog(My.App.AppMode.Pictures, "Viewed Image List Loaded (" + My.App.ImageRepeatList.Count.ToString + ") (" + Skye.Common.GenerateLogTime(starttime, My.Computer.Clock.LocalTime.TimeOfDay) + ")", True)
+					My.App.WriteToLog("Viewed Image List Loaded (" + My.App.ImageRepeatList.Count.ToString + ") (" + Skye.Common.GenerateLogTime(starttime, My.Computer.Clock.LocalTime.TimeOfDay) + ")")
 					starttime = TimeSpan.Zero
 				End If
-			Catch ex As Exception : WriteToLog(AppMode.Pictures, "Cannot Load Viewed Image List: " + ex.Message, True)
+			Catch ex As Exception : WriteToLog("Cannot Load Viewed Image List: " + ex.Message)
 			End Try
 		End Sub
 		Friend Function FrmPicsVisible() As Boolean
@@ -116,7 +116,7 @@ Namespace My
 			Return False
 		End Function
 		Friend Function ImageIndexLogText() As String
-			ImageIndexLogText = "Image Index " + ImageIndex.ToString
+			ImageIndexLogText = "Showing Image Index " + ImageIndex.ToString
 			If ImageIndex >= 0 Then ImageIndexLogText += " (" + ImageFiles(ImageIndex) + ")"
 		End Function
 
@@ -124,23 +124,7 @@ Namespace My
 
 #Region "Vids"
 
-		'Declarations Saved In Registry
-		Friend vidFolders As New Collections.Generic.List(Of VideoFolderType)
-		Friend vidExtensions As New Collections.Generic.List(Of String)
-		Friend vidLocation As System.Drawing.Point
-		Friend vidLocationMode As LocationMode
-		Friend vidScale As Single
-		Friend vidMaxSize As Int16
-		Friend vidPlayMode As PlayMode
-		Friend vidAutoView As Boolean
-		Friend vidLockFullScreen As Boolean
-		Friend vidVolume As Int16
-		Friend vidVolumeMute As Boolean
-		Friend vidTime As Boolean
-		Friend vidTimeDisplayMode As VideoPositionMode
-		Friend vidTimeLocationMode As LocationMode
-
-		'Declarations
+		' DECLARATIONS
 		Friend Enum VideoPositionMode
 			CurrentPosition
 			TimeRemaining
@@ -267,7 +251,23 @@ Namespace My
 		Friend frmVids As Vids
 		Friend frmVidList As VidList
 
-		'Procedures
+		' Saved Settings
+		Friend vidFolders As New Collections.Generic.List(Of VideoFolderType)
+		Friend vidExtensions As New Collections.Generic.List(Of String)
+		Friend vidLocation As System.Drawing.Point
+		Friend vidLocationMode As LocationMode
+		Friend vidScale As Single
+		Friend vidMaxSize As Int16
+		Friend vidPlayMode As PlayMode
+		Friend vidAutoView As Boolean
+		Friend vidLockFullScreen As Boolean
+		Friend vidVolume As Int16
+		Friend vidVolumeMute As Boolean
+		Friend vidTime As Boolean
+		Friend vidTimeDisplayMode As VideoPositionMode
+		Friend vidTimeLocationMode As LocationMode
+
+		' METHODS
 		Friend Sub ShowVideos(Optional showBySelection As Boolean = False)
 			If FrmVidsVisible() Then frmVids.Close()
 			frmVids = New Vids(showBySelection)
@@ -278,10 +278,10 @@ Namespace My
 			Dim video As New VideoFileType(CommandLinePath)
 			CommandLinePath = String.Empty
 			VideoFiles.Add(video)
-			frmMain.UpdateSettings()
+			FrmMain.UpdateSettings()
 			VideoIndex = VideoFiles.Count - 1
 			ShowVideos(True)
-			frmMain.ToggleContextMenu()
+			FrmMain.ToggleContextMenu()
 		End Sub
 		Friend Sub ShowVideoList()
 			frmVidList = New VidList
@@ -299,11 +299,11 @@ Namespace My
 						file.Close()
 						file.Dispose()
 						writer = Nothing
-						My.App.WriteToLog(My.App.AppMode.Videos, "Video List Saved (" + My.App.VideoFilesCount(My.App.VideoFilesCountMode.Total).ToString + ") (" + Skye.Common.GenerateLogTime(starttime, My.Computer.Clock.LocalTime.TimeOfDay) + ")", True)
+						My.App.WriteToLog("Video List Saved (" + My.App.VideoFilesCount(My.App.VideoFilesCountMode.Total).ToString + ") (" + Skye.Common.GenerateLogTime(starttime, My.Computer.Clock.LocalTime.TimeOfDay) + ")")
 						starttime = TimeSpan.Zero
 					End If
 				End If
-			Catch ex As Exception : WriteToLog(AppMode.Pictures, "Cannot Save Video List: " + ex.Message, True)
+			Catch ex As Exception : WriteToLog("Cannot Save Video List: " + ex.Message)
 			End Try
 		End Sub
 		Friend Sub LoadVideoFileList()
@@ -316,11 +316,11 @@ Namespace My
 					file.Close()
 					file.Dispose()
 					reader = Nothing
-					My.App.WriteToLog(My.App.AppMode.Videos, "Video List Loaded (" + My.App.VideoFilesCount(My.App.VideoFilesCountMode.Total).ToString + ") (" + Skye.Common.GenerateLogTime(starttime, My.Computer.Clock.LocalTime.TimeOfDay) + ")", True)
+					My.App.WriteToLog("Video List Loaded (" + My.App.VideoFilesCount(My.App.VideoFilesCountMode.Total).ToString + ") (" + Skye.Common.GenerateLogTime(starttime, My.Computer.Clock.LocalTime.TimeOfDay) + ")")
 					starttime = TimeSpan.Zero
 					VideoFilesResetEnabled()
 				End If
-			Catch ex As Exception : WriteToLog(AppMode.Pictures, "Cannot Load Video List: " + ex.Message, True)
+			Catch ex As Exception : WriteToLog("Cannot Load Video List: " + ex.Message)
 			End Try
 		End Sub
 		Friend Sub VideoFilesSetViewed(index As Integer)
@@ -330,7 +330,7 @@ Namespace My
 			VideoFiles.RemoveAt(index)
 			VideoFiles.Insert(index, file)
 			If VideoFilesCount() = 0 Then VideoFilesResetViewed()
-			frmMain.UpdateSettings()
+			FrmMain.UpdateSettings()
 		End Sub
 		Friend Sub VideoFilesResetViewed()
 			For index As Integer = 0 To VideoFiles.Count - 1
@@ -383,7 +383,7 @@ Namespace My
 			VideoFiles.RemoveAt(index)
 			VideoFiles.Insert(index, file)
 			If Not state = VideoFileState.Valid AndAlso VideoFilesCount() = 0 Then VideoFilesResetViewed()
-			frmMain.UpdateSettings()
+			FrmMain.UpdateSettings()
 		End Sub
 		Friend Function FrmVidsVisible() As Boolean
 			If frmVids IsNot Nothing AndAlso frmVids.Visible Then Return True
@@ -435,7 +435,7 @@ Namespace My
 			Return False
 		End Function
 		Friend Function VideoIndexLogText() As String
-			VideoIndexLogText = "Video Index " + VideoIndex.ToString
+			VideoIndexLogText = "Showing Video Index " + VideoIndex.ToString
 			If VideoIndex >= 0 Then VideoIndexLogText += " (" + VideoFiles(VideoIndex).Path + ")"
 		End Function
 
@@ -443,22 +443,7 @@ Namespace My
 
 #Region "App"
 
-		'Declarations Saved In Registry
-		Friend appSaveFileLists As Boolean 'Default = False
-		Friend appLoadFileListsInBackground As Boolean 'Default = True
-		Friend appRefreshFileListsOnStartUp As Boolean 'Default = True
-		Friend appHideCursorWhenFullscreen As Boolean 'Default = True
-		Friend appActionOnScreenSave As ScreenSaveActions 'Default = Close
-		Friend appInsideLocationOffset As UInt16 'Default = 40 'Inside Offset for Pic & Vid Location Mode
-		Friend hkEnabled As Boolean
-		Friend hkPicToggle As New HotKey
-		Friend hkPicToggleFullScreen As New HotKey
-		Friend hkPicShowFileInfo As New HotKey
-		Friend hkVidToggle As New HotKey
-		Friend hkVidToggleFullScreen As New HotKey
-		Friend hkVidShowFileInfo As New HotKey
-
-		'Declarations
+		' DECLARATIONS
 		Friend Const LocationModeManualAnchorThreshold As Byte = 50 'Percent of screen width/height that determines when the manual mode anchor should be right/bottom of form.
 		Friend Const GeneratingFileListAlertText As String = "Generating File List ... Please Wait"
 		Friend ReadOnly UserPath As String = My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\Skye\" 'UserPath is the base path for user-specific files.
@@ -466,18 +451,15 @@ Namespace My
 			Get
 				Dim asm As Assembly = Assembly.GetExecutingAssembly()
 				Dim titleAttr As AssemblyTitleAttribute = asm.GetCustomAttribute(Of AssemblyTitleAttribute)()
-				Return titleAttr.Title 'If(titleAttr IsNot Nothing AndAlso Not String.IsNullOrWhiteSpace(titleAttr.Title), titleAttr.Title, My.Application.Info.Title)
+				Return titleAttr.Title
 			End Get
 		End Property
-
 #If DEBUG Then
-		Private ReadOnly LogPath As String = My.Computer.FileSystem.SpecialDirectories.Temp + "\" + My.Application.Info.ProductName + "LogDEV.txt" 'LogPath is the path to the log file.
 		Private ReadOnly RegPath As String = "Software\\" + My.Application.Info.ProductName + "DEV" 'RegPath is the path to the registry key where application settings are stored.
 		Friend ReadOnly ImageFilesPath As String = UserPath + My.Application.Info.ProductName + "ImagesDEV.xml"
 		Friend ReadOnly ImageRepeatListPath As String = UserPath + My.Application.Info.ProductName + "ImagesViewedDEV.xml"
 		Friend ReadOnly VideoFilesPath As String = UserPath + My.Application.Info.ProductName + "VideosDEV.xml"
 #Else
-		Private ReadOnly LogPath As String = My.Computer.FileSystem.SpecialDirectories.Temp + "\" + My.Application.Info.ProductName + "Log.txt" 'LogPath is the path to the log file.
 		Private ReadOnly RegPath As String = "Software\\" + My.Application.Info.ProductName 'RegPath is the path to the registry key where application settings are stored.
 		Friend ReadOnly ImageFilesPath As String = UserPath + My.Application.Info.ProductName + "Images.xml"
 		Friend ReadOnly ImageRepeatListPath As String = UserPath + My.Application.Info.ProductName + "ImagesViewed.xml"
@@ -593,13 +575,18 @@ Namespace My
 				Me.KeyMod = keymod
 			End Sub
 		End Structure
+		Friend ReadOnly AdjustScreenBoundsNormalWindow As Byte = 8 'AdjustScreenBoundsNormalWindow is the number of pixels to adjust the screen bounds for normal windows.
+		Friend ReadOnly AdjustScreenBoundsDialogWindow As Byte = 10 'AdjustScreenBoundsDialogWindow is the number of pixels to adjust the screen bounds for dialog windows.
+		Friend ReadOnly MenuFont As New Font("Segoe UI", 12, FontStyle.Regular) ' MenuFont is the font used for context menus.
 		Friend ErrorAlert As Boolean = False
 		Friend IsGeneratingFileList As Boolean
 		Friend CommandLinePath As String = String.Empty
 		Friend BalloonLoading As Boolean = False
 		Friend IgnoreFocusChange As Boolean = False
 		Friend HotKeys As New Collections.Generic.List(Of HotKey)
-		Friend frmMain As MainForm
+		Friend FrmMain As MainForm
+		Friend FrmLog As Log
+		Private FrmInfo As InfoForm
 		Friend Function FormSize(windowsize As WindowSize) As Size
 			Select Case windowsize
 				Case WindowSize.Small : Return New Size(400, 240)
@@ -614,11 +601,25 @@ Namespace My
 		Private ScreenSaverRunning As Boolean = False
 		Private WorkStationLocked As Boolean = False
 		Private ReadOnly RandomFileIndex As New Random
-		Private frmInfo As InfoForm
 		Private ReadOnly frmBalloon As New Balloon
 		Private frmBalloonParent As String = String.Empty
 
-		'Handlers
+		' Saved Settings
+		Friend appSaveFileLists As Boolean 'Default = False
+		Friend appLoadFileListsInBackground As Boolean 'Default = True
+		Friend appRefreshFileListsOnStartUp As Boolean 'Default = True
+		Friend appHideCursorWhenFullscreen As Boolean 'Default = True
+		Friend appActionOnScreenSave As ScreenSaveActions 'Default = Close
+		Friend appInsideLocationOffset As UInt16 'Default = 40 'Inside Offset for Pic & Vid Location Mode
+		Friend hkEnabled As Boolean
+		Friend hkPicToggle As New HotKey
+		Friend hkPicToggleFullScreen As New HotKey
+		Friend hkPicShowFileInfo As New HotKey
+		Friend hkVidToggle As New HotKey
+		Friend hkVidToggleFullScreen As New HotKey
+		Friend hkVidShowFileInfo As New HotKey
+
+		' HANDLERS
 		Private Sub FrmBalloonTimerTick(ByVal sender As Object, ByVal e As EventArgs) Handles FrmBalloonTimer.Tick
 			HideBalloon()
 		End Sub
@@ -630,14 +631,14 @@ Namespace My
 					If Not ScreenSaverRunning Then
 						ScreenSaverRunning = True
 						Debug.Print(My.App.AppMode.SkyeShow.ToString + " --> ScreenSaverWatcherTick --> SS Activated @ " & Now)
-						WriteToLog(My.App.AppMode.SkyeShow, "ScreenSaver Activated", True)
+						WriteToLog("ScreenSaver Activated")
 						WorkSpaceSuspendedActions()
 					End If
 				Case False
 					If ScreenSaverRunning Then
 						ScreenSaverRunning = False
 						Debug.Print(My.App.AppMode.SkyeShow.ToString + " --> ScreenSaverWatcherTick --> SS DeActivated @ " & Now)
-						WriteToLog(My.App.AppMode.SkyeShow, "ScreenSaver DeActivated", True)
+						WriteToLog("ScreenSaver DeActivated")
 					End If
 			End Select
 		End Sub
@@ -645,18 +646,25 @@ Namespace My
 			If e.Reason = Microsoft.Win32.SessionSwitchReason.SessionLock Then
 				WorkStationLocked = True
 				Debug.Print(My.App.AppMode.SkyeShow.ToString + " --> SessionSwitch --> Workstation Locked @ " & Now)
-				WriteToLog(My.App.AppMode.SkyeShow, "WorkStation Locked", True)
+				WriteToLog("WorkStation Locked")
 				WorkSpaceSuspendedActions()
 			ElseIf e.Reason = Microsoft.Win32.SessionSwitchReason.SessionUnlock Then
 				WorkStationLocked = False
 				Debug.Print(My.App.AppMode.SkyeShow.ToString + " --> SessionSwitch --> Workstation UNLocked @ " & Now)
-				WriteToLog(My.App.AppMode.SkyeShow, "WorkStation UnLocked", True)
+				WriteToLog("WorkStation UnLocked")
 			End If
 		End Sub
 
-		'Procedures
+		' METHODS
 		Friend Sub Initialize()
-			WriteToLog(My.App.AppMode.SkyeShow, My.Application.Info.ProductName + " Started", True)
+#If DEBUG Then
+			Skye.Common.Log.Initialize(My.Application.Info.ProductName + "DEV") ' Use separate log file for debug builds to prevent debug logs from being mixed with release logs
+			Skye.Common.RegistryHelper.BaseKey = "Software\" + My.Application.Info.ProductName + "DEV" ' Use separate registry key for debug builds
+#Else
+            Skye.Common.Log.Initialize(My.Application.Info.ProductName) ' Use standard log file for release builds
+            Skye.Common.RegistryHelper.BaseKey = "Software\" + My.Application.Info.ProductName ' Use standard registry key for release builds
+#End If
+			WriteToLog(My.Application.Info.ProductName + " Started")
 			Debug.Print(My.App.AppMode.SkyeShow.ToString + " --> OnStartup --> Alternate Start = " + My.Application.AlternateStart.ToString)
 			FrmBalloonTimer.Interval = 6000
 			ScreenSaverWatcher.Interval = 1000
@@ -669,7 +677,6 @@ Namespace My
 			LoadVideoFileList()
 			ScreenSaverWatcher.Start()
 			AddHandler Microsoft.Win32.SystemEvents.SessionSwitch, AddressOf WorkStationLockedHandler
-			UpdateLog()
 			If hkEnabled Then RegisterHotKeys(True)
 		End Sub
 		Friend Sub Finalize()
@@ -677,19 +684,20 @@ Namespace My
 			My.App.SaveImageFileList()
 			My.App.SaveImageRepeatList()
 			My.App.SaveVideoFileList()
-			My.App.WriteToLog(My.App.AppMode.SkyeShow, My.Application.Info.ProductName + " Closed", True)
+			My.App.WriteToLog(My.Application.Info.ProductName + " Closed")
 		End Sub
 		Friend Sub CloseApp(Optional restart As Boolean = False)
-			On Error Resume Next
 			If FrmVidsVisible() Then frmVids.Close()
 			If FrmPicsVisible() Then frmPics.Close()
 			If FrmVidListVisible() Then frmVidList.Close()
-
-			If restart Then
-				frmMain.Close()
-				System.Windows.Forms.Application.Restart()
-			Else : frmMain.Close()
-			End If
+			If FrmLog?.Visible Then FrmLog.Close()
+			FrmMain.Close()
+			If restart Then System.Windows.Forms.Application.Restart()
+		End Sub
+		Friend Sub WriteToLog(logentry As String)
+			If String.IsNullOrWhiteSpace(logentry) Then Exit Sub
+			Skye.Common.Log.Write(logentry)
+			Debug.Print("WriteToLog --> " + logentry)
 		End Sub
 		Friend Sub GetSettings()
 			'Initialize
@@ -1085,15 +1093,15 @@ Namespace My
 					Case True 'Register All HotKeys Where Key Is Not 'NONE'
 						For Each key As HotKey In HotKeys
 							If Not key.Key = Keys.None Then
-								status = Skye.WinAPI.RegisterHotKey(frmMain.Handle, key.WinID, key.KeyMod, key.KeyCode)
-								WriteToLog(AppMode.SkyeShow, "HotKey '" + key.Description + " (" + key.WinID.ToString + ") (" + key.Key.ToString + ") (" + key.KeyCode.ToString + " mod " + key.KeyMod.ToString + ")' " + IIf(status, "Successfully Registered", "Failed To Register").ToString, True)
+								status = Skye.WinAPI.RegisterHotKey(FrmMain.Handle, key.WinID, key.KeyMod, key.KeyCode)
+								WriteToLog("HotKey '" + key.Description + " (" + key.WinID.ToString + ") (" + key.Key.ToString + ") (" + key.KeyCode.ToString + " mod " + key.KeyMod.ToString + ")' " + IIf(status, "Successfully Registered", "Failed To Register").ToString)
 							End If
 						Next
 					Case False 'UnRegister HotKeys
 						For Each key As HotKey In HotKeys
 							If Not key.Key = Keys.None Then
-								status = Skye.WinAPI.UnregisterHotKey(frmMain.Handle, key.WinID)
-								WriteToLog(AppMode.SkyeShow, "HotKey '" + key.Description + " (" + key.WinID.ToString + ")' " + IIf(status, "Successfully UNRegistered", "Failed To UNRegister").ToString, True)
+								status = Skye.WinAPI.UnregisterHotKey(FrmMain.Handle, key.WinID)
+								WriteToLog("HotKey '" + key.Description + " (" + key.WinID.ToString + ")' " + IIf(status, "Successfully UNRegistered", "Failed To UNRegister").ToString)
 							End If
 						Next
 				End Select
@@ -1106,13 +1114,13 @@ Namespace My
 						If FrmPicsVisible() Then : frmPics.Close()
 						Else : ShowImages()
 						End If
-						frmMain.ToggleContextMenu()
+						FrmMain.ToggleContextMenu()
 					Case hkPicToggleFullScreen.WinID
 						If FrmPicsVisible() Then : frmPics.ToggleFullScreen()
 						Else
 							ShowImages()
 							frmPics.ToggleFullScreen()
-							frmMain.ToggleContextMenu()
+							FrmMain.ToggleContextMenu()
 						End If
 					Case hkPicShowFileInfo.WinID
 						If FrmPicsVisible() Then
@@ -1123,13 +1131,13 @@ Namespace My
 						If FrmVidsVisible() Then : frmVids.Close()
 						Else : ShowVideos()
 						End If
-						frmMain.ToggleContextMenu()
+						FrmMain.ToggleContextMenu()
 					Case hkVidToggleFullScreen.WinID
 						If FrmVidsVisible() Then : frmVids.ToggleFullScreen()
 						Else
 							ShowVideos()
 							frmVids.ToggleFullScreen()
-							frmMain.ToggleContextMenu()
+							FrmMain.ToggleContextMenu()
 						End If
 					Case hkVidShowFileInfo.WinID
 						If FrmVidsVisible() Then
@@ -1186,31 +1194,31 @@ Namespace My
 		End Sub
 		Friend Sub ShowInfo(title As String, message As String, postmessage As String, Optional icon As Icon = Nothing, Optional wordwrap As Boolean = False, Optional scrolltotop As Boolean = True, Optional showmaximized As Boolean = False)
 			Try
-				If frmInfo IsNot Nothing Then frmInfo.Close()
-				frmInfo = New InfoForm
-				If icon Is Nothing Then : frmInfo.Icon = My.Resources.Resources.iconApp 'DirectCast(AppResources.GetObject("iconApp"), Icon)
-				Else : frmInfo.Icon = icon
+				If FrmInfo IsNot Nothing Then FrmInfo.Close()
+				FrmInfo = New InfoForm
+				If icon Is Nothing Then : FrmInfo.Icon = My.Resources.Resources.IconApp 'DirectCast(AppResources.GetObject("iconApp"), Icon)
+				Else : FrmInfo.Icon = icon
 				End If
-				frmInfo.Text = My.Application.Info.Title + " " + title
-				frmInfo.rtbMessage.ResetText()
-				frmInfo.rtbMessage.AppendText(message)
-				If scrolltotop Then frmInfo.rtbMessage.Select(0, 0)
-				If wordwrap Then frmInfo.rtbMessage.WordWrap = True
-				frmInfo.tbPostMessage.Text = postmessage
+				FrmInfo.Text = My.Application.Info.Title + " " + title
+				FrmInfo.rtbMessage.ResetText()
+				FrmInfo.rtbMessage.AppendText(message)
+				If scrolltotop Then FrmInfo.rtbMessage.Select(0, 0)
+				If wordwrap Then FrmInfo.rtbMessage.WordWrap = True
+				FrmInfo.tbPostMessage.Text = postmessage
 				If title.Contains("Log") Then
 					Dim lines As Integer = 0
-					If frmInfo.rtbMessage.Lines(0).Length > 0 Then lines = frmInfo.rtbMessage.GetLineFromCharIndex(frmInfo.rtbMessage.Text.Length)
+					If FrmInfo.rtbMessage.Lines(0).Length > 0 Then lines = FrmInfo.rtbMessage.GetLineFromCharIndex(FrmInfo.rtbMessage.Text.Length)
 					If lines > 0 Then
-						frmInfo.tbPostMessage.Text += "  (" + lines.ToString + IIf(lines > 1, " Lines", " Line").ToString + ")"
-						frmInfo.btnClearLog.Visible = True
+						FrmInfo.tbPostMessage.Text += "  (" + lines.ToString + IIf(lines > 1, " Lines", " Line").ToString + ")"
+						FrmInfo.btnClearLog.Visible = True
 					End If
-					frmInfo.btnRefreshLog.Visible = True
+					FrmInfo.btnRefreshLog.Visible = True
 				End If
-				frmInfo.btnClose.Select()
-				frmInfo.Show()
-				If showmaximized Then frmInfo.ChangeWindowState()
-				frmInfo.rtbMessage.Focus()
-			Catch ex As Exception : WriteToLog(My.App.AppMode.SkyeShow, "ShowInfo Managed Error" + Chr(13) + ex.ToString)
+				FrmInfo.btnClose.Select()
+				FrmInfo.Show()
+				If showmaximized Then FrmInfo.ChangeWindowState()
+				FrmInfo.rtbMessage.Focus()
+			Catch ex As Exception : WriteToLog("ShowInfo Managed Error" + Chr(13) + ex.ToString)
 			End Try
 		End Sub
 		Friend Sub ShowHelp(Optional showmaximized As Boolean = False)
@@ -1243,76 +1251,35 @@ Namespace My
 			End If
 		End Sub
 		Friend Sub ShowLog(Optional showmaximized As Boolean = False)
-			Dim logtext As String = String.Empty
-			Try : logtext = IO.File.ReadAllText(LogPath)
-			Catch
-			Finally
-				If String.IsNullOrEmpty(logtext) Then logtext = "Log Empty"
-				If showmaximized Then : ShowInfo("Log", logtext, LogPath, My.Resources.Resources.iconLog, False, False, True)
-				Else : ShowInfo("Log", logtext, LogPath, My.Resources.Resources.iconLog, False, False, False)
-				End If
-			End Try
-		End Sub
-		Friend Sub WriteToLog(tool As AppMode, logentry As String, Optional minimal As Boolean = False)
-			Dim logtext As String = My.Computer.Clock.LocalTime.ToString("yyyy/MM/dd") + " @ " + My.Computer.Clock.LocalTime.ToString("HH:mm:ss") + " @ " + tool.ToString
-			If minimal Then : logtext += " --> " + logentry + vbCr
+			If FrmLog Is Nothing Then
+				FrmLog = New Log
+				FrmLog.LogViewer.Tip.Font = MenuFont
+				FrmLog.Show()
 			Else
-				logtext += vbCr + logentry
-				logtext += vbCr + ImageIndexLogText()
-				logtext += vbCr + VideoIndexLogText()
-				logtext += vbCr
+				FrmLog.BringToFront()
+				FrmLog.Focus()
 			End If
-			Dim fi As New IO.FileInfo(LogPath)
-			If fi.Exists Then If fi.Length >= 1000000 Then IO.File.Move(LogPath, LogPath.Insert(LogPath.Length - 4, "Backup@" + My.Computer.Clock.LocalTime.ToString("yyyyMMdd") + "@" + My.Computer.Clock.LocalTime.ToString("HHmmss")))
-			IO.File.AppendAllText(LogPath, logtext)
-			Debug.Print(AppMode.SkyeShow.ToString + " --> WriteToLog --> " + IIf(String.IsNullOrEmpty(logtext), String.Empty, logtext.TrimEnd).ToString)
-			fi = Nothing
+			If showmaximized Then FrmLog.WindowState = FormWindowState.Maximized
+			FrmLog.BTNOK.Select()
 		End Sub
-		Friend Sub UpdateLog()
-			Static logtext As String
-			Static fInfo As IO.FileInfo
-			Static fList As Collections.Generic.List(Of String)
-			If fList Is Nothing Then fList = New Collections.Generic.List(Of String)
-			logtext = "--> Status @ " + My.Computer.Clock.LocalTime.ToString("yyyy/MM/dd") + " @ " + My.Computer.Clock.LocalTime.ToString("HH:mm:ss")
-			logtext += vbCr + ImageIndexLogText()
-			logtext += vbCr + VideoIndexLogText()
-			logtext += vbCr + "--"
-			fInfo = New IO.FileInfo(LogPath)
-			If Not fInfo.Exists Then : IO.File.AppendAllText(LogPath, logtext + vbCr)
-			Else
-				fList.AddRange(IO.File.ReadAllLines(LogPath))
-				If fList(0).StartsWith("--> Status @ ") Then
-					Do : fList.RemoveAt(0)
-					Loop Until fList(0).StartsWith("--")
-					fList.RemoveAt(0)
-				End If
-				fList.Insert(0, logtext)
-				IO.File.WriteAllLines(LogPath, fList.ToArray)
-				fList.Clear()
+		Friend Sub HideLog()
+			If FrmLog IsNot Nothing AndAlso Not FrmLog.IsDisposed Then
+				FrmLog.Close()
 			End If
-			Debug.Print("Update Log " & logtext)
-			fInfo = Nothing
-			logtext = String.Empty
-		End Sub
-		Friend Sub ClearLog()
-			Try : My.Computer.FileSystem.DeleteFile(LogPath, Microsoft.VisualBasic.FileIO.UIOption.OnlyErrorDialogs, Microsoft.VisualBasic.FileIO.RecycleOption.SendToRecycleBin)
-			Catch
-			Finally : frmInfo.Close()
-			End Try
 		End Sub
 		Friend Sub DeleteFile(AppMode As AppMode, file As String)
 			Try
 				If My.Computer.FileSystem.FileExists(file) Then My.Computer.FileSystem.DeleteFile(file, FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.SendToRecycleBin)
-			Catch ex As Exception : WriteToLog(AppMode, "Error Deleting File '" + file + "'; " + Microsoft.VisualBasic.vbCr + ex.Message, True)
+			Catch ex As Exception : WriteToLog("Error Deleting File '" + file + "'; " + Microsoft.VisualBasic.vbCr + ex.Message)
 			End Try
 		End Sub
 		Friend Sub SetErrorAlert()
 			ErrorAlert = True
-			frmMain.AppNotify()
+			FrmMain.AppNotify()
 		End Sub
 		Friend Sub ClearErrorAlert()
 			ErrorAlert = False
-			frmMain.AppNotify()
+			FrmMain.AppNotify()
 		End Sub
 		Private Sub WorkSpaceSuspendedActions()
 			If FrmVidsVisible() Then
@@ -1377,8 +1344,7 @@ Namespace My
 			psi.WindowStyle = Diagnostics.ProcessWindowStyle.Normal
 			Try : Diagnostics.Process.Start(psi)
 			Catch ex As Exception
-				'MessageBox.Show(ex.Message, "Error Opening File", Windows.Forms.MessageBoxButtons.OK, Windows.Forms.MessageBoxIcon.Error)
-				WriteToLog(tool, "Error Opening File '" + psi.FileName + "'", True)
+				WriteToLog("Error Opening File '" + psi.FileName + "'")
 				SetErrorAlert()
 				Return False
 			End Try
@@ -1398,7 +1364,7 @@ Namespace My
 				.WindowStyle = Diagnostics.ProcessWindowStyle.Normal}
 			Try : Diagnostics.Process.Start(psi)
 			Catch ex As Exception
-				WriteToLog(tool, "Error Opening File Location '" + filepath + "'", True)
+				WriteToLog("Error Opening File Location '" + filepath + "'")
 				SetErrorAlert()
 				Return False
 			End Try

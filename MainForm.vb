@@ -323,7 +323,7 @@ Partial Friend Class MainForm
 					MyBase.WndProc(m)
 				Case Else : MyBase.WndProc(m)
 			End Select
-		Catch ex As Exception : My.App.WriteToLog(My.App.AppMode.SkyeShow, "MainForm WndProc Handler Error" + Chr(13) + ex.ToString)
+		Catch ex As Exception : My.App.WriteToLog("MainForm WndProc Handler Error" + Chr(13) + ex.ToString)
 		End Try
 	End Sub
 	Private Sub FrmLoad(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
@@ -658,16 +658,16 @@ Partial Friend Class MainForm
 	End Sub
 	Private Sub CMILogMouseUp(sender As Object, e As MouseEventArgs) Handles cmiLog.MouseUp
 		Select Case e.Button
-			Case MouseButtons.Left : My.App.ShowLog(False)
-			Case MouseButtons.Right : My.App.ShowLog(True)
+			Case MouseButtons.Left : App.ShowLog(False)
+			Case MouseButtons.Right : App.ShowLog(True)
 		End Select
 	End Sub
 	Private Sub CMISettingsMouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles cmiSettings.MouseUp
 		If e.Button = MouseButtons.Left Then ShowForm()
 	End Sub
 	Private Sub CMIExitMouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles cmiExit.MouseUp
-		If e.Button = MouseButtons.Right Then : My.App.CloseApp(True)
-		Else : My.App.CloseApp()
+		If e.Button = MouseButtons.Right Then : App.CloseApp(True)
+		Else : App.CloseApp()
 		End If
 	End Sub
 	Private Sub TxbxNumbersOnlyKeyDown(sender As Object, e As KeyEventArgs) Handles txbxPicTimerInterval.KeyDown, txbxInsideLocationOffset.KeyDown
@@ -890,10 +890,10 @@ Partial Friend Class MainForm
 	Private Sub BtnLogMouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles btnLog.MouseUp
 		If e.X >= 0 And e.X <= CType(sender, Button).Width And e.Y >= 0 And e.Y <= CType(sender, Button).Height Then
 			Select Case e.Button
-				Case MouseButtons.Left : My.App.ShowLog(False)
-				Case MouseButtons.Right : My.App.ShowLog(True)
+				Case MouseButtons.Left : App.ShowLog(False)
+				Case MouseButtons.Right : App.ShowLog(True)
 			End Select
-			If My.App.ErrorAlert Then My.App.ClearErrorAlert()
+			If My.App.ErrorAlert Then App.ClearErrorAlert()
 		End If
 	End Sub
 	Private Sub BtnCloseClick(ByVal sender As Object, ByVal e As EventArgs) Handles btnClose.Click
@@ -906,12 +906,11 @@ Partial Friend Class MainForm
 					My.App.SetErrorAlert()
 					Debug.Print(My.App.AppMode.SkyeShow.ToString + " --> btnErrorTestMouseUp --> TEST ERROR - DO NOT PANIC!!")
 					MsgBox("Just Checking, DO NOT PANIC!!", MsgBoxStyle.Critical, "Test Error")
-					My.App.WriteToLog(My.App.AppMode.SkyeShow, "Test Error - DO NOT PANIC!!", True)
-					My.App.UpdateLog()
+					My.App.WriteToLog("Test Error - DO NOT PANIC!!")
 					My.App.ShowLog()
 				Case MouseButtons.Right
 					My.App.SetErrorAlert()
-					My.App.WriteToLog(My.App.AppMode.SkyeShow, "Test Exception - DO NOT PANIC!!")
+					My.App.WriteToLog("Test Exception - DO NOT PANIC!!")
 					Throw New Exception("Test Exception - DO NOT PANIC!!")
 			End Select
 		End If
@@ -1477,12 +1476,12 @@ Partial Friend Class MainForm
 		VideoListOutOfSync = False
 		Dim mode As My.App.GetFilesType = CType(e.Result, My.App.GetFilesType)
 		If (mode = My.App.GetFilesType.Pics Or mode = My.App.GetFilesType.All) Then
-			My.App.WriteToLog(My.App.AppMode.Pictures, "Image List " + Me.GenerateImageListType.ToString + " (" + My.App.ImageFiles.Count.ToString + ") (" + Skye.Common.GenerateLogTime(GenerateImageListStartTime, GenerateImageListEndTime) + ")", True)
+			My.App.WriteToLog("Image List " + Me.GenerateImageListType.ToString + " (" + My.App.ImageFiles.Count.ToString + ") (" + Skye.Common.GenerateLogTime(GenerateImageListStartTime, GenerateImageListEndTime) + ")")
 			GenerateImageListStartTime = TimeSpan.Zero
 			GenerateImageListEndTime = TimeSpan.Zero
 		End If
 		If (mode = My.App.GetFilesType.Vids Or mode = My.App.GetFilesType.All) Then
-			My.App.WriteToLog(My.App.AppMode.Videos, "Video List " + Me.GenerateVideoListType.ToString + " (" + My.App.VideoFilesCount(My.App.VideoFilesCountMode.Total).ToString + ") (" + Skye.Common.GenerateLogTime(GenerateVideoListStartTime, GenerateVideoListEndTime) + ")", True)
+			My.App.WriteToLog("Video List " + Me.GenerateVideoListType.ToString + " (" + My.App.VideoFilesCount(My.App.VideoFilesCountMode.Total).ToString + ") (" + Skye.Common.GenerateLogTime(GenerateVideoListStartTime, GenerateVideoListEndTime) + ")")
 			GenerateVideoListStartTime = TimeSpan.Zero
 			GenerateVideoListEndTime = TimeSpan.Zero
 		End If

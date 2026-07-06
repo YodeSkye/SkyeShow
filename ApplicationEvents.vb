@@ -38,9 +38,8 @@ Namespace My
 
             splash.Close()
             splash.Dispose()
-            splash = Nothing
 
-            _pendingArgs = e.CommandLine
+			_pendingArgs = e.CommandLine
 			Return True
 		End Function
 		Protected Overrides Sub OnStartupNextInstance(e As ApplicationServices.StartupNextInstanceEventArgs)
@@ -48,8 +47,8 @@ Namespace My
 			ProcessCommandLine(e.CommandLine)
 		End Sub
 		Protected Overrides Sub OnCreateMainForm()
-			App.frmMain = New MainForm
-			Me.MainForm = App.frmMain
+			App.FrmMain = New MainForm
+			Me.MainForm = App.FrmMain
 			My.App.Initialize()
 			If _pendingArgs IsNot Nothing Then ProcessCommandLine(_pendingArgs)
 		End Sub
@@ -70,7 +69,7 @@ Namespace My
 					Dim commandlineparameters As String = String.Empty
 					For Each s As String In commandline : commandlineparameters += IIf(String.IsNullOrEmpty(s), "<NULL>", s).ToString + " " : Next
 					commandlineparameters = commandlineparameters.Trim(CType(" ", Char))
-					My.App.WriteToLog(My.App.AppMode.SkyeShow, "Invalid CommandLine Parameters (" + commandline.Count.ToString + ") : " + commandlineparameters, True)
+					My.App.WriteToLog("Invalid CommandLine Parameters (" + commandline.Count.ToString + ") : " + commandlineparameters)
 					My.App.SetErrorAlert()
 				End Try
 			End If

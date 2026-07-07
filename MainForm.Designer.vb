@@ -27,7 +27,6 @@ Inherits System.Windows.Forms.Form
         cmiSettings = New ToolStripMenuItem()
         toolStripSeparator2 = New ToolStripSeparator()
         cmiExit = New ToolStripMenuItem()
-        label1 = New Label()
         lvVidFolders = New ListView()
         cmList = New ContextMenuStrip(components)
         cmiSettingListEnableItem = New ToolStripMenuItem()
@@ -36,7 +35,6 @@ Inherits System.Windows.Forms.Form
         toolStripSeparator4 = New ToolStripSeparator()
         cmiSettingListRemoveItem = New ToolStripMenuItem()
         cmiSettingListRemoveAll = New ToolStripMenuItem()
-        lvVidExtensions = New ListView()
         tcSettings = New TabControl()
         tpApp = New TabPage()
         chbxHotKeys = New CheckBox()
@@ -287,29 +285,29 @@ Inherits System.Windows.Forms.Form
         cmSkyeShow.Items.AddRange(New ToolStripItem() {cmiViewPics, cmiPlayVids, cmiStartAll, cmiCloseAll, toolStripSeparator1, cmiVidList, toolStripSeparator5, cmiHelp, cmiLog, cmiSettings, toolStripSeparator2, cmiExit})
         cmSkyeShow.Name = "cmenuYMShow"
         cmSkyeShow.RenderMode = ToolStripRenderMode.Professional
-        cmSkyeShow.Size = New Size(181, 242)
+        cmSkyeShow.Size = New Size(162, 220)
         ' 
         ' cmiViewPics
         ' 
         cmiViewPics.Enabled = False
-        cmiViewPics.Image = My.Resources.Resources.imageImage
+        cmiViewPics.Image = My.Resources.Resources.ImageImage
         cmiViewPics.Name = "cmiViewPics"
-        cmiViewPics.Size = New Size(180, 22)
+        cmiViewPics.Size = New Size(161, 22)
         cmiViewPics.Text = "Pictures"
         ' 
         ' cmiPlayVids
         ' 
         cmiPlayVids.Enabled = False
-        cmiPlayVids.Image = My.Resources.Resources.imageVideo
+        cmiPlayVids.Image = My.Resources.Resources.ImageVideo
         cmiPlayVids.Name = "cmiPlayVids"
-        cmiPlayVids.Size = New Size(180, 22)
+        cmiPlayVids.Size = New Size(161, 22)
         cmiPlayVids.Text = "Videos"
         ' 
         ' cmiStartAll
         ' 
         cmiStartAll.Image = My.Resources.Resources.imageStartAll
         cmiStartAll.Name = "cmiStartAll"
-        cmiStartAll.Size = New Size(180, 22)
+        cmiStartAll.Size = New Size(161, 22)
         cmiStartAll.Text = "Both"
         cmiStartAll.Visible = False
         ' 
@@ -317,33 +315,33 @@ Inherits System.Windows.Forms.Form
         ' 
         cmiCloseAll.Image = My.Resources.Resources.imageClose
         cmiCloseAll.Name = "cmiCloseAll"
-        cmiCloseAll.Size = New Size(180, 22)
+        cmiCloseAll.Size = New Size(161, 22)
         cmiCloseAll.Text = "Close All"
         cmiCloseAll.Visible = False
         ' 
         ' toolStripSeparator1
         ' 
         toolStripSeparator1.Name = "toolStripSeparator1"
-        toolStripSeparator1.Size = New Size(177, 6)
+        toolStripSeparator1.Size = New Size(158, 6)
         ' 
         ' cmiVidList
         ' 
         cmiVidList.Enabled = False
         cmiVidList.Image = My.Resources.Resources.imageVideoList
         cmiVidList.Name = "cmiVidList"
-        cmiVidList.Size = New Size(180, 22)
+        cmiVidList.Size = New Size(161, 22)
         cmiVidList.Text = "Video List"
         ' 
         ' toolStripSeparator5
         ' 
         toolStripSeparator5.Name = "toolStripSeparator5"
-        toolStripSeparator5.Size = New Size(177, 6)
+        toolStripSeparator5.Size = New Size(158, 6)
         ' 
         ' cmiHelp
         ' 
-        cmiHelp.Image = My.Resources.Resources.imageInfo
+        cmiHelp.Image = My.Resources.Resources.ImageInfo
         cmiHelp.Name = "cmiHelp"
-        cmiHelp.Size = New Size(180, 22)
+        cmiHelp.Size = New Size(161, 22)
         cmiHelp.Text = "Help"
         cmiHelp.ToolTipText = "RightClick = Show Maximized"
         ' 
@@ -351,7 +349,7 @@ Inherits System.Windows.Forms.Form
         ' 
         cmiLog.Image = My.Resources.Resources.imageLog
         cmiLog.Name = "cmiLog"
-        cmiLog.Size = New Size(180, 22)
+        cmiLog.Size = New Size(161, 22)
         cmiLog.Text = "Log"
         cmiLog.ToolTipText = "RightClick = Show Maximized"
         ' 
@@ -359,32 +357,21 @@ Inherits System.Windows.Forms.Form
         ' 
         cmiSettings.Image = CType(resources.GetObject("cmiSettings.Image"), Image)
         cmiSettings.Name = "cmiSettings"
-        cmiSettings.Size = New Size(180, 22)
+        cmiSettings.Size = New Size(161, 22)
         cmiSettings.Text = "Settings"
         ' 
         ' toolStripSeparator2
         ' 
         toolStripSeparator2.Name = "toolStripSeparator2"
-        toolStripSeparator2.Size = New Size(177, 6)
+        toolStripSeparator2.Size = New Size(158, 6)
         ' 
         ' cmiExit
         ' 
         cmiExit.Image = My.Resources.Resources.imageClose
         cmiExit.Name = "cmiExit"
-        cmiExit.Size = New Size(180, 22)
+        cmiExit.Size = New Size(161, 22)
         cmiExit.Text = "Exit Skye Show"
         cmiExit.ToolTipText = "RightClick = ReStart YMShow"
-        ' 
-        ' label1
-        ' 
-        label1.Anchor = AnchorStyles.Top Or AnchorStyles.Right
-        label1.BackColor = Color.Transparent
-        label1.Location = New Point(677, 89)
-        label1.Name = "label1"
-        label1.Size = New Size(70, 21)
-        label1.TabIndex = 0
-        label1.Text = "Formats"
-        label1.TextAlign = ContentAlignment.TopCenter
         ' 
         ' lvVidFolders
         ' 
@@ -396,7 +383,7 @@ Inherits System.Windows.Forms.Form
         lvVidFolders.Location = New Point(4, 7)
         lvVidFolders.MultiSelect = False
         lvVidFolders.Name = "lvVidFolders"
-        lvVidFolders.Size = New Size(666, 86)
+        lvVidFolders.Size = New Size(742, 86)
         lvVidFolders.TabIndex = 10
         lvVidFolders.TabStop = False
         lvVidFolders.UseCompatibleStateImageBehavior = False
@@ -443,22 +430,6 @@ Inherits System.Windows.Forms.Form
         cmiSettingListRemoveAll.Name = "cmiSettingListRemoveAll"
         cmiSettingListRemoveAll.Size = New Size(152, 22)
         cmiSettingListRemoveAll.Text = "Remove All"
-        ' 
-        ' lvVidExtensions
-        ' 
-        lvVidExtensions.Anchor = AnchorStyles.Top Or AnchorStyles.Right
-        lvVidExtensions.BorderStyle = BorderStyle.FixedSingle
-        lvVidExtensions.ContextMenuStrip = cmList
-        lvVidExtensions.FullRowSelect = True
-        lvVidExtensions.HeaderStyle = ColumnHeaderStyle.None
-        lvVidExtensions.Location = New Point(676, 7)
-        lvVidExtensions.MultiSelect = False
-        lvVidExtensions.Name = "lvVidExtensions"
-        lvVidExtensions.Size = New Size(70, 86)
-        lvVidExtensions.TabIndex = 15
-        lvVidExtensions.TabStop = False
-        lvVidExtensions.UseCompatibleStateImageBehavior = False
-        lvVidExtensions.View = View.Details
         ' 
         ' tcSettings
         ' 
@@ -1566,7 +1537,6 @@ Inherits System.Windows.Forms.Form
         tpVids.Controls.Add(chbkVidMute)
         tpVids.Controls.Add(grbxHotKeysVids)
         tpVids.Controls.Add(cobxVidTimeDisplayMode)
-        tpVids.Controls.Add(lvVidExtensions)
         tpVids.Controls.Add(lvVidFolders)
         tpVids.Controls.Add(chbxVidLockFullScreen)
         tpVids.Controls.Add(chbxVidAutoView)
@@ -1578,14 +1548,13 @@ Inherits System.Windows.Forms.Form
         tpVids.Controls.Add(btnlvVidFolders)
         tpVids.Controls.Add(btnRefreshVidList)
         tpVids.Controls.Add(btnVidList)
-        tpVids.Controls.Add(label1)
         tpVids.Controls.Add(grbxVidTimeLocationMode)
         tpVids.ImageKey = "iconVideo.ico"
-        tpVids.Location = New Point(4, 24)
+        tpVids.Location = New Point(4, 26)
         tpVids.Margin = New Padding(0)
         tpVids.Name = "tpVids"
         tpVids.RightToLeft = RightToLeft.No
-        tpVids.Size = New Size(752, 451)
+        tpVids.Size = New Size(752, 449)
         tpVids.TabIndex = 1
         tpVids.Text = "                    ""Vids""                    "
         tpVids.UseVisualStyleBackColor = True
@@ -2342,7 +2311,7 @@ Inherits System.Windows.Forms.Form
         btnlvVidFolders.FlatAppearance.BorderSize = 0
         btnlvVidFolders.Image = My.Resources.Resources.imageFolder
         btnlvVidFolders.ImageAlign = ContentAlignment.MiddleLeft
-        btnlvVidFolders.Location = New Point(390, 91)
+        btnlvVidFolders.Location = New Point(466, 91)
         btnlvVidFolders.Name = "btnlvVidFolders"
         btnlvVidFolders.Size = New Size(175, 32)
         btnlvVidFolders.TabIndex = 22
@@ -2360,7 +2329,7 @@ Inherits System.Windows.Forms.Form
         btnRefreshVidList.FlatAppearance.BorderSize = 0
         btnRefreshVidList.Image = My.Resources.Resources.imageRestore
         btnRefreshVidList.ImageAlign = ContentAlignment.MiddleLeft
-        btnRefreshVidList.Location = New Point(571, 91)
+        btnRefreshVidList.Location = New Point(647, 91)
         btnRefreshVidList.Name = "btnRefreshVidList"
         btnRefreshVidList.Size = New Size(100, 32)
         btnRefreshVidList.TabIndex = 24
@@ -2378,7 +2347,7 @@ Inherits System.Windows.Forms.Form
         btnVidList.FlatAppearance.BorderSize = 0
         btnVidList.Image = My.Resources.Resources.imageVideoList
         btnVidList.ImageAlign = ContentAlignment.MiddleLeft
-        btnVidList.Location = New Point(268, 91)
+        btnVidList.Location = New Point(344, 91)
         btnVidList.Name = "btnVidList"
         btnVidList.Size = New Size(116, 32)
         btnVidList.TabIndex = 20
@@ -2786,7 +2755,7 @@ Inherits System.Windows.Forms.Form
         ' btnInfo
         ' 
         btnInfo.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        btnInfo.Image = My.Resources.Resources.imageInfo
+        btnInfo.Image = My.Resources.Resources.ImageInfo
         btnInfo.ImageAlign = ContentAlignment.TopLeft
         btnInfo.Location = New Point(141, 506)
         btnInfo.Name = "btnInfo"
@@ -2824,7 +2793,7 @@ Inherits System.Windows.Forms.Form
         Controls.Add(btnRestoreSettings)
         Controls.Add(tcSettings)
         Font = New Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Icon = My.Resources.Resources.iconApp
+        Icon = My.Resources.Resources.IconApp
         Margin = New Padding(3, 4, 3, 4)
         MaximizeBox = False
         Name = "MainForm"
@@ -2944,7 +2913,6 @@ Inherits System.Windows.Forms.Form
     Private WithEvents btnRefreshVidList As System.Windows.Forms.Button
     Private WithEvents btnVidList As System.Windows.Forms.Button
     Private WithEvents btnlvVidFolders As System.Windows.Forms.Button
-    Private lvVidExtensions As System.Windows.Forms.ListView
     Private lvVidFolders As System.Windows.Forms.ListView
     Private lblVidFileCount As System.Windows.Forms.Label
     Private lblInsideLocationOffset As System.Windows.Forms.Label
@@ -3080,7 +3048,6 @@ Inherits System.Windows.Forms.Form
     Private WithEvents radbtnVideoScale50 As System.Windows.Forms.RadioButton
     Private WithEvents btnRestoreSettings As System.Windows.Forms.Button
     Private WithEvents btnSaveSettings As System.Windows.Forms.Button
-    Private label1 As System.Windows.Forms.Label
     Private WithEvents cmiSettings As System.Windows.Forms.ToolStripMenuItem
     Private WithEvents cmiExit As System.Windows.Forms.ToolStripMenuItem
     Private toolStripSeparator1 As System.Windows.Forms.ToolStripSeparator

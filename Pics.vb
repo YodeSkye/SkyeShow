@@ -56,15 +56,15 @@ Partial Friend Class Pics
 				Case Keys.OemQuestion : ShowFileInfo()
 				Case Keys.PageUp
 					If Not FullScreen Then
-						My.App.picLocationMode = CType(My.App.picLocationMode - 1, My.App.LocationMode)
-						If My.App.picLocationMode < 0 Then My.App.picLocationMode = CType(My.App.LocationModeCount, App.LocationMode) 'My.App.LocationMode.Manual
+						My.App.PicLocationMode = CType(My.App.PicLocationMode - 1, My.App.LocationMode)
+						If My.App.PicLocationMode < 0 Then My.App.PicLocationMode = CType(My.App.LocationModeCount, App.LocationMode) 'My.App.LocationMode.Manual
 						If My.App.FrmMain.Visible Then My.App.FrmMain.UpdateSettings()
 						DrawImage()
 					End If
 				Case Keys.PageDown
 					If Not FullScreen Then
-						My.App.picLocationMode = CType(My.App.picLocationMode + 1, My.App.LocationMode)
-						If My.App.picLocationMode > My.App.LocationModeCount Then My.App.picLocationMode = 0
+						My.App.PicLocationMode = CType(My.App.PicLocationMode + 1, My.App.LocationMode)
+						If My.App.PicLocationMode > My.App.LocationModeCount Then My.App.PicLocationMode = 0
 						If My.App.FrmMain.Visible Then My.App.FrmMain.UpdateSettings()
 						DrawImage()
 					End If
@@ -76,7 +76,7 @@ Partial Friend Class Pics
 	End Sub
 	Private Sub FrmLoad(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
 		SetTimerAutoStart()
-		If My.App.picPlayMode = My.App.PlayMode.LinearWithRandomStart Then My.App.ImageIndex = Skye.Common.GetRandom(0, My.App.ImageFiles.Count - 1, My.App.ImageIndex)
+		If My.App.PicPlayMode = My.App.PlayMode.LinearWithRandomStart Then My.App.ImageIndex = Skye.Common.GetRandom(0, My.App.ImageFiles.Count - 1, My.App.ImageIndex)
 		NextImage(My.App.PlayOption.ByPlayMode)
 	End Sub
 	Private Sub FrmClosing(ByVal sender As Object, ByVal e As FormClosingEventArgs) Handles MyBase.FormClosing
@@ -97,7 +97,7 @@ Partial Friend Class Pics
 		My.App.frmPics = Nothing
 	End Sub
 	Private Sub FrmLostFocus(ByVal sender As Object, ByVal e As EventArgs)
-		If FullScreen And Not My.App.picLockFullScreen And Not My.App.BalloonLoading And Not My.App.IgnoreFocusChange Then ToggleFullScreen()
+		If FullScreen And Not My.App.PicLockFullScreen And Not My.App.BalloonLoading And Not My.App.IgnoreFocusChange Then ToggleFullScreen()
 	End Sub
 	Private Sub FrmKeyDown(ByVal sender As Object, ByVal e As KeyEventArgs) Handles MyBase.KeyDown
 		If e.Control Then : mMoveMode = 1
@@ -133,7 +133,7 @@ Partial Friend Class Pics
 				ElseIf mMoveMode = 2 Then
 					Cursor = Cursors.SizeAll
 					mResize = False
-					mStartSize = My.picMaxSize
+					mStartSize = My.PicMaxSize
 					mLastLocation = Location
 					If sender Is lblCountdown Then : mLastLocation.Offset(lblCountdown.Left + e.X, lblCountdown.Top + e.Y)
 					Else : mLastLocation.Offset(e.Location)
@@ -153,12 +153,12 @@ Partial Friend Class Pics
 				Location = mPosition
 				SetImageTimerCountdown()
 			ElseIf mMoveMode = 2 Then
-				If sender Is Me.lblCountdown Then : My.App.picMaxSize += CType(Me.Left + (Me.lblCountdown.Left + e.X) - mLastLocation.X, Short)
-				Else : My.App.picMaxSize += CType(Me.Left + e.X - mLastLocation.X, Short)
+				If sender Is Me.lblCountdown Then : My.App.PicMaxSize += CType(Me.Left + (Me.lblCountdown.Left + e.X) - mLastLocation.X, Short)
+				Else : My.App.PicMaxSize += CType(Me.Left + e.X - mLastLocation.X, Short)
 				End If
-				If mStartSize <> My.App.picMaxSize Then mResize = True
-				If My.App.picMaxSize > Int(My.Computer.Screen.Bounds.Width / 2) Then : My.App.picMaxSize = CType(Int(My.Computer.Screen.Bounds.Width / 2), Short)
-				ElseIf My.App.picMaxSize < Int(My.Computer.Screen.Bounds.Width / 50) Then : My.App.picMaxSize = CType(Int(My.Computer.Screen.Bounds.Width / 50), Short)
+				If mStartSize <> My.App.PicMaxSize Then mResize = True
+				If My.App.PicMaxSize > Int(My.Computer.Screen.Bounds.Width / 2) Then : My.App.PicMaxSize = CType(Int(My.Computer.Screen.Bounds.Width / 2), Short)
+				ElseIf My.App.PicMaxSize < Int(My.Computer.Screen.Bounds.Width / 50) Then : My.App.PicMaxSize = CType(Int(My.Computer.Screen.Bounds.Width / 50), Short)
 				End If
 				mLastLocation = Me.Location
 				If sender Is Me.lblCountdown Then : mLastLocation.Offset(Me.lblCountdown.Left + e.X, Me.lblCountdown.Top + e.Y)
@@ -170,7 +170,7 @@ Partial Friend Class Pics
 		Else
 			If mHide Then : If Not mHidePosition = Control.MousePosition Then ShowCursor()
 			Else
-				If FullScreen AndAlso My.App.appHideCursorWhenFullscreen AndAlso mHoverLocation = e.Location Then
+				If FullScreen AndAlso My.App.HideCursorWhenFullscreen AndAlso mHoverLocation = e.Location Then
 					If Not TimerHideMouse.Enabled Then
 						TimerHideMouse.Start()
 						Debug.Print("frmMouseMove--> Hide Timer Started")
@@ -192,13 +192,13 @@ Partial Friend Class Pics
 			mMove = False
 			If mMoveMode = 1 Then
 				If mStartLocation <> Me.Location Then
-					If Me.Location.X > My.Computer.Screen.WorkingArea.Left + (My.Computer.Screen.WorkingArea.Width * (My.App.LocationModeManualAnchorThreshold / 100)) Then : My.App.picLocation.X = Me.Location.X + Me.Width
-					Else : My.App.picLocation.X = Me.Location.X
+					If Me.Location.X > My.Computer.Screen.WorkingArea.Left + (My.Computer.Screen.WorkingArea.Width * (My.App.LocationModeManualAnchorThreshold / 100)) Then : My.App.PicLocation.X = Me.Location.X + Me.Width
+					Else : My.App.PicLocation.X = Me.Location.X
 					End If
-					If Me.Location.Y > My.Computer.Screen.WorkingArea.Top + (My.Computer.Screen.WorkingArea.Height * (My.App.LocationModeManualAnchorThreshold / 100)) Then : My.App.picLocation.Y = Me.Location.Y + Me.Height
-					Else : My.App.picLocation.Y = Me.Location.Y
+					If Me.Location.Y > My.Computer.Screen.WorkingArea.Top + (My.Computer.Screen.WorkingArea.Height * (My.App.LocationModeManualAnchorThreshold / 100)) Then : My.App.PicLocation.Y = Me.Location.Y + Me.Height
+					Else : My.App.PicLocation.Y = Me.Location.Y
 					End If
-					My.App.picLocationMode = My.App.LocationMode.Manual
+					My.App.PicLocationMode = My.App.LocationMode.Manual
 					My.App.FrmMain.UpdateSettings()
 				End If
 			ElseIf mMoveMode = 2 Then : If mResize Then Me.cmPics.Close()
@@ -286,7 +286,7 @@ Partial Friend Class Pics
 	'Handlers
 	Private Sub TimerImageAdvanceTick(ByVal sender As Object, ByVal e As EventArgs) Handles TimerImageAdvance.Tick
 		Me.timerImageAdvanceCount += 1
-		If Me.timerImageAdvanceCount = My.App.picTimerInterval Then
+		If Me.timerImageAdvanceCount = My.App.PicTimerInterval Then
 			Me.timerImageAdvanceCount = 0
 			SetDeleteImageConfirm(True)
 			If Not Me.cmPics.Visible AndAlso Not My.App.BalloonVisible Then NextImage(My.App.PlayOption.ByPlayMode)
@@ -318,7 +318,7 @@ Partial Friend Class Pics
 			If imageRaw.Width <= My.Computer.Screen.Bounds.Width And imageRaw.Height <= My.Computer.Screen.Bounds.Height Then
 				'Smaller than or equal to Screen Size
 				Me.Size = imageRaw.Size
-				Select Case My.App.picJustify
+				Select Case My.App.PicJustify
 					Case My.App.LocationJustify.Left : Me.Left = 0
 					Case My.App.LocationJustify.Center : Me.Left = CType(My.Computer.Screen.Bounds.Width / 2 - Me.Width / 2, Integer)
 					Case My.App.LocationJustify.Right : Me.Left = My.Computer.Screen.Bounds.Width - Me.Width
@@ -334,7 +334,7 @@ Partial Friend Class Pics
 				'Adjusted Height larger than Adjusted Width
 				Me.Width = CType(imageRaw.Width * (My.Computer.Screen.Bounds.Height / imageRaw.Height), Integer)
 				Me.Height = My.Computer.Screen.Bounds.Height
-				Select Case My.App.picJustify
+				Select Case My.App.PicJustify
 					Case My.App.LocationJustify.Left : Me.Left = 0
 					Case My.App.LocationJustify.Center : Me.Left = CType(My.Computer.Screen.Bounds.Width / 2 - Me.Width / 2, Integer)
 					Case My.App.LocationJustify.Right : Me.Left = My.Computer.Screen.Bounds.Width - Me.Width
@@ -342,26 +342,26 @@ Partial Friend Class Pics
 				Me.Top = 0
 			End If
 		Else
-			If imageRaw.Width <= My.App.picMaxSize And imageRaw.Height <= My.App.picMaxSize Then
+			If imageRaw.Width <= My.App.PicMaxSize And imageRaw.Height <= My.App.PicMaxSize Then
 				'Smaller than or equal to MaxSize
 				Me.Size = New Size(imageRaw.Width, imageRaw.Height)
 			ElseIf imageRaw.Width >= imageRaw.Height Then
 				'Landscape or Square, but larger than MaxSize
-				Me.Size = New Size(My.App.picMaxSize, CType(imageRaw.Height * (My.App.picMaxSize / imageRaw.Width), Integer))
+				Me.Size = New Size(My.App.PicMaxSize, CType(imageRaw.Height * (My.App.PicMaxSize / imageRaw.Width), Integer))
 			Else
 				'Portrait, but larger than MaxSize
-				Me.Size = New Size(CType(imageRaw.Width * (My.App.picMaxSize / imageRaw.Height), Integer), My.App.picMaxSize)
+				Me.Size = New Size(CType(imageRaw.Width * (My.App.PicMaxSize / imageRaw.Height), Integer), My.App.PicMaxSize)
 			End If
-			Select Case My.App.picLocationMode
+			Select Case My.App.PicLocationMode
 				Case My.App.LocationMode.Manual
 					Static locM As New Point
-					If My.App.picLocation.X > My.Computer.Screen.WorkingArea.Left + (My.Computer.Screen.WorkingArea.Width * (My.App.LocationModeManualAnchorThreshold / 100)) Then
-						locM.X = My.App.picLocation.X - Me.Width
-					Else : locM.X = My.App.picLocation.X
+					If My.App.PicLocation.X > My.Computer.Screen.WorkingArea.Left + (My.Computer.Screen.WorkingArea.Width * (My.App.LocationModeManualAnchorThreshold / 100)) Then
+						locM.X = My.App.PicLocation.X - Me.Width
+					Else : locM.X = My.App.PicLocation.X
 					End If
-					If My.App.picLocation.Y > My.Computer.Screen.WorkingArea.Top + (My.Computer.Screen.WorkingArea.Height * (My.App.LocationModeManualAnchorThreshold / 100)) Then
-						locM.Y = My.App.picLocation.Y - Me.Height
-					Else : locM.Y = My.App.picLocation.Y
+					If My.App.PicLocation.Y > My.Computer.Screen.WorkingArea.Top + (My.Computer.Screen.WorkingArea.Height * (My.App.LocationModeManualAnchorThreshold / 100)) Then
+						locM.Y = My.App.PicLocation.Y - Me.Height
+					Else : locM.Y = My.App.PicLocation.Y
 					End If
 					Me.Location = locM
 					locM = Nothing
@@ -381,22 +381,22 @@ Partial Friend Class Pics
 				Case My.App.LocationMode.LeftCenterBottom : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left, My.Computer.Screen.WorkingArea.Top + CType(My.Computer.Screen.WorkingArea.Height * 0.75 - Me.Height / 2, Integer))
 				Case My.App.LocationMode.LeftCenter : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left, My.Computer.Screen.WorkingArea.Top + CType(My.Computer.Screen.WorkingArea.Height * 0.5 - Me.Height / 2, Integer))
 				Case My.App.LocationMode.LeftCenterTop : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left, My.Computer.Screen.WorkingArea.Top + CType(My.Computer.Screen.WorkingArea.Height * 0.25 - Me.Height / 2, Integer))
-				Case My.App.LocationMode.TopLeftInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + My.App.appInsideLocationOffset, My.Computer.Screen.WorkingArea.Top + My.App.appInsideLocationOffset)
-				Case My.App.LocationMode.TopCenterLeftInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + CType(My.Computer.Screen.WorkingArea.Width * 0.25 - Me.Width / 2, Integer), My.Computer.Screen.WorkingArea.Top + My.App.appInsideLocationOffset)
-				Case My.App.LocationMode.TopCenterInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + CType(My.Computer.Screen.WorkingArea.Width * 0.5 - Me.Width / 2, Integer), My.Computer.Screen.WorkingArea.Top + My.App.appInsideLocationOffset)
-				Case My.App.LocationMode.TopCenterRightInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + CType(My.Computer.Screen.WorkingArea.Width * 0.75 - Me.Width / 2, Integer), My.Computer.Screen.WorkingArea.Top + My.App.appInsideLocationOffset)
-				Case My.App.LocationMode.TopRightInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Right - Me.Width - My.App.appInsideLocationOffset, My.Computer.Screen.WorkingArea.Top + My.App.appInsideLocationOffset)
-				Case My.App.LocationMode.RightCenterTopInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Right - Me.Width - My.App.appInsideLocationOffset, My.Computer.Screen.WorkingArea.Top + CType(My.Computer.Screen.WorkingArea.Height * 0.25 - Me.Height / 2, Integer))
-				Case My.App.LocationMode.RightCenterInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Right - Me.Width - My.App.appInsideLocationOffset, My.Computer.Screen.WorkingArea.Top + CType(My.Computer.Screen.WorkingArea.Height * 0.5 - Me.Height / 2, Integer))
-				Case My.App.LocationMode.RightCenterBottomInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Right - Me.Width - My.App.appInsideLocationOffset, My.Computer.Screen.WorkingArea.Top + CType(My.Computer.Screen.WorkingArea.Height * 0.75 - Me.Height / 2, Integer))
-				Case My.App.LocationMode.BottomRightInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Right - Me.Width - My.App.appInsideLocationOffset, My.Computer.Screen.WorkingArea.Bottom - Me.Height - My.App.appInsideLocationOffset)
-				Case My.App.LocationMode.BottomCenterRightInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + CType(My.Computer.Screen.WorkingArea.Width * 0.75 - Me.Width / 2, Integer), My.Computer.Screen.WorkingArea.Bottom - Me.Height - My.App.appInsideLocationOffset)
-				Case My.App.LocationMode.BottomCenterInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + CType(My.Computer.Screen.WorkingArea.Width * 0.5 - Me.Width / 2, Integer), My.Computer.Screen.WorkingArea.Bottom - Me.Height - My.App.appInsideLocationOffset)
-				Case My.App.LocationMode.BottomCenterLeftInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + CType(My.Computer.Screen.WorkingArea.Width * 0.25 - Me.Width / 2, Integer), My.Computer.Screen.WorkingArea.Bottom - Me.Height - My.App.appInsideLocationOffset)
-				Case My.App.LocationMode.BottomLeftInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + My.App.appInsideLocationOffset, My.Computer.Screen.WorkingArea.Bottom - Me.Height - My.App.appInsideLocationOffset)
-				Case My.App.LocationMode.LeftCenterBottomInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + My.App.appInsideLocationOffset, My.Computer.Screen.WorkingArea.Top + CType(My.Computer.Screen.WorkingArea.Height * 0.75 - Me.Height / 2, Integer))
-				Case My.App.LocationMode.LeftCenterInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + My.App.appInsideLocationOffset, My.Computer.Screen.WorkingArea.Top + CType(My.Computer.Screen.WorkingArea.Height * 0.5 - Me.Height / 2, Integer))
-				Case My.App.LocationMode.LeftCenterTopInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + My.App.appInsideLocationOffset, My.Computer.Screen.WorkingArea.Top + CType(My.Computer.Screen.WorkingArea.Height * 0.25 - Me.Height / 2, Integer))
+				Case My.App.LocationMode.TopLeftInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + My.App.InsideLocationOffset, My.Computer.Screen.WorkingArea.Top + My.App.InsideLocationOffset)
+				Case My.App.LocationMode.TopCenterLeftInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + CType(My.Computer.Screen.WorkingArea.Width * 0.25 - Me.Width / 2, Integer), My.Computer.Screen.WorkingArea.Top + My.App.InsideLocationOffset)
+				Case My.App.LocationMode.TopCenterInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + CType(My.Computer.Screen.WorkingArea.Width * 0.5 - Me.Width / 2, Integer), My.Computer.Screen.WorkingArea.Top + My.App.InsideLocationOffset)
+				Case My.App.LocationMode.TopCenterRightInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + CType(My.Computer.Screen.WorkingArea.Width * 0.75 - Me.Width / 2, Integer), My.Computer.Screen.WorkingArea.Top + My.App.InsideLocationOffset)
+				Case My.App.LocationMode.TopRightInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Right - Me.Width - My.App.InsideLocationOffset, My.Computer.Screen.WorkingArea.Top + My.App.InsideLocationOffset)
+				Case My.App.LocationMode.RightCenterTopInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Right - Me.Width - My.App.InsideLocationOffset, My.Computer.Screen.WorkingArea.Top + CType(My.Computer.Screen.WorkingArea.Height * 0.25 - Me.Height / 2, Integer))
+				Case My.App.LocationMode.RightCenterInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Right - Me.Width - My.App.InsideLocationOffset, My.Computer.Screen.WorkingArea.Top + CType(My.Computer.Screen.WorkingArea.Height * 0.5 - Me.Height / 2, Integer))
+				Case My.App.LocationMode.RightCenterBottomInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Right - Me.Width - My.App.InsideLocationOffset, My.Computer.Screen.WorkingArea.Top + CType(My.Computer.Screen.WorkingArea.Height * 0.75 - Me.Height / 2, Integer))
+				Case My.App.LocationMode.BottomRightInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Right - Me.Width - My.App.InsideLocationOffset, My.Computer.Screen.WorkingArea.Bottom - Me.Height - My.App.InsideLocationOffset)
+				Case My.App.LocationMode.BottomCenterRightInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + CType(My.Computer.Screen.WorkingArea.Width * 0.75 - Me.Width / 2, Integer), My.Computer.Screen.WorkingArea.Bottom - Me.Height - My.App.InsideLocationOffset)
+				Case My.App.LocationMode.BottomCenterInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + CType(My.Computer.Screen.WorkingArea.Width * 0.5 - Me.Width / 2, Integer), My.Computer.Screen.WorkingArea.Bottom - Me.Height - My.App.InsideLocationOffset)
+				Case My.App.LocationMode.BottomCenterLeftInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + CType(My.Computer.Screen.WorkingArea.Width * 0.25 - Me.Width / 2, Integer), My.Computer.Screen.WorkingArea.Bottom - Me.Height - My.App.InsideLocationOffset)
+				Case My.App.LocationMode.BottomLeftInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + My.App.InsideLocationOffset, My.Computer.Screen.WorkingArea.Bottom - Me.Height - My.App.InsideLocationOffset)
+				Case My.App.LocationMode.LeftCenterBottomInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + My.App.InsideLocationOffset, My.Computer.Screen.WorkingArea.Top + CType(My.Computer.Screen.WorkingArea.Height * 0.75 - Me.Height / 2, Integer))
+				Case My.App.LocationMode.LeftCenterInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + My.App.InsideLocationOffset, My.Computer.Screen.WorkingArea.Top + CType(My.Computer.Screen.WorkingArea.Height * 0.5 - Me.Height / 2, Integer))
+				Case My.App.LocationMode.LeftCenterTopInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + My.App.InsideLocationOffset, My.Computer.Screen.WorkingArea.Top + CType(My.Computer.Screen.WorkingArea.Height * 0.25 - Me.Height / 2, Integer))
 			End Select
 			CheckMove(Me.Location)
 		End If
@@ -429,7 +429,7 @@ Partial Friend Class Pics
 		If Me.timerImageAdvanceCount > 0 Then Me.timerImageAdvanceCount = 0
 		ShowImageTimerCountdown()
 
-		If My.App.picTimerEnabled Then
+		If My.App.PicTimerEnabled Then
 			Me.TimerImageAdvance.Start()
 			Me.cmiTimer.Checked = True
 			Me.cmiTimer.ForeColor = Color.Teal
@@ -439,8 +439,8 @@ Partial Friend Class Pics
 		End If
 	End Sub
 	Friend Sub ToggleTimer()
-		My.App.picTimerEnabled = Not My.App.picTimerEnabled
-		If My.App.picTimerEnabled Then SetImageTimerCountdown()
+		My.App.PicTimerEnabled = Not My.App.PicTimerEnabled
+		If My.App.PicTimerEnabled Then SetImageTimerCountdown()
 
 		If Me.cmiQuickHide.Checked Then : QuickShow()
 		Else : SetTimer()
@@ -461,7 +461,7 @@ Partial Friend Class Pics
 		Me.cmiQuickHide.Checked = False
 	End Sub
 	Friend Sub SetImageTimerCountdown()
-		If My.App.picTimerCountdown Then
+		If My.App.PicTimerCountdown Then
 			Me.timerImageAdvanceCount = 0
 			Me.lblCountdown.Visible = True
 			ShowImageTimerCountdown()
@@ -471,10 +471,10 @@ Partial Friend Class Pics
 	Friend Sub ShowImageTimerCountdown()
 		Me.lblCountdown.SuspendLayout()
 
-		If My.App.picTimerEnabled Then : Me.lblCountdown.Text = (My.App.picTimerInterval - Me.timerImageAdvanceCount).ToString
+		If My.App.PicTimerEnabled Then : Me.lblCountdown.Text = (My.App.PicTimerInterval - Me.timerImageAdvanceCount).ToString
 		Else : Me.lblCountdown.Text = " - "
 		End If
-		Select Case My.App.picTimerCountdownLocationMode
+		Select Case My.App.PicTimerCountdownLocationMode
 			Case My.App.LocationMode.TopLeft : Me.lblCountdown.Location = New Point(My.App.ImageTimerCountdownBorderPadding, My.App.ImageTimerCountdownBorderPadding)
 			Case My.App.LocationMode.TopCenterLeft : Me.lblCountdown.Location = New Point(CInt(Me.Width * 0.25) - CInt(Me.lblCountdown.Width / 2), My.App.ImageTimerCountdownBorderPadding)
 			Case My.App.LocationMode.TopCenter : Me.lblCountdown.Location = New Point(CInt(Me.Width * 0.5) - CInt(Me.lblCountdown.Width / 2), My.App.ImageTimerCountdownBorderPadding)
@@ -524,7 +524,7 @@ Partial Friend Class Pics
 					Me.TimerImageAdvance.Stop()
 
 					If opt = My.App.PlayOption.ByPlayMode Then
-						Select Case My.App.picPlayMode
+						Select Case My.App.PicPlayMode
 							Case My.App.PlayMode.Linear, My.App.PlayMode.LinearWithRandomStart : opt = My.App.PlayOption.Forward
 							Case My.App.PlayMode.Random : opt = My.App.PlayOption.Random
 						End Select
@@ -582,23 +582,23 @@ Partial Friend Class Pics
 	End Sub
 	Private Sub QuickHide(Optional autorestore As Boolean = True)
 		ShowCursor()
-		If My.App.picTimerEnabled Then ToggleTimer()
+		If My.App.PicTimerEnabled Then ToggleTimer()
 		Me.TimerQuickHide.Stop()
 		Me.cmiQuickHide.Checked = True
 		If FullScreen Then ToggleFullScreen()
 		OnTop(False)
 		If autorestore Then
 			Me.cmiQuickHide.ForeColor = Color.Goldenrod
-			Me.TimerQuickHide.Interval = My.App.picTimerInterval * 1000
+			Me.TimerQuickHide.Interval = My.App.PicTimerInterval * 1000
 			Me.TimerQuickHide.Start()
 		Else : Me.cmiQuickHide.ForeColor = Color.Maroon
 		End If
 	End Sub
 	Private Sub QuickShift()
 		If Not FullScreen Then
-			My.App.picLocationMode = CType(My.App.picLocationMode + 6, My.App.LocationMode)
+			My.App.PicLocationMode = CType(My.App.PicLocationMode + 6, My.App.LocationMode)
 			'If My.SkyeShow.picLocationMode > My.SkyeShow.LocationMode.Manual Then My.SkyeShow.picLocationMode = CType(My.SkyeShow.picLocationMode - My.SkyeShow.LocationMode.Manual, My.SkyeShow.LocationMode)
-			If My.App.picLocationMode > My.App.LocationModeCount Then My.App.picLocationMode = CType(My.App.picLocationMode - My.App.LocationModeCount, My.App.LocationMode)
+			If My.App.PicLocationMode > My.App.LocationModeCount Then My.App.PicLocationMode = CType(My.App.PicLocationMode - My.App.LocationModeCount, My.App.LocationMode)
 			If My.App.FrmMain.Visible Then My.App.FrmMain.UpdateSettings()
 			DrawImage()
 		End If
@@ -625,8 +625,8 @@ Partial Friend Class Pics
 		End If
 	End Sub
 	Private Sub SetTimerAutoStart()
-		If My.App.picTimerAutoStart And Not My.App.picTimerEnabled Then
-			My.App.picTimerEnabled = True
+		If My.App.PicTimerAutoStart And Not My.App.PicTimerEnabled Then
+			My.App.PicTimerEnabled = True
 			My.App.FrmMain.UpdateSettings()
 		End If
 	End Sub
@@ -640,7 +640,7 @@ Partial Friend Class Pics
 		imageRaw = Nothing
 	End Sub
 	Private Sub HideCursor()
-		If Not mHide AndAlso My.App.appHideCursorWhenFullscreen Then
+		If Not mHide AndAlso My.App.HideCursorWhenFullscreen Then
 			mHide = True
 			mHidePosition = Control.MousePosition
 			Cursor.Hide()

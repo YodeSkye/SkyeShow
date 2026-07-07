@@ -214,10 +214,10 @@ Partial Friend Class Vids
     Private Sub FrmLoad(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         AddHandler VLCViewer.HandleCreated, AddressOf VLCViewer_HandleCreated
         AddHandler VLCViewer.HandleDestroyed, AddressOf VLCViewer_HandleDestroyed
-        Me.cmiMuteVideo.Checked = My.App.vidVolumeMute
+        Me.cmiMuteVideo.Checked = My.App.VidVolumeMute
         Me.Width = 0
         Me.Height = 0
-        If My.App.vidPlayMode = My.App.PlayMode.LinearWithRandomStart Then My.App.VideoIndex = Skye.Common.GetRandom(0, My.App.VideoFiles.Count - 1, My.App.VideoIndex)
+        If My.App.VidPlayMode = My.App.PlayMode.LinearWithRandomStart Then My.App.VideoIndex = Skye.Common.GetRandom(0, My.App.VideoFiles.Count - 1, My.App.VideoIndex)
         NextVideo(StartUpPlayOption)
     End Sub
     Private Sub FrmClosing(ByVal sender As Object, ByVal e As FormClosingEventArgs) Handles MyBase.FormClosing
@@ -238,7 +238,7 @@ Partial Friend Class Vids
         My.App.FrmVids = Nothing
     End Sub
     Private Sub FrmLostFocus(ByVal sender As Object, ByVal e As EventArgs)
-        If FullScreen And Not My.App.vidLockFullScreen And Not My.App.BalloonLoading And Not My.App.IgnoreFocusChange Then ToggleFullScreen()
+        If FullScreen And Not My.App.VidLockFullScreen And Not My.App.BalloonLoading And Not My.App.IgnoreFocusChange Then ToggleFullScreen()
     End Sub
     Friend Sub FrmPreviewKeyDown(sender As Object, e As PreviewKeyDownEventArgs) Handles MyBase.PreviewKeyDown
         My.App.HideBalloon()
@@ -264,15 +264,15 @@ Partial Friend Class Vids
                 Case Keys.OemQuestion : ShowFileInfo()
                 Case Keys.PageUp
                     If Not FullScreen Then
-                        My.App.vidLocationMode = CType(My.App.vidLocationMode - 1, My.App.LocationMode)
-                        If My.App.vidLocationMode < 0 Then My.App.vidLocationMode = CType(My.App.LocationModeCount, App.LocationMode)
+                        My.App.VidLocationMode = CType(My.App.VidLocationMode - 1, My.App.LocationMode)
+                        If My.App.VidLocationMode < 0 Then My.App.VidLocationMode = CType(My.App.LocationModeCount, App.LocationMode)
                         If My.App.FrmMain.Visible Then My.App.FrmMain.UpdateSettings()
                         SetSize()
                     End If
                 Case Keys.PageDown
                     If Not FullScreen Then
-                        My.App.vidLocationMode = CType(My.App.vidLocationMode + 1, My.App.LocationMode)
-                        If My.App.vidLocationMode > My.App.LocationModeCount Then My.App.vidLocationMode = 0
+                        My.App.VidLocationMode = CType(My.App.VidLocationMode + 1, My.App.LocationMode)
+                        If My.App.VidLocationMode > My.App.LocationModeCount Then My.App.VidLocationMode = 0
                         If My.App.FrmMain.Visible Then My.App.FrmMain.UpdateSettings()
                         SetSize()
                     End If
@@ -284,7 +284,7 @@ Partial Friend Class Vids
     End Sub
     Private Sub FrmKeyDown(ByVal sender As Object, ByVal e As KeyEventArgs) Handles MyBase.KeyDown
         If e.Control Then : mMoveMode = 1
-        ElseIf e.Shift And My.App.vidScale = 0 Then : mMoveMode = 2
+        ElseIf e.Shift And My.App.VidScale = 0 Then : mMoveMode = 2
         Else : mMoveMode = 0
         End If
     End Sub
@@ -318,7 +318,7 @@ Partial Friend Class Vids
                 ElseIf mMoveMode = 2 Then
                     Me.Cursor = Cursors.SizeAll
                     mResize = False
-                    mStartSize = My.App.vidMaxSize
+                    mStartSize = My.App.VidMaxSize
                     mLastLocation = Me.Location
                     If sender Is Me.lblTime Then : mLastLocation.Offset(Me.lblTime.Left + e.X, Me.lblTime.Top + e.Y)
                     Else : mLastLocation.Offset(e.Location)
@@ -336,10 +336,10 @@ Partial Friend Class Vids
                 CheckMove(mPosition)
                 Location = mPosition
             ElseIf mMoveMode = 2 Then
-                If sender Is Me.lblTime Then : My.App.vidMaxSize += CType(Me.Left + (Me.lblTime.Left + e.X) - mLastLocation.X, Short)
-                Else : My.App.vidMaxSize += CShort(Int(Me.Left + e.X - mLastLocation.X))
+                If sender Is Me.lblTime Then : My.App.VidMaxSize += CType(Me.Left + (Me.lblTime.Left + e.X) - mLastLocation.X, Short)
+                Else : My.App.VidMaxSize += CShort(Int(Me.Left + e.X - mLastLocation.X))
                 End If
-                If mStartSize <> My.App.vidMaxSize Then mResize = True
+                If mStartSize <> My.App.VidMaxSize Then mResize = True
                 mLastLocation = Me.Location
                 If sender Is Me.lblTime Then : mLastLocation.Offset(Me.lblTime.Left + e.X, Me.lblTime.Top + e.Y)
                 Else : mLastLocation.Offset(e.Location)
@@ -350,7 +350,7 @@ Partial Friend Class Vids
         Else
             If mHide Then : If Not mHidePosition = Control.MousePosition Then ShowCursor()
             Else
-                If FullScreen AndAlso My.App.appHideCursorWhenFullscreen AndAlso mHoverLocation = e.Location Then
+                If FullScreen AndAlso My.App.HideCursorWhenFullscreen AndAlso mHoverLocation = e.Location Then
                     If Not TimerHideMouse.Enabled Then
                         TimerHideMouse.Start()
                         Debug.Print("frmMouseMove--> Hide Timer Started")
@@ -370,13 +370,13 @@ Partial Friend Class Vids
             mMove = False
             If mMoveMode = 1 Then
                 If mStartLocation <> Me.Location Then
-                    If Me.Location.X > My.Computer.Screen.WorkingArea.Left + (My.Computer.Screen.WorkingArea.Width * (My.App.LocationModeManualAnchorThreshold / 100)) Then : My.App.vidLocation.X = Me.Location.X + Me.Width
-                    Else : My.App.vidLocation.X = Me.Location.X
+                    If Me.Location.X > My.Computer.Screen.WorkingArea.Left + (My.Computer.Screen.WorkingArea.Width * (My.App.LocationModeManualAnchorThreshold / 100)) Then : My.App.VidLocation.X = Me.Location.X + Me.Width
+                    Else : My.App.VidLocation.X = Me.Location.X
                     End If
-                    If Me.Location.Y > My.Computer.Screen.WorkingArea.Top + (My.Computer.Screen.WorkingArea.Height * (My.App.LocationModeManualAnchorThreshold / 100)) Then : My.App.vidLocation.Y = Me.Location.Y + Me.Height
-                    Else : My.App.vidLocation.Y = Me.Location.Y
+                    If Me.Location.Y > My.Computer.Screen.WorkingArea.Top + (My.Computer.Screen.WorkingArea.Height * (My.App.LocationModeManualAnchorThreshold / 100)) Then : My.App.VidLocation.Y = Me.Location.Y + Me.Height
+                    Else : My.App.VidLocation.Y = Me.Location.Y
                     End If
-                    My.App.vidLocationMode = My.App.LocationMode.Manual
+                    My.App.VidLocationMode = My.App.LocationMode.Manual
                     My.App.FrmMain.UpdateSettings()
                 End If
             ElseIf mMoveMode = 2 Then : If mResize Then Me.cmVids.Close()
@@ -384,9 +384,9 @@ Partial Friend Class Vids
             Me.ResetCursor()
         ElseIf mHide Then : ShowCursor()
         ElseIf e.Button = MouseButtons.Left AndAlso sender Is Me.lblTime AndAlso My.App.MouseInBounds(DirectCast(Me.lblTime, Control), New Point(e.X, e.Y)) Then
-            Select Case My.App.vidTimeDisplayMode
-                Case My.App.VideoPositionMode.CurrentPosition : My.App.vidTimeDisplayMode = My.App.VideoPositionMode.TimeRemaining
-                Case My.App.VideoPositionMode.TimeRemaining : My.App.vidTimeDisplayMode = My.App.VideoPositionMode.CurrentPosition
+            Select Case My.App.VidTimeDisplayMode
+                Case My.App.VideoPositionMode.CurrentPosition : My.App.VidTimeDisplayMode = My.App.VideoPositionMode.TimeRemaining
+                Case My.App.VideoPositionMode.TimeRemaining : My.App.VidTimeDisplayMode = My.App.VideoPositionMode.CurrentPosition
             End Select
             SetVideoTime()
             ShowVideoTime()
@@ -472,7 +472,7 @@ Partial Friend Class Vids
         End Select
     End Sub
     Private Sub CMIMuteVideoMouseUp(sender As Object, e As MouseEventArgs) Handles cmiMuteVideo.MouseUp
-        My.App.vidVolumeMute = Not My.App.vidVolumeMute
+        My.App.VidVolumeMute = Not My.App.VidVolumeMute
         SetVolume()
         My.FrmMain.UpdateSettingsVideos()
     End Sub
@@ -535,7 +535,7 @@ Partial Friend Class Vids
             If My.App.VideoFilesCount > 0 Then
                 Me.TimerCheckPlayState.Stop()
                 If opt = My.App.PlayOption.ByPlayMode Then
-                    Select Case My.App.vidPlayMode
+                    Select Case My.App.VidPlayMode
                         Case My.App.PlayMode.Linear, My.App.PlayMode.LinearWithRandomStart : opt = My.App.PlayOption.Forward
                         Case My.App.PlayMode.Random : opt = My.App.PlayOption.Random
                     End Select
@@ -608,28 +608,28 @@ Partial Friend Class Vids
                     Me.Top = 0
                 End If
             Else
-                If My.App.vidScale = 0 Then
-                    If My.App.vidMaxSize < Int(My.Computer.Screen.WorkingArea.Width / 30) Then : My.App.vidMaxSize = CShort(Int(My.Computer.Screen.WorkingArea.Width / 30))
+                If My.App.VidScale = 0 Then
+                    If My.App.VidMaxSize < Int(My.Computer.Screen.WorkingArea.Width / 30) Then : My.App.VidMaxSize = CShort(Int(My.Computer.Screen.WorkingArea.Width / 30))
                     Else
-                        If Me.Left + My.App.vidMaxSize > My.Computer.Screen.WorkingArea.Width Then My.App.vidMaxSize = CShort(My.Computer.Screen.WorkingArea.Width - Me.Left)
-                        Do Until GetHeight(My.App.vidMaxSize) <= My.Computer.Screen.WorkingArea.Height : My.App.vidMaxSize -= CShort(1)
+                        If Me.Left + My.App.VidMaxSize > My.Computer.Screen.WorkingArea.Width Then My.App.VidMaxSize = CShort(My.Computer.Screen.WorkingArea.Width - Me.Left)
+                        Do Until GetHeight(My.App.VidMaxSize) <= My.Computer.Screen.WorkingArea.Height : My.App.VidMaxSize -= CShort(1)
                         Loop
                     End If
-                    Me.Width = My.App.vidMaxSize
-                    Me.Height = GetHeight(My.App.vidMaxSize)
+                    Me.Width = My.App.VidMaxSize
+                    Me.Height = GetHeight(My.App.VidMaxSize)
                 Else
-                    Me.Size = New System.Drawing.Size(CType(Int(_player.VideoWidth * My.App.vidScale), Integer), CType(Int(_player.VideoHeight * My.App.vidScale), Integer))
+                    Me.Size = New System.Drawing.Size(CType(Int(_player.VideoWidth * My.App.VidScale), Integer), CType(Int(_player.VideoHeight * My.App.VidScale), Integer))
                 End If
-                Select Case My.App.vidLocationMode
+                Select Case My.App.VidLocationMode
                     Case My.App.LocationMode.Manual
                         Static locM As New Point
-                        If My.App.vidLocation.X > My.Computer.Screen.WorkingArea.Left + (My.Computer.Screen.WorkingArea.Width * (My.App.LocationModeManualAnchorThreshold / 100)) Then
-                            locM.X = My.App.vidLocation.X - Me.Width
-                        Else : locM.X = My.App.vidLocation.X
+                        If My.App.VidLocation.X > My.Computer.Screen.WorkingArea.Left + (My.Computer.Screen.WorkingArea.Width * (My.App.LocationModeManualAnchorThreshold / 100)) Then
+                            locM.X = My.App.VidLocation.X - Me.Width
+                        Else : locM.X = My.App.VidLocation.X
                         End If
-                        If My.App.vidLocation.Y > My.Computer.Screen.WorkingArea.Top + (My.Computer.Screen.WorkingArea.Height * (My.App.LocationModeManualAnchorThreshold / 100)) Then
-                            locM.Y = My.App.vidLocation.Y - Me.Height
-                        Else : locM.Y = My.App.vidLocation.Y
+                        If My.App.VidLocation.Y > My.Computer.Screen.WorkingArea.Top + (My.Computer.Screen.WorkingArea.Height * (My.App.LocationModeManualAnchorThreshold / 100)) Then
+                            locM.Y = My.App.VidLocation.Y - Me.Height
+                        Else : locM.Y = My.App.VidLocation.Y
                         End If
                         Me.Location = locM
                         locM = Nothing
@@ -649,22 +649,22 @@ Partial Friend Class Vids
                     Case My.App.LocationMode.LeftCenterBottom : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left, My.Computer.Screen.WorkingArea.Top + CType(My.Computer.Screen.WorkingArea.Height * 0.75 - Me.Height / 2, Integer))
                     Case My.App.LocationMode.LeftCenter : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left, My.Computer.Screen.WorkingArea.Top + CType(My.Computer.Screen.WorkingArea.Height * 0.5 - Me.Height / 2, Integer))
                     Case My.App.LocationMode.LeftCenterTop : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left, My.Computer.Screen.WorkingArea.Top + CType(My.Computer.Screen.WorkingArea.Height * 0.25 - Me.Height / 2, Integer))
-                    Case My.App.LocationMode.TopLeftInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + My.App.appInsideLocationOffset, My.Computer.Screen.WorkingArea.Top + My.App.appInsideLocationOffset)
-                    Case My.App.LocationMode.TopCenterLeftInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + CType(My.Computer.Screen.WorkingArea.Width * 0.25 - Me.Width / 2, Integer), My.Computer.Screen.WorkingArea.Top + My.App.appInsideLocationOffset)
-                    Case My.App.LocationMode.TopCenterInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + CType(My.Computer.Screen.WorkingArea.Width * 0.5 - Me.Width / 2, Integer), My.Computer.Screen.WorkingArea.Top + My.App.appInsideLocationOffset)
-                    Case My.App.LocationMode.TopCenterRightInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + CType(My.Computer.Screen.WorkingArea.Width * 0.75 - Me.Width / 2, Integer), My.Computer.Screen.WorkingArea.Top + My.App.appInsideLocationOffset)
-                    Case My.App.LocationMode.TopRightInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Right - Me.Width - My.App.appInsideLocationOffset, My.Computer.Screen.WorkingArea.Top + My.App.appInsideLocationOffset)
-                    Case My.App.LocationMode.RightCenterTopInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Right - Me.Width - My.App.appInsideLocationOffset, My.Computer.Screen.WorkingArea.Top + CType(My.Computer.Screen.WorkingArea.Height * 0.25 - Me.Height / 2, Integer))
-                    Case My.App.LocationMode.RightCenterInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Right - Me.Width - My.App.appInsideLocationOffset, My.Computer.Screen.WorkingArea.Top + CType(My.Computer.Screen.WorkingArea.Height * 0.5 - Me.Height / 2, Integer))
-                    Case My.App.LocationMode.RightCenterBottomInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Right - Me.Width - My.App.appInsideLocationOffset, My.Computer.Screen.WorkingArea.Top + CType(My.Computer.Screen.WorkingArea.Height * 0.75 - Me.Height / 2, Integer))
-                    Case My.App.LocationMode.BottomRightInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Right - Me.Width - My.App.appInsideLocationOffset, My.Computer.Screen.WorkingArea.Bottom - Me.Height - My.App.appInsideLocationOffset)
-                    Case My.App.LocationMode.BottomCenterRightInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + CType(My.Computer.Screen.WorkingArea.Width * 0.75 - Me.Width / 2, Integer), My.Computer.Screen.WorkingArea.Bottom - Me.Height - My.App.appInsideLocationOffset)
-                    Case My.App.LocationMode.BottomCenterInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + CType(My.Computer.Screen.WorkingArea.Width * 0.5 - Me.Width / 2, Integer), My.Computer.Screen.WorkingArea.Bottom - Me.Height - My.App.appInsideLocationOffset)
-                    Case My.App.LocationMode.BottomCenterLeftInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + CType(My.Computer.Screen.WorkingArea.Width * 0.25 - Me.Width / 2, Integer), My.Computer.Screen.WorkingArea.Bottom - Me.Height - My.App.appInsideLocationOffset)
-                    Case My.App.LocationMode.BottomLeftInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + My.App.appInsideLocationOffset, My.Computer.Screen.WorkingArea.Bottom - Me.Height - My.App.appInsideLocationOffset)
-                    Case My.App.LocationMode.LeftCenterBottomInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + My.App.appInsideLocationOffset, My.Computer.Screen.WorkingArea.Top + CType(My.Computer.Screen.WorkingArea.Height * 0.75 - Me.Height / 2, Integer))
-                    Case My.App.LocationMode.LeftCenterInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + My.App.appInsideLocationOffset, My.Computer.Screen.WorkingArea.Top + CType(My.Computer.Screen.WorkingArea.Height * 0.5 - Me.Height / 2, Integer))
-                    Case My.App.LocationMode.LeftCenterTopInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + My.App.appInsideLocationOffset, My.Computer.Screen.WorkingArea.Top + CType(My.Computer.Screen.WorkingArea.Height * 0.25 - Me.Height / 2, Integer))
+                    Case My.App.LocationMode.TopLeftInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + My.App.InsideLocationOffset, My.Computer.Screen.WorkingArea.Top + My.App.InsideLocationOffset)
+                    Case My.App.LocationMode.TopCenterLeftInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + CType(My.Computer.Screen.WorkingArea.Width * 0.25 - Me.Width / 2, Integer), My.Computer.Screen.WorkingArea.Top + My.App.InsideLocationOffset)
+                    Case My.App.LocationMode.TopCenterInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + CType(My.Computer.Screen.WorkingArea.Width * 0.5 - Me.Width / 2, Integer), My.Computer.Screen.WorkingArea.Top + My.App.InsideLocationOffset)
+                    Case My.App.LocationMode.TopCenterRightInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + CType(My.Computer.Screen.WorkingArea.Width * 0.75 - Me.Width / 2, Integer), My.Computer.Screen.WorkingArea.Top + My.App.InsideLocationOffset)
+                    Case My.App.LocationMode.TopRightInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Right - Me.Width - My.App.InsideLocationOffset, My.Computer.Screen.WorkingArea.Top + My.App.InsideLocationOffset)
+                    Case My.App.LocationMode.RightCenterTopInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Right - Me.Width - My.App.InsideLocationOffset, My.Computer.Screen.WorkingArea.Top + CType(My.Computer.Screen.WorkingArea.Height * 0.25 - Me.Height / 2, Integer))
+                    Case My.App.LocationMode.RightCenterInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Right - Me.Width - My.App.InsideLocationOffset, My.Computer.Screen.WorkingArea.Top + CType(My.Computer.Screen.WorkingArea.Height * 0.5 - Me.Height / 2, Integer))
+                    Case My.App.LocationMode.RightCenterBottomInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Right - Me.Width - My.App.InsideLocationOffset, My.Computer.Screen.WorkingArea.Top + CType(My.Computer.Screen.WorkingArea.Height * 0.75 - Me.Height / 2, Integer))
+                    Case My.App.LocationMode.BottomRightInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Right - Me.Width - My.App.InsideLocationOffset, My.Computer.Screen.WorkingArea.Bottom - Me.Height - My.App.InsideLocationOffset)
+                    Case My.App.LocationMode.BottomCenterRightInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + CType(My.Computer.Screen.WorkingArea.Width * 0.75 - Me.Width / 2, Integer), My.Computer.Screen.WorkingArea.Bottom - Me.Height - My.App.InsideLocationOffset)
+                    Case My.App.LocationMode.BottomCenterInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + CType(My.Computer.Screen.WorkingArea.Width * 0.5 - Me.Width / 2, Integer), My.Computer.Screen.WorkingArea.Bottom - Me.Height - My.App.InsideLocationOffset)
+                    Case My.App.LocationMode.BottomCenterLeftInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + CType(My.Computer.Screen.WorkingArea.Width * 0.25 - Me.Width / 2, Integer), My.Computer.Screen.WorkingArea.Bottom - Me.Height - My.App.InsideLocationOffset)
+                    Case My.App.LocationMode.BottomLeftInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + My.App.InsideLocationOffset, My.Computer.Screen.WorkingArea.Bottom - Me.Height - My.App.InsideLocationOffset)
+                    Case My.App.LocationMode.LeftCenterBottomInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + My.App.InsideLocationOffset, My.Computer.Screen.WorkingArea.Top + CType(My.Computer.Screen.WorkingArea.Height * 0.75 - Me.Height / 2, Integer))
+                    Case My.App.LocationMode.LeftCenterInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + My.App.InsideLocationOffset, My.Computer.Screen.WorkingArea.Top + CType(My.Computer.Screen.WorkingArea.Height * 0.5 - Me.Height / 2, Integer))
+                    Case My.App.LocationMode.LeftCenterTopInside : Me.Location = New Point(My.Computer.Screen.WorkingArea.Left + My.App.InsideLocationOffset, My.Computer.Screen.WorkingArea.Top + CType(My.Computer.Screen.WorkingArea.Height * 0.25 - Me.Height / 2, Integer))
                 End Select
                 CheckMove(Me.Location)
                 Debug.Print("SetSize")
@@ -712,7 +712,7 @@ Partial Friend Class Vids
         TogglePlayState()
     End Sub
     Friend Sub SetVideoTime()
-        If My.App.vidTime Then
+        If My.App.VidTime Then
             ShowVideoTime()
             Me.lblTime.BringToFront()
             Me.lblTime.Visible = True
@@ -724,7 +724,7 @@ Partial Friend Class Vids
         Static vTimeText As String
         Dim vlc As VLCPlayer = TryCast(_player, VLCPlayer)
         If vlc Is Nothing OrElse Not vlc.HasMedia Then Exit Sub
-        Select Case My.App.vidTimeLocationMode
+        Select Case My.App.VidTimeLocationMode
             Case My.App.LocationMode.TopLeft : Me.lblTime.Location = New Point(My.App.VideoTimeBorderPadding, My.App.VideoTimeBorderPadding)
             Case My.App.LocationMode.TopCenterLeft : Me.lblTime.Location = New Point(CInt(Me.Width * 0.25) - CInt(Me.lblTime.Width / 2), My.App.VideoTimeBorderPadding)
             Case My.App.LocationMode.TopCenter : Me.lblTime.Location = New Point(CInt(Me.Width * 0.5) - CInt(Me.lblTime.Width / 2), My.App.VideoTimeBorderPadding)
@@ -742,7 +742,7 @@ Partial Friend Class Vids
             Case My.App.LocationMode.LeftCenterTop : Me.lblTime.Location = New Point(My.App.VideoTimeBorderPadding, CInt(Me.Height * 0.25) - CInt(Me.lblTime.Height / 2))
             Case Else : Me.lblTime.Location = New Point(My.App.VideoTimeBorderPadding, Me.Height - Me.lblTime.Height - My.App.VideoTimeBorderPadding)
         End Select
-        Select Case My.App.vidTimeDisplayMode
+        Select Case My.App.VidTimeDisplayMode
             Case My.App.VideoPositionMode.CurrentPosition
                 vTime = vlc.Position
                 vTimeText = String.Empty
@@ -779,7 +779,7 @@ Partial Friend Class Vids
     End Sub
     Friend Sub SetVolume()
         If _player.HasMedia Then
-            Select Case My.App.vidVolumeMute
+            Select Case My.App.VidVolumeMute
                 Case True
                     _player.Volume = 0
                     Me.cmiMuteVideo.Checked = True
@@ -815,15 +815,15 @@ Partial Friend Class Vids
         OnTop(False)
         If autorestore Then
             Me.cmiQuickHide.ForeColor = Color.Goldenrod
-            Me.TimerQuickHide.Interval = My.App.picTimerInterval * 1000
+            Me.TimerQuickHide.Interval = My.App.PicTimerInterval * 1000
             Me.TimerQuickHide.Start()
         Else : Me.cmiQuickHide.ForeColor = Color.Maroon
         End If
     End Sub
     Private Sub QuickShift()
         If Not FullScreen Then
-            My.App.vidLocationMode = CType(My.App.vidLocationMode + 6, My.App.LocationMode)
-            If My.App.vidLocationMode > My.App.LocationModeCount Then My.App.vidLocationMode = CType(My.App.vidLocationMode - My.App.LocationModeCount, My.App.LocationMode)
+            My.App.VidLocationMode = CType(My.App.VidLocationMode + 6, My.App.LocationMode)
+            If My.App.VidLocationMode > My.App.LocationModeCount Then My.App.VidLocationMode = CType(My.App.VidLocationMode - My.App.LocationModeCount, My.App.LocationMode)
             If My.App.FrmMain.Visible Then My.App.FrmMain.UpdateSettings()
             SetSize()
         End If
@@ -859,7 +859,7 @@ Partial Friend Class Vids
     '	Me.URL = Nothing
     'End Sub
     Private Sub HideCursor()
-        If Not mHide AndAlso My.App.appHideCursorWhenFullscreen Then
+        If Not mHide AndAlso My.App.HideCursorWhenFullscreen Then
             mHide = True
             mHidePosition = Control.MousePosition
             Cursor.Hide()

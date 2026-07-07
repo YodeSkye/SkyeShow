@@ -102,8 +102,8 @@ Partial Friend Class VidList
 	End Sub
 	Private Sub LVVideoListSelectedIndexChanged(sender As Object, e As EventArgs) Handles lvVideoList.SelectedIndexChanged
 		If lvVideoList.SelectedItems.Count = 1 Then
-			For index As Integer = 0 To My.vidFolders.Count - 1
-				If My.VideoFiles(lvVideoList.SelectedIndices(0)).Path.StartsWith(My.vidFolders(index).SearchPath) Then
+			For index As Integer = 0 To My.VidFolders.Count - 1
+				If My.VideoFiles(lvVideoList.SelectedIndices(0)).Path.StartsWith(My.VidFolders(index).SearchPath) Then
 					GroupIndex = index + 1 'To adjust for manual group at index 0
 					Exit For
 				End If
@@ -156,13 +156,13 @@ Partial Friend Class VidList
 		Dim group As Integer
 		Dim groups As New Collections.Generic.List(Of String) From {"Manual"}
 		Me.lvVideoList.Groups.Add("Manual", "Manually Added")
-		For Each folder As My.App.VideoFolderType In My.App.vidFolders
+		For Each folder As My.App.VideoFolderType In My.App.VidFolders
 			groups.Add(folder.Path)
 			Me.lvVideoList.Groups.Add(folder.Path, folder.Path)
 		Next
 		For Each file As My.App.VideoFileType In My.App.VideoFiles
 			group = 0
-			For Each folder As My.App.VideoFolderType In My.App.vidFolders
+			For Each folder As My.App.VideoFolderType In My.App.VidFolders
 				If file.Path.StartsWith(folder.Path) Then group = groups.IndexOf(folder.Path)
 			Next
 			If group = 0 Then : lvi = New ListViewItem(file.Path, Me.lvVideoList.Groups(group))

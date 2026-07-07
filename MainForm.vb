@@ -13,63 +13,63 @@ Partial Friend Class MainForm
 	End Sub
 	Private Sub BtnPicTimerEnabledClick(ByVal sender As Object, ByVal e As EventArgs) Handles btnPicTimerEnabled.Click
 		If My.App.FrmPicsVisible Then : My.App.frmPics.ToggleTimer()
-		Else : My.App.picTimerEnabled = Not My.App.picTimerEnabled
+		Else : My.App.PicTimerEnabled = Not My.App.PicTimerEnabled
 		End If
 		ShowSettings()
 	End Sub
 	Private Sub RadbtnPicPlayModeLinearClick(ByVal sender As Object, ByVal e As EventArgs) Handles radbtnPicPlayModeLinear.Click
-		My.App.picPlayMode = My.App.PlayMode.Linear
+		My.App.PicPlayMode = My.App.PlayMode.Linear
 	End Sub
 	Private Sub RadbtnPicPlayModeLinearWithRandomStartClick(ByVal sender As Object, ByVal e As EventArgs) Handles radbtnPicPlayModeLinearWithRandomStart.Click
-		My.App.picPlayMode = My.App.PlayMode.LinearWithRandomStart
+		My.App.PicPlayMode = My.App.PlayMode.LinearWithRandomStart
 	End Sub
 	Private Sub RadbtnPicPlayModeRandomClick(ByVal sender As Object, ByVal e As EventArgs) Handles radbtnPicPlayModeRandom.Click
-		My.App.picPlayMode = My.App.PlayMode.Random
+		My.App.PicPlayMode = My.App.PlayMode.Random
 	End Sub
 	Private Sub RadbtnPicJustifyClick(ByVal sender As Object, ByVal e As EventArgs) Handles radbtnPicJustifyRight.Click, radbtnPicJustifyLeft.Click, radbtnPicJustifyCenter.Click
 		Select Case CType(sender, RadioButton).Name
-			Case Me.radbtnPicJustifyLeft.Name : My.App.picJustify = My.App.LocationJustify.Left
-			Case Me.radbtnPicJustifyCenter.Name : My.App.picJustify = My.App.LocationJustify.Center
-			Case Me.radbtnPicJustifyRight.Name : My.App.picJustify = My.App.LocationJustify.Right
+			Case Me.radbtnPicJustifyLeft.Name : My.App.PicJustify = My.App.LocationJustify.Left
+			Case Me.radbtnPicJustifyCenter.Name : My.App.PicJustify = My.App.LocationJustify.Center
+			Case Me.radbtnPicJustifyRight.Name : My.App.PicJustify = My.App.LocationJustify.Right
 		End Select
 	End Sub
 	Private Sub RadbtnPicLocationModeClick(ByVal sender As Object, ByVal e As EventArgs) Handles radbtnPicLocationModeTopRightInside.Click, radbtnPicLocationModeTopRight.Click, radbtnPicLocationModeTopLeftInside.Click, radbtnPicLocationModeTopLeft.Click, radbtnPicLocationModeTopCenterRightInside.Click, radbtnPicLocationModeTopCenterRight.Click, radbtnPicLocationModeTopCenterLeftInside.Click, radbtnPicLocationModeTopCenterLeft.Click, radbtnPicLocationModeTopCenterInside.Click, radbtnPicLocationModeTopCenter.Click, radbtnPicLocationModeRightCenterTopInside.Click, radbtnPicLocationModeRightCenterTop.Click, radbtnPicLocationModeRightCenterInside.Click, radbtnPicLocationModeRightCenterBottomInside.Click, radbtnPicLocationModeRightCenterBottom.Click, radbtnPicLocationModeRightCenter.Click, radbtnPicLocationModeManual.Click, radbtnPicLocationModeLeftCenterTopInside.Click, radbtnPicLocationModeLeftCenterTop.Click, radbtnPicLocationModeLeftCenterInside.Click, radbtnPicLocationModeLeftCenterBottomInside.Click, radbtnPicLocationModeLeftCenterBottom.Click, radbtnPicLocationModeLeftCenter.Click, radbtnPicLocationModeBottomRightInside.Click, radbtnPicLocationModeBottomRight.Click, radbtnPicLocationModeBottomLeftInside.Click, radbtnPicLocationModeBottomLeft.Click, radbtnPicLocationModeBottomCenterRightInside.Click, radbtnPicLocationModeBottomCenterRight.Click, radbtnPicLocationModeBottomCenterLeftInside.Click, radbtnPicLocationModeBottomCenterLeft.Click, radbtnPicLocationModeBottomCenterInside.Click, radbtnPicLocationModeBottomCenter.Click
 		For Each c As Control In Me.gpbxPicLocationMode.Controls
 			If sender Is c Then
 				Select Case c.Name
-					Case "radbtnPicLocationModeManual" : My.App.picLocationMode = My.App.LocationMode.Manual
-					Case "radbtnPicLocationModeTopLeft" : My.App.picLocationMode = My.App.LocationMode.TopLeft
-					Case "radbtnPicLocationModeTopCenterLeft" : My.App.picLocationMode = My.App.LocationMode.TopCenterLeft
-					Case "radbtnPicLocationModeTopCenter" : My.App.picLocationMode = My.App.LocationMode.TopCenter
-					Case "radbtnPicLocationModeTopCenterRight" : My.App.picLocationMode = My.App.LocationMode.TopCenterRight
-					Case "radbtnPicLocationModeTopRight" : My.App.picLocationMode = My.App.LocationMode.TopRight
-					Case "radbtnPicLocationModeRightCenterTop" : My.App.picLocationMode = My.App.LocationMode.RightCenterTop
-					Case "radbtnPicLocationModeRightCenter" : My.App.picLocationMode = My.App.LocationMode.RightCenter
-					Case "radbtnPicLocationModeRightCenterBottom" : My.App.picLocationMode = My.App.LocationMode.RightCenterBottom
-					Case "radbtnPicLocationModeBottomRight" : My.App.picLocationMode = My.App.LocationMode.BottomRight
-					Case "radbtnPicLocationModeBottomCenterRight" : My.App.picLocationMode = My.App.LocationMode.BottomCenterRight
-					Case "radbtnPicLocationModeBottomCenter" : My.App.picLocationMode = My.App.LocationMode.BottomCenter
-					Case "radbtnPicLocationModeBottomCenterLeft" : My.App.picLocationMode = My.App.LocationMode.BottomCenterLeft
-					Case "radbtnPicLocationModeBottomLeft" : My.App.picLocationMode = My.App.LocationMode.BottomLeft
-					Case "radbtnPicLocationModeLeftCenterBottom" : My.App.picLocationMode = My.App.LocationMode.LeftCenterBottom
-					Case "radbtnPicLocationModeLeftCenter" : My.App.picLocationMode = My.App.LocationMode.LeftCenter
-					Case "radbtnPicLocationModeLeftCenterTop" : My.App.picLocationMode = My.App.LocationMode.LeftCenterTop
-					Case "radbtnPicLocationModeTopLeftInside" : My.App.picLocationMode = My.App.LocationMode.TopLeftInside
-					Case "radbtnPicLocationModeTopCenterLeftInside" : My.App.picLocationMode = My.App.LocationMode.TopCenterLeftInside
-					Case "radbtnPicLocationModeTopCenterInside" : My.App.picLocationMode = My.App.LocationMode.TopCenterInside
-					Case "radbtnPicLocationModeTopCenterRightInside" : My.App.picLocationMode = My.App.LocationMode.TopCenterRightInside
-					Case "radbtnPicLocationModeTopRightInside" : My.App.picLocationMode = My.App.LocationMode.TopRightInside
-					Case "radbtnPicLocationModeRightCenterTopInside" : My.App.picLocationMode = My.App.LocationMode.RightCenterTopInside
-					Case "radbtnPicLocationModeRightCenterInside" : My.App.picLocationMode = My.App.LocationMode.RightCenterInside
-					Case "radbtnPicLocationModeRightCenterBottomInside" : My.App.picLocationMode = My.App.LocationMode.RightCenterBottomInside
-					Case "radbtnPicLocationModeBottomRightInside" : My.App.picLocationMode = My.App.LocationMode.BottomRightInside
-					Case "radbtnPicLocationModeBottomCenterRightInside" : My.App.picLocationMode = My.App.LocationMode.BottomCenterRightInside
-					Case "radbtnPicLocationModeBottomCenterInside" : My.App.picLocationMode = My.App.LocationMode.BottomCenterInside
-					Case "radbtnPicLocationModeBottomCenterLeftInside" : My.App.picLocationMode = My.App.LocationMode.BottomCenterLeftInside
-					Case "radbtnPicLocationModeBottomLeftInside" : My.App.picLocationMode = My.App.LocationMode.BottomLeftInside
-					Case "radbtnPicLocationModeLeftCenterBottomInside" : My.App.picLocationMode = My.App.LocationMode.LeftCenterBottomInside
-					Case "radbtnPicLocationModeLeftCenterInside" : My.App.picLocationMode = My.App.LocationMode.LeftCenterInside
-					Case "radbtnPicLocationModeLeftCenterTopInside" : My.App.picLocationMode = My.App.LocationMode.LeftCenterTopInside
+					Case "radbtnPicLocationModeManual" : My.App.PicLocationMode = My.App.LocationMode.Manual
+					Case "radbtnPicLocationModeTopLeft" : My.App.PicLocationMode = My.App.LocationMode.TopLeft
+					Case "radbtnPicLocationModeTopCenterLeft" : My.App.PicLocationMode = My.App.LocationMode.TopCenterLeft
+					Case "radbtnPicLocationModeTopCenter" : My.App.PicLocationMode = My.App.LocationMode.TopCenter
+					Case "radbtnPicLocationModeTopCenterRight" : My.App.PicLocationMode = My.App.LocationMode.TopCenterRight
+					Case "radbtnPicLocationModeTopRight" : My.App.PicLocationMode = My.App.LocationMode.TopRight
+					Case "radbtnPicLocationModeRightCenterTop" : My.App.PicLocationMode = My.App.LocationMode.RightCenterTop
+					Case "radbtnPicLocationModeRightCenter" : My.App.PicLocationMode = My.App.LocationMode.RightCenter
+					Case "radbtnPicLocationModeRightCenterBottom" : My.App.PicLocationMode = My.App.LocationMode.RightCenterBottom
+					Case "radbtnPicLocationModeBottomRight" : My.App.PicLocationMode = My.App.LocationMode.BottomRight
+					Case "radbtnPicLocationModeBottomCenterRight" : My.App.PicLocationMode = My.App.LocationMode.BottomCenterRight
+					Case "radbtnPicLocationModeBottomCenter" : My.App.PicLocationMode = My.App.LocationMode.BottomCenter
+					Case "radbtnPicLocationModeBottomCenterLeft" : My.App.PicLocationMode = My.App.LocationMode.BottomCenterLeft
+					Case "radbtnPicLocationModeBottomLeft" : My.App.PicLocationMode = My.App.LocationMode.BottomLeft
+					Case "radbtnPicLocationModeLeftCenterBottom" : My.App.PicLocationMode = My.App.LocationMode.LeftCenterBottom
+					Case "radbtnPicLocationModeLeftCenter" : My.App.PicLocationMode = My.App.LocationMode.LeftCenter
+					Case "radbtnPicLocationModeLeftCenterTop" : My.App.PicLocationMode = My.App.LocationMode.LeftCenterTop
+					Case "radbtnPicLocationModeTopLeftInside" : My.App.PicLocationMode = My.App.LocationMode.TopLeftInside
+					Case "radbtnPicLocationModeTopCenterLeftInside" : My.App.PicLocationMode = My.App.LocationMode.TopCenterLeftInside
+					Case "radbtnPicLocationModeTopCenterInside" : My.App.PicLocationMode = My.App.LocationMode.TopCenterInside
+					Case "radbtnPicLocationModeTopCenterRightInside" : My.App.PicLocationMode = My.App.LocationMode.TopCenterRightInside
+					Case "radbtnPicLocationModeTopRightInside" : My.App.PicLocationMode = My.App.LocationMode.TopRightInside
+					Case "radbtnPicLocationModeRightCenterTopInside" : My.App.PicLocationMode = My.App.LocationMode.RightCenterTopInside
+					Case "radbtnPicLocationModeRightCenterInside" : My.App.PicLocationMode = My.App.LocationMode.RightCenterInside
+					Case "radbtnPicLocationModeRightCenterBottomInside" : My.App.PicLocationMode = My.App.LocationMode.RightCenterBottomInside
+					Case "radbtnPicLocationModeBottomRightInside" : My.App.PicLocationMode = My.App.LocationMode.BottomRightInside
+					Case "radbtnPicLocationModeBottomCenterRightInside" : My.App.PicLocationMode = My.App.LocationMode.BottomCenterRightInside
+					Case "radbtnPicLocationModeBottomCenterInside" : My.App.PicLocationMode = My.App.LocationMode.BottomCenterInside
+					Case "radbtnPicLocationModeBottomCenterLeftInside" : My.App.PicLocationMode = My.App.LocationMode.BottomCenterLeftInside
+					Case "radbtnPicLocationModeBottomLeftInside" : My.App.PicLocationMode = My.App.LocationMode.BottomLeftInside
+					Case "radbtnPicLocationModeLeftCenterBottomInside" : My.App.PicLocationMode = My.App.LocationMode.LeftCenterBottomInside
+					Case "radbtnPicLocationModeLeftCenterInside" : My.App.PicLocationMode = My.App.LocationMode.LeftCenterInside
+					Case "radbtnPicLocationModeLeftCenterTopInside" : My.App.PicLocationMode = My.App.LocationMode.LeftCenterTopInside
 				End Select
 				If My.App.FrmPicsVisible Then My.App.frmPics.DrawImage()
 			End If
@@ -79,47 +79,47 @@ Partial Friend Class MainForm
 		For Each c As Control In Me.gpbxPicTimerCountdownLocationMode.Controls
 			If sender Is c Then
 				Select Case c.Name
-					Case "radbtnPicTimerCountdownLocationModeTopLeft" : My.App.picTimerCountdownLocationMode = My.App.LocationMode.TopLeft
-					Case "radbtnPicTimerCountdownLocationModeTopCenterLeft" : My.App.picTimerCountdownLocationMode = My.App.LocationMode.TopCenterLeft
-					Case "radbtnPicTimerCountdownLocationModeTopCenter" : My.App.picTimerCountdownLocationMode = My.App.LocationMode.TopCenter
-					Case "radbtnPicTimerCountdownLocationModeTopCenterRight" : My.App.picTimerCountdownLocationMode = My.App.LocationMode.TopCenterRight
-					Case "radbtnPicTimerCountdownLocationModeTopRight" : My.App.picTimerCountdownLocationMode = My.App.LocationMode.TopRight
-					Case "radbtnPicTimerCountdownLocationModeRightCenterTop" : My.App.picTimerCountdownLocationMode = My.App.LocationMode.RightCenterTop
-					Case "radbtnPicTimerCountdownLocationModeRightCenter" : My.App.picTimerCountdownLocationMode = My.App.LocationMode.RightCenter
-					Case "radbtnPicTimerCountdownLocationModeRightCenterBottom" : My.App.picTimerCountdownLocationMode = My.App.LocationMode.RightCenterBottom
-					Case "radbtnPicTimerCountdownLocationModeBottomRight" : My.App.picTimerCountdownLocationMode = My.App.LocationMode.BottomRight
-					Case "radbtnPicTimerCountdownLocationModeBottomCenterRight" : My.App.picTimerCountdownLocationMode = My.App.LocationMode.BottomCenterRight
-					Case "radbtnPicTimerCountdownLocationModeBottomCenter" : My.App.picTimerCountdownLocationMode = My.App.LocationMode.BottomCenter
-					Case "radbtnPicTimerCountdownLocationModeBottomCenterLeft" : My.App.picTimerCountdownLocationMode = My.App.LocationMode.BottomCenterLeft
-					Case "radbtnPicTimerCountdownLocationModeBottomLeft" : My.App.picTimerCountdownLocationMode = My.App.LocationMode.BottomLeft
-					Case "radbtnPicTimerCountdownLocationModeLeftCenterBottom" : My.App.picTimerCountdownLocationMode = My.App.LocationMode.LeftCenterBottom
-					Case "radbtnPicTimerCountdownLocationModeLeftCenter" : My.App.picTimerCountdownLocationMode = My.App.LocationMode.LeftCenter
-					Case "radbtnPicTimerCountdownLocationModeLeftCenterTop" : My.App.picTimerCountdownLocationMode = My.App.LocationMode.LeftCenterTop
+					Case "radbtnPicTimerCountdownLocationModeTopLeft" : My.App.PicTimerCountdownLocationMode = My.App.LocationMode.TopLeft
+					Case "radbtnPicTimerCountdownLocationModeTopCenterLeft" : My.App.PicTimerCountdownLocationMode = My.App.LocationMode.TopCenterLeft
+					Case "radbtnPicTimerCountdownLocationModeTopCenter" : My.App.PicTimerCountdownLocationMode = My.App.LocationMode.TopCenter
+					Case "radbtnPicTimerCountdownLocationModeTopCenterRight" : My.App.PicTimerCountdownLocationMode = My.App.LocationMode.TopCenterRight
+					Case "radbtnPicTimerCountdownLocationModeTopRight" : My.App.PicTimerCountdownLocationMode = My.App.LocationMode.TopRight
+					Case "radbtnPicTimerCountdownLocationModeRightCenterTop" : My.App.PicTimerCountdownLocationMode = My.App.LocationMode.RightCenterTop
+					Case "radbtnPicTimerCountdownLocationModeRightCenter" : My.App.PicTimerCountdownLocationMode = My.App.LocationMode.RightCenter
+					Case "radbtnPicTimerCountdownLocationModeRightCenterBottom" : My.App.PicTimerCountdownLocationMode = My.App.LocationMode.RightCenterBottom
+					Case "radbtnPicTimerCountdownLocationModeBottomRight" : My.App.PicTimerCountdownLocationMode = My.App.LocationMode.BottomRight
+					Case "radbtnPicTimerCountdownLocationModeBottomCenterRight" : My.App.PicTimerCountdownLocationMode = My.App.LocationMode.BottomCenterRight
+					Case "radbtnPicTimerCountdownLocationModeBottomCenter" : My.App.PicTimerCountdownLocationMode = My.App.LocationMode.BottomCenter
+					Case "radbtnPicTimerCountdownLocationModeBottomCenterLeft" : My.App.PicTimerCountdownLocationMode = My.App.LocationMode.BottomCenterLeft
+					Case "radbtnPicTimerCountdownLocationModeBottomLeft" : My.App.PicTimerCountdownLocationMode = My.App.LocationMode.BottomLeft
+					Case "radbtnPicTimerCountdownLocationModeLeftCenterBottom" : My.App.PicTimerCountdownLocationMode = My.App.LocationMode.LeftCenterBottom
+					Case "radbtnPicTimerCountdownLocationModeLeftCenter" : My.App.PicTimerCountdownLocationMode = My.App.LocationMode.LeftCenter
+					Case "radbtnPicTimerCountdownLocationModeLeftCenterTop" : My.App.PicTimerCountdownLocationMode = My.App.LocationMode.LeftCenterTop
 				End Select
 				If My.App.FrmPicsVisible Then My.App.frmPics.ShowImageTimerCountdown()
 			End If
 		Next
 	End Sub
 	Private Sub ChBxPicTimerCountdownClick(sender As Object, e As EventArgs) Handles chbxPicTimerCountdown.Click
-		My.App.picTimerCountdown = Not My.App.picTimerCountdown
+		My.App.PicTimerCountdown = Not My.App.PicTimerCountdown
 		ShowSettingsImages()
 		If My.App.FrmPicsVisible Then My.App.frmPics.SetImageTimerCountdown()
 	End Sub
 	Private Sub ChbxPicAutoViewClick(ByVal sender As Object, ByVal e As EventArgs) Handles chbxPicAutoView.Click
-		My.App.picAutoView = Not My.App.picAutoView
+		My.App.PicAutoView = Not My.App.PicAutoView
 	End Sub
 	Private Sub ChbxPicLockFullScreenClick(ByVal sender As Object, ByVal e As EventArgs) Handles chbxPicLockFullScreen.Click
-		My.App.picLockFullScreen = Not My.App.picLockFullScreen
+		My.App.PicLockFullScreen = Not My.App.PicLockFullScreen
 	End Sub
 	Private Sub ChbxPicTimerAutoStartClick(ByVal sender As Object, ByVal e As EventArgs) Handles chbxPicTimerAutoStart.Click
-		My.App.picTimerAutoStart = Not My.App.picTimerAutoStart
+		My.App.PicTimerAutoStart = Not My.App.PicTimerAutoStart
 	End Sub
 	Private Sub TxbxPicTimerIntervalValidating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txbxPicTimerInterval.Validating
 		If Int(Val(Me.txbxPicTimerInterval.Text)) < 1 Then Me.txbxPicTimerInterval.Text = "1"
 		If Int(Val(Me.txbxPicTimerInterval.Text)) > 86400 Then Me.txbxPicTimerInterval.Text = "86400"
 	End Sub
 	Private Sub TxbxPicTimerIntervalValidated(ByVal sender As Object, ByVal e As EventArgs) Handles txbxPicTimerInterval.Validated
-		My.App.picTimerInterval = CType(Int(Val(Me.txbxPicTimerInterval.Text)), Integer)
+		My.App.PicTimerInterval = CType(Int(Val(Me.txbxPicTimerInterval.Text)), Integer)
 		If My.App.FrmPicsVisible Then My.App.frmPics.SetTimer()
 		Me.txbxPicTimerInterval.SelectAll()
 	End Sub
@@ -133,27 +133,27 @@ Partial Friend Class MainForm
 		If e.Button = MouseButtons.Left Then ToggleFolderList(My.App.GetFilesType.Vids)
 	End Sub
 	Private Sub BtnVidMuteClick(ByVal sender As Object, ByVal e As EventArgs)
-		My.App.vidVolumeMute = Not My.App.vidVolumeMute
+		My.App.VidVolumeMute = Not My.App.VidVolumeMute
 		ShowSettings()
 	End Sub
 	Private Sub RadbtnVidPlayModeLinearClick(ByVal sender As Object, ByVal e As EventArgs) Handles radbtnVidPlayModeLinear.Click
-		My.App.vidPlayMode = My.App.PlayMode.Linear
+		My.App.VidPlayMode = My.App.PlayMode.Linear
 	End Sub
 	Private Sub RadbtnVidPlayModeLinearWithRandomStartClick(ByVal sender As Object, ByVal e As EventArgs) Handles radbtnVidPlayModeLinearWithRandomStart.Click
-		My.App.vidPlayMode = My.App.PlayMode.LinearWithRandomStart
+		My.App.VidPlayMode = My.App.PlayMode.LinearWithRandomStart
 	End Sub
 	Private Sub RadbtnVidPlayModeRandomClick(ByVal sender As Object, ByVal e As EventArgs) Handles radbtnVidPlayModeRandom.Click
-		My.App.vidPlayMode = My.App.PlayMode.Random
+		My.App.VidPlayMode = My.App.PlayMode.Random
 	End Sub
 	Private Sub RadbtnVidScaleClick(ByVal sender As Object, ByVal e As EventArgs) Handles radbtnVideoScaleFit.Click, radbtnVideoScale75.Click, radbtnVideoScale66.Click, radbtnVideoScale50.Click, radbtnVideoScale33.Click, radbtnVideoScale25.Click, radbtnVideoScale100.Click, radbtnVideoScale10.Click
-		If Me.radbtnVideoScale10.Checked Then : My.App.vidScale = 0.1
-		ElseIf Me.radbtnVideoScale25.Checked Then : My.App.vidScale = 0.25
-		ElseIf Me.radbtnVideoScale33.Checked Then : My.App.vidScale = 0.3333
-		ElseIf Me.radbtnVideoScale50.Checked Then : My.App.vidScale = 0.5
-		ElseIf Me.radbtnVideoScale66.Checked Then : My.App.vidScale = 0.6666
-		ElseIf Me.radbtnVideoScale75.Checked Then : My.App.vidScale = 0.75
-		ElseIf Me.radbtnVideoScale100.Checked Then : My.App.vidScale = 1
-		ElseIf Me.radbtnVideoScaleFit.Checked Then : My.App.vidScale = 0
+		If Me.radbtnVideoScale10.Checked Then : My.App.VidScale = 0.1
+		ElseIf Me.radbtnVideoScale25.Checked Then : My.App.VidScale = 0.25
+		ElseIf Me.radbtnVideoScale33.Checked Then : My.App.VidScale = 0.3333
+		ElseIf Me.radbtnVideoScale50.Checked Then : My.App.VidScale = 0.5
+		ElseIf Me.radbtnVideoScale66.Checked Then : My.App.VidScale = 0.6666
+		ElseIf Me.radbtnVideoScale75.Checked Then : My.App.VidScale = 0.75
+		ElseIf Me.radbtnVideoScale100.Checked Then : My.App.VidScale = 1
+		ElseIf Me.radbtnVideoScaleFit.Checked Then : My.App.VidScale = 0
 		End If
 		If My.App.FrmVidsVisible Then My.App.FrmVids.SetSize()
 	End Sub
@@ -161,39 +161,39 @@ Partial Friend Class MainForm
 		For Each c As Control In Me.gpbxVidLocationMode.Controls
 			If sender Is c Then
 				Select Case c.Name
-					Case "radbtnVidLocationModeManual" : My.App.vidLocationMode = My.App.LocationMode.Manual
-					Case "radbtnVidLocationModeTopLeft" : My.App.vidLocationMode = My.App.LocationMode.TopLeft
-					Case "radbtnVidLocationModeTopCenterLeft" : My.App.vidLocationMode = My.App.LocationMode.TopCenterLeft
-					Case "radbtnVidLocationModeTopCenter" : My.App.vidLocationMode = My.App.LocationMode.TopCenter
-					Case "radbtnVidLocationModeTopCenterRight" : My.App.vidLocationMode = My.App.LocationMode.TopCenterRight
-					Case "radbtnVidLocationModeTopRight" : My.App.vidLocationMode = My.App.LocationMode.TopRight
-					Case "radbtnVidLocationModeRightCenterTop" : My.App.vidLocationMode = My.App.LocationMode.RightCenterTop
-					Case "radbtnVidLocationModeRightCenter" : My.App.vidLocationMode = My.App.LocationMode.RightCenter
-					Case "radbtnVidLocationModeRightCenterBottom" : My.App.vidLocationMode = My.App.LocationMode.RightCenterBottom
-					Case "radbtnVidLocationModeBottomRight" : My.App.vidLocationMode = My.App.LocationMode.BottomRight
-					Case "radbtnVidLocationModeBottomCenterRight" : My.App.vidLocationMode = My.App.LocationMode.BottomCenterRight
-					Case "radbtnVidLocationModeBottomCenter" : My.App.vidLocationMode = My.App.LocationMode.BottomCenter
-					Case "radbtnVidLocationModeBottomCenterLeft" : My.App.vidLocationMode = My.App.LocationMode.BottomCenterLeft
-					Case "radbtnVidLocationModeBottomLeft" : My.App.vidLocationMode = My.App.LocationMode.BottomLeft
-					Case "radbtnVidLocationModeLeftCenterBottom" : My.App.vidLocationMode = My.App.LocationMode.LeftCenterBottom
-					Case "radbtnVidLocationModeLeftCenter" : My.App.vidLocationMode = My.App.LocationMode.LeftCenter
-					Case "radbtnVidLocationModeLeftCenterTop" : My.App.vidLocationMode = My.App.LocationMode.LeftCenterTop
-					Case "radbtnVidLocationModeTopLeftInside" : My.App.vidLocationMode = My.App.LocationMode.TopLeftInside
-					Case "radbtnVidLocationModeTopCenterLeftInside" : My.App.vidLocationMode = My.App.LocationMode.TopCenterLeftInside
-					Case "radbtnVidLocationModeTopCenterInside" : My.App.vidLocationMode = My.App.LocationMode.TopCenterInside
-					Case "radbtnVidLocationModeTopCenterRightInside" : My.App.vidLocationMode = My.App.LocationMode.TopCenterRightInside
-					Case "radbtnVidLocationModeTopRightInside" : My.App.vidLocationMode = My.App.LocationMode.TopRightInside
-					Case "radbtnVidLocationModeRightCenterTopInside" : My.App.vidLocationMode = My.App.LocationMode.RightCenterTopInside
-					Case "radbtnVidLocationModeRightCenterInside" : My.App.vidLocationMode = My.App.LocationMode.RightCenterInside
-					Case "radbtnVidLocationModeRightCenterBottomInside" : My.App.vidLocationMode = My.App.LocationMode.RightCenterBottomInside
-					Case "radbtnVidLocationModeBottomRightInside" : My.App.vidLocationMode = My.App.LocationMode.BottomRightInside
-					Case "radbtnVidLocationModeBottomCenterRightInside" : My.App.vidLocationMode = My.App.LocationMode.BottomCenterRightInside
-					Case "radbtnVidLocationModeBottomCenterInside" : My.App.vidLocationMode = My.App.LocationMode.BottomCenterInside
-					Case "radbtnVidLocationModeBottomCenterLeftInside" : My.App.vidLocationMode = My.App.LocationMode.BottomCenterLeftInside
-					Case "radbtnVidLocationModeBottomLeftInside" : My.App.vidLocationMode = My.App.LocationMode.BottomLeftInside
-					Case "radbtnVidLocationModeLeftCenterBottomInside" : My.App.vidLocationMode = My.App.LocationMode.LeftCenterBottomInside
-					Case "radbtnVidLocationModeLeftCenterInside" : My.App.vidLocationMode = My.App.LocationMode.LeftCenterInside
-					Case "radbtnVidLocationModeLeftCenterTopInside" : My.App.vidLocationMode = My.App.LocationMode.LeftCenterTopInside
+					Case "radbtnVidLocationModeManual" : My.App.VidLocationMode = My.App.LocationMode.Manual
+					Case "radbtnVidLocationModeTopLeft" : My.App.VidLocationMode = My.App.LocationMode.TopLeft
+					Case "radbtnVidLocationModeTopCenterLeft" : My.App.VidLocationMode = My.App.LocationMode.TopCenterLeft
+					Case "radbtnVidLocationModeTopCenter" : My.App.VidLocationMode = My.App.LocationMode.TopCenter
+					Case "radbtnVidLocationModeTopCenterRight" : My.App.VidLocationMode = My.App.LocationMode.TopCenterRight
+					Case "radbtnVidLocationModeTopRight" : My.App.VidLocationMode = My.App.LocationMode.TopRight
+					Case "radbtnVidLocationModeRightCenterTop" : My.App.VidLocationMode = My.App.LocationMode.RightCenterTop
+					Case "radbtnVidLocationModeRightCenter" : My.App.VidLocationMode = My.App.LocationMode.RightCenter
+					Case "radbtnVidLocationModeRightCenterBottom" : My.App.VidLocationMode = My.App.LocationMode.RightCenterBottom
+					Case "radbtnVidLocationModeBottomRight" : My.App.VidLocationMode = My.App.LocationMode.BottomRight
+					Case "radbtnVidLocationModeBottomCenterRight" : My.App.VidLocationMode = My.App.LocationMode.BottomCenterRight
+					Case "radbtnVidLocationModeBottomCenter" : My.App.VidLocationMode = My.App.LocationMode.BottomCenter
+					Case "radbtnVidLocationModeBottomCenterLeft" : My.App.VidLocationMode = My.App.LocationMode.BottomCenterLeft
+					Case "radbtnVidLocationModeBottomLeft" : My.App.VidLocationMode = My.App.LocationMode.BottomLeft
+					Case "radbtnVidLocationModeLeftCenterBottom" : My.App.VidLocationMode = My.App.LocationMode.LeftCenterBottom
+					Case "radbtnVidLocationModeLeftCenter" : My.App.VidLocationMode = My.App.LocationMode.LeftCenter
+					Case "radbtnVidLocationModeLeftCenterTop" : My.App.VidLocationMode = My.App.LocationMode.LeftCenterTop
+					Case "radbtnVidLocationModeTopLeftInside" : My.App.VidLocationMode = My.App.LocationMode.TopLeftInside
+					Case "radbtnVidLocationModeTopCenterLeftInside" : My.App.VidLocationMode = My.App.LocationMode.TopCenterLeftInside
+					Case "radbtnVidLocationModeTopCenterInside" : My.App.VidLocationMode = My.App.LocationMode.TopCenterInside
+					Case "radbtnVidLocationModeTopCenterRightInside" : My.App.VidLocationMode = My.App.LocationMode.TopCenterRightInside
+					Case "radbtnVidLocationModeTopRightInside" : My.App.VidLocationMode = My.App.LocationMode.TopRightInside
+					Case "radbtnVidLocationModeRightCenterTopInside" : My.App.VidLocationMode = My.App.LocationMode.RightCenterTopInside
+					Case "radbtnVidLocationModeRightCenterInside" : My.App.VidLocationMode = My.App.LocationMode.RightCenterInside
+					Case "radbtnVidLocationModeRightCenterBottomInside" : My.App.VidLocationMode = My.App.LocationMode.RightCenterBottomInside
+					Case "radbtnVidLocationModeBottomRightInside" : My.App.VidLocationMode = My.App.LocationMode.BottomRightInside
+					Case "radbtnVidLocationModeBottomCenterRightInside" : My.App.VidLocationMode = My.App.LocationMode.BottomCenterRightInside
+					Case "radbtnVidLocationModeBottomCenterInside" : My.App.VidLocationMode = My.App.LocationMode.BottomCenterInside
+					Case "radbtnVidLocationModeBottomCenterLeftInside" : My.App.VidLocationMode = My.App.LocationMode.BottomCenterLeftInside
+					Case "radbtnVidLocationModeBottomLeftInside" : My.App.VidLocationMode = My.App.LocationMode.BottomLeftInside
+					Case "radbtnVidLocationModeLeftCenterBottomInside" : My.App.VidLocationMode = My.App.LocationMode.LeftCenterBottomInside
+					Case "radbtnVidLocationModeLeftCenterInside" : My.App.VidLocationMode = My.App.LocationMode.LeftCenterInside
+					Case "radbtnVidLocationModeLeftCenterTopInside" : My.App.VidLocationMode = My.App.LocationMode.LeftCenterTopInside
 				End Select
 				If My.App.FrmVidsVisible Then My.App.FrmVids.SetSize()
 			End If
@@ -203,40 +203,40 @@ Partial Friend Class MainForm
 		For Each c As Control In Me.grbxVidTimeLocationMode.Controls
 			If sender Is c Then
 				Select Case c.Name
-					Case "radbtnVidTimeLocationModeTopLeft" : My.App.vidTimeLocationMode = My.App.LocationMode.TopLeft
-					Case "radbtnVidTimeLocationModeTopCenterLeft" : My.App.vidTimeLocationMode = My.App.LocationMode.TopCenterLeft
-					Case "radbtnVidTimeLocationModeTopCenter" : My.App.vidTimeLocationMode = My.App.LocationMode.TopCenter
-					Case "radbtnVidTimeLocationModeTopCenterRight" : My.App.vidTimeLocationMode = My.App.LocationMode.TopCenterRight
-					Case "radbtnVidTimeLocationModeTopRight" : My.App.vidTimeLocationMode = My.App.LocationMode.TopRight
-					Case "radbtnVidTimeLocationModeRightCenterTop" : My.App.vidTimeLocationMode = My.App.LocationMode.RightCenterTop
-					Case "radbtnVidTimeLocationModeRightCenter" : My.App.vidTimeLocationMode = My.App.LocationMode.RightCenter
-					Case "radbtnVidTimeLocationModeRightCenterBottom" : My.App.vidTimeLocationMode = My.App.LocationMode.RightCenterBottom
-					Case "radbtnVidTimeLocationModeBottomRight" : My.App.vidTimeLocationMode = My.App.LocationMode.BottomRight
-					Case "radbtnVidTimeLocationModeBottomCenterRight" : My.App.vidTimeLocationMode = My.App.LocationMode.BottomCenterRight
-					Case "radbtnVidTimeLocationModeBottomCenter" : My.App.vidTimeLocationMode = My.App.LocationMode.BottomCenter
-					Case "radbtnVidTimeLocationModeBottomCenterLeft" : My.App.vidTimeLocationMode = My.App.LocationMode.BottomCenterLeft
-					Case "radbtnVidTimeLocationModeBottomLeft" : My.App.vidTimeLocationMode = My.App.LocationMode.BottomLeft
-					Case "radbtnVidTimeLocationModeLeftCenterBottom" : My.App.vidTimeLocationMode = My.App.LocationMode.LeftCenterBottom
-					Case "radbtnVidTimeLocationModeLeftCenter" : My.App.vidTimeLocationMode = My.App.LocationMode.LeftCenter
-					Case "radbtnVidTimeLocationModeLeftCenterTop" : My.App.vidTimeLocationMode = My.App.LocationMode.LeftCenterTop
+					Case "radbtnVidTimeLocationModeTopLeft" : My.App.VidTimeLocationMode = My.App.LocationMode.TopLeft
+					Case "radbtnVidTimeLocationModeTopCenterLeft" : My.App.VidTimeLocationMode = My.App.LocationMode.TopCenterLeft
+					Case "radbtnVidTimeLocationModeTopCenter" : My.App.VidTimeLocationMode = My.App.LocationMode.TopCenter
+					Case "radbtnVidTimeLocationModeTopCenterRight" : My.App.VidTimeLocationMode = My.App.LocationMode.TopCenterRight
+					Case "radbtnVidTimeLocationModeTopRight" : My.App.VidTimeLocationMode = My.App.LocationMode.TopRight
+					Case "radbtnVidTimeLocationModeRightCenterTop" : My.App.VidTimeLocationMode = My.App.LocationMode.RightCenterTop
+					Case "radbtnVidTimeLocationModeRightCenter" : My.App.VidTimeLocationMode = My.App.LocationMode.RightCenter
+					Case "radbtnVidTimeLocationModeRightCenterBottom" : My.App.VidTimeLocationMode = My.App.LocationMode.RightCenterBottom
+					Case "radbtnVidTimeLocationModeBottomRight" : My.App.VidTimeLocationMode = My.App.LocationMode.BottomRight
+					Case "radbtnVidTimeLocationModeBottomCenterRight" : My.App.VidTimeLocationMode = My.App.LocationMode.BottomCenterRight
+					Case "radbtnVidTimeLocationModeBottomCenter" : My.App.VidTimeLocationMode = My.App.LocationMode.BottomCenter
+					Case "radbtnVidTimeLocationModeBottomCenterLeft" : My.App.VidTimeLocationMode = My.App.LocationMode.BottomCenterLeft
+					Case "radbtnVidTimeLocationModeBottomLeft" : My.App.VidTimeLocationMode = My.App.LocationMode.BottomLeft
+					Case "radbtnVidTimeLocationModeLeftCenterBottom" : My.App.VidTimeLocationMode = My.App.LocationMode.LeftCenterBottom
+					Case "radbtnVidTimeLocationModeLeftCenter" : My.App.VidTimeLocationMode = My.App.LocationMode.LeftCenter
+					Case "radbtnVidTimeLocationModeLeftCenterTop" : My.App.VidTimeLocationMode = My.App.LocationMode.LeftCenterTop
 				End Select
 				If My.App.FrmVidsVisible Then My.App.FrmVids.ShowVideoTime()
 			End If
 		Next
 	End Sub
 	Private Sub ChbxVidAutoViewClick(ByVal sender As Object, ByVal e As EventArgs) Handles chbxVidAutoView.Click
-		My.App.vidAutoView = Not My.App.vidAutoView
+		My.App.VidAutoView = Not My.App.VidAutoView
 	End Sub
 	Private Sub ChbxVidLockFullScreenClick(ByVal sender As Object, ByVal e As EventArgs) Handles chbxVidLockFullScreen.Click
-		My.App.vidLockFullScreen = Not My.App.vidLockFullScreen
+		My.App.VidLockFullScreen = Not My.App.VidLockFullScreen
 	End Sub
 	Private Sub ChbxVidTimeClick(sender As Object, e As EventArgs) Handles chbxVidTime.Click
-		My.App.vidTime = Me.chbxVidTime.Checked
+		My.App.VidTime = Me.chbxVidTime.Checked
 		ShowSettingsVideos()
 		If My.App.FrmVidsVisible Then My.App.FrmVids.SetVideoTime()
 	End Sub
 	Private Sub CobxVidTimeDisplayModeSelectionChangeCommitted(sender As Object, e As EventArgs) Handles cobxVidTimeDisplayMode.SelectionChangeCommitted
-		My.App.vidTimeDisplayMode = CType(Me.cobxVidTimeDisplayMode.SelectedIndex, My.App.VideoPositionMode)
+		My.App.VidTimeDisplayMode = CType(Me.cobxVidTimeDisplayMode.SelectedIndex, My.App.VideoPositionMode)
 		If My.App.FrmVidsVisible Then My.App.FrmVids.ShowVideoTime()
 	End Sub
 
@@ -253,7 +253,6 @@ Partial Friend Class MainForm
 	Private cmListCurrentSourceControl As String
 	Private cmiSettingListEnableItemLastIndex As Integer
 	Private folderbrowser As New FolderBrowserDialog
-	Private filebrowser As New OpenFileDialog
 	Private uiWPFileBrowser As New OpenFileDialog
 	Private GenerateImageListType As My.App.GetFilesMode
 	Private GenerateImageListStartTime As TimeSpan
@@ -271,7 +270,6 @@ Partial Friend Class MainForm
 		InitializeComponent() 'Located here because of ImageList initialization requires Me.components
 		folderbrowser.RootFolder = System.Environment.SpecialFolder.Desktop
 		folderbrowser.ShowNewFolderButton = False
-		filebrowser.Filter = "All Files|*.*"
 		uiWPFileBrowser.Title = "Select An Image..."
 		uiWPFileBrowser.DefaultExt = "jpg"
 		uiWPFileBrowser.Filter = "Image Files|*.jpg;*.jpeg;*.bmp;*.png;*.tif;*.tiff"
@@ -297,8 +295,6 @@ Partial Friend Class MainForm
 		Me.lvVidFolders.Columns.Add(Nothing, 0, HorizontalAlignment.Center)
 		Me.lvVidFolders.Columns.Add(Nothing, 0, HorizontalAlignment.Center)
 		Me.lvVidFolders.Columns.Add(Nothing, 0, HorizontalAlignment.Center)
-		Me.lvVidExtensions.Columns.Add(Nothing, 0, HorizontalAlignment.Center)
-		Me.lvVidExtensions.Columns.Add(Nothing, 0, HorizontalAlignment.Center)
 		For Each mode As My.App.VideoPositionMode In [Enum].GetValues(Of My.App.VideoPositionMode)()
 			Me.cobxVidTimeDisplayMode.Items.Add(My.App.VideoPositionModeToString(mode))
 		Next
@@ -340,11 +336,11 @@ Partial Friend Class MainForm
 		Me.btnClose.Focus()
 #Else
 #End If
-		If My.Application.AlternateStart OrElse Not My.App.appRefreshFileListsOnStartUp Then
+		If My.Application.AlternateStart OrElse Not My.App.RefreshFileListsOnStartUp Then
 			My.App.IsGeneratingFileList = False
 			If Not My.Application.AlternateStart AndAlso Not My.App.WorkSpaceSuspended Then
-				If My.App.picAutoView And My.App.ImageFiles.Count > 0 Then My.App.ShowImages()
-				If My.App.vidAutoView And My.App.VideoFilesCount > 0 Then My.App.ShowVideos()
+				If My.App.PicAutoView And My.App.ImageFiles.Count > 0 Then My.App.ShowImages()
+				If My.App.VidAutoView And My.App.VideoFilesCount > 0 Then My.App.ShowVideos()
 			End If
 			ToggleContextMenu()
 		Else
@@ -452,7 +448,7 @@ Partial Friend Class MainForm
 				Me.cmList.Items(4).Text = "Remove Folder"
 				If Me.lvVidFolders.SelectedItems.Count = 0 Then : Me.cmiSettingListRemoveItem.Enabled = False
 				Else
-					If My.App.vidFolders(Me.lvVidFolders.SelectedIndices(0)).Enabled Then
+					If My.App.VidFolders(Me.lvVidFolders.SelectedIndices(0)).Enabled Then
 						Me.cmiSettingListEnableItem.Text = "Enabled"
 						Me.cmiSettingListEnableItem.Checked = True
 						Me.cmiSettingListEnableItem.ForeColor = Color.Teal
@@ -472,18 +468,6 @@ Partial Friend Class MainForm
 				Else
 					Me.cmiSettingListRemoveAll.Enabled = True
 				End If
-			Case Me.lvVidExtensions.Name
-				Me.cmiSettingListEnableItem.Visible = False
-				Me.tsSeparatorEnabled.Visible = False
-				Me.cmList.ResetRightToLeft()
-				Me.cmList.Items(2).Text = "Add Extension"
-				Me.cmList.Items(4).Text = "Remove Extension"
-				If Me.lvVidExtensions.SelectedItems.Count = 0 Then : Me.cmiSettingListRemoveItem.Enabled = False
-				Else : Me.cmiSettingListRemoveItem.Enabled = True
-				End If
-				If Me.lvVidExtensions.Items.Count = 0 Then : Me.cmiSettingListRemoveAll.Enabled = False
-				Else : Me.cmiSettingListRemoveAll.Enabled = True
-				End If
 		End Select
 	End Sub
 	Private Sub CMISettingListEnableItemMouseUp(sender As Object, e As MouseEventArgs) Handles cmiSettingListEnableItem.MouseUp
@@ -493,10 +477,10 @@ Partial Friend Class MainForm
 			Dim itemY As Integer = Me.lvVidFolders.SelectedItems(0).Bounds.Y
 			Dim itemH As Integer = Me.lvVidFolders.Items(0).Bounds.Height 'Will be 14 for Tahoma 8pt Font, changing the font in designer will alter this var the number of If...ElseIf statements below.
 			'Enable/Disable Item
-			Dim folder As My.App.VideoFolderType = My.App.vidFolders(index)
+			Dim folder As My.App.VideoFolderType = My.App.VidFolders(index)
 			folder.Enabled = Not folder.Enabled
-			My.App.vidFolders.RemoveAt(index)
-			My.App.vidFolders.Insert(index, folder)
+			My.App.VidFolders.RemoveAt(index)
+			My.App.VidFolders.Insert(index, folder)
 			My.App.VideoFilesSetEnabled(index, folder.Enabled)
 			ShowSettings()
 			'Make it easier to bulk Enable/Disable items by minimizing scrolls and mouse moves.
@@ -536,15 +520,15 @@ Partial Friend Class MainForm
 						Dim removelist As New Collections.Generic.List(Of String)
 						folderbrowser.Description = "Select a Folder where Images are stored." + Microsoft.VisualBasic.Chr(13) + "All files and sub-directories will be searched starting with your selection:"
 						Dim r As DialogResult = folderbrowser.ShowDialog(Me)
-						If r = System.Windows.Forms.DialogResult.OK And Not My.App.picFolders.Contains(folderbrowser.SelectedPath) And Not folderbrowser.SelectedPath.Length <= 3 Then
-							For Each s As String In My.App.picFolders
+						If r = System.Windows.Forms.DialogResult.OK And Not My.App.PicFolders.Contains(folderbrowser.SelectedPath) And Not folderbrowser.SelectedPath.Length <= 3 Then
+							For Each s As String In My.App.PicFolders
 								If folderbrowser.SelectedPath.StartsWith(s + "\") Then addSelectedPath = False 'Checks if SelectedPath already included in another folder
 								If s.StartsWith(folderbrowser.SelectedPath) Then removelist.Add(s) 'Checks if any other folder is included in SelectedPath
 							Next
-							For Each s As String In removelist : My.App.picFolders.Remove(s) : Next
+							For Each s As String In removelist : My.App.PicFolders.Remove(s) : Next
 							If addSelectedPath Then
-								My.App.picFolders.Add(folderbrowser.SelectedPath)
-								My.App.picFolders.Sort()
+								My.App.PicFolders.Add(folderbrowser.SelectedPath)
+								My.App.PicFolders.Sort()
 							End If
 						End If
 						removelist.Clear()
@@ -555,31 +539,20 @@ Partial Friend Class MainForm
 						folderbrowser.Description = "Select a Folder where Videos are stored." + Microsoft.VisualBasic.Chr(13) + "All files and sub-directories will be searched starting with your selection:"
 						Dim r As DialogResult = folderbrowser.ShowDialog(Me)
 						If r = System.Windows.Forms.DialogResult.OK And Not My.App.VideoFoldersContains(folderbrowser.SelectedPath) And Not folderbrowser.SelectedPath.Length <= 3 Then
-							For index As Integer = My.App.vidFolders.Count - 1 To 0 Step -1
-								Dim folder As My.App.VideoFolderType = My.App.vidFolders(index)
+							For index As Integer = My.App.VidFolders.Count - 1 To 0 Step -1
+								Dim folder As My.App.VideoFolderType = My.App.VidFolders(index)
 								If folderbrowser.SelectedPath.StartsWith(folder.SearchPath) Then addSelectedPath = False 'Checks if SelectedPath already included in another folder
 								If folder.Path.StartsWith(folderbrowser.SelectedPath) Then removelist.Add(index) 'Checks if any other folder is included in SelectedPath
 							Next
-							For Each index As Integer In removelist : My.App.vidFolders.RemoveAt(index) : Next
+							For Each index As Integer In removelist : My.App.VidFolders.RemoveAt(index) : Next
 							If addSelectedPath Then
 								DisableVideoList()
-								My.App.vidFolders.Add(New My.App.VideoFolderType(folderbrowser.SelectedPath))
-								My.App.vidFolders.Sort(New My.App.VideoFolderType.Comparer)
+								My.App.VidFolders.Add(New My.App.VideoFolderType(folderbrowser.SelectedPath))
+								My.App.VidFolders.Sort(New My.App.VideoFolderType.Comparer)
 							End If
 						End If
 						removelist.Clear()
 						removelist = Nothing
-					Case Me.lvVidExtensions.Name
-						filebrowser.Title = "Select a Video File of the Type you would like to include in the Video List..."
-						Dim r As DialogResult = filebrowser.ShowDialog(Me)
-						If r = System.Windows.Forms.DialogResult.OK Then
-							Dim split As String() = filebrowser.FileName.Split(CChar("."))
-							Dim s As String = "." + split(split.Length - 1)
-							If Not My.App.vidExtensions.Contains(s) Then
-								My.App.vidExtensions.Add(s)
-								My.App.vidExtensions.Sort()
-							End If
-						End If
 				End Select
 			Catch
 			Finally : ShowSettings()
@@ -589,11 +562,10 @@ Partial Friend Class MainForm
 	Private Sub CMISettingListRemoveItemMouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles cmiSettingListRemoveItem.MouseUp
 		If e.Button = MouseButtons.Left Then
 			Select Case cmListCurrentSourceControl
-				Case Me.lvPicFolders.Name : My.App.picFolders.Remove(Me.lvPicFolders.SelectedItems(0).Tag.ToString)
+				Case Me.lvPicFolders.Name : My.App.PicFolders.Remove(Me.lvPicFolders.SelectedItems(0).Tag.ToString)
 				Case Me.lvVidFolders.Name
 					DisableVideoList()
-					My.App.vidFolders.RemoveAt(Me.lvVidFolders.SelectedIndices(0))
-				Case Me.lvVidExtensions.Name : My.App.vidExtensions.RemoveAt(Me.lvVidExtensions.SelectedIndices(0))
+					My.App.VidFolders.RemoveAt(Me.lvVidFolders.SelectedIndices(0))
 			End Select
 			ShowSettings()
 		End If
@@ -601,11 +573,10 @@ Partial Friend Class MainForm
 	Private Sub CMISettingListRemoveAllMouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles cmiSettingListRemoveAll.MouseUp
 		If e.Button = MouseButtons.Left Then
 			Select Case cmListCurrentSourceControl
-				Case Me.lvPicFolders.Name : My.App.picFolders.Clear()
+				Case Me.lvPicFolders.Name : My.App.PicFolders.Clear()
 				Case Me.lvVidFolders.Name
 					DisableVideoList()
-					My.App.vidFolders.Clear()
-				Case Me.lvVidExtensions.Name : My.App.vidExtensions.Clear()
+					My.App.VidFolders.Clear()
 			End Select
 			ShowSettings()
 		End If
@@ -706,12 +677,12 @@ Partial Friend Class MainForm
 			newhotkey.KeyCode = CByte(e.KeyValue)
 			newhotkey.KeyMod = CByte(modifiers)
 			'Check If Already In-Use
-			If Not CType(Me.txbxHotKeyPicToggle.Tag, My.App.HotKey).Key = My.App.hkPicToggle.Key Then keysinuse.Add(CType(Me.txbxHotKeyPicToggle.Tag, My.App.HotKey).Key)
-			If Not CType(Me.txbxHotKeyPicToggleFullScreen.Tag, My.App.HotKey).Key = My.App.hkPicToggleFullScreen.Key Then keysinuse.Add(CType(Me.txbxHotKeyPicToggleFullScreen.Tag, My.App.HotKey).Key)
-			If Not CType(Me.txbxHotKeyPicShowFileInfo.Tag, My.App.HotKey).Key = My.App.hkPicShowFileInfo.Key Then keysinuse.Add(CType(Me.txbxHotKeyPicShowFileInfo.Tag, My.App.HotKey).Key)
-			If Not CType(Me.txbxHotKeyVidToggle.Tag, My.App.HotKey).Key = My.App.hkVidToggle.Key Then keysinuse.Add(CType(Me.txbxHotKeyVidToggle.Tag, My.App.HotKey).Key)
-			If Not CType(Me.txbxHotKeyVidToggleFullScreen.Tag, My.App.HotKey).Key = My.App.hkVidToggleFullScreen.Key Then keysinuse.Add(CType(Me.txbxHotKeyVidToggleFullScreen.Tag, My.App.HotKey).Key)
-			If Not CType(Me.txbxHotKeyVidShowFileInfo.Tag, My.App.HotKey).Key = My.App.hkVidShowFileInfo.Key Then keysinuse.Add(CType(Me.txbxHotKeyVidShowFileInfo.Tag, My.App.HotKey).Key)
+			If Not CType(Me.txbxHotKeyPicToggle.Tag, My.App.HotKey).Key = My.App.HKPicToggle.Key Then keysinuse.Add(CType(Me.txbxHotKeyPicToggle.Tag, My.App.HotKey).Key)
+			If Not CType(Me.txbxHotKeyPicToggleFullScreen.Tag, My.App.HotKey).Key = My.App.HKPicToggleFullScreen.Key Then keysinuse.Add(CType(Me.txbxHotKeyPicToggleFullScreen.Tag, My.App.HotKey).Key)
+			If Not CType(Me.txbxHotKeyPicShowFileInfo.Tag, My.App.HotKey).Key = My.App.HKPicShowFileInfo.Key Then keysinuse.Add(CType(Me.txbxHotKeyPicShowFileInfo.Tag, My.App.HotKey).Key)
+			If Not CType(Me.txbxHotKeyVidToggle.Tag, My.App.HotKey).Key = My.App.HKVidToggle.Key Then keysinuse.Add(CType(Me.txbxHotKeyVidToggle.Tag, My.App.HotKey).Key)
+			If Not CType(Me.txbxHotKeyVidToggleFullScreen.Tag, My.App.HotKey).Key = My.App.HKVidToggleFullScreen.Key Then keysinuse.Add(CType(Me.txbxHotKeyVidToggleFullScreen.Tag, My.App.HotKey).Key)
+			If Not CType(Me.txbxHotKeyVidShowFileInfo.Tag, My.App.HotKey).Key = My.App.HKVidShowFileInfo.Key Then keysinuse.Add(CType(Me.txbxHotKeyVidShowFileInfo.Tag, My.App.HotKey).Key)
 			For Each usedkey As Keys In keysinuse : If usedkey = newhotkey.Key Then match = True
 			Next
 			'Display New HotKey If Not Already In-Use
@@ -733,47 +704,47 @@ Partial Friend Class MainForm
 		senderTextBox = Nothing
 	End Sub
 	Private Sub TxbxInsideLocationOffsetValidated(sender As Object, e As EventArgs) Handles txbxInsideLocationOffset.Validated
-		If Not My.App.appInsideLocationOffset = CType(Int(Val(Me.txbxInsideLocationOffset.Text)), UInt16) Then
-			My.App.appInsideLocationOffset = CType(Int(Val(Me.txbxInsideLocationOffset.Text)), UInt16)
+		If Not My.App.InsideLocationOffset = CType(Int(Val(Me.txbxInsideLocationOffset.Text)), UInt16) Then
+			My.App.InsideLocationOffset = CType(Int(Val(Me.txbxInsideLocationOffset.Text)), UInt16)
 			If My.App.FrmPicsVisible Then My.App.frmPics.DrawImage()
 			Me.txbxInsideLocationOffset.Focus()
 			Me.txbxInsideLocationOffset.SelectAll()
 		End If
 	End Sub
 	Private Sub ChbxSaveFileListsClick(sender As Object, e As EventArgs) Handles chbxSaveFileLists.Click
-		My.App.appSaveFileLists = Me.chbxSaveFileLists.Checked
+		My.App.SaveFileLists = Me.chbxSaveFileLists.Checked
 	End Sub
 	Private Sub ChbxLoadFileListsInBackgroundClick(sender As Object, e As EventArgs) Handles chbxLoadFileListsInBackground.Click
-		My.App.appLoadFileListsInBackground = Me.chbxLoadFileListsInBackground.Checked
+		My.App.LoadFileListsInBackground = Me.chbxLoadFileListsInBackground.Checked
 	End Sub
 	Private Sub ChbxRefreshFileListsOnStartUpClick(sender As Object, e As EventArgs) Handles chbxRefreshFileListsOnStartUp.Click
-		My.App.appRefreshFileListsOnStartUp = Me.chbxRefreshFileListsOnStartUp.Checked
+		My.App.RefreshFileListsOnStartUp = Me.chbxRefreshFileListsOnStartUp.Checked
 	End Sub
 	Private Sub ChbxHideCursorWhenFullscreenClick(sender As Object, e As EventArgs) Handles chbxHideCursorWhenFullscreen.Click
-		My.App.appHideCursorWhenFullscreen = Me.chbxHideCursorWhenFullscreen.Checked
+		My.App.HideCursorWhenFullscreen = Me.chbxHideCursorWhenFullscreen.Checked
 	End Sub
 	Private Sub ChbxHotKeysClick(sender As Object, e As EventArgs) Handles chbxHotKeys.Click
-		If My.App.hkEnabled Then
+		If My.App.HKEnabled Then
 			My.App.RegisterHotKeys(False)
-			My.App.hkEnabled = False
+			My.App.HKEnabled = False
 		Else
-			My.App.hkEnabled = True
+			My.App.HKEnabled = True
 			My.App.RegisterHotKeys(True)
 		End If
 		ShowSettings()
 	End Sub
 	Private Sub ChbkVidMuteClick(sender As Object, e As EventArgs) Handles chbkVidMute.Click
-		My.App.vidVolumeMute = Me.chbkVidMute.Checked
+		My.App.VidVolumeMute = Me.chbkVidMute.Checked
 		If My.App.FrmVids IsNot Nothing Then My.FrmVids.SetVolume()
 	End Sub
 	Private Sub RadbtnActionOnScreenSaveNoActionClick(sender As Object, e As EventArgs) Handles radbtnActionOnScreenSaveNoAction.Click
-		My.App.appActionOnScreenSave = My.App.ScreenSaveActions.NoAction
+		My.App.ActionOnScreenSave = My.App.ScreenSaveActions.NoAction
 	End Sub
 	Private Sub RadbtnActionOnScreenSaveSuspendClick(sender As Object, e As EventArgs) Handles radbtnActionOnScreenSaveSuspend.Click
-		My.App.appActionOnScreenSave = My.App.ScreenSaveActions.Suspend
+		My.App.ActionOnScreenSave = My.App.ScreenSaveActions.Suspend
 	End Sub
 	Private Sub RadbtnActionOnScreenSaveCloseClick(sender As Object, e As EventArgs) Handles radbtnActionOnScreenSaveClose.Click
-		My.App.appActionOnScreenSave = My.App.ScreenSaveActions.Close
+		My.App.ActionOnScreenSave = My.App.ScreenSaveActions.Close
 	End Sub
 	Private Sub BtnEnter(ByVal sender As Object, ByVal e As EventArgs) Handles btnVidList.Enter, btnSaveSettings.Enter, btnRestoreSettings.Enter, btnRefreshVidList.Enter, btnRefreshPicList.Enter, btnPicTimerEnabled.Enter, btnlvVidFolders.Enter, btnlvPicFolders.Enter, btnHotKeyVidToggleFullScreenDisable.Enter, btnHotKeyVidToggleDisable.Enter, btnHotKeyVidShowFileInfoDisable.Enter, btnHotKeysVidsUndo.Enter, btnHotKeysVidsSet.Enter, btnHotKeysPicsUndo.Enter, btnHotKeysPicsSet.Enter, btnHotKeyPicToggleFullScreenDisable.Enter, btnHotKeyPicToggleDisable.Enter, btnHotKeyPicShowFileInfoDisable.Enter, btnErrorTest.Enter
 		Me.btnClose.Focus()
@@ -832,28 +803,28 @@ Partial Friend Class MainForm
 	Private Sub BtnHotKeysSetClick(sender As Object, e As EventArgs) Handles btnHotKeysVidsSet.Click, btnHotKeysPicsSet.Click
 		Static NeedsReRegistered As Boolean
 		NeedsReRegistered = False
-		If Not CType(Me.txbxHotKeyPicToggle.Tag, My.App.HotKey).Key = My.App.hkPicToggle.Key Then
-			My.App.hkPicToggle = CType(Me.txbxHotKeyPicToggle.Tag, My.App.HotKey)
+		If Not CType(Me.txbxHotKeyPicToggle.Tag, My.App.HotKey).Key = My.App.HKPicToggle.Key Then
+			My.App.HKPicToggle = CType(Me.txbxHotKeyPicToggle.Tag, My.App.HotKey)
 			NeedsReRegistered = True
 		End If
-		If Not CType(Me.txbxHotKeyPicToggleFullScreen.Tag, My.App.HotKey).Key = My.App.hkPicToggleFullScreen.Key Then
-			My.App.hkPicToggleFullScreen = CType(Me.txbxHotKeyPicToggleFullScreen.Tag, My.App.HotKey)
+		If Not CType(Me.txbxHotKeyPicToggleFullScreen.Tag, My.App.HotKey).Key = My.App.HKPicToggleFullScreen.Key Then
+			My.App.HKPicToggleFullScreen = CType(Me.txbxHotKeyPicToggleFullScreen.Tag, My.App.HotKey)
 			NeedsReRegistered = True
 		End If
-		If Not CType(Me.txbxHotKeyPicShowFileInfo.Tag, My.App.HotKey).Key = My.App.hkPicShowFileInfo.Key Then
-			My.App.hkPicShowFileInfo = CType(Me.txbxHotKeyPicShowFileInfo.Tag, My.App.HotKey)
+		If Not CType(Me.txbxHotKeyPicShowFileInfo.Tag, My.App.HotKey).Key = My.App.HKPicShowFileInfo.Key Then
+			My.App.HKPicShowFileInfo = CType(Me.txbxHotKeyPicShowFileInfo.Tag, My.App.HotKey)
 			NeedsReRegistered = True
 		End If
-		If Not CType(Me.txbxHotKeyVidToggle.Tag, My.App.HotKey).Key = My.App.hkVidToggle.Key Then
-			My.App.hkVidToggle = CType(Me.txbxHotKeyVidToggle.Tag, My.App.HotKey)
+		If Not CType(Me.txbxHotKeyVidToggle.Tag, My.App.HotKey).Key = My.App.HKVidToggle.Key Then
+			My.App.HKVidToggle = CType(Me.txbxHotKeyVidToggle.Tag, My.App.HotKey)
 			NeedsReRegistered = True
 		End If
-		If Not CType(Me.txbxHotKeyVidToggleFullScreen.Tag, My.App.HotKey).Key = My.App.hkVidToggleFullScreen.Key Then
-			My.App.hkVidToggleFullScreen = CType(Me.txbxHotKeyVidToggleFullScreen.Tag, My.App.HotKey)
+		If Not CType(Me.txbxHotKeyVidToggleFullScreen.Tag, My.App.HotKey).Key = My.App.HKVidToggleFullScreen.Key Then
+			My.App.HKVidToggleFullScreen = CType(Me.txbxHotKeyVidToggleFullScreen.Tag, My.App.HotKey)
 			NeedsReRegistered = True
 		End If
-		If Not CType(Me.txbxHotKeyVidShowFileInfo.Tag, My.App.HotKey).Key = My.App.hkVidShowFileInfo.Key Then
-			My.App.hkVidShowFileInfo = CType(Me.txbxHotKeyVidShowFileInfo.Tag, My.App.HotKey)
+		If Not CType(Me.txbxHotKeyVidShowFileInfo.Tag, My.App.HotKey).Key = My.App.HKVidShowFileInfo.Key Then
+			My.App.HKVidShowFileInfo = CType(Me.txbxHotKeyVidShowFileInfo.Tag, My.App.HotKey)
 			NeedsReRegistered = True
 		End If
 		If NeedsReRegistered Then
@@ -932,7 +903,7 @@ Partial Friend Class MainForm
 						Dim found As Boolean
 						For index As Integer = My.App.VideoFiles.Count - 1 To 0 Step -1
 							found = False
-							For Each folder As My.App.VideoFolderType In My.App.vidFolders
+							For Each folder As My.App.VideoFolderType In My.App.VidFolders
 								If My.App.VideoFiles(index).Path.StartsWith(folder.Path) Then found = True : Exit For
 							Next
 							If Not found Then My.App.VideoFiles.RemoveAt(index)
@@ -1008,7 +979,7 @@ Partial Friend Class MainForm
 			Else : Me.cmiViewPics.Enabled = True
 			End If
 		End If
-		Select Case My.App.picLocationMode
+		Select Case My.App.PicLocationMode
 			Case My.App.LocationMode.Manual : Me.radbtnPicLocationModeManual.Checked = True
 			Case My.App.LocationMode.TopLeft : Me.radbtnPicLocationModeTopLeft.Checked = True
 			Case My.App.LocationMode.TopCenterLeft : Me.radbtnPicLocationModeTopCenterLeft.Checked = True
@@ -1043,7 +1014,7 @@ Partial Friend Class MainForm
 			Case My.App.LocationMode.LeftCenterInside : Me.radbtnPicLocationModeLeftCenterInside.Checked = True
 			Case My.App.LocationMode.LeftCenterTopInside : Me.radbtnPicLocationModeLeftCenterTopInside.Checked = True
 		End Select
-		If My.App.picTimerEnabled Then
+		If My.App.PicTimerEnabled Then
 			Me.btnPicTimerEnabled.FlatAppearance.BorderColor = Color.Teal
 			Me.btnPicTimerEnabled.FlatAppearance.MouseOverBackColor = Color.Maroon
 			Me.btnPicTimerEnabled.ForeColor = Color.Teal
@@ -1083,7 +1054,7 @@ Partial Friend Class MainForm
 				End If
 			End If
 		End If
-		Select Case My.App.vidLocationMode
+		Select Case My.App.VidLocationMode
 			Case My.App.LocationMode.Manual : Me.radbtnVidLocationModeManual.Checked = True
 			Case My.App.LocationMode.TopLeft : Me.radbtnVidLocationModeTopLeft.Checked = True
 			Case My.App.LocationMode.TopCenterLeft : Me.radbtnVidLocationModeTopCenterLeft.Checked = True
@@ -1118,8 +1089,8 @@ Partial Friend Class MainForm
 			Case My.App.LocationMode.LeftCenterInside : Me.radbtnVidLocationModeLeftCenterInside.Checked = True
 			Case My.App.LocationMode.LeftCenterTopInside : Me.radbtnVidLocationModeLeftCenterTopInside.Checked = True
 		End Select
-		Me.cobxVidTimeDisplayMode.SelectedIndex = My.App.vidTimeDisplayMode
-		Me.chbkVidMute.Checked = My.App.vidVolumeMute
+		Me.cobxVidTimeDisplayMode.SelectedIndex = My.App.VidTimeDisplayMode
+		Me.chbkVidMute.Checked = My.App.VidVolumeMute
 	End Sub
 	Friend Sub RestoreSettings()
 		DisableVideoList()
@@ -1149,13 +1120,13 @@ Partial Friend Class MainForm
 		AppNotify()
 	End Sub
 	Private Sub ShowSettingsSkyeShow()
-		Me.chbxSaveFileLists.Checked = My.App.appSaveFileLists
-		Me.chbxLoadFileListsInBackground.Checked = My.App.appLoadFileListsInBackground
-		Me.chbxRefreshFileListsOnStartUp.Checked = My.App.appRefreshFileListsOnStartUp
-		Me.chbxHideCursorWhenFullscreen.Checked = My.App.appHideCursorWhenFullscreen
-		Me.chbxHotKeys.Checked = My.App.hkEnabled
-		Me.txbxInsideLocationOffset.Text = My.App.appInsideLocationOffset.ToString
-		Select Case My.App.appActionOnScreenSave
+		Me.chbxSaveFileLists.Checked = My.App.SaveFileLists
+		Me.chbxLoadFileListsInBackground.Checked = My.App.LoadFileListsInBackground
+		Me.chbxRefreshFileListsOnStartUp.Checked = My.App.RefreshFileListsOnStartUp
+		Me.chbxHideCursorWhenFullscreen.Checked = My.App.HideCursorWhenFullscreen
+		Me.chbxHotKeys.Checked = My.App.HKEnabled
+		Me.txbxInsideLocationOffset.Text = My.App.InsideLocationOffset.ToString
+		Select Case My.App.ActionOnScreenSave
 			Case My.App.ScreenSaveActions.NoAction : Me.radbtnActionOnScreenSaveNoAction.Checked = True
 			Case My.App.ScreenSaveActions.Suspend : Me.radbtnActionOnScreenSaveSuspend.Checked = True
 			Case My.App.ScreenSaveActions.Close : Me.radbtnActionOnScreenSaveClose.Checked = True
@@ -1168,7 +1139,7 @@ Partial Friend Class MainForm
 		Static split As String()
 		Me.lvPicFolders.Items.Clear()
 
-		For Each s As String In My.App.picFolders
+		For Each s As String In My.App.PicFolders
 			split = s.Split(CChar("\"))
 			lvi = New ListViewItem
 			lvi.SubItems.Add(s)
@@ -1178,13 +1149,13 @@ Partial Friend Class MainForm
 		Next
 		lvi = Nothing
 		split = Nothing
-		If My.App.picAutoView Then : Me.chbxPicAutoView.Checked = True
+		If My.App.PicAutoView Then : Me.chbxPicAutoView.Checked = True
 		Else : Me.chbxPicAutoView.Checked = False
 		End If
-		If My.App.picLockFullScreen Then : Me.chbxPicLockFullScreen.Checked = True
+		If My.App.PicLockFullScreen Then : Me.chbxPicLockFullScreen.Checked = True
 		Else : Me.chbxPicLockFullScreen.Checked = False
 		End If
-		Select Case My.App.picPlayMode
+		Select Case My.App.PicPlayMode
 			Case My.App.PlayMode.Linear
 				Me.radbtnPicPlayModeLinear.Checked = True
 			Case My.App.PlayMode.LinearWithRandomStart
@@ -1192,19 +1163,19 @@ Partial Friend Class MainForm
 			Case My.App.PlayMode.Random
 				Me.radbtnPicPlayModeRandom.Checked = True
 		End Select
-		Select Case My.App.picJustify
+		Select Case My.App.PicJustify
 			Case My.App.LocationJustify.Left : Me.radbtnPicJustifyLeft.Checked = True
 			Case My.App.LocationJustify.Center : Me.radbtnPicJustifyCenter.Checked = True
 			Case My.App.LocationJustify.Right : Me.radbtnPicJustifyRight.Checked = True
 		End Select
-		If My.App.picTimerCountdown Then
+		If My.App.PicTimerCountdown Then
 			Me.chbxPicTimerCountdown.Checked = True
 			Me.gpbxPicTimerCountdownLocationMode.Enabled = True
 		Else
 			Me.chbxPicTimerCountdown.Checked = False
 			Me.gpbxPicTimerCountdownLocationMode.Enabled = False
 		End If
-		Select Case My.App.picTimerCountdownLocationMode
+		Select Case My.App.PicTimerCountdownLocationMode
 			Case My.App.LocationMode.TopLeft : Me.radbtnPicTimerCountdownLocationModeTopLeft.Checked = True
 			Case My.App.LocationMode.TopCenterLeft : Me.radbtnPicTimerCountdownLocationModeTopCenterLeft.Checked = True
 			Case My.App.LocationMode.TopCenter : Me.radbtnPicTimerCountdownLocationModeTopCenter.Checked = True
@@ -1222,24 +1193,24 @@ Partial Friend Class MainForm
 			Case My.App.LocationMode.LeftCenter : Me.radbtnPicTimerCountdownLocationModeLeftCenter.Checked = True
 			Case My.App.LocationMode.LeftCenterTop : Me.radbtnPicTimerCountdownLocationModeLeftCenterTop.Checked = True
 		End Select
-		Me.txbxPicTimerInterval.Text = My.App.picTimerInterval.ToString
-		Me.chbxPicTimerAutoStart.Checked = My.App.picTimerAutoStart
-		If My.App.hkEnabled Then : Me.grbxHotKeysPics.Enabled = True
+		Me.txbxPicTimerInterval.Text = My.App.PicTimerInterval.ToString
+		Me.chbxPicTimerAutoStart.Checked = My.App.PicTimerAutoStart
+		If My.App.HKEnabled Then : Me.grbxHotKeysPics.Enabled = True
 		Else : Me.grbxHotKeysPics.Enabled = False
 		End If
-		Me.lblHotKeyPicToggle.Text = My.App.hkPicToggle.Description
-		Me.txbxHotKeyPicToggle.Text = My.App.hkPicToggle.Key.ToString
-		Me.txbxHotKeyPicToggle.Tag = My.App.hkPicToggle
+		Me.lblHotKeyPicToggle.Text = My.App.HKPicToggle.Description
+		Me.txbxHotKeyPicToggle.Text = My.App.HKPicToggle.Key.ToString
+		Me.txbxHotKeyPicToggle.Tag = My.App.HKPicToggle
 		Me.txbxHotKeyPicToggle.Font = New Font(Me.txbxHotKeyPicToggle.Font, FontStyle.Bold)
 		Me.txbxHotKeyPicToggle.ForeColor = Color.Teal
-		Me.lblHotKeyPicToggleFullScreen.Text = My.App.hkPicToggleFullScreen.Description
-		Me.txbxHotKeyPicToggleFullScreen.Text = My.App.hkPicToggleFullScreen.Key.ToString
-		Me.txbxHotKeyPicToggleFullScreen.Tag = My.App.hkPicToggleFullScreen
+		Me.lblHotKeyPicToggleFullScreen.Text = My.App.HKPicToggleFullScreen.Description
+		Me.txbxHotKeyPicToggleFullScreen.Text = My.App.HKPicToggleFullScreen.Key.ToString
+		Me.txbxHotKeyPicToggleFullScreen.Tag = My.App.HKPicToggleFullScreen
 		Me.txbxHotKeyPicToggleFullScreen.Font = New Font(Me.txbxHotKeyPicToggleFullScreen.Font, FontStyle.Bold)
 		Me.txbxHotKeyPicToggleFullScreen.ForeColor = Color.Teal
-		Me.lblHotKeyPicShowFileInfo.Text = My.App.hkPicShowFileInfo.Description
-		Me.txbxHotKeyPicShowFileInfo.Text = My.App.hkPicShowFileInfo.Key.ToString
-		Me.txbxHotKeyPicShowFileInfo.Tag = My.App.hkPicShowFileInfo
+		Me.lblHotKeyPicShowFileInfo.Text = My.App.HKPicShowFileInfo.Description
+		Me.txbxHotKeyPicShowFileInfo.Text = My.App.HKPicShowFileInfo.Key.ToString
+		Me.txbxHotKeyPicShowFileInfo.Tag = My.App.HKPicShowFileInfo
 		Me.txbxHotKeyPicShowFileInfo.Font = New Font(Me.txbxHotKeyPicShowFileInfo.Font, FontStyle.Bold)
 		Me.txbxHotKeyPicShowFileInfo.ForeColor = Color.Teal
 		Me.btnHotKeysPicsUndo.Enabled = False
@@ -1251,8 +1222,7 @@ Partial Friend Class MainForm
 		Static lvi As ListViewItem
 		Static split As String()
 		Me.lvVidFolders.Items.Clear()
-
-		For Each folder As My.App.VideoFolderType In My.App.vidFolders
+		For Each folder As My.App.VideoFolderType In My.App.VidFolders
 			split = folder.Path.TrimStart(CChar("-")).Split(CChar("\"))
 			lvi = New ListViewItem
 			lvi.SubItems.Add(folder.Path.TrimStart(CChar("-")))
@@ -1264,29 +1234,18 @@ Partial Friend Class MainForm
 			End If
 			Me.lvVidFolders.Items.Add(lvi)
 		Next
-		Me.lvVidExtensions.Items.Clear()
-
-		For Each s As String In My.App.vidExtensions
-			lvi = New ListViewItem
-			lvi.SubItems.Add(s.Substring(1).ToUpper)
-			lvi.Tag = s
-			Me.lvVidExtensions.Items.Add(lvi)
-		Next
-		If Me.lvVidExtensions.Items.Count < 5 Then : Me.lvVidExtensions.Columns(1).Width = Me.lvVidExtensions.Width
-		Else : Me.lvVidExtensions.Columns(1).Width = Me.lvVidExtensions.Width - 18
-		End If
 		lvi = Nothing
 		split = Nothing
-		If My.App.vidAutoView Then : Me.chbxVidAutoView.Checked = True
+		If My.App.VidAutoView Then : Me.chbxVidAutoView.Checked = True
 		Else : Me.chbxVidAutoView.Checked = False
 		End If
-		If My.App.vidVolumeMute Then : Me.chbkVidMute.Checked = True
+		If My.App.VidVolumeMute Then : Me.chbkVidMute.Checked = True
 		Else : Me.chbkVidMute.Checked = False
 		End If
-		If My.App.vidLockFullScreen Then : Me.chbxVidLockFullScreen.Checked = True
+		If My.App.VidLockFullScreen Then : Me.chbxVidLockFullScreen.Checked = True
 		Else : Me.chbxVidLockFullScreen.Checked = False
 		End If
-		Select Case My.App.vidPlayMode
+		Select Case My.App.VidPlayMode
 			Case My.App.PlayMode.Linear
 				Me.radbtnVidPlayModeLinear.Checked = True
 			Case My.App.PlayMode.LinearWithRandomStart
@@ -1294,7 +1253,7 @@ Partial Friend Class MainForm
 			Case My.App.PlayMode.Random
 				Me.radbtnVidPlayModeRandom.Checked = True
 		End Select
-		Select Case My.App.vidScale
+		Select Case My.App.VidScale
 			Case 0 : Me.radbtnVideoScaleFit.Checked = True
 			Case 0.1 : Me.radbtnVideoScale10.Checked = True
 			Case 0.25 : Me.radbtnVideoScale25.Checked = True
@@ -1304,10 +1263,10 @@ Partial Friend Class MainForm
 			Case 0.75 : Me.radbtnVideoScale75.Checked = True
 			Case 1 : Me.radbtnVideoScale100.Checked = True
 			Case Else
-				My.App.vidScale = 0.5
+				My.App.VidScale = 0.5
 				Me.radbtnVideoScale50.Checked = True
 		End Select
-		If My.App.vidTime Then
+		If My.App.VidTime Then
 			Me.chbxVidTime.Checked = True
 			Me.cobxVidTimeDisplayMode.Enabled = True
 			Me.grbxVidTimeLocationMode.Enabled = True
@@ -1316,7 +1275,7 @@ Partial Friend Class MainForm
 			Me.cobxVidTimeDisplayMode.Enabled = False
 			Me.grbxVidTimeLocationMode.Enabled = False
 		End If
-		Select Case My.App.vidTimeLocationMode
+		Select Case My.App.VidTimeLocationMode
 			Case My.App.LocationMode.TopLeft : Me.radbtnVidTimeLocationModeTopLeft.Checked = True
 			Case My.App.LocationMode.TopCenterLeft : Me.radbtnVidTimeLocationModeTopCenterLeft.Checked = True
 			Case My.App.LocationMode.TopCenter : Me.radbtnVidTimeLocationModeTopCenter.Checked = True
@@ -1334,22 +1293,22 @@ Partial Friend Class MainForm
 			Case My.App.LocationMode.LeftCenter : Me.radbtnVidTimeLocationModeLeftCenter.Checked = True
 			Case My.App.LocationMode.LeftCenterTop : Me.radbtnVidTimeLocationModeLeftCenterTop.Checked = True
 		End Select
-		If My.App.hkEnabled Then : Me.grbxHotKeysVids.Enabled = True
+		If My.App.HKEnabled Then : Me.grbxHotKeysVids.Enabled = True
 		Else : Me.grbxHotKeysVids.Enabled = False
 		End If
-		Me.lblHotKeyVidToggle.Text = My.App.hkVidToggle.Description
-		Me.txbxHotKeyVidToggle.Text = My.App.hkVidToggle.Key.ToString
-		Me.txbxHotKeyVidToggle.Tag = My.App.hkVidToggle
+		Me.lblHotKeyVidToggle.Text = My.App.HKVidToggle.Description
+		Me.txbxHotKeyVidToggle.Text = My.App.HKVidToggle.Key.ToString
+		Me.txbxHotKeyVidToggle.Tag = My.App.HKVidToggle
 		Me.txbxHotKeyVidToggle.Font = New Font(Me.txbxHotKeyVidToggle.Font, FontStyle.Bold)
 		Me.txbxHotKeyVidToggle.ForeColor = Color.Teal
-		Me.lblHotKeyVidToggleFullScreen.Text = My.App.hkVidToggleFullScreen.Description
-		Me.txbxHotKeyVidToggleFullScreen.Text = My.App.hkVidToggleFullScreen.Key.ToString
-		Me.txbxHotKeyVidToggleFullScreen.Tag = My.App.hkVidToggleFullScreen
+		Me.lblHotKeyVidToggleFullScreen.Text = My.App.HKVidToggleFullScreen.Description
+		Me.txbxHotKeyVidToggleFullScreen.Text = My.App.HKVidToggleFullScreen.Key.ToString
+		Me.txbxHotKeyVidToggleFullScreen.Tag = My.App.HKVidToggleFullScreen
 		Me.txbxHotKeyVidToggleFullScreen.Font = New Font(Me.txbxHotKeyVidToggleFullScreen.Font, FontStyle.Bold)
 		Me.txbxHotKeyVidToggleFullScreen.ForeColor = Color.Teal
-		Me.lblHotKeyVidShowFileInfo.Text = My.App.hkVidShowFileInfo.Description
-		Me.txbxHotKeyVidShowFileInfo.Text = My.App.hkVidShowFileInfo.Key.ToString
-		Me.txbxHotKeyVidShowFileInfo.Tag = My.App.hkVidShowFileInfo
+		Me.lblHotKeyVidShowFileInfo.Text = My.App.HKVidShowFileInfo.Description
+		Me.txbxHotKeyVidShowFileInfo.Text = My.App.HKVidShowFileInfo.Key.ToString
+		Me.txbxHotKeyVidShowFileInfo.Tag = My.App.HKVidShowFileInfo
 		Me.txbxHotKeyVidShowFileInfo.Font = New Font(Me.txbxHotKeyVidShowFileInfo.Font, FontStyle.Bold)
 		Me.txbxHotKeyVidShowFileInfo.ForeColor = Color.Teal
 		Me.btnHotKeysVidsUndo.Enabled = False
@@ -1371,7 +1330,6 @@ Partial Friend Class MainForm
 			Me.lvPicFolders.Enabled = False
 			Me.btnRefreshPicList.Enabled = False
 			Me.lvVidFolders.Enabled = False
-			Me.lvVidExtensions.Enabled = False
 			Me.btnRefreshVidList.Enabled = False
 			Me.btnVidList.Enabled = False
 			Me.btnRestoreSettings.Enabled = False
@@ -1382,7 +1340,7 @@ Partial Friend Class MainForm
 			If (mode = My.App.GetFilesType.Vids Or mode = My.App.GetFilesType.All) And My.App.FrmVidListVisible Then My.App.frmVidList.Close()
 			If (mode = My.App.GetFilesType.Pics Or mode = My.App.GetFilesType.All) And My.App.FrmPicsVisible Then My.App.frmPics.Close()
 
-			If My.App.appLoadFileListsInBackground Then : My.Application.CurrentProcess.PriorityClass = Diagnostics.ProcessPriorityClass.BelowNormal
+			If My.App.LoadFileListsInBackground Then : My.Application.CurrentProcess.PriorityClass = Diagnostics.ProcessPriorityClass.BelowNormal
 			Else : My.Application.CurrentProcess.PriorityClass = Diagnostics.ProcessPriorityClass.Normal
 			End If
 			Me.BackgroundworkerGetFiles.RunWorkerAsync(mode)
@@ -1399,7 +1357,7 @@ Partial Friend Class MainForm
 			GenerateImageListStartTime = My.Computer.Clock.LocalTime.TimeOfDay
 			My.App.ImageFiles.Clear()
 
-			For Each folder As String In My.App.picFolders
+			For Each folder As String In My.App.PicFolders
 				Try
 					filelist.AddRange(IO.Directory.GetFiles(folder, "*", IO.SearchOption.AllDirectories))
 					For Each s As String In filelist : If My.App.CheckFileType(s, My.App.FileType.Pic) Then My.App.ImageFiles.Add(s)
@@ -1408,7 +1366,7 @@ Partial Friend Class MainForm
 				Finally : filelist.Clear()
 				End Try
 			Next
-			For Each folder As String In removelist : My.App.picFolders.Remove(folder) : Next
+			For Each folder As String In removelist : My.App.PicFolders.Remove(folder) : Next
 			If GenerateImageListType = My.App.GetFilesMode.Refreshed Then
 				For index As Integer = My.App.ImageRepeatList.Count - 1 To 0 Step -1
 					If Not My.App.ImageFiles.Contains(My.App.ImageRepeatList(index)) Then My.App.ImageRepeatList.RemoveAt(index)
@@ -1434,21 +1392,18 @@ Partial Friend Class MainForm
 				Next
 			End If
 			'Get Files
-			If Not My.App.vidExtensions.Count = 0 Then
-				For index As Integer = 0 To My.App.vidFolders.Count - 1
-					Dim folder As My.App.VideoFolderType = My.App.vidFolders(index)
-					Try
-						filelist.AddRange(IO.Directory.GetFiles(folder.Path, "*", IO.SearchOption.AllDirectories))
-						For Each s As String In filelist : If My.App.CheckFileType(s, My.App.FileType.Vid) Then If GenerateVideoListType = My.App.GetFilesMode.Generated OrElse (GenerateVideoListType = My.App.GetFilesMode.Refreshed And Not My.App.VideoFilesContains(s)) Then My.App.VideoFiles.Add(New My.App.VideoFileType(s, folder.Enabled))
-						Next
-					Catch : removelist.Add(index)
-					Finally : filelist.Clear()
-					End Try
-				Next
-				removelist.Reverse()
-
-				For Each index As Integer In removelist : My.App.vidFolders.RemoveAt(index) : Next
-			End If
+			For index As Integer = 0 To My.App.VidFolders.Count - 1
+				Dim folder As My.App.VideoFolderType = My.App.VidFolders(index)
+				Try
+					filelist.AddRange(IO.Directory.GetFiles(folder.Path, "*", IO.SearchOption.AllDirectories))
+					For Each s As String In filelist : If My.App.CheckFileType(s, My.App.FileType.Vid) Then If GenerateVideoListType = My.App.GetFilesMode.Generated OrElse (GenerateVideoListType = My.App.GetFilesMode.Refreshed And Not My.App.VideoFilesContains(s)) Then My.App.VideoFiles.Add(New My.App.VideoFileType(s, folder.Enabled))
+					Next
+				Catch : removelist.Add(index)
+				Finally : filelist.Clear()
+				End Try
+			Next
+			removelist.Reverse()
+			For Each index As Integer In removelist : My.App.VidFolders.RemoveAt(index) : Next
 			If My.App.VideoFiles.Count > 0 Then My.App.VideoFiles.Sort(New My.App.VideoFileType.Comparer)
 			GenerateVideoListEndTime = My.Computer.Clock.LocalTime.TimeOfDay
 			removelist.Clear()
@@ -1462,7 +1417,6 @@ Partial Friend Class MainForm
 		Me.lvPicFolders.Enabled = True
 		Me.btnRefreshPicList.Enabled = True
 		Me.lvVidFolders.Enabled = True
-		Me.lvVidExtensions.Enabled = True
 		Me.btnRefreshVidList.Enabled = True
 		Me.btnVidList.Enabled = True
 		Me.btnRestoreSettings.Enabled = True
@@ -1488,10 +1442,10 @@ Partial Friend Class MainForm
 		ShowSettings()
 		My.App.IsGeneratingFileList = False
 		If Not My.App.WorkSpaceSuspended Then
-			If ((My.App.picAutoView And (mode = My.App.GetFilesType.Pics Or mode = My.App.GetFilesType.All)) Or ImageActiveOnRefresh) And Not My.App.FrmPicsVisible And My.App.ImageFiles.Count > 0 Then My.App.ShowImages()
+			If ((My.App.PicAutoView And (mode = My.App.GetFilesType.Pics Or mode = My.App.GetFilesType.All)) Or ImageActiveOnRefresh) And Not My.App.FrmPicsVisible And My.App.ImageFiles.Count > 0 Then My.App.ShowImages()
 
 			If Not String.IsNullOrEmpty(My.App.CommandLinePath) Then : My.App.ShowVideoFromCommandLine()
-			Else : If ((My.App.vidAutoView And (mode = My.App.GetFilesType.Vids Or mode = My.App.GetFilesType.All)) Or VideoActiveOnRefresh) And My.App.VideoFilesCount > 0 Then My.App.ShowVideos()
+			Else : If ((My.App.VidAutoView And (mode = My.App.GetFilesType.Vids Or mode = My.App.GetFilesType.All)) Or VideoActiveOnRefresh) And My.App.VideoFilesCount > 0 Then My.App.ShowVideos()
 			End If
 			If (mode = My.App.GetFilesType.Vids Or mode = My.App.GetFilesType.All) And VideoListActiveOnRefresh And My.App.VideoFilesCount(My.App.VideoFilesCountMode.Total) > 0 Then My.App.ShowVideoList()
 		End If

@@ -3,6 +3,7 @@ Imports System.Diagnostics
 Imports System.Reflection
 Imports System.Runtime
 Imports LibVLCSharp.[Shared]
+Imports Skye.Common
 
 Namespace My
 
@@ -13,7 +14,7 @@ Namespace My
 		' DECLARATIONS
 		Friend Const ImageTimerCountdownBorderPadding As Integer = 5
 		Friend ImageFiles As New Collections.Generic.List(Of String)
-		Friend ImageExtensions As New Collections.Generic.List(Of String)
+		Friend ImageExtensions As Collections.Generic.List(Of String)
 		Friend ImageIndex As Integer = -1
 		Friend ImageIndexPrevious As Integer = -1
 		Friend ImageRepeatList As New Collections.Generic.List(Of String)
@@ -21,19 +22,19 @@ Namespace My
 		Friend frmPics As Pics
 
 		' Saved Settings
-		Friend picFolders As New Collections.Generic.List(Of String)
-		Friend picLocation As System.Drawing.Point
-		Friend picLocationMode As LocationMode
-		Friend picJustify As LocationJustify
-		Friend picMaxSize As Int16
-		Friend picPlayMode As PlayMode
-		Friend picAutoView As Boolean
-		Friend picLockFullScreen As Boolean
-		Friend picTimerEnabled As Boolean
-		Friend picTimerAutoStart As Boolean
-		Friend picTimerCountdown As Boolean
-		Friend picTimerCountdownLocationMode As LocationMode
-		Friend picTimerInterval As Integer
+		Friend PicFolders As New Collections.Generic.List(Of String)
+		Friend PicLocation As System.Drawing.Point
+		Friend PicLocationMode As LocationMode
+		Friend PicJustify As LocationJustify
+		Friend PicMaxSize As Int16
+		Friend PicPlayMode As PlayMode
+		Friend PicAutoView As Boolean
+		Friend PicLockFullScreen As Boolean
+		Friend PicTimerEnabled As Boolean
+		Friend PicTimerAutoStart As Boolean
+		Friend PicTimerCountdown As Boolean
+		Friend PicTimerCountdownLocationMode As LocationMode
+		Friend PicTimerInterval As Integer
 
 		' METHODS
 		Friend Sub ShowImages()
@@ -42,7 +43,7 @@ Namespace My
 		End Sub
 		Friend Sub SaveImageFileList()
 			Try
-				If My.App.appSaveFileLists Then
+				If My.App.SaveFileLists Then
 					If My.App.ImageFiles.Count = 0 Then
 						If My.Computer.FileSystem.FileExists(My.App.ImageFilesPath) Then My.Computer.FileSystem.DeleteFile(My.App.ImageFilesPath)
 					Else
@@ -62,7 +63,7 @@ Namespace My
 		End Sub
 		Friend Sub LoadImageFileList()
 			Try
-				If My.App.appSaveFileLists AndAlso My.Computer.FileSystem.FileExists(My.App.ImageFilesPath) Then
+				If My.App.SaveFileLists AndAlso My.Computer.FileSystem.FileExists(My.App.ImageFilesPath) Then
 					Dim starttime As TimeSpan = My.Computer.Clock.LocalTime.TimeOfDay
 					Dim reader As New System.Xml.Serialization.XmlSerializer(GetType(Collections.Generic.List(Of String)))
 					Dim file As New System.IO.FileStream(My.App.ImageFilesPath, IO.FileMode.Open)
@@ -78,7 +79,7 @@ Namespace My
 		End Sub
 		Friend Sub SaveImageRepeatList()
 			Try
-				If My.App.appSaveFileLists Then
+				If My.App.SaveFileLists Then
 					If My.App.ImageFiles.Count = 0 Then
 						If My.Computer.FileSystem.FileExists(My.App.ImageRepeatListPath) Then My.Computer.FileSystem.DeleteFile(My.App.ImageRepeatListPath)
 					Else
@@ -98,7 +99,7 @@ Namespace My
 		End Sub
 		Friend Sub LoadImageRepeatList()
 			Try
-				If My.App.appSaveFileLists AndAlso My.Computer.FileSystem.FileExists(My.App.ImageRepeatListPath) Then
+				If My.App.SaveFileLists AndAlso My.Computer.FileSystem.FileExists(My.App.ImageRepeatListPath) Then
 					Dim starttime As TimeSpan = My.Computer.Clock.LocalTime.TimeOfDay
 					Dim reader As New System.Xml.Serialization.XmlSerializer(GetType(Collections.Generic.List(Of String)))
 					Dim file As New System.IO.FileStream(My.App.ImageRepeatListPath, IO.FileMode.Open)
@@ -246,28 +247,27 @@ Namespace My
 		End Structure
 		Friend Const VideoTimeBorderPadding As Integer = 5
 		Friend VideoFiles As New Collections.Generic.List(Of VideoFileType)
+		Friend VideoExtensionDictionary As New Dictionary(Of String, String) 'VideoExtensionDictionary is a dictionary that maps file extensions to their respective media types.
 		Friend VideoIndex As Integer = -1
 		Friend VideoIndexPrevious As Integer = -1
 		Friend VideoIsOnTop As Boolean = True
-		Friend VideoExtensionDictionary As New Dictionary(Of String, String) 'VideoExtensionDictionary is a dictionary that maps file extensions to their respective media types.
 		Friend FrmVids As Vids
 		Friend frmVidList As VidList
 
 		' Saved Settings
-		Friend vidFolders As New Collections.Generic.List(Of VideoFolderType)
-		Friend vidExtensions As New Collections.Generic.List(Of String)
-		Friend vidLocation As System.Drawing.Point
-		Friend vidLocationMode As LocationMode
-		Friend vidScale As Single
-		Friend vidMaxSize As Int16
-		Friend vidPlayMode As PlayMode
-		Friend vidAutoView As Boolean
-		Friend vidLockFullScreen As Boolean
-		Friend vidVolume As Int16
-		Friend vidVolumeMute As Boolean
-		Friend vidTime As Boolean
-		Friend vidTimeDisplayMode As VideoPositionMode
-		Friend vidTimeLocationMode As LocationMode
+		Friend VidFolders As New Collections.Generic.List(Of VideoFolderType)
+		Friend VidLocation As System.Drawing.Point
+		Friend VidLocationMode As LocationMode
+		Friend VidScale As Single
+		Friend VidMaxSize As Int16
+		Friend VidPlayMode As PlayMode
+		Friend VidAutoView As Boolean
+		Friend VidLockFullScreen As Boolean
+		Friend VidVolume As Int16
+		Friend VidVolumeMute As Boolean
+		Friend VidTime As Boolean
+		Friend VidTimeDisplayMode As VideoPositionMode
+		Friend VidTimeLocationMode As LocationMode
 
 		' METHODS
 		Friend Sub ShowVideos(Optional showBySelection As Boolean = False)
@@ -291,7 +291,7 @@ Namespace My
 		End Sub
 		Friend Sub SaveVideoFileList()
 			Try
-				If My.App.appSaveFileLists Then
+				If My.App.SaveFileLists Then
 					If My.App.VideoFilesCount(My.App.VideoFilesCountMode.Total) = 0 Then : If My.Computer.FileSystem.FileExists(My.App.VideoFilesPath) Then My.Computer.FileSystem.DeleteFile(My.App.VideoFilesPath)
 					Else
 						Dim starttime As TimeSpan = My.Computer.Clock.LocalTime.TimeOfDay
@@ -310,7 +310,7 @@ Namespace My
 		End Sub
 		Friend Sub LoadVideoFileList()
 			Try
-				If My.App.appSaveFileLists AndAlso My.Computer.FileSystem.FileExists(My.App.VideoFilesPath) Then
+				If My.App.SaveFileLists AndAlso My.Computer.FileSystem.FileExists(My.App.VideoFilesPath) Then
 					Dim starttime As TimeSpan = My.Computer.Clock.LocalTime.TimeOfDay
 					Dim reader As New System.Xml.Serialization.XmlSerializer(GetType(Collections.Generic.List(Of VideoFileType)))
 					Dim file As New System.IO.FileStream(My.App.VideoFilesPath, IO.FileMode.Open)
@@ -346,7 +346,7 @@ Namespace My
 		End Sub
 		Friend Sub VideoFilesSetEnabled(folderindex As Integer, enabled As Boolean)
 			For index As Integer = 0 To VideoFiles.Count - 1
-				If VideoFiles(index).Path.StartsWith(vidFolders(folderindex).SearchPath) AndAlso VideoFiles(index).State = VideoFileState.Valid Then
+				If VideoFiles(index).Path.StartsWith(VidFolders(folderindex).SearchPath) AndAlso VideoFiles(index).State = VideoFileState.Valid Then
 					Dim file As VideoFileType = VideoFiles(index)
 					file.Enabled = enabled
 					VideoFiles.RemoveAt(index)
@@ -358,10 +358,10 @@ Namespace My
 		Friend Sub VideoFilesResetEnabled()
 			Dim file As VideoFileType
 			For fileindex As Integer = 0 To VideoFiles.Count - 1
-				For folderindex As Integer = 0 To vidFolders.Count - 1
-					If VideoFiles(fileindex).Path.StartsWith(vidFolders(folderindex).SearchPath) AndAlso VideoFiles(fileindex).State = VideoFileState.Valid Then
+				For folderindex As Integer = 0 To VidFolders.Count - 1
+					If VideoFiles(fileindex).Path.StartsWith(VidFolders(folderindex).SearchPath) AndAlso VideoFiles(fileindex).State = VideoFileState.Valid Then
 						file = VideoFiles(fileindex)
-						file.Enabled = vidFolders(folderindex).Enabled
+						file.Enabled = VidFolders(folderindex).Enabled
 						VideoFiles.RemoveAt(fileindex)
 						VideoFiles.Insert(fileindex, file)
 					End If
@@ -374,7 +374,7 @@ Namespace My
 			Select Case state
 				Case VideoFileState.Valid
 					file.Viewed = False
-					For Each folder As VideoFolderType In vidFolders : If file.Path.StartsWith(folder.SearchPath) AndAlso folder.Enabled Then file.Enabled = True
+					For Each folder As VideoFolderType In VidFolders : If file.Path.StartsWith(folder.SearchPath) AndAlso folder.Enabled Then file.Enabled = True
 					Next
 					file.State = state
 				Case Else
@@ -432,7 +432,7 @@ Namespace My
 			Return False
 		End Function
 		Friend Function VideoFoldersContains(path As String) As Boolean
-			For Each folder As VideoFolderType In vidFolders : If folder.Path.Equals(path, StringComparison.CurrentCultureIgnoreCase) Then Return True
+			For Each folder As VideoFolderType In VidFolders : If folder.Path.Equals(path, StringComparison.CurrentCultureIgnoreCase) Then Return True
 			Next
 			Return False
 		End Function
@@ -457,12 +457,10 @@ Namespace My
 			End Get
 		End Property
 #If DEBUG Then
-		Private ReadOnly RegPath As String = "Software\\" + My.Application.Info.ProductName + "DEV" 'RegPath is the path to the registry key where application settings are stored.
 		Friend ReadOnly ImageFilesPath As String = UserPath + My.Application.Info.ProductName + "ImagesDEV.xml"
 		Friend ReadOnly ImageRepeatListPath As String = UserPath + My.Application.Info.ProductName + "ImagesViewedDEV.xml"
 		Friend ReadOnly VideoFilesPath As String = UserPath + My.Application.Info.ProductName + "VideosDEV.xml"
 #Else
-		Private ReadOnly RegPath As String = "Software\\" + My.Application.Info.ProductName 'RegPath is the path to the registry key where application settings are stored.
 		Friend ReadOnly ImageFilesPath As String = UserPath + My.Application.Info.ProductName + "Images.xml"
 		Friend ReadOnly ImageRepeatListPath As String = UserPath + My.Application.Info.ProductName + "ImagesViewed.xml"
 		Friend ReadOnly VideoFilesPath As String = UserPath + My.Application.Info.ProductName + "Videos.xml"
@@ -573,8 +571,6 @@ Namespace My
 		Private FrmInfo As InfoForm
 		Private WithEvents FrmBalloonTimer As New Timer
 		Private WithEvents ScreenSaverWatcher As New Timer
-		Private SettingsRegKey As Microsoft.Win32.RegistryKey
-		Private SettingsRegSubKey As Microsoft.Win32.RegistryKey
 		Private ScreenSaverRunning As Boolean = False
 		Private WorkStationLocked As Boolean = False
 		Private ReadOnly RandomFileIndex As New Random
@@ -582,19 +578,19 @@ Namespace My
 		Private frmBalloonParent As String = String.Empty
 
 		' Saved Settings
-		Friend appSaveFileLists As Boolean 'Default = False
-		Friend appLoadFileListsInBackground As Boolean 'Default = True
-		Friend appRefreshFileListsOnStartUp As Boolean 'Default = True
-		Friend appHideCursorWhenFullscreen As Boolean 'Default = True
-		Friend appActionOnScreenSave As ScreenSaveActions 'Default = Close
-		Friend appInsideLocationOffset As UInt16 'Default = 40 'Inside Offset for Pic & Vid Location Mode
-		Friend hkEnabled As Boolean
-		Friend hkPicToggle As New HotKey
-		Friend hkPicToggleFullScreen As New HotKey
-		Friend hkPicShowFileInfo As New HotKey
-		Friend hkVidToggle As New HotKey
-		Friend hkVidToggleFullScreen As New HotKey
-		Friend hkVidShowFileInfo As New HotKey
+		Friend SaveFileLists As Boolean 'Default = False
+		Friend LoadFileListsInBackground As Boolean 'Default = True
+		Friend RefreshFileListsOnStartUp As Boolean 'Default = True
+		Friend HideCursorWhenFullscreen As Boolean 'Default = True
+		Friend ActionOnScreenSave As ScreenSaveActions 'Default = Close
+		Friend InsideLocationOffset As UInt16 'Default = 40 'Inside Offset for Pic & Vid Location Mode
+		Friend HKEnabled As Boolean
+		Friend HKPicToggle As New HotKey
+		Friend HKPicToggleFullScreen As New HotKey
+		Friend HKPicShowFileInfo As New HotKey
+		Friend HKVidToggle As New HotKey
+		Friend HKVidToggleFullScreen As New HotKey
+		Friend HKVidShowFileInfo As New HotKey
 
 		' HANDLERS
 		Private Sub FrmBalloonTimerTick(ByVal sender As Object, ByVal e As EventArgs) Handles FrmBalloonTimer.Tick
@@ -645,6 +641,7 @@ Namespace My
 			Debug.Print("OnStartup --> Alternate Start = " + My.Application.AlternateStart.ToString)
 			FrmBalloonTimer.Interval = 6000
 			ScreenSaverWatcher.Interval = 1000
+			ImageExtensions = New List(Of String) From {".jpg", ".jpeg", ".bmp", ".gif", ".png", ".tif", ".tiff", ".exif"}
 			VideoExtensionDictionary.Add(".mkv", "Matroska")
 			VideoExtensionDictionary.Add(".ogv", "OGG Video")
 			VideoExtensionDictionary.Add(".avi", "AVI Video")
@@ -668,10 +665,10 @@ Namespace My
 			LoadVideoFileList()
 			ScreenSaverWatcher.Start()
 			AddHandler Microsoft.Win32.SystemEvents.SessionSwitch, AddressOf WorkStationLockedHandler
-			If hkEnabled Then RegisterHotKeys(True)
+			If HKEnabled Then RegisterHotKeys(True)
 		End Sub
 		Friend Sub Finalize()
-			If hkEnabled Then RegisterHotKeys(False)
+			If HKEnabled Then RegisterHotKeys(False)
 			My.App.SaveImageFileList()
 			My.App.SaveImageRepeatList()
 			My.App.SaveVideoFileList()
@@ -690,262 +687,367 @@ Namespace My
 			Skye.Common.Log.Write(logentry)
 			Debug.Print("WriteToLog --> " + logentry)
 		End Sub
+		'Friend Sub GetSettingsOld()
+		'	'Initialize
+		'	SettingsRegKey = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(RegPath)
+		'	'App Settings
+		'	Select Case SettingsRegKey.GetValue("AppSaveFileLists", "False").ToString
+		'		Case "True", "1" : SaveFileLists = True
+		'		Case Else : SaveFileLists = False
+		'	End Select
+		'	Select Case SettingsRegKey.GetValue("AppLoadFileListsInBackground", "True").ToString
+		'		Case "False", "0" : LoadFileListsInBackground = False
+		'		Case Else : LoadFileListsInBackground = True
+		'	End Select
+		'	Select Case SettingsRegKey.GetValue("AppRefreshFileListsOnStartUp", "True").ToString
+		'		Case "False", "0" : RefreshFileListsOnStartUp = False
+		'		Case Else : RefreshFileListsOnStartUp = True
+		'	End Select
+		'	Select Case SettingsRegKey.GetValue("AppHideCursorWhenFullscreen", "True").ToString
+		'		Case "False", "0" : HideCursorWhenFullscreen = False
+		'		Case Else : HideCursorWhenFullscreen = True
+		'	End Select
+		'	ActionOnScreenSave = CType(Val(SettingsRegKey.GetValue("AppActionOnScreenSave", "2")), My.App.ScreenSaveActions)
+		'	InsideLocationOffset = CType(Val(SettingsRegKey.GetValue("AppInsideLocationOffset", "40")), UInt16)
+		'	'HotKeys
+		'	Select Case SettingsRegKey.GetValue("HKEnabled", "True").ToString
+		'		Case "False", "0" : HKEnabled = False
+		'		Case Else : HKEnabled = True
+		'	End Select
+		'	HKPicToggle.Description = "Toggle Pictures"
+		'	HKPicToggle.WinID = 1
+		'	Try
+		'		HKPicToggle.Key = CType(Val(SettingsRegKey.GetValue("HKPicToggleKey", "0")), Keys)
+		'		If HKPicToggle.Key < 0 Or HKPicToggle.Key > Integer.MaxValue Then HKPicToggle.Key = 0
+		'	Catch : HKPicToggle.Key = 0
+		'	End Try
+		'	Try
+		'		HKPicToggle.KeyCode = CByte(Val(SettingsRegKey.GetValue("HKPicToggleKeyCode", "0")))
+		'		If HKPicToggle.KeyCode < Byte.MinValue Or HKPicToggle.KeyCode > Byte.MaxValue Then HKPicToggle.KeyCode = 0
+		'	Catch : HKPicToggle.KeyCode = 0
+		'	End Try
+		'	Try
+		'		HKPicToggle.KeyMod = CByte(Val(SettingsRegKey.GetValue("HKPicToggleKeyMod", "0")))
+		'		If HKPicToggle.KeyMod < Byte.MinValue Or HKPicToggle.KeyMod > Byte.MaxValue Then HKPicToggle.KeyMod = 0
+		'	Catch : HKPicToggle.KeyMod = 0
+		'	End Try
+		'	HKPicToggleFullScreen.Description = "Toggle Pictures FullScreen"
+		'	HKPicToggleFullScreen.WinID = 2
+		'	Try
+		'		HKPicToggleFullScreen.Key = CType(Val(SettingsRegKey.GetValue("HKPicToggleFullScreenKey", "0")), Keys)
+		'		If HKPicToggleFullScreen.Key < 0 Or HKPicToggleFullScreen.Key > Integer.MaxValue Then HKPicToggleFullScreen.Key = 0
+		'	Catch : HKPicToggleFullScreen.Key = 0
+		'	End Try
+		'	Try
+		'		HKPicToggleFullScreen.KeyCode = CByte(Val(SettingsRegKey.GetValue("HKPicToggleFullScreenKeyCode", "0")))
+		'		If HKPicToggleFullScreen.KeyCode < Byte.MinValue Or HKPicToggleFullScreen.KeyCode > Byte.MaxValue Then HKPicToggleFullScreen.KeyCode = 0
+		'	Catch : HKPicToggleFullScreen.KeyCode = 0
+		'	End Try
+		'	Try
+		'		HKPicToggleFullScreen.KeyMod = CByte(Val(SettingsRegKey.GetValue("HKPicToggleFullScreenKeyMod", "0")))
+		'		If HKPicToggleFullScreen.KeyMod < Byte.MinValue Or HKPicToggleFullScreen.KeyMod > Byte.MaxValue Then HKPicToggleFullScreen.KeyMod = 0
+		'	Catch : HKPicToggleFullScreen.KeyMod = 0
+		'	End Try
+		'	HKPicShowFileInfo.Description = "Show Picture Info"
+		'	HKPicShowFileInfo.WinID = 3
+		'	Try
+		'		HKPicShowFileInfo.Key = CType(Val(SettingsRegKey.GetValue("HKPicShowFileInfoKey", "0")), Keys)
+		'		If HKPicShowFileInfo.Key < 0 Or HKPicShowFileInfo.Key > Integer.MaxValue Then HKPicShowFileInfo.Key = 0
+		'	Catch : HKPicShowFileInfo.Key = 0
+		'	End Try
+		'	Try
+		'		HKPicShowFileInfo.KeyCode = CByte(Val(SettingsRegKey.GetValue("HKPicShowFileInfoKeyCode", "0")))
+		'		If HKPicShowFileInfo.KeyCode < Byte.MinValue Or HKPicShowFileInfo.KeyCode > Byte.MaxValue Then HKPicShowFileInfo.KeyCode = 0
+		'	Catch : HKPicShowFileInfo.KeyCode = 0
+		'	End Try
+		'	Try
+		'		HKPicShowFileInfo.KeyMod = CByte(Val(SettingsRegKey.GetValue("HKPicShowFileInfoKeyMod", "0")))
+		'		If HKPicShowFileInfo.KeyMod < Byte.MinValue Or HKPicShowFileInfo.KeyMod > Byte.MaxValue Then HKPicShowFileInfo.KeyMod = 0
+		'	Catch : HKPicShowFileInfo.KeyMod = 0
+		'	End Try
+		'	HKVidToggle.Description = "Toggle Videos"
+		'	HKVidToggle.WinID = 4
+		'	Try
+		'		HKVidToggle.Key = CType(Val(SettingsRegKey.GetValue("HKVidToggleKey", "0")), Keys)
+		'		If HKVidToggle.Key < 0 Or HKVidToggle.Key > Integer.MaxValue Then HKVidToggle.Key = 0
+		'	Catch : HKVidToggle.Key = 0
+		'	End Try
+		'	Try
+		'		HKVidToggle.KeyCode = CByte(Val(SettingsRegKey.GetValue("HKVidToggleKeyCode", "0")))
+		'		If HKVidToggle.KeyCode < Byte.MinValue Or HKVidToggle.KeyCode > Byte.MaxValue Then HKVidToggle.KeyCode = 0
+		'	Catch : HKVidToggle.KeyCode = 0
+		'	End Try
+		'	Try
+		'		HKVidToggle.KeyMod = CByte(Val(SettingsRegKey.GetValue("HKVidToggleKeyMod", "0")))
+		'		If HKVidToggle.KeyMod < Byte.MinValue Or HKVidToggle.KeyMod > Byte.MaxValue Then HKVidToggle.KeyMod = 0
+		'	Catch : HKVidToggle.KeyMod = 0
+		'	End Try
+		'	HKVidToggleFullScreen.Description = "Toggle Videos FullScreen"
+		'	HKVidToggleFullScreen.WinID = 5
+		'	Try
+		'		HKVidToggleFullScreen.Key = CType(Val(SettingsRegKey.GetValue("HKVidToggleFullScreenKey", "0")), Keys)
+		'		If HKVidToggleFullScreen.Key < 0 Or HKVidToggleFullScreen.Key > Integer.MaxValue Then HKVidToggleFullScreen.Key = 0
+		'	Catch : HKVidToggleFullScreen.Key = 0
+		'	End Try
+		'	Try
+		'		HKVidToggleFullScreen.KeyCode = CByte(Val(SettingsRegKey.GetValue("HKVidToggleFullScreenKeyCode", "0")))
+		'		If HKVidToggleFullScreen.KeyCode < Byte.MinValue Or HKVidToggleFullScreen.KeyCode > Byte.MaxValue Then HKVidToggleFullScreen.KeyCode = 0
+		'	Catch : HKVidToggleFullScreen.KeyCode = 0
+		'	End Try
+		'	Try
+		'		HKVidToggleFullScreen.KeyMod = CByte(Val(SettingsRegKey.GetValue("HKVidToggleFullScreenKeyMod", "0")))
+		'		If HKVidToggleFullScreen.KeyMod < Byte.MinValue Or HKVidToggleFullScreen.KeyMod > Byte.MaxValue Then HKVidToggleFullScreen.KeyMod = 0
+		'	Catch : HKVidToggleFullScreen.KeyMod = 0
+		'	End Try
+		'	HKVidShowFileInfo.Description = "Show Video Info"
+		'	HKVidShowFileInfo.WinID = 6
+		'	Try
+		'		HKVidShowFileInfo.Key = CType(Val(SettingsRegKey.GetValue("HKVidShowFileInfoKey", "0")), Keys)
+		'		If HKVidShowFileInfo.Key < 0 Or HKVidShowFileInfo.Key > Integer.MaxValue Then HKVidShowFileInfo.Key = 0
+		'	Catch : HKVidShowFileInfo.Key = 0
+		'	End Try
+		'	Try
+		'		HKVidShowFileInfo.KeyCode = CByte(Val(SettingsRegKey.GetValue("HKVidShowFileInfoKeyCode", "0")))
+		'		If HKVidShowFileInfo.KeyCode < Byte.MinValue Or HKVidShowFileInfo.KeyCode > Byte.MaxValue Then HKVidShowFileInfo.KeyCode = 0
+		'	Catch : HKVidShowFileInfo.KeyCode = 0
+		'	End Try
+		'	Try
+		'		HKVidShowFileInfo.KeyMod = CByte(Val(SettingsRegKey.GetValue("HKVidShowFileInfoKeyMod", "0")))
+		'		If HKVidShowFileInfo.KeyMod < Byte.MinValue Or HKVidShowFileInfo.KeyMod > Byte.MaxValue Then HKVidShowFileInfo.KeyMod = 0
+		'	Catch : HKVidShowFileInfo.KeyMod = 0
+		'	End Try
+		'	GenerateHotKeyList()
+		'	'Image Settings
+		'	PicLocation.X = CInt(Val(SettingsRegKey.GetValue("ImageLocationX", "0")))
+		'	PicLocation.Y = CInt(Val(SettingsRegKey.GetValue("ImageLocationY", "0")))
+		'	PicLocationMode = CType(Val(SettingsRegKey.GetValue("ImageLocationMode", "0")), My.App.LocationMode)
+		'	PicJustify = CType(Val(SettingsRegKey.GetValue("ImageJustify", "1")), My.App.LocationJustify)
+		'	PicMaxSize = CShort(Val(SettingsRegKey.GetValue("ImageMaxSize", "200")))
+		'	If PicMaxSize > My.Computer.Screen.Bounds.Width / 2 Then PicMaxSize = CShort(My.Computer.Screen.Bounds.Width / 2)
+		'	If PicMaxSize < My.Computer.Screen.Bounds.Width / 50 Then PicMaxSize = CShort(My.Computer.Screen.Bounds.Width / 50)
+		'	Select Case SettingsRegKey.GetValue("ImagePlayMode", "Random").ToString
+		'		Case "Linear" : PicPlayMode = PlayMode.Linear
+		'		Case "LinearWithRandomStart" : PicPlayMode = PlayMode.LinearWithRandomStart
+		'		Case "Random" : PicPlayMode = PlayMode.Random
+		'		Case Else : PicPlayMode = PlayMode.Random
+		'	End Select
+		'	Select Case SettingsRegKey.GetValue("ImageAutoView", "False").ToString
+		'		Case "True", "1" : PicAutoView = True
+		'		Case Else : PicAutoView = False
+		'	End Select
+		'	Select Case SettingsRegKey.GetValue("ImageLockFullScreen", "False").ToString
+		'		Case "True", "1" : PicLockFullScreen = True
+		'		Case Else : PicLockFullScreen = False
+		'	End Select
+		'	Select Case SettingsRegKey.GetValue("ImageTimerCountdown", "False").ToString
+		'		Case "True", "1" : PicTimerCountdown = True
+		'		Case Else : PicTimerCountdown = False
+		'	End Select
+		'	PicTimerCountdownLocationMode = CType(Val(SettingsRegKey.GetValue("ImageTimerCountdownLocationMode", "1")), My.App.LocationMode)
+		'	Select Case SettingsRegKey.GetValue("ImageTimerEnabled", "True").ToString
+		'		Case "False", "0" : PicTimerEnabled = False
+		'		Case Else : PicTimerEnabled = True
+		'	End Select
+		'	Select Case SettingsRegKey.GetValue("ImageTimerAutoStart", "False").ToString
+		'		Case "True", "1" : PicTimerAutoStart = True
+		'		Case Else : PicTimerAutoStart = False
+		'	End Select
+		'	If PicTimerAutoStart And Not PicTimerEnabled Then PicTimerEnabled = True
+		'	PicTimerInterval = CInt(Val(SettingsRegKey.GetValue("ImageTimerInterval", "30")))
+		'	If PicTimerInterval < 1 Or PicTimerInterval > 86400 Then PicTimerInterval = 30
+		'	PicFolders.Clear()
+		'	SettingsRegSubKey = SettingsRegKey.CreateSubKey("ImageFolders")
+		'	For Each s As String In SettingsRegSubKey.GetValueNames : PicFolders.Add(SettingsRegSubKey.GetValue(s).ToString) : Next
+		'	SettingsRegSubKey.Close()
+		'	PicFolders.Sort()
+		'	ImageExtensions.Clear()
+		'	ImageExtensions.Add(".jpg")
+		'	ImageExtensions.Add(".jpeg")
+		'	ImageExtensions.Add(".bmp")
+		'	ImageExtensions.Add(".gif") 'These are what the .NET Image Class can handle.
+		'	ImageExtensions.Add(".png")
+		'	ImageExtensions.Add(".tif")
+		'	ImageExtensions.Add(".tiff")
+		'	ImageExtensions.Add(".exif")
+		'	'Video Settings
+		'	VidLocation.X = CInt(Val(SettingsRegKey.GetValue("VideoLocationX", "0")))
+		'	VidLocation.Y = CInt(Val(SettingsRegKey.GetValue("VideoLocationY", "0")))
+		'	VidLocationMode = CType(Val(SettingsRegKey.GetValue("VideoLocationMode", "0")), My.App.LocationMode)
+		'	VidMaxSize = CShort(Val(SettingsRegKey.GetValue("VideoMaxSize", "300")))
+		'	If VidMaxSize > My.Computer.Screen.WorkingArea.Width Then VidMaxSize = CShort(My.Computer.Screen.WorkingArea.Width)
+		'	If VidMaxSize < My.Computer.Screen.WorkingArea.Width / 30 Then VidMaxSize = CShort(My.Computer.Screen.WorkingArea.Width / 30)
+		'	Select Case Val(SettingsRegKey.GetValue("VideoScale", ".5"))
+		'		Case 0 : VidScale = 0
+		'		Case 0.1 : VidScale = 0.1
+		'		Case 0.25 : VidScale = 0.25
+		'		Case 0.3333 : VidScale = 0.3333
+		'		Case 0.6666 : VidScale = 0.6666
+		'		Case 0.75 : VidScale = 0.75
+		'		Case 1 : VidScale = 1
+		'		Case Else : VidScale = 0.5
+		'	End Select
+		'	Select Case SettingsRegKey.GetValue("VideoPlayMode", "Random").ToString
+		'		Case "Linear" : VidPlayMode = PlayMode.Linear
+		'		Case "LinearWithRandomStart" : VidPlayMode = PlayMode.LinearWithRandomStart
+		'		Case "Random" : VidPlayMode = PlayMode.Random
+		'		Case Else : VidPlayMode = PlayMode.Random
+		'	End Select
+		'	Select Case SettingsRegKey.GetValue("VideoAutoView", "False").ToString
+		'		Case "True", "1" : VidAutoView = True
+		'		Case Else : VidAutoView = False
+		'	End Select
+		'	Select Case SettingsRegKey.GetValue("VideoLockFullScreen", "False").ToString
+		'		Case "True", "1" : VidLockFullScreen = True
+		'		Case Else : VidLockFullScreen = False
+		'	End Select
+		'	VidVolume = CShort(Val(SettingsRegKey.GetValue("VideoVolume", "-2000")))
+		'	If VidVolume < -7000 Or VidVolume > 0 Then VidVolume = -2000
+		'	Select Case SettingsRegKey.GetValue("VideoVolumeMute", "True").ToString
+		'		Case "False", "0" : VidVolumeMute = False
+		'		Case Else : VidVolumeMute = True
+		'	End Select
+		'	Select Case SettingsRegKey.GetValue("VideoTime", "False").ToString
+		'		Case "True", "1" : VidTime = True
+		'		Case Else : VidTime = False
+		'	End Select
+		'	VidTimeDisplayMode = CType(Val(SettingsRegKey.GetValue("VideoTimeDisplayMode", "0")), My.App.VideoPositionMode)
+		'	VidTimeLocationMode = CType(Val(SettingsRegKey.GetValue("VideoTimeLocationMode", "0")), My.App.LocationMode)
+		'	VidFolders.Clear()
+		'	SettingsRegSubKey = SettingsRegKey.CreateSubKey("VideoFolders")
+		'	For Each name As String In SettingsRegSubKey.GetValueNames
+		'		Dim value As String = SettingsRegSubKey.GetValue(name).ToString
+		'		If value.StartsWith("-"c) Then : VidFolders.Add(New VideoFolderType(value.Remove(0, 1), False))
+		'		Else : VidFolders.Add(New VideoFolderType(value, True))
+		'		End If
+		'		value = Nothing
+		'	Next
+		'	VidFolders.Sort(New My.App.VideoFolderType.Comparer)
+		'	SettingsRegSubKey.Close()
+		'	'Finalize
+		'	SettingsRegKey.Close()
+		'End Sub
 		Friend Sub GetSettings()
-			'Initialize
-			SettingsRegKey = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(RegPath)
-			'App Settings
-			Select Case SettingsRegKey.GetValue("AppSaveFileLists", "False").ToString
-				Case "True", "1" : appSaveFileLists = True
-				Case Else : appSaveFileLists = False
-			End Select
-			Select Case SettingsRegKey.GetValue("AppLoadFileListsInBackground", "True").ToString
-				Case "False", "0" : appLoadFileListsInBackground = False
-				Case Else : appLoadFileListsInBackground = True
-			End Select
-			Select Case SettingsRegKey.GetValue("AppRefreshFileListsOnStartUp", "True").ToString
-				Case "False", "0" : appRefreshFileListsOnStartUp = False
-				Case Else : appRefreshFileListsOnStartUp = True
-			End Select
-			Select Case SettingsRegKey.GetValue("AppHideCursorWhenFullscreen", "True").ToString
-				Case "False", "0" : appHideCursorWhenFullscreen = False
-				Case Else : appHideCursorWhenFullscreen = True
-			End Select
-			appActionOnScreenSave = CType(Val(SettingsRegKey.GetValue("AppActionOnScreenSave", "2")), My.App.ScreenSaveActions)
-			appInsideLocationOffset = CType(Val(SettingsRegKey.GetValue("AppInsideLocationOffset", "40")), UInt16)
-			'HotKeys
-			Select Case SettingsRegKey.GetValue("HKEnabled", "True").ToString
-				Case "False", "0" : hkEnabled = False
-				Case Else : hkEnabled = True
-			End Select
-			hkPicToggle.Description = "Toggle Pictures"
-			hkPicToggle.WinID = 1
-			Try
-				hkPicToggle.Key = CType(Val(SettingsRegKey.GetValue("HKPicToggleKey", "0")), Keys)
-				If hkPicToggle.Key < 0 Or hkPicToggle.Key > Integer.MaxValue Then hkPicToggle.Key = 0
-			Catch : hkPicToggle.Key = 0
-			End Try
-			Try
-				hkPicToggle.KeyCode = CByte(Val(SettingsRegKey.GetValue("HKPicToggleKeyCode", "0")))
-				If hkPicToggle.KeyCode < Byte.MinValue Or hkPicToggle.KeyCode > Byte.MaxValue Then hkPicToggle.KeyCode = 0
-			Catch : hkPicToggle.KeyCode = 0
-			End Try
-			Try
-				hkPicToggle.KeyMod = CByte(Val(SettingsRegKey.GetValue("HKPicToggleKeyMod", "0")))
-				If hkPicToggle.KeyMod < Byte.MinValue Or hkPicToggle.KeyMod > Byte.MaxValue Then hkPicToggle.KeyMod = 0
-			Catch : hkPicToggle.KeyMod = 0
-			End Try
-			hkPicToggleFullScreen.Description = "Toggle Pictures FullScreen"
-			hkPicToggleFullScreen.WinID = 2
-			Try
-				hkPicToggleFullScreen.Key = CType(Val(SettingsRegKey.GetValue("HKPicToggleFullScreenKey", "0")), Keys)
-				If hkPicToggleFullScreen.Key < 0 Or hkPicToggleFullScreen.Key > Integer.MaxValue Then hkPicToggleFullScreen.Key = 0
-			Catch : hkPicToggleFullScreen.Key = 0
-			End Try
-			Try
-				hkPicToggleFullScreen.KeyCode = CByte(Val(SettingsRegKey.GetValue("HKPicToggleFullScreenKeyCode", "0")))
-				If hkPicToggleFullScreen.KeyCode < Byte.MinValue Or hkPicToggleFullScreen.KeyCode > Byte.MaxValue Then hkPicToggleFullScreen.KeyCode = 0
-			Catch : hkPicToggleFullScreen.KeyCode = 0
-			End Try
-			Try
-				hkPicToggleFullScreen.KeyMod = CByte(Val(SettingsRegKey.GetValue("HKPicToggleFullScreenKeyMod", "0")))
-				If hkPicToggleFullScreen.KeyMod < Byte.MinValue Or hkPicToggleFullScreen.KeyMod > Byte.MaxValue Then hkPicToggleFullScreen.KeyMod = 0
-			Catch : hkPicToggleFullScreen.KeyMod = 0
-			End Try
-			hkPicShowFileInfo.Description = "Show Picture Info"
-			hkPicShowFileInfo.WinID = 3
-			Try
-				hkPicShowFileInfo.Key = CType(Val(SettingsRegKey.GetValue("HKPicShowFileInfoKey", "0")), Keys)
-				If hkPicShowFileInfo.Key < 0 Or hkPicShowFileInfo.Key > Integer.MaxValue Then hkPicShowFileInfo.Key = 0
-			Catch : hkPicShowFileInfo.Key = 0
-			End Try
-			Try
-				hkPicShowFileInfo.KeyCode = CByte(Val(SettingsRegKey.GetValue("HKPicShowFileInfoKeyCode", "0")))
-				If hkPicShowFileInfo.KeyCode < Byte.MinValue Or hkPicShowFileInfo.KeyCode > Byte.MaxValue Then hkPicShowFileInfo.KeyCode = 0
-			Catch : hkPicShowFileInfo.KeyCode = 0
-			End Try
-			Try
-				hkPicShowFileInfo.KeyMod = CByte(Val(SettingsRegKey.GetValue("HKPicShowFileInfoKeyMod", "0")))
-				If hkPicShowFileInfo.KeyMod < Byte.MinValue Or hkPicShowFileInfo.KeyMod > Byte.MaxValue Then hkPicShowFileInfo.KeyMod = 0
-			Catch : hkPicShowFileInfo.KeyMod = 0
-			End Try
-			hkVidToggle.Description = "Toggle Videos"
-			hkVidToggle.WinID = 4
-			Try
-				hkVidToggle.Key = CType(Val(SettingsRegKey.GetValue("HKVidToggleKey", "0")), Keys)
-				If hkVidToggle.Key < 0 Or hkVidToggle.Key > Integer.MaxValue Then hkVidToggle.Key = 0
-			Catch : hkVidToggle.Key = 0
-			End Try
-			Try
-				hkVidToggle.KeyCode = CByte(Val(SettingsRegKey.GetValue("HKVidToggleKeyCode", "0")))
-				If hkVidToggle.KeyCode < Byte.MinValue Or hkVidToggle.KeyCode > Byte.MaxValue Then hkVidToggle.KeyCode = 0
-			Catch : hkVidToggle.KeyCode = 0
-			End Try
-			Try
-				hkVidToggle.KeyMod = CByte(Val(SettingsRegKey.GetValue("HKVidToggleKeyMod", "0")))
-				If hkVidToggle.KeyMod < Byte.MinValue Or hkVidToggle.KeyMod > Byte.MaxValue Then hkVidToggle.KeyMod = 0
-			Catch : hkVidToggle.KeyMod = 0
-			End Try
-			hkVidToggleFullScreen.Description = "Toggle Videos FullScreen"
-			hkVidToggleFullScreen.WinID = 5
-			Try
-				hkVidToggleFullScreen.Key = CType(Val(SettingsRegKey.GetValue("HKVidToggleFullScreenKey", "0")), Keys)
-				If hkVidToggleFullScreen.Key < 0 Or hkVidToggleFullScreen.Key > Integer.MaxValue Then hkVidToggleFullScreen.Key = 0
-			Catch : hkVidToggleFullScreen.Key = 0
-			End Try
-			Try
-				hkVidToggleFullScreen.KeyCode = CByte(Val(SettingsRegKey.GetValue("HKVidToggleFullScreenKeyCode", "0")))
-				If hkVidToggleFullScreen.KeyCode < Byte.MinValue Or hkVidToggleFullScreen.KeyCode > Byte.MaxValue Then hkVidToggleFullScreen.KeyCode = 0
-			Catch : hkVidToggleFullScreen.KeyCode = 0
-			End Try
-			Try
-				hkVidToggleFullScreen.KeyMod = CByte(Val(SettingsRegKey.GetValue("HKVidToggleFullScreenKeyMod", "0")))
-				If hkVidToggleFullScreen.KeyMod < Byte.MinValue Or hkVidToggleFullScreen.KeyMod > Byte.MaxValue Then hkVidToggleFullScreen.KeyMod = 0
-			Catch : hkVidToggleFullScreen.KeyMod = 0
-			End Try
-			hkVidShowFileInfo.Description = "Show Video Info"
-			hkVidShowFileInfo.WinID = 6
-			Try
-				hkVidShowFileInfo.Key = CType(Val(SettingsRegKey.GetValue("HKVidShowFileInfoKey", "0")), Keys)
-				If hkVidShowFileInfo.Key < 0 Or hkVidShowFileInfo.Key > Integer.MaxValue Then hkVidShowFileInfo.Key = 0
-			Catch : hkVidShowFileInfo.Key = 0
-			End Try
-			Try
-				hkVidShowFileInfo.KeyCode = CByte(Val(SettingsRegKey.GetValue("HKVidShowFileInfoKeyCode", "0")))
-				If hkVidShowFileInfo.KeyCode < Byte.MinValue Or hkVidShowFileInfo.KeyCode > Byte.MaxValue Then hkVidShowFileInfo.KeyCode = 0
-			Catch : hkVidShowFileInfo.KeyCode = 0
-			End Try
-			Try
-				hkVidShowFileInfo.KeyMod = CByte(Val(SettingsRegKey.GetValue("HKVidShowFileInfoKeyMod", "0")))
-				If hkVidShowFileInfo.KeyMod < Byte.MinValue Or hkVidShowFileInfo.KeyMod > Byte.MaxValue Then hkVidShowFileInfo.KeyMod = 0
-			Catch : hkVidShowFileInfo.KeyMod = 0
-			End Try
+
+			' App
+			SaveFileLists = Skye.Common.RegistryHelper.GetBool("AppSaveFileLists", False)
+			LoadFileListsInBackground = Skye.Common.RegistryHelper.GetBool("AppLoadFileListsInBackground", True)
+			RefreshFileListsOnStartUp = Skye.Common.RegistryHelper.GetBool("AppRefreshFileListsOnStartUp", True)
+			HideCursorWhenFullscreen = Skye.Common.RegistryHelper.GetBool("AppHideCursorWhenFullscreen", True)
+			ActionOnScreenSave = CType(Skye.Common.RegistryHelper.GetInt("AppActionOnScreenSave", CInt(ScreenSaveActions.Close)), ScreenSaveActions)
+			InsideLocationOffset = CUShort(Skye.Common.RegistryHelper.GetInt("AppInsideLocationOffset", 40))
+
+			' HotKeys
+			HKEnabled = Skye.Common.RegistryHelper.GetBool("HKEnabled", True)
+			HKPicToggle = New HotKey(
+				id:=1,
+				description:="Toggle Pictures",
+				key:=CType(Skye.Common.RegistryHelper.GetInt("HKPicToggleKey", 0), Keys),
+				keycode:=CByte(Skye.Common.RegistryHelper.GetInt("HKPicToggleKeyCode", 0)),
+				keymod:=CByte(Skye.Common.RegistryHelper.GetInt("HKPicToggleKeyMod", 0))
+			)
+			HKPicToggleFullScreen = New HotKey(
+				id:=2,
+				description:="Toggle Pictures FullScreen",
+				key:=CType(Skye.Common.RegistryHelper.GetInt("HKPicToggleFullScreenKey", 0), Keys),
+				keycode:=CByte(Skye.Common.RegistryHelper.GetInt("HKPicToggleFullScreenKeyCode", 0)),
+				keymod:=CByte(Skye.Common.RegistryHelper.GetInt("HKPicToggleFullScreenKeyMod", 0))
+			)
+			HKPicShowFileInfo = New HotKey(
+				id:=3,
+				description:="Show Picture Info",
+				key:=CType(Skye.Common.RegistryHelper.GetInt("HKPicShowFileInfoKey", 0), Keys),
+				keycode:=CByte(Skye.Common.RegistryHelper.GetInt("HKPicShowFileInfoKeyCode", 0)),
+				keymod:=CByte(Skye.Common.RegistryHelper.GetInt("HKPicShowFileInfoKeyMod", 0))
+			)
+			HKVidToggle = New HotKey(
+				id:=4,
+				description:="Toggle Videos",
+				key:=CType(Skye.Common.RegistryHelper.GetInt("HKVidToggleKey", 0), Keys),
+				keycode:=CByte(Skye.Common.RegistryHelper.GetInt("HKVidToggleKeyCode", 0)),
+				keymod:=CByte(Skye.Common.RegistryHelper.GetInt("HKVidToggleKeyMod", 0))
+			)
+			HKVidToggleFullScreen = New HotKey(
+				id:=5,
+				description:="Toggle Videos FullScreen",
+				key:=CType(Skye.Common.RegistryHelper.GetInt("HKVidToggleFullScreenKey", 0), Keys),
+				keycode:=CByte(Skye.Common.RegistryHelper.GetInt("HKVidToggleFullScreenKeyCode", 0)),
+				keymod:=CByte(Skye.Common.RegistryHelper.GetInt("HKVidToggleFullScreenKeyMod", 0))
+			)
+			HKVidShowFileInfo = New HotKey(
+				id:=6,
+				description:="Show Video Info",
+				key:=CType(Skye.Common.RegistryHelper.GetInt("HKVidShowFileInfoKey", 0), Keys),
+				keycode:=CByte(Skye.Common.RegistryHelper.GetInt("HKVidShowFileInfoKeyCode", 0)),
+				keymod:=CByte(Skye.Common.RegistryHelper.GetInt("HKVidShowFileInfoKeyMod", 0))
+			)
 			GenerateHotKeyList()
-			'Image Settings
-			picLocation.X = CInt(Val(SettingsRegKey.GetValue("ImageLocationX", "0")))
-			picLocation.Y = CInt(Val(SettingsRegKey.GetValue("ImageLocationY", "0")))
-			picLocationMode = CType(Val(SettingsRegKey.GetValue("ImageLocationMode", "0")), My.App.LocationMode)
-			picJustify = CType(Val(SettingsRegKey.GetValue("ImageJustify", "1")), My.App.LocationJustify)
-			picMaxSize = CShort(Val(SettingsRegKey.GetValue("ImageMaxSize", "200")))
-			If picMaxSize > My.Computer.Screen.Bounds.Width / 2 Then picMaxSize = CShort(My.Computer.Screen.Bounds.Width / 2)
-			If picMaxSize < My.Computer.Screen.Bounds.Width / 50 Then picMaxSize = CShort(My.Computer.Screen.Bounds.Width / 50)
-			Select Case SettingsRegKey.GetValue("ImagePlayMode", "Random").ToString
-				Case "Linear" : picPlayMode = PlayMode.Linear
-				Case "LinearWithRandomStart" : picPlayMode = PlayMode.LinearWithRandomStart
-				Case "Random" : picPlayMode = PlayMode.Random
-				Case Else : picPlayMode = PlayMode.Random
-			End Select
-			Select Case SettingsRegKey.GetValue("ImageAutoView", "False").ToString
-				Case "True", "1" : picAutoView = True
-				Case Else : picAutoView = False
-			End Select
-			Select Case SettingsRegKey.GetValue("ImageLockFullScreen", "False").ToString
-				Case "True", "1" : picLockFullScreen = True
-				Case Else : picLockFullScreen = False
-			End Select
-			Select Case SettingsRegKey.GetValue("ImageTimerCountdown", "False").ToString
-				Case "True", "1" : picTimerCountdown = True
-				Case Else : picTimerCountdown = False
-			End Select
-			picTimerCountdownLocationMode = CType(Val(SettingsRegKey.GetValue("ImageTimerCountdownLocationMode", "1")), My.App.LocationMode)
-			Select Case SettingsRegKey.GetValue("ImageTimerEnabled", "True").ToString
-				Case "False", "0" : picTimerEnabled = False
-				Case Else : picTimerEnabled = True
-			End Select
-			Select Case SettingsRegKey.GetValue("ImageTimerAutoStart", "False").ToString
-				Case "True", "1" : picTimerAutoStart = True
-				Case Else : picTimerAutoStart = False
-			End Select
-			If picTimerAutoStart And Not picTimerEnabled Then picTimerEnabled = True
-			picTimerInterval = CInt(Val(SettingsRegKey.GetValue("ImageTimerInterval", "30")))
-			If picTimerInterval < 1 Or picTimerInterval > 86400 Then picTimerInterval = 30
-			picFolders.Clear()
-			SettingsRegSubKey = SettingsRegKey.CreateSubKey("ImageFolders")
-			For Each s As String In SettingsRegSubKey.GetValueNames : picFolders.Add(SettingsRegSubKey.GetValue(s).ToString) : Next
-			SettingsRegSubKey.Close()
-			picFolders.Sort()
-			ImageExtensions.Clear()
-			ImageExtensions.Add(".jpg")
-			ImageExtensions.Add(".jpeg")
-			ImageExtensions.Add(".bmp")
-			ImageExtensions.Add(".gif") 'These are what the .NET Image Class can handle.
-			ImageExtensions.Add(".png")
-			ImageExtensions.Add(".tif")
-			ImageExtensions.Add(".tiff")
-			ImageExtensions.Add(".exif")
-			'Video Settings
-			vidLocation.X = CInt(Val(SettingsRegKey.GetValue("VideoLocationX", "0")))
-			vidLocation.Y = CInt(Val(SettingsRegKey.GetValue("VideoLocationY", "0")))
-			vidLocationMode = CType(Val(SettingsRegKey.GetValue("VideoLocationMode", "0")), My.App.LocationMode)
-			vidMaxSize = CShort(Val(SettingsRegKey.GetValue("VideoMaxSize", "300")))
-			If vidMaxSize > My.Computer.Screen.WorkingArea.Width Then vidMaxSize = CShort(My.Computer.Screen.WorkingArea.Width)
-			If vidMaxSize < My.Computer.Screen.WorkingArea.Width / 30 Then vidMaxSize = CShort(My.Computer.Screen.WorkingArea.Width / 30)
-			Select Case Val(SettingsRegKey.GetValue("VideoScale", ".5"))
-				Case 0 : vidScale = 0
-				Case 0.1 : vidScale = 0.1
-				Case 0.25 : vidScale = 0.25
-				Case 0.3333 : vidScale = 0.3333
-				Case 0.6666 : vidScale = 0.6666
-				Case 0.75 : vidScale = 0.75
-				Case 1 : vidScale = 1
-				Case Else : vidScale = 0.5
-			End Select
-			Select Case SettingsRegKey.GetValue("VideoPlayMode", "Random").ToString
-				Case "Linear" : vidPlayMode = PlayMode.Linear
-				Case "LinearWithRandomStart" : vidPlayMode = PlayMode.LinearWithRandomStart
-				Case "Random" : vidPlayMode = PlayMode.Random
-				Case Else : vidPlayMode = PlayMode.Random
-			End Select
-			Select Case SettingsRegKey.GetValue("VideoAutoView", "False").ToString
-				Case "True", "1" : vidAutoView = True
-				Case Else : vidAutoView = False
-			End Select
-			Select Case SettingsRegKey.GetValue("VideoLockFullScreen", "False").ToString
-				Case "True", "1" : vidLockFullScreen = True
-				Case Else : vidLockFullScreen = False
-			End Select
-			vidVolume = CShort(Val(SettingsRegKey.GetValue("VideoVolume", "-2000")))
-			If vidVolume < -7000 Or vidVolume > 0 Then vidVolume = -2000
-			Select Case SettingsRegKey.GetValue("VideoVolumeMute", "True").ToString
-				Case "False", "0" : vidVolumeMute = False
-				Case Else : vidVolumeMute = True
-			End Select
-			Select Case SettingsRegKey.GetValue("VideoTime", "False").ToString
-				Case "True", "1" : vidTime = True
-				Case Else : vidTime = False
-			End Select
-			vidTimeDisplayMode = CType(Val(SettingsRegKey.GetValue("VideoTimeDisplayMode", "0")), My.App.VideoPositionMode)
-			vidTimeLocationMode = CType(Val(SettingsRegKey.GetValue("VideoTimeLocationMode", "0")), My.App.LocationMode)
-			vidFolders.Clear()
-			SettingsRegSubKey = SettingsRegKey.CreateSubKey("VideoFolders")
-			For Each name As String In SettingsRegSubKey.GetValueNames
-				Dim value As String = SettingsRegSubKey.GetValue(name).ToString
-				If value.StartsWith("-"c) Then : vidFolders.Add(New VideoFolderType(value.Remove(0, 1), False))
-				Else : vidFolders.Add(New VideoFolderType(value, True))
+
+			' Pics
+			PicLocation = New Point(Skye.Common.RegistryHelper.GetInt("ImageLocationX", 0), Skye.Common.RegistryHelper.GetInt("ImageLocationY", 0))
+			PicLocationMode = CType(Skye.Common.RegistryHelper.GetInt("ImageLocationMode", CInt(LocationMode.Manual)), LocationMode)
+			PicJustify = CType(Skye.Common.RegistryHelper.GetInt("ImageJustify", CInt(LocationJustify.Center)), LocationJustify)
+			PicMaxSize = CShort(Skye.Common.RegistryHelper.GetInt("ImageMaxSize", 200))
+			If PicMaxSize > My.Computer.Screen.Bounds.Width / 2 Then PicMaxSize = CShort(My.Computer.Screen.Bounds.Width / 2)
+			If PicMaxSize < My.Computer.Screen.Bounds.Width / 50 Then PicMaxSize = CShort(My.Computer.Screen.Bounds.Width / 50)
+			PicPlayMode = CType(Skye.Common.RegistryHelper.GetInt("ImagePlayMode", CInt(PlayMode.Random)), PlayMode)
+			PicAutoView = Skye.Common.RegistryHelper.GetBool("ImageAutoView", False)
+			PicLockFullScreen = Skye.Common.RegistryHelper.GetBool("ImageLockFullScreen", False)
+			PicTimerCountdown = Skye.Common.RegistryHelper.GetBool("ImageTimerCountdown", False)
+			PicTimerCountdownLocationMode = CType(Skye.Common.RegistryHelper.GetInt("ImageTimerCountdownLocationMode", CInt(LocationMode.Manual)), LocationMode)
+			PicTimerEnabled = Skye.Common.RegistryHelper.GetBool("ImageTimerEnabled", True)
+			PicTimerAutoStart = Skye.Common.RegistryHelper.GetBool("ImageTimerAutoStart", False)
+			If PicTimerAutoStart AndAlso Not PicTimerEnabled Then PicTimerEnabled = True
+			PicTimerInterval = Skye.Common.RegistryHelper.GetInt("ImageTimerInterval", 30)
+			If PicTimerInterval < 1 Or PicTimerInterval > 86400 Then PicTimerInterval = 30
+			PicFolders = Skye.Common.RegistryHelper.GetStringArray("ImageFolders", Array.Empty(Of String)).ToList()
+			PicFolders.Sort()
+
+			' Vids
+			VidLocation = New Point(Skye.Common.RegistryHelper.GetInt("VideoLocationX", 0), Skye.Common.RegistryHelper.GetInt("VideoLocationY", 0))
+			VidLocationMode = CType(Skye.Common.RegistryHelper.GetInt("VideoLocationMode", CInt(LocationMode.Manual)), LocationMode)
+			VidMaxSize = CShort(Skye.Common.RegistryHelper.GetInt("VideoMaxSize", 300))
+			If VidMaxSize > My.Computer.Screen.WorkingArea.Width Then VidMaxSize = CShort(My.Computer.Screen.WorkingArea.Width)
+			If VidMaxSize < My.Computer.Screen.WorkingArea.Width / 30 Then VidMaxSize = CShort(My.Computer.Screen.WorkingArea.Width / 30)
+			Dim scaleStr As String = Skye.Common.RegistryHelper.GetString("VideoScale", "0.5")
+			Dim parsedScale As Single
+			If Single.TryParse(scaleStr, parsedScale) Then
+				VidScale = parsedScale
+			Else
+				VidScale = 0.5F
+			End If
+			VidPlayMode = CType(Skye.Common.RegistryHelper.GetInt("VideoPlayMode", CInt(PlayMode.Random)), PlayMode)
+			VidAutoView = Skye.Common.RegistryHelper.GetBool("VideoAutoView", False)
+			VidLockFullScreen = Skye.Common.RegistryHelper.GetBool("VideoLockFullScreen", False)
+			VidVolume = CShort(Skye.Common.RegistryHelper.GetInt("VideoVolume", -2000))
+			If VidVolume < -7000 Or VidVolume > 0 Then VidVolume = -2000
+			VidVolumeMute = Skye.Common.RegistryHelper.GetBool("VideoVolumeMute", True)
+			VidTime = Skye.Common.RegistryHelper.GetBool("VideoTime", False)
+			VidTimeDisplayMode = CType(Skye.Common.RegistryHelper.GetInt("VideoTimeDisplayMode", CInt(VideoPositionMode.CurrentPosition)), VideoPositionMode)
+			VidTimeLocationMode = CType(Skye.Common.RegistryHelper.GetInt("VideoTimeLocationMode", CInt(LocationMode.Manual)), LocationMode)
+			VidFolders.Clear()
+			Dim rawVidFolders As String() = Skye.Common.RegistryHelper.GetStringArray("VideoFolders", Array.Empty(Of String))
+			For Each entry As String In rawVidFolders
+				If entry.StartsWith("-"c) Then
+					VidFolders.Add(New VideoFolderType(entry.Substring(1), False))
+				Else
+					VidFolders.Add(New VideoFolderType(entry, True))
 				End If
-				value = Nothing
 			Next
-			vidFolders.Sort(New My.App.VideoFolderType.Comparer)
-			SettingsRegSubKey.Close()
-			vidExtensions.Clear()
-			SettingsRegSubKey = SettingsRegKey.CreateSubKey("VideoExtensions")
-			For Each s As String In SettingsRegSubKey.GetValueNames : vidExtensions.Add(SettingsRegSubKey.GetValue(s).ToString) : Next
-			SettingsRegSubKey.Close()
-			vidExtensions.Sort()
-			'Finalize
-			SettingsRegKey.Close()
+			VidFolders.Sort(New VideoFolderType.Comparer)
+
 		End Sub
 		<Diagnostics.ConditionalAttribute("DEBUG")> Private Sub GetDebugSettings()
 			'Initialize
 			'App Settings
-			appRefreshFileListsOnStartUp = False
+			RefreshFileListsOnStartUp = False
 			'HotKeys
-			hkEnabled = True
-			hkPicToggle = New HotKey(1, "DEBUG Toggle Pictures", CType(393296, Keys), 80, 3) 'CtrlAltP
-			hkPicToggleFullScreen = New HotKey(2, "DEBUG Toggle Pictures FullScreen", CType(196688, Keys), 80, 6) 'CtrlShiftP
-			hkPicShowFileInfo = New HotKey(3, "DEBUG Show Picture Info", CType(327760, Keys), 80, 5) 'AltShiftP
-			hkVidToggle = New HotKey(4, "DEBUG Toggle Videos", CType(393302, Keys), 86, 3) 'CtrlAltV
-			hkVidToggleFullScreen = New HotKey(5, "DEBUG Toggle Videos FullScreen", CType(196694, Keys), 86, 6) 'CtrlShiftV
-			hkVidShowFileInfo = New HotKey(6, "DEBUG Show Video Info", CType(327766, Keys), 86, 5) 'AltShiftV
+			HKEnabled = True
+			HKPicToggle = New HotKey(1, "DEBUG Toggle Pictures", CType(393296, Keys), 80, 3) 'CtrlAltP
+			HKPicToggleFullScreen = New HotKey(2, "DEBUG Toggle Pictures FullScreen", CType(196688, Keys), 80, 6) 'CtrlShiftP
+			HKPicShowFileInfo = New HotKey(3, "DEBUG Show Picture Info", CType(327760, Keys), 80, 5) 'AltShiftP
+			HKVidToggle = New HotKey(4, "DEBUG Toggle Videos", CType(393302, Keys), 86, 3) 'CtrlAltV
+			HKVidToggleFullScreen = New HotKey(5, "DEBUG Toggle Videos FullScreen", CType(196694, Keys), 86, 6) 'CtrlShiftV
+			HKVidShowFileInfo = New HotKey(6, "DEBUG Show Video Info", CType(327766, Keys), 86, 5) 'AltShiftV
 			'hkPicToggle = New HotKey(1, "DEBUG Toggle Pictures", CType(393281, Keys), 65, 3) 'CtrlAltA
 			'hkPicToggleFullScreen = New HotKey(2, "DEBUG Toggle Pictures FullScreen", CType(196673, Keys), 65, 6) 'CtrlShiftA
 			'hkPicShowFileInfo = New HotKey(3, "DEBUG Show Picture Info", CType(327745, Keys), 65, 5) 'AltShiftA
@@ -954,127 +1056,194 @@ Namespace My
 			'hkVidShowFileInfo = New HotKey(6, "DEBUG Show Video Info", CType(327763, Keys), 83, 5) 'AltShiftS
 			GenerateHotKeyList()
 			'Image Settings
-			picAutoView = False
-			picTimerInterval = 10
-			picTimerEnabled = False
-			picTimerAutoStart = False
-			picTimerCountdown = True
-			picLocation = New Point(800, 200)
+			PicAutoView = False
+			PicTimerInterval = 10
+			PicTimerEnabled = False
+			PicTimerAutoStart = False
+			PicTimerCountdown = True
+			PicLocation = New Point(800, 200)
 			'picLocation = New Point(2800, 2200)
-			picLocationMode = LocationMode.Manual
-			picTimerCountdown = False
+			PicLocationMode = LocationMode.Manual
+			PicTimerCountdown = False
 			'ImageTimerCountdownLocationMode = LocationMode.TopRight
 			'ImagePlayMode = PlayMode.LinearWithRandomStart
-			picFolders.Clear()
-			picFolders.Add("C:\Users\YodeS\Dev\TESTDATA")
+			PicFolders.Clear()
+			PicFolders.Add("C:\Users\YodeS\Dev\TESTDATA")
 			'picFolders.Add("C:\Users\CT\Pictures")
 			'picFolders.Add("D:\Beauty\Celebrities")
 			'picFolders.Add("D:\Beauty\EAC")
 			'picFolders.Add("D:\Beauty\Fantasy")
 			'picFolders.Add("D:\Erotica")
-			picFolders.Sort()
+			PicFolders.Sort()
 			'Video Settings
-			vidAutoView = False
+			VidAutoView = False
 			'VideoPlayMode = PlayMode.LinearWithRandomStart
-			vidScale = 0
-			vidLocation = New Point(1200, 200)
+			VidScale = 0
+			VidLocation = New Point(1200, 200)
 			'vidLocation = New Point(2200, 2200)
-			vidLocationMode = LocationMode.TopCenterRightInside
-			vidTime = True
-			vidTimeDisplayMode = VideoPositionMode.TimeRemaining
-			vidFolders.Clear()
-			vidFolders.Add(New VideoFolderType("C:\Users\YodeS\Dev\TESTDATA"))
+			VidLocationMode = LocationMode.TopCenterRightInside
+			VidTime = True
+			VidTimeDisplayMode = VideoPositionMode.TimeRemaining
+			VidFolders.Clear()
+			VidFolders.Add(New VideoFolderType("C:\Users\YodeS\Dev\TESTDATA"))
 			'vidFolders.Add(New VideoFolderType("C:\Users\Music\Videos"))
 			'vidFolders.Add(New VideoFolderType("D:\Beauty\Videos"))
 			'vidFolders.Add(New VideoFolderType("D:\Beauty\Fantasy"))
 			'vidFolders.Add(New VideoFolderType("D:\Erotica"))
-			vidFolders.Sort(New My.App.VideoFolderType.Comparer)
-			vidExtensions.Clear()
-			vidExtensions.Add(".avi")
-			vidExtensions.Add(".flv")
-			vidExtensions.Add(".mpeg")
-			vidExtensions.Add(".wmv")
-			'vidExtensions.Add(".mp4")
-			'vidExtensions.Add(".wmv")
+			VidFolders.Sort(New My.App.VideoFolderType.Comparer)
 			'Finalize
 		End Sub
+		'Friend Sub SaveSettingsOld()
+		'	' Initialize
+		'	SettingsRegKey = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(RegPath, True)
+
+		'	' App
+		'	SettingsRegKey.SetValue("AppSaveFileLists", SaveFileLists.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("AppLoadFileListsInBackground", LoadFileListsInBackground.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("AppRefreshFileListsOnStartUp", RefreshFileListsOnStartUp.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("AppHideCursorWhenFullscreen", HideCursorWhenFullscreen.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("AppActionOnScreenSave", Str(ActionOnScreenSave).Trim, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("AppInsideLocationOffset", InsideLocationOffset.ToString, Microsoft.Win32.RegistryValueKind.String)
+
+		'	' HotKeys
+		'	SettingsRegKey.SetValue("HKEnabled", HKEnabled.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("HKPicToggleKey", Val(HKPicToggle.Key).ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("HKPicToggleKeyCode", HKPicToggle.KeyCode.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("HKPicToggleKeyMod", HKPicToggle.KeyMod.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("HKPicToggleFullScreenKey", Val(HKPicToggleFullScreen.Key).ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("HKPicToggleFullScreenKeyCode", HKPicToggleFullScreen.KeyCode.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("HKPicToggleFullScreenKeyMod", HKPicToggleFullScreen.KeyMod.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("HKPicShowFileInfoKey", Val(HKPicShowFileInfo.Key).ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("HKPicShowFileInfoKeyCode", HKPicShowFileInfo.KeyCode.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("HKPicShowFileInfoKeyMod", HKPicShowFileInfo.KeyMod.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("HKVidToggleKey", Val(HKVidToggle.Key).ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("HKVidToggleKeyCode", HKVidToggle.KeyCode.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("HKVidToggleKeyMod", HKVidToggle.KeyMod.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("HKVidToggleFullScreenKey", Val(HKVidToggleFullScreen.Key).ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("HKVidToggleFullScreenKeyCode", HKVidToggleFullScreen.KeyCode.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("HKVidToggleFullScreenKeyMod", HKVidToggleFullScreen.KeyMod.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("HKVidShowFileInfoKey", Val(HKVidShowFileInfo.Key).ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("HKVidShowFileInfoKeyCode", HKVidShowFileInfo.KeyCode.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("HKVidShowFileInfoKeyMod", HKVidShowFileInfo.KeyMod.ToString, Microsoft.Win32.RegistryValueKind.String)
+
+		'	' Pics
+		'	SettingsRegKey.SetValue("ImageLocationX", PicLocation.X.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("ImageLocationY", PicLocation.Y.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("ImageLocationMode", Str(PicLocationMode).Trim, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("ImageJustify", Str(PicJustify).Trim, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("ImageMaxSize", PicMaxSize.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("ImagePlayMode", PicPlayMode.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("ImageAutoView", PicAutoView.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("ImageLockFullScreen", PicLockFullScreen.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("ImageTimerCountdown", PicTimerCountdown.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("ImageTimerCountdownLocationMode", Str(PicTimerCountdownLocationMode).Trim, Microsoft.Win32.RegistryValueKind.String)
+		'	If PicTimerAutoStart And Not PicTimerEnabled Then PicTimerEnabled = True
+		'	SettingsRegKey.SetValue("ImageTimerEnabled", PicTimerEnabled.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("ImageTimerAutoStart", PicTimerAutoStart.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("ImageTimerInterval", PicTimerInterval.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegSubKey = SettingsRegKey.OpenSubKey("ImageFolders", True)
+		'	For Each s As String In SettingsRegSubKey.GetValueNames : SettingsRegSubKey.DeleteValue(s) : Next
+		'	For Each s As String In PicFolders : SettingsRegSubKey.SetValue("Folder" + Str(PicFolders.IndexOf(s) + 1).Trim, s, Microsoft.Win32.RegistryValueKind.String) : Next
+		'	SettingsRegSubKey.Close()
+
+		'	' Vids
+		'	SettingsRegKey.SetValue("VideoLocationX", VidLocation.X.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("VideoLocationY", VidLocation.Y.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("VideoLocationMode", Str(VidLocationMode).Trim, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("VideoMaxSize", VidMaxSize.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("VideoPlayMode", VidPlayMode.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("VideoAutoView", VidAutoView.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("VideoLockFullScreen", VidLockFullScreen.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("VideoScale", VidScale.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("VideoVolume", VidVolume.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("VideoVolumeMute", VidVolumeMute.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("VideoTime", VidTime.ToString, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("VideoTimeDisplayMode", Str(VidTimeDisplayMode).Trim, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegKey.SetValue("VideoTimeLocationMode", Str(VidTimeLocationMode).Trim, Microsoft.Win32.RegistryValueKind.String)
+		'	SettingsRegSubKey = SettingsRegKey.OpenSubKey("VideoFolders", True)
+		'	For Each s As String In SettingsRegSubKey.GetValueNames : SettingsRegSubKey.DeleteValue(s) : Next
+		'	For index As Integer = 0 To VidFolders.Count - 1 : SettingsRegSubKey.SetValue("Folder" + (index + 1).ToString, IIf(VidFolders(index).Enabled, VidFolders(index).Path, "-" + VidFolders(index).Path), Microsoft.Win32.RegistryValueKind.String) : Next
+		'	SettingsRegSubKey.Close()
+
+		'	' Finalize
+		'	SettingsRegKey.Flush()
+		'	SettingsRegKey.Close()
+		'End Sub
 		Friend Sub SaveSettings()
-			'Initialize
-			SettingsRegKey = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(RegPath, True)
-			'App Settings
-			SettingsRegKey.SetValue("AppSaveFileLists", appSaveFileLists.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("AppLoadFileListsInBackground", appLoadFileListsInBackground.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("AppRefreshFileListsOnStartUp", appRefreshFileListsOnStartUp.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("AppHideCursorWhenFullscreen", appHideCursorWhenFullscreen.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("AppActionOnScreenSave", Str(appActionOnScreenSave).Trim, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("AppInsideLocationOffset", appInsideLocationOffset.ToString, Microsoft.Win32.RegistryValueKind.String)
-			'HotKeys
-			SettingsRegKey.SetValue("HKEnabled", hkEnabled.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("HKPicToggleKey", Val(hkPicToggle.Key).ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("HKPicToggleKeyCode", hkPicToggle.KeyCode.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("HKPicToggleKeyMod", hkPicToggle.KeyMod.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("HKPicToggleFullScreenKey", Val(hkPicToggleFullScreen.Key).ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("HKPicToggleFullScreenKeyCode", hkPicToggleFullScreen.KeyCode.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("HKPicToggleFullScreenKeyMod", hkPicToggleFullScreen.KeyMod.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("HKPicShowFileInfoKey", Val(hkPicShowFileInfo.Key).ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("HKPicShowFileInfoKeyCode", hkPicShowFileInfo.KeyCode.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("HKPicShowFileInfoKeyMod", hkPicShowFileInfo.KeyMod.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("HKVidToggleKey", Val(hkVidToggle.Key).ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("HKVidToggleKeyCode", hkVidToggle.KeyCode.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("HKVidToggleKeyMod", hkVidToggle.KeyMod.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("HKVidToggleFullScreenKey", Val(hkVidToggleFullScreen.Key).ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("HKVidToggleFullScreenKeyCode", hkVidToggleFullScreen.KeyCode.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("HKVidToggleFullScreenKeyMod", hkVidToggleFullScreen.KeyMod.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("HKVidShowFileInfoKey", Val(hkVidShowFileInfo.Key).ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("HKVidShowFileInfoKeyCode", hkVidShowFileInfo.KeyCode.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("HKVidShowFileInfoKeyMod", hkVidShowFileInfo.KeyMod.ToString, Microsoft.Win32.RegistryValueKind.String)
-			'Pic Settings
-			SettingsRegKey.SetValue("ImageLocationX", picLocation.X.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("ImageLocationY", picLocation.Y.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("ImageLocationMode", Str(picLocationMode).Trim, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("ImageJustify", Str(picJustify).Trim, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("ImageMaxSize", picMaxSize.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("ImagePlayMode", picPlayMode.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("ImageAutoView", picAutoView.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("ImageLockFullScreen", picLockFullScreen.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("ImageTimerCountdown", picTimerCountdown.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("ImageTimerCountdownLocationMode", Str(picTimerCountdownLocationMode).Trim, Microsoft.Win32.RegistryValueKind.String)
-			If picTimerAutoStart And Not picTimerEnabled Then picTimerEnabled = True
-			SettingsRegKey.SetValue("ImageTimerEnabled", picTimerEnabled.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("ImageTimerAutoStart", picTimerAutoStart.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("ImageTimerInterval", picTimerInterval.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegSubKey = SettingsRegKey.OpenSubKey("ImageFolders", True)
-			For Each s As String In SettingsRegSubKey.GetValueNames : SettingsRegSubKey.DeleteValue(s) : Next
-			For Each s As String In picFolders : SettingsRegSubKey.SetValue("Folder" + Str(picFolders.IndexOf(s) + 1).Trim, s, Microsoft.Win32.RegistryValueKind.String) : Next
-			SettingsRegSubKey.Close()
-			'Vid Settings
-			SettingsRegKey.SetValue("VideoLocationX", vidLocation.X.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("VideoLocationY", vidLocation.Y.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("VideoLocationMode", Str(vidLocationMode).Trim, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("VideoMaxSize", vidMaxSize.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("VideoPlayMode", vidPlayMode.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("VideoAutoView", vidAutoView.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("VideoLockFullScreen", vidLockFullScreen.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("VideoScale", vidScale.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("VideoVolume", vidVolume.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("VideoVolumeMute", vidVolumeMute.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("VideoTime", vidTime.ToString, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("VideoTimeDisplayMode", Str(vidTimeDisplayMode).Trim, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegKey.SetValue("VideoTimeLocationMode", Str(vidTimeLocationMode).Trim, Microsoft.Win32.RegistryValueKind.String)
-			SettingsRegSubKey = SettingsRegKey.OpenSubKey("VideoFolders", True)
-			For Each s As String In SettingsRegSubKey.GetValueNames : SettingsRegSubKey.DeleteValue(s) : Next
-			For index As Integer = 0 To vidFolders.Count - 1 : SettingsRegSubKey.SetValue("Folder" + (index + 1).ToString, IIf(vidFolders(index).Enabled, vidFolders(index).Path, "-" + vidFolders(index).Path), Microsoft.Win32.RegistryValueKind.String) : Next
-			SettingsRegSubKey.Close()
-			SettingsRegSubKey = SettingsRegKey.OpenSubKey("VideoExtensions", True)
-			For Each s As String In SettingsRegSubKey.GetValueNames : SettingsRegSubKey.DeleteValue(s) : Next
-			For Each s As String In vidExtensions : SettingsRegSubKey.SetValue("Extension" + Str(vidExtensions.IndexOf(s) + 1).Trim, s, Microsoft.Win32.RegistryValueKind.String) : Next
-			SettingsRegSubKey.Close()
-			'Finalize
-			SettingsRegKey.Flush()
-			SettingsRegKey.Close()
+
+			' App
+			Skye.Common.RegistryHelper.SetBool("AppSaveFileLists", SaveFileLists)
+			Skye.Common.RegistryHelper.SetBool("AppLoadFileListsInBackground", LoadFileListsInBackground)
+			Skye.Common.RegistryHelper.SetBool("AppRefreshFileListsOnStartUp", RefreshFileListsOnStartUp)
+			Skye.Common.RegistryHelper.SetBool("AppHideCursorWhenFullscreen", HideCursorWhenFullscreen)
+			Skye.Common.RegistryHelper.SetInt("AppActionOnScreenSave", CInt(ActionOnScreenSave))
+			Skye.Common.RegistryHelper.SetInt("AppInsideLocationOffset", InsideLocationOffset)
+
+			' HotKeys
+			Skye.Common.RegistryHelper.SetBool("HKEnabled", HKEnabled)
+			Skye.Common.RegistryHelper.SetInt("HKPicToggleKey", CInt(HKPicToggle.Key))
+			Skye.Common.RegistryHelper.SetInt("HKPicToggleKeyCode", HKPicToggle.KeyCode)
+			Skye.Common.RegistryHelper.SetInt("HKPicToggleKeyMod", HKPicToggle.KeyMod)
+			Skye.Common.RegistryHelper.SetInt("HKPicToggleFullScreenKey", CInt(HKPicToggleFullScreen.Key))
+			Skye.Common.RegistryHelper.SetInt("HKPicToggleFullScreenKeyCode", HKPicToggleFullScreen.KeyCode)
+			Skye.Common.RegistryHelper.SetInt("HKPicToggleFullScreenKeyMod", HKPicToggleFullScreen.KeyMod)
+			Skye.Common.RegistryHelper.SetInt("HKPicShowFileInfoKey", CInt(HKPicShowFileInfo.Key))
+			Skye.Common.RegistryHelper.SetInt("HKPicShowFileInfoKeyCode", HKPicShowFileInfo.KeyCode)
+			Skye.Common.RegistryHelper.SetInt("HKPicShowFileInfoKeyMod", HKPicShowFileInfo.KeyMod)
+			Skye.Common.RegistryHelper.SetInt("HKVidToggleKey", CInt(HKVidToggle.Key))
+			Skye.Common.RegistryHelper.SetInt("HKVidToggleKeyCode", HKVidToggle.KeyCode)
+			Skye.Common.RegistryHelper.SetInt("HKVidToggleKeyMod", HKVidToggle.KeyMod)
+			Skye.Common.RegistryHelper.SetInt("HKVidToggleFullScreenKey", CInt(HKVidToggleFullScreen.Key))
+			Skye.Common.RegistryHelper.SetInt("HKVidToggleFullScreenKeyCode", HKVidToggleFullScreen.KeyCode)
+			Skye.Common.RegistryHelper.SetInt("HKVidToggleFullScreenKeyMod", HKVidToggleFullScreen.KeyMod)
+			Skye.Common.RegistryHelper.SetInt("HKVidShowFileInfoKey", CInt(HKVidShowFileInfo.Key))
+			Skye.Common.RegistryHelper.SetInt("HKVidShowFileInfoKeyCode", HKVidShowFileInfo.KeyCode)
+			Skye.Common.RegistryHelper.SetInt("HKVidShowFileInfoKeyMod", HKVidShowFileInfo.KeyMod)
+
+			' Pics
+			Skye.Common.RegistryHelper.SetInt("ImageLocationX", PicLocation.X)
+			Skye.Common.RegistryHelper.SetInt("ImageLocationY", PicLocation.Y)
+			Skye.Common.RegistryHelper.SetInt("ImageLocationMode", CInt(PicLocationMode))
+			Skye.Common.RegistryHelper.SetInt("ImageJustify", CInt(PicJustify))
+			Skye.Common.RegistryHelper.SetInt("ImageMaxSize", PicMaxSize)
+			Skye.Common.RegistryHelper.SetInt("ImagePlayMode", CInt(PicPlayMode))
+			Skye.Common.RegistryHelper.SetBool("ImageAutoView", PicAutoView)
+			Skye.Common.RegistryHelper.SetBool("ImageLockFullScreen", PicLockFullScreen)
+			Skye.Common.RegistryHelper.SetBool("ImageTimerCountdown", PicTimerCountdown)
+			Skye.Common.RegistryHelper.SetInt("ImageTimerCountdownLocationMode", CInt(PicTimerCountdownLocationMode))
+			If PicTimerAutoStart AndAlso Not PicTimerEnabled Then PicTimerEnabled = True
+			Skye.Common.RegistryHelper.SetBool("ImageTimerEnabled", PicTimerEnabled)
+			Skye.Common.RegistryHelper.SetBool("ImageTimerAutoStart", PicTimerAutoStart)
+			Skye.Common.RegistryHelper.SetInt("ImageTimerInterval", PicTimerInterval)
+			Skye.Common.RegistryHelper.SetStringArray("ImageFolders", PicFolders.ToArray())
+
+			' Vids
+			Skye.Common.RegistryHelper.SetInt("VideoLocationX", VidLocation.X)
+			Skye.Common.RegistryHelper.SetInt("VideoLocationY", VidLocation.Y)
+			Skye.Common.RegistryHelper.SetInt("VideoLocationMode", CInt(VidLocationMode))
+			Skye.Common.RegistryHelper.SetInt("VideoMaxSize", VidMaxSize)
+			Skye.Common.RegistryHelper.SetInt("VideoPlayMode", CInt(VidPlayMode))
+			Skye.Common.RegistryHelper.SetBool("VideoAutoView", VidAutoView)
+			Skye.Common.RegistryHelper.SetBool("VideoLockFullScreen", VidLockFullScreen)
+			Skye.Common.RegistryHelper.SetString("VideoScale", VidScale.ToString())
+			Skye.Common.RegistryHelper.SetInt("VideoVolume", VidVolume)
+			Skye.Common.RegistryHelper.SetBool("VideoVolumeMute", VidVolumeMute)
+			Skye.Common.RegistryHelper.SetBool("VideoTime", VidTime)
+			Skye.Common.RegistryHelper.SetInt("VideoTimeDisplayMode", CInt(VidTimeDisplayMode))
+			Skye.Common.RegistryHelper.SetInt("VideoTimeLocationMode", CInt(VidTimeLocationMode))
+			Dim vidFolderStrings As New List(Of String)
+			For Each vf As App.VideoFolderType In VidFolders
+				If vf.Enabled Then
+					vidFolderStrings.Add(vf.Path)
+				Else
+					vidFolderStrings.Add("-" & vf.Path)
+				End If
+			Next
+			Skye.Common.RegistryHelper.SetStringArray("VideoFolders", vidFolderStrings.ToArray())
+
 		End Sub
 		Friend Sub RegisterHotKeys(Optional mode As Boolean = True)
-			If hkEnabled Then
+			If HKEnabled Then
 				Dim status As Boolean
 				Select Case mode
 					Case True 'Register All HotKeys Where Key Is Not 'NONE'
@@ -1097,36 +1266,36 @@ Namespace My
 		Friend Sub PerformHotKeyAction(hotkey As Integer)
 			If Not IsGeneratingFileList Then
 				Select Case hotkey
-					Case hkPicToggle.WinID
+					Case HKPicToggle.WinID
 						If FrmPicsVisible() Then : frmPics.Close()
 						Else : ShowImages()
 						End If
 						FrmMain.ToggleContextMenu()
-					Case hkPicToggleFullScreen.WinID
+					Case HKPicToggleFullScreen.WinID
 						If FrmPicsVisible() Then : frmPics.ToggleFullScreen()
 						Else
 							ShowImages()
 							frmPics.ToggleFullScreen()
 							FrmMain.ToggleContextMenu()
 						End If
-					Case hkPicShowFileInfo.WinID
+					Case HKPicShowFileInfo.WinID
 						If FrmPicsVisible() Then
 							frmPics.BringToFront()
 							frmPics.ShowFileInfo()
 						End If
-					Case hkVidToggle.WinID
+					Case HKVidToggle.WinID
 						If FrmVidsVisible() Then : FrmVids.Close()
 						Else : ShowVideos()
 						End If
 						FrmMain.ToggleContextMenu()
-					Case hkVidToggleFullScreen.WinID
+					Case HKVidToggleFullScreen.WinID
 						If FrmVidsVisible() Then : FrmVids.ToggleFullScreen()
 						Else
 							ShowVideos()
 							FrmVids.ToggleFullScreen()
 							FrmMain.ToggleContextMenu()
 						End If
-					Case hkVidShowFileInfo.WinID
+					Case HKVidShowFileInfo.WinID
 						If FrmVidsVisible() Then
 							FrmVids.BringToFront()
 							FrmVids.ShowFileInfo()
@@ -1136,12 +1305,12 @@ Namespace My
 		End Sub
 		Friend Sub GenerateHotKeyList()
 			HotKeys.Clear()
-			HotKeys.Add(hkPicToggle)
-			HotKeys.Add(hkPicToggleFullScreen)
-			HotKeys.Add(hkPicShowFileInfo)
-			HotKeys.Add(hkVidToggle)
-			HotKeys.Add(hkVidToggleFullScreen)
-			HotKeys.Add(hkVidShowFileInfo)
+			HotKeys.Add(HKPicToggle)
+			HotKeys.Add(HKPicToggleFullScreen)
+			HotKeys.Add(HKPicShowFileInfo)
+			HotKeys.Add(HKVidToggle)
+			HotKeys.Add(HKVidToggleFullScreen)
+			HotKeys.Add(HKVidShowFileInfo)
 		End Sub
 		Friend Sub ShowBalloon(ByRef sender As Form, image As Image, title As String, text As String)
 			If frmBalloon.Visible And frmBalloonParent = sender.Name Then : HideBalloon() 'This allows for toggle of balloon
@@ -1270,7 +1439,7 @@ Namespace My
 		End Sub
 		Private Sub WorkSpaceSuspendedActions()
 			If FrmVidsVisible() Then
-				Select Case appActionOnScreenSave
+				Select Case ActionOnScreenSave
 					Case ScreenSaveActions.Suspend
 						FrmVids.TogglePlayState(True)
 						If FrmVids.IsFullScreen Then FrmVids.ToggleFullScreen()
@@ -1278,15 +1447,15 @@ Namespace My
 				End Select
 			End If
 			If FrmPicsVisible() Then
-				Select Case appActionOnScreenSave
+				Select Case ActionOnScreenSave
 					Case ScreenSaveActions.Suspend
-						picTimerEnabled = False
+						PicTimerEnabled = False
 						frmPics.SetTimer()
 						If frmPics.IsFullScreen Then frmPics.ToggleFullScreen()
 					Case ScreenSaveActions.Close : frmPics.Close()
 				End Select
 			End If
-			If FrmVidListVisible() AndAlso appActionOnScreenSave = ScreenSaveActions.Close Then frmVidList.Close()
+			If FrmVidListVisible() AndAlso ActionOnScreenSave = ScreenSaveActions.Close Then frmVidList.Close()
 			Debug.Print("SSActive @ " & Now)
 		End Sub
 		Friend Sub SwapValues(ByRef x As Integer, ByRef y As Integer)

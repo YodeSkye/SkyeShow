@@ -145,7 +145,7 @@ Partial Friend Class VidList
 	Public Sub GetData(Optional err As Boolean = False)
 		IsGettingData = True
 		Me.btnRefresh.Enabled = False
-		If Not err AndAlso My.App.FrmVidsVisible Then My.App.frmVids.TogglePlayState(True)
+		If Not err AndAlso My.App.FrmVidsVisible Then My.App.FrmVids.TogglePlayState(True)
 		Dim StartTime As TimeSpan = My.Computer.Clock.LocalTime.TimeOfDay
 		If Me.lvVideoList.SelectedIndices.Count = 1 Then ItemIndex = Me.lvVideoList.SelectedIndices(0)
 		'Begin Update ListView
@@ -191,7 +191,7 @@ Partial Friend Class VidList
 		'End Update ListView
 		Me.lvVideoList.EnsureVisible(ItemIndex)
 		My.App.WriteToLog("Video List View Generated In " + Skye.Common.GenerateLogTime(StartTime, My.Computer.Clock.LocalTime.TimeOfDay))
-		If Not err AndAlso My.App.FrmVidsVisible Then My.App.frmVids.TogglePlayState()
+		If Not err AndAlso My.App.FrmVidsVisible Then My.App.FrmVids.TogglePlayState()
 		Me.btnRefresh.Enabled = True
 		IsGettingData = False
 	End Sub
@@ -205,7 +205,7 @@ Partial Friend Class VidList
 				Debug.Print("PlayVideo --> " + Me.lvVideoList.SelectedIndices(0).ToString)
 				My.App.VideoIndex = Me.lvVideoList.SelectedIndices(0)
 				If My.App.FrmVidsVisible Then
-					My.App.frmVids.NextVideo(My.App.PlayOption.BySelection)
+					My.App.FrmVids.NextVideo(My.App.PlayOption.BySelection)
 				Else
 					My.App.ShowVideos(True)
 					My.App.FrmMain.ToggleContextMenu()

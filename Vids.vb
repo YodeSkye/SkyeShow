@@ -235,7 +235,7 @@ Partial Friend Class Vids
     End Sub
     Private Sub FrmDisposed(ByVal sender As Object, ByVal e As EventArgs)
         My.App.FrmMain.ToggleContextMenu()
-        My.App.frmVids = Nothing
+        My.App.FrmVids = Nothing
     End Sub
     Private Sub FrmLostFocus(ByVal sender As Object, ByVal e As EventArgs)
         If FullScreen And Not My.App.vidLockFullScreen And Not My.App.BalloonLoading And Not My.App.IgnoreFocusChange Then ToggleFullScreen()
@@ -256,7 +256,7 @@ Partial Friend Class Vids
         Else
             Select Case e.KeyCode
                 Case Keys.Escape : ToggleFullScreen()
-                Case Keys.End : My.App.frmVids.Close()
+                Case Keys.End : My.App.FrmVids.Close()
                 Case Keys.Up : TogglePlayState()
                 Case Keys.Left : UpdatePosition(False)
                 Case Keys.Right : UpdatePosition(True)
@@ -468,7 +468,7 @@ Partial Friend Class Vids
                     TogglePlayState(True)
                 End If
             Case MouseButtons.Right
-                If App.OpenFileLocation(App.AppMode.Videos) And FullScreen Then ToggleFullScreen()
+                If App.OpenFileLocation(App.VideoFiles(App.VideoIndex).Path) And FullScreen Then ToggleFullScreen()
         End Select
     End Sub
     Private Sub CMIMuteVideoMouseUp(sender As Object, e As MouseEventArgs) Handles cmiMuteVideo.MouseUp
@@ -492,7 +492,7 @@ Partial Friend Class Vids
         End If
     End Sub
     Private Sub CMICloseMouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles cmiClose.MouseUp
-        If e.Button = MouseButtons.Left Then My.App.frmVids.Close()
+        If e.Button = MouseButtons.Left Then My.App.FrmVids.Close()
     End Sub
 
     'Handlers
@@ -581,11 +581,11 @@ Partial Friend Class Vids
                     My.App.WriteToLog("Video Load Error" + Chr(13) + ex.ToString)
                     My.App.SetErrorAlert()
                     My.App.VideoFilesSetState(My.App.VideoIndex, My.App.VideoFileState.DisplayError)
-                    If My.App.VideoFilesCount = 0 Then : My.App.frmVids.Close()
+                    If My.App.VideoFilesCount = 0 Then : My.App.FrmVids.Close()
                     Else : NextVideo(My.App.PlayOption.ByPlayMode)
                     End If
                 End Try
-            Else : My.App.frmVids.Close()
+            Else : My.App.FrmVids.Close()
             End If
         End If
     End Sub
@@ -763,18 +763,17 @@ Partial Friend Class Vids
         On Error Resume Next
         Dim s As String = String.Empty
         Dim i As IO.FileInfo
-        'Dim t As TimeSpan = TimeSpan.FromSeconds(video.Duration)
+        Dim t As TimeSpan = TimeSpan.FromSeconds(_player.Duration)
         i = Microsoft.VisualBasic.FileIO.FileSystem.GetFileInfo(My.App.VideoFiles(My.App.VideoIndex).Path)
-        's += IIf(t.Hours > 0, t.Hours.ToString.PadLeft(2, "0"C) + ":", "").ToString + t.Minutes.ToString.PadLeft(2, "0"C) + ":" + t.Seconds.ToString.PadLeft(2, "0"C)
-        's += vbCr
+        s += IIf(t.Hours > 0, t.Hours.ToString.PadLeft(2, "0"c) + ":", "").ToString + t.Minutes.ToString.PadLeft(2, "0"c) + ":" + t.Seconds.ToString.PadLeft(2, "0"c)
+        s += vbCr
         s += Skye.Common.FormatFileSize(i.Length, Skye.Common.FormatFileSizeUnits.Auto, 1)
         s += vbCr
         s += _player.VideoWidth.ToString + "x" + _player.VideoHeight.ToString
+        s += " ("
+        s += My.App.FormatVideoAspectRatio(New Size(_player.VideoWidth, _player.VideoHeight))
+        s += ") "
         s += vbCr
-        's += " ("
-        's += My.SkyeShow.FormatAspectRatio(My.SkyeShow.AppMode.Videos, video.DefaultSize)
-        's += ") "
-        's += vbCr
         s += i.DirectoryName
         My.App.ShowBalloon(Me, My.Resources.Resources.imageVideo32, i.Name, s)
     End Sub

@@ -155,7 +155,7 @@ Partial Friend Class MainForm
 		ElseIf Me.radbtnVideoScale100.Checked Then : My.App.vidScale = 1
 		ElseIf Me.radbtnVideoScaleFit.Checked Then : My.App.vidScale = 0
 		End If
-		If My.App.FrmVidsVisible Then My.App.frmVids.SetSize()
+		If My.App.FrmVidsVisible Then My.App.FrmVids.SetSize()
 	End Sub
 	Private Sub RadbtnVidLocationModeClick(ByVal sender As Object, ByVal e As EventArgs) Handles radbtnVidLocationModeTopRightInside.Click, radbtnVidLocationModeTopRight.Click, radbtnVidLocationModeTopLeftInside.Click, radbtnVidLocationModeTopLeft.Click, radbtnVidLocationModeTopCenterRightInside.Click, radbtnVidLocationModeTopCenterRight.Click, radbtnVidLocationModeTopCenterLeftInside.Click, radbtnVidLocationModeTopCenterLeft.Click, radbtnVidLocationModeTopCenterInside.Click, radbtnVidLocationModeTopCenter.Click, radbtnVidLocationModeRightCenterTopInside.Click, radbtnVidLocationModeRightCenterTop.Click, radbtnVidLocationModeRightCenterInside.Click, radbtnVidLocationModeRightCenterBottomInside.Click, radbtnVidLocationModeRightCenterBottom.Click, radbtnVidLocationModeRightCenter.Click, radbtnVidLocationModeManual.Click, radbtnVidLocationModeLeftCenterTopInside.Click, radbtnVidLocationModeLeftCenterTop.Click, radbtnVidLocationModeLeftCenterInside.Click, radbtnVidLocationModeLeftCenterBottomInside.Click, radbtnVidLocationModeLeftCenterBottom.Click, radbtnVidLocationModeLeftCenter.Click, radbtnVidLocationModeBottomRightInside.Click, radbtnVidLocationModeBottomRight.Click, radbtnVidLocationModeBottomLeftInside.Click, radbtnVidLocationModeBottomLeft.Click, radbtnVidLocationModeBottomCenterRightInside.Click, radbtnVidLocationModeBottomCenterRight.Click, radbtnVidLocationModeBottomCenterLeftInside.Click, radbtnVidLocationModeBottomCenterLeft.Click, radbtnVidLocationModeBottomCenterInside.Click, radbtnVidLocationModeBottomCenter.Click
 		For Each c As Control In Me.gpbxVidLocationMode.Controls
@@ -195,7 +195,7 @@ Partial Friend Class MainForm
 					Case "radbtnVidLocationModeLeftCenterInside" : My.App.vidLocationMode = My.App.LocationMode.LeftCenterInside
 					Case "radbtnVidLocationModeLeftCenterTopInside" : My.App.vidLocationMode = My.App.LocationMode.LeftCenterTopInside
 				End Select
-				If My.App.FrmVidsVisible Then My.App.frmVids.SetSize()
+				If My.App.FrmVidsVisible Then My.App.FrmVids.SetSize()
 			End If
 		Next
 	End Sub
@@ -220,7 +220,7 @@ Partial Friend Class MainForm
 					Case "radbtnVidTimeLocationModeLeftCenter" : My.App.vidTimeLocationMode = My.App.LocationMode.LeftCenter
 					Case "radbtnVidTimeLocationModeLeftCenterTop" : My.App.vidTimeLocationMode = My.App.LocationMode.LeftCenterTop
 				End Select
-				If My.App.FrmVidsVisible Then My.App.frmVids.ShowVideoTime()
+				If My.App.FrmVidsVisible Then My.App.FrmVids.ShowVideoTime()
 			End If
 		Next
 	End Sub
@@ -233,11 +233,11 @@ Partial Friend Class MainForm
 	Private Sub ChbxVidTimeClick(sender As Object, e As EventArgs) Handles chbxVidTime.Click
 		My.App.vidTime = Me.chbxVidTime.Checked
 		ShowSettingsVideos()
-		If My.App.FrmVidsVisible Then My.App.frmVids.SetVideoTime()
+		If My.App.FrmVidsVisible Then My.App.FrmVids.SetVideoTime()
 	End Sub
 	Private Sub CobxVidTimeDisplayModeSelectionChangeCommitted(sender As Object, e As EventArgs) Handles cobxVidTimeDisplayMode.SelectionChangeCommitted
 		My.App.vidTimeDisplayMode = CType(Me.cobxVidTimeDisplayMode.SelectedIndex, My.App.VideoPositionMode)
-		If My.App.FrmVidsVisible Then My.App.frmVids.ShowVideoTime()
+		If My.App.FrmVidsVisible Then My.App.FrmVids.ShowVideoTime()
 	End Sub
 
 #End Region
@@ -394,7 +394,7 @@ Partial Friend Class MainForm
 					My.App.ClearErrorAlert()
 				ElseIf (My.App.FrmPicsVisible And Not My.App.ImageIsOnTop) Or (My.App.FrmVidsVisible And Not My.App.VideoIsOnTop) Then
 					If My.App.FrmPicsVisible And Not My.App.ImageIsOnTop Then My.App.frmPics.QuickShow()
-					If My.App.FrmVidsVisible And Not My.App.VideoIsOnTop Then My.App.frmVids.QuickShow()
+					If My.App.FrmVidsVisible And Not My.App.VideoIsOnTop Then My.App.FrmVids.QuickShow()
 					AppNotify()
 				Else : ShowForm()
 				End If
@@ -418,7 +418,7 @@ Partial Friend Class MainForm
 					End If
 				Case Me.tpVids.Name
 					If Me.cmiPlayVids.Enabled Then
-						If My.App.FrmVidsVisible Then : My.App.frmVids.Close()
+						If My.App.FrmVidsVisible Then : My.App.FrmVids.Close()
 						Else : My.App.ShowVideos()
 						End If
 						ToggleContextMenu()
@@ -627,12 +627,12 @@ Partial Friend Class MainForm
 		On Error Resume Next
 		If My.App.FrmVidsVisible Then
 			Select Case e.Button
-				Case MouseButtons.Left : My.App.frmVids.Close()
-				Case MouseButtons.Right : If Not My.App.frmVids.IsFullScreen Then My.App.frmVids.ToggleFullScreen()
+				Case MouseButtons.Left : My.App.FrmVids.Close()
+				Case MouseButtons.Right : If Not My.App.FrmVids.IsFullScreen Then My.App.FrmVids.ToggleFullScreen()
 			End Select
 		Else
 			My.App.ShowVideos()
-			If e.Button = MouseButtons.Right Then My.App.frmVids.ToggleFullScreen()
+			If e.Button = MouseButtons.Right Then My.App.FrmVids.ToggleFullScreen()
 		End If
 		ToggleContextMenu()
 	End Sub
@@ -764,7 +764,7 @@ Partial Friend Class MainForm
 	End Sub
 	Private Sub ChbkVidMuteClick(sender As Object, e As EventArgs) Handles chbkVidMute.Click
 		My.App.vidVolumeMute = Me.chbkVidMute.Checked
-		If My.App.frmVids IsNot Nothing Then My.frmVids.SetVolume()
+		If My.App.FrmVids IsNot Nothing Then My.FrmVids.SetVolume()
 	End Sub
 	Private Sub RadbtnActionOnScreenSaveNoActionClick(sender As Object, e As EventArgs) Handles radbtnActionOnScreenSaveNoAction.Click
 		My.App.appActionOnScreenSave = My.App.ScreenSaveActions.NoAction
@@ -1128,7 +1128,7 @@ Partial Friend Class MainForm
 		VideoListOutOfSync = False
 		ShowSettings()
 		If My.App.FrmPicsVisible Then My.App.frmPics.DrawImage()
-		If My.App.FrmVidsVisible Then My.App.frmVids.SetSize()
+		If My.App.FrmVidsVisible Then My.App.FrmVids.SetSize()
 	End Sub
 	Friend Sub ToggleContextMenu()
 		If My.App.FrmPicsVisible Then : Me.cmiViewPics.Checked = True
@@ -1378,7 +1378,7 @@ Partial Friend Class MainForm
 			Me.lblPicFileCount.Text = My.App.GeneratingFileListAlertText
 			Me.lblVidFileCount.Text = My.App.GeneratingFileListAlertText
 			Me.tipInfo.SetToolTip(Me.lblVidFileCount, My.App.GeneratingFileListAlertText)
-			If My.App.FrmVidsVisible Then My.App.frmVids.Close()
+			If My.App.FrmVidsVisible Then My.App.FrmVids.Close()
 			If (mode = My.App.GetFilesType.Vids Or mode = My.App.GetFilesType.All) And My.App.FrmVidListVisible Then My.App.frmVidList.Close()
 			If (mode = My.App.GetFilesType.Pics Or mode = My.App.GetFilesType.All) And My.App.FrmPicsVisible Then My.App.frmPics.Close()
 

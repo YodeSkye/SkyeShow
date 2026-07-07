@@ -249,7 +249,8 @@ Namespace My
 		Friend VideoIndex As Integer = -1
 		Friend VideoIndexPrevious As Integer = -1
 		Friend VideoIsOnTop As Boolean = True
-		Friend frmVids As Vids
+		Friend VideoExtensionDictionary As New Dictionary(Of String, String) 'VideoExtensionDictionary is a dictionary that maps file extensions to their respective media types.
+		Friend FrmVids As Vids
 		Friend frmVidList As VidList
 
 		' Saved Settings
@@ -270,9 +271,9 @@ Namespace My
 
 		' METHODS
 		Friend Sub ShowVideos(Optional showBySelection As Boolean = False)
-			If FrmVidsVisible() Then frmVids.Close()
-			frmVids = New Vids(showBySelection)
-			Try : frmVids.Show() : Catch : End Try
+			If FrmVidsVisible() Then FrmVids.Close()
+			FrmVids = New Vids(showBySelection)
+			Try : FrmVids.Show() : Catch : End Try
 		End Sub
 		Friend Sub ShowVideoFromCommandLine()
 			Debug.Print("ShowVideoFromCommandLine " + CommandLinePath.ToUpper)
@@ -387,7 +388,7 @@ Namespace My
 			FrmMain.UpdateSettings()
 		End Sub
 		Friend Function FrmVidsVisible() As Boolean
-			If frmVids IsNot Nothing AndAlso frmVids.Visible Then Return True
+			If FrmVids IsNot Nothing AndAlso FrmVids.Visible Then Return True
 			Return False
 		End Function
 		Friend Function FrmVidListVisible() As Boolean
@@ -466,12 +467,6 @@ Namespace My
 		Friend ReadOnly ImageRepeatListPath As String = UserPath + My.Application.Info.ProductName + "ImagesViewed.xml"
 		Friend ReadOnly VideoFilesPath As String = UserPath + My.Application.Info.ProductName + "Videos.xml"
 #End If
-		Friend Enum AppMode
-			Pictures
-			Videos
-			WallPaper
-			SkyeShow
-		End Enum
 		Friend Enum GetFilesMode
 			Generated
 			Refreshed
@@ -539,18 +534,6 @@ Namespace My
 			Center
 			Right
 		End Enum
-		Friend Enum FormatFileSizeUnits
-			Auto
-			Bytes
-			KiloBytes
-			MegaBytes
-			GigaBytes
-		End Enum
-		Friend Enum WindowSize
-			Small '400x240
-			Medium '640x480
-			Large '800x600
-		End Enum
 		Friend Enum ScreenSaveActions
 			NoAction
 			Suspend
@@ -588,13 +571,6 @@ Namespace My
 		Friend FrmMain As MainForm
 		Friend FrmLog As Log
 		Private FrmInfo As InfoForm
-		Friend Function FormSize(windowsize As WindowSize) As Size
-			Select Case windowsize
-				Case WindowSize.Small : Return New Size(400, 240)
-				Case WindowSize.Medium : Return New Size(640, 480)
-				Case WindowSize.Large : Return New Size(800, 600)
-			End Select
-		End Function
 		Private WithEvents FrmBalloonTimer As New Timer
 		Private WithEvents ScreenSaverWatcher As New Timer
 		Private SettingsRegKey As Microsoft.Win32.RegistryKey
@@ -669,6 +645,20 @@ Namespace My
 			Debug.Print("OnStartup --> Alternate Start = " + My.Application.AlternateStart.ToString)
 			FrmBalloonTimer.Interval = 6000
 			ScreenSaverWatcher.Interval = 1000
+			VideoExtensionDictionary.Add(".mkv", "Matroska")
+			VideoExtensionDictionary.Add(".ogv", "OGG Video")
+			VideoExtensionDictionary.Add(".avi", "AVI Video")
+			VideoExtensionDictionary.Add(".wmv", "Windows Media")
+			VideoExtensionDictionary.Add(".asf", "ASF")
+			VideoExtensionDictionary.Add(".mp4", "MP4")
+			VideoExtensionDictionary.Add(".m4p", "MP4")
+			VideoExtensionDictionary.Add(".m4v", "MP4")
+			VideoExtensionDictionary.Add(".mpeg", "MPEG")
+			VideoExtensionDictionary.Add(".mpg", "MPEG")
+			VideoExtensionDictionary.Add(".mpe", "MPEG")
+			VideoExtensionDictionary.Add(".mpv", "MPEG")
+			VideoExtensionDictionary.Add(".m2v", "MPEG")
+			VideoExtensionDictionary.Add(".flv", "Flash Video")
 			GetSettings()
 #If DEBUG Then
 			GetDebugSettings()
@@ -688,7 +678,7 @@ Namespace My
 			My.App.WriteToLog(My.Application.Info.ProductName + " Closed")
 		End Sub
 		Friend Sub CloseApp(Optional restart As Boolean = False)
-			If FrmVidsVisible() Then frmVids.Close()
+			If FrmVidsVisible() Then FrmVids.Close()
 			If FrmPicsVisible() Then frmPics.Close()
 			If FrmVidListVisible() Then frmVidList.Close()
 			If FrmLog?.Visible Then FrmLog.Close()
@@ -1125,21 +1115,21 @@ Namespace My
 							frmPics.ShowFileInfo()
 						End If
 					Case hkVidToggle.WinID
-						If FrmVidsVisible() Then : frmVids.Close()
+						If FrmVidsVisible() Then : FrmVids.Close()
 						Else : ShowVideos()
 						End If
 						FrmMain.ToggleContextMenu()
 					Case hkVidToggleFullScreen.WinID
-						If FrmVidsVisible() Then : frmVids.ToggleFullScreen()
+						If FrmVidsVisible() Then : FrmVids.ToggleFullScreen()
 						Else
 							ShowVideos()
-							frmVids.ToggleFullScreen()
+							FrmVids.ToggleFullScreen()
 							FrmMain.ToggleContextMenu()
 						End If
 					Case hkVidShowFileInfo.WinID
 						If FrmVidsVisible() Then
-							frmVids.BringToFront()
-							frmVids.ShowFileInfo()
+							FrmVids.BringToFront()
+							FrmVids.ShowFileInfo()
 						End If
 				End Select
 			End If
@@ -1177,7 +1167,7 @@ Namespace My
 				FrmBalloonTimer.Stop()
 
 				If frmPics IsNot Nothing AndAlso frmPics.Name = frmBalloonParent Then : frmPics.BringToFront()
-				ElseIf frmVids IsNot Nothing AndAlso frmVids.Name = frmBalloonParent Then : frmVids.BringToFront()
+				ElseIf FrmVids IsNot Nothing AndAlso FrmVids.Name = frmBalloonParent Then : FrmVids.BringToFront()
 				End If
 				frmBalloonParent = String.Empty
 				frmBalloon.Hide()
@@ -1185,7 +1175,7 @@ Namespace My
 		End Sub
 		Friend Sub BalloonPreviewKeyDown(ByVal sender As Object, ByVal e As PreviewKeyDownEventArgs)
 			If frmPics IsNot Nothing AndAlso frmPics.Name = frmBalloonParent Then : frmPics.FrmPreviewKeyDown(sender, e)
-			ElseIf frmVids IsNot Nothing AndAlso frmVids.Name = frmBalloonParent Then : frmVids.FrmPreviewKeyDown(sender, e)
+			ElseIf FrmVids IsNot Nothing AndAlso FrmVids.Name = frmBalloonParent Then : FrmVids.FrmPreviewKeyDown(sender, e)
 			End If
 			HideBalloon()
 		End Sub
@@ -1282,9 +1272,9 @@ Namespace My
 			If FrmVidsVisible() Then
 				Select Case appActionOnScreenSave
 					Case ScreenSaveActions.Suspend
-						frmVids.TogglePlayState(True)
-						If frmVids.IsFullScreen Then frmVids.ToggleFullScreen()
-					Case ScreenSaveActions.Close : frmVids.Close()
+						FrmVids.TogglePlayState(True)
+						If FrmVids.IsFullScreen Then FrmVids.ToggleFullScreen()
+					Case ScreenSaveActions.Close : FrmVids.Close()
 				End Select
 			End If
 			If FrmPicsVisible() Then
@@ -1321,12 +1311,11 @@ Namespace My
 		Friend Function CheckFileType(file As String, type As FileType) As Boolean
 			Select Case type
 				Case FileType.Pic
-					For Each s As String In ImageExtensions : If file.EndsWith(s, StringComparison.CurrentCultureIgnoreCase) Then Return True
-					Next
+					Return ImageExtensions.Any(Function(ext) file.EndsWith(ext, StringComparison.CurrentCultureIgnoreCase))
 				Case FileType.Vid
-					For Each s As String In vidExtensions : If file.EndsWith(s, StringComparison.CurrentCultureIgnoreCase) Then Return True
-					Next
-				Case Else : Return False
+					Return VideoExtensionDictionary.Keys.Any(Function(ext) file.EndsWith(ext, StringComparison.CurrentCultureIgnoreCase))
+				Case Else
+					Return False
 			End Select
 			Return False
 		End Function
@@ -1345,53 +1334,42 @@ Namespace My
 				Return False
 			End Try
 		End Function
-		Friend Function OpenFileLocation(tool As AppMode) As Boolean
-			Dim filepath As String
-			Select Case tool
-				Case AppMode.Pictures : filepath = ImageFiles(ImageIndex)
-				Case AppMode.Videos : filepath = VideoFiles(VideoIndex).Path
-				Case Else : Return False
-			End Select
-
+		Friend Function OpenFileLocation(path As String) As Boolean
 			Dim psi As New Diagnostics.ProcessStartInfo("EXPLORER.EXE") With {
-				.Arguments = "/SELECT," + filepath,
+				.Arguments = "/SELECT," & path,
 				.UseShellExecute = True,
-				.WindowStyle = Diagnostics.ProcessWindowStyle.Normal}
-			Try : Diagnostics.Process.Start(psi)
+				.WindowStyle = Diagnostics.ProcessWindowStyle.Normal
+			}
+			Try
+				Diagnostics.Process.Start(psi)
+				Return True
 			Catch ex As Exception
-				WriteToLog("Error Opening File Location '" + filepath + "'")
+				WriteToLog("Error Opening File Location '" & path & "'")
 				SetErrorAlert()
 				Return False
 			End Try
-			Return True
 		End Function
-		Friend Function FormatAspectRatio(tool As AppMode, size As Size) As String
-			Static aspect As Single
-			Static aspecttext As String
-			aspect = CSng(Math.Round(size.Width / size.Height, 2))
-			aspecttext = String.Empty
-			Select Case tool
-				Case AppMode.Pictures
-					If size.Width = size.Height Then Return "1x1 Square"
-					Select Case aspect
-						Case 1.25 : aspecttext = "8x10"
-						Case 1.27 : aspecttext = "11x14"
-						Case 1.33 : aspecttext = "4x3 Standard"
-						Case 1.4 : aspecttext = "5x7"
-						Case 1.5 : aspecttext = "3x2,4x6"
-						Case 1.77 To 1.81 : aspecttext = "16x9 WideScreen"
-						Case Else : aspecttext = aspect.ToString + "x1"
-					End Select
-				Case AppMode.Videos
-					If size.Width = size.Height Then Return "1:1"
-					Select Case aspect
-						Case 1.32 To 1.34 : aspecttext = "4:3 Standard"
-						Case 1.77 To 1.81 : aspecttext = "16:9 WideScreen"
-						Case Else : aspecttext = aspect.ToString + ":1"
-					End Select
-				Case Else : aspecttext = aspect.ToString + ":1"
+		Friend Function FormatImageAspectRatio(size As Size) As String
+			Dim aspect As Single = CSng(Math.Round(size.Width / size.Height, 2))
+			If size.Width = size.Height Then Return "1x1 Square"
+			Select Case aspect
+				Case 1.25 : Return "8x10"
+				Case 1.27 : Return "11x14"
+				Case 1.33 : Return "4x3 Standard"
+				Case 1.4 : Return "5x7"
+				Case 1.5 : Return "3x2,4x6"
+				Case 1.77 To 1.81 : Return "16x9 WideScreen"
+				Case Else : Return aspect.ToString & "x1"
 			End Select
-			Return aspecttext
+		End Function
+		Friend Function FormatVideoAspectRatio(size As Size) As String
+			Dim aspect As Single = CSng(Math.Round(size.Width / size.Height, 2))
+			If size.Width = size.Height Then Return "1:1"
+			Select Case aspect
+				Case 1.32 To 1.34 : Return "4:3 Standard"
+				Case 1.77 To 1.81 : Return "16:9 WideScreen"
+				Case Else : Return aspect.ToString & ":1"
+			End Select
 		End Function
 		Friend Function MouseInBounds(ByRef control As Control, ByRef mouseposition As Point) As Boolean
 			If mouseposition.X >= 0 AndAlso mouseposition.X <= control.Width AndAlso mouseposition.Y >= 0 AndAlso mouseposition.Y <= control.Height Then Return True

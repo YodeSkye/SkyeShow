@@ -257,9 +257,10 @@ Partial Friend Class Pics
 	Private Sub CMIViewImageMouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles cmiViewImage.MouseUp
 		Select Case e.Button
 			Case MouseButtons.Left
-				If App.ViewFile(App.ImageFiles(My.App.ImageIndex)) And FullScreen Then ToggleFullScreen()
-				NextImage(My.App.PlayOption.ByPlayMode)
-			Case MouseButtons.Right : If App.OpenFileLocation(App.AppMode.Pictures) And FullScreen Then ToggleFullScreen()
+				If App.ViewFile(App.ImageFiles(App.ImageIndex)) And FullScreen Then ToggleFullScreen()
+				NextImage(App.PlayOption.ByPlayMode)
+			Case MouseButtons.Right
+				If App.OpenFileLocation(App.ImageFiles(App.ImageIndex)) And FullScreen Then ToggleFullScreen()
 		End Select
 	End Sub
 	Private Sub CMIDeleteImageMouseUp(sender As Object, e As MouseEventArgs) Handles cmiDeleteImage.MouseUp
@@ -502,7 +503,7 @@ Partial Friend Class Pics
 		s += vbCr
 		s += Me.imageRaw.Size.Width.ToString + "x" + Me.imageRaw.Size.Height.ToString
 		s += " ("
-		s += My.App.FormatAspectRatio(My.App.AppMode.Pictures, Me.imageRaw.Size)
+		s += My.App.FormatImageAspectRatio(Me.imageRaw.Size)
 		s += ") "
 		s += Math.Round(Me.imageRaw.Size.Width * Me.imageRaw.Size.Height / 1000000, 2).ToString + "MP"
 		s += vbCr

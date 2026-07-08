@@ -12,9 +12,9 @@ Public Class Log
     ' FORM EVENTS
     Private Sub Log_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        Skye.UI.ThemeManager.RegisterComponent(TipLog)
-        Skye.UI.ThemeManager.RegisterComponent(TipAlert)
-        Skye.UI.ThemeManager.ApplyTheme(Me)
+        'Skye.UI.ThemeManager.RegisterComponent(TipLog)
+        'Skye.UI.ThemeManager.RegisterComponent(TipAlert)
+        'Skye.UI.ThemeManager.ApplyTheme(Me)
 
         Text = My.Application.Info.ProductName + " Log"
         LBLLogInfo.Text = Skye.Common.Log.LogFilePath

@@ -167,9 +167,9 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
-        Friend Shared ReadOnly Property imageAdvance() As System.Drawing.Bitmap
+        Friend Shared ReadOnly Property ImageAdvance() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("imageAdvance", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("ImageAdvance", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -377,6 +377,16 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Friend Shared ReadOnly Property imageRefresh() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("imageRefresh", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Friend Shared ReadOnly Property imageRemove() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("imageRemove", resourceCulture)
@@ -477,9 +487,9 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
-        Friend Shared ReadOnly Property imageTimer() As System.Drawing.Bitmap
+        Friend Shared ReadOnly Property ImageTimer() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("imageTimer", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("ImageTimer", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

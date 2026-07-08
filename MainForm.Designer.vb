@@ -595,10 +595,10 @@ Inherits System.Windows.Forms.Form
         tpPics.Controls.Add(chbxPicAutoView)
         tpPics.Controls.Add(chbxPicTimerCountdown)
         tpPics.ImageKey = "iconImage.ico"
-        tpPics.Location = New Point(4, 24)
+        tpPics.Location = New Point(4, 26)
         tpPics.Margin = New Padding(0)
         tpPics.Name = "tpPics"
-        tpPics.Size = New Size(752, 451)
+        tpPics.Size = New Size(752, 449)
         tpPics.TabIndex = 0
         tpPics.Text = "                    ""Pics""                    "
         tpPics.UseVisualStyleBackColor = True
@@ -1467,7 +1467,7 @@ Inherits System.Windows.Forms.Form
         btnRefreshPicList.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnRefreshPicList.FlatAppearance.BorderColor = SystemColors.Highlight
         btnRefreshPicList.FlatAppearance.BorderSize = 0
-        btnRefreshPicList.Image = My.Resources.Resources.imageRestore
+        btnRefreshPicList.Image = My.Resources.Resources.imageRefresh
         btnRefreshPicList.ImageAlign = ContentAlignment.MiddleLeft
         btnRefreshPicList.Location = New Point(647, 91)
         btnRefreshPicList.Name = "btnRefreshPicList"
@@ -2327,7 +2327,7 @@ Inherits System.Windows.Forms.Form
         btnRefreshVidList.BackColor = Color.Transparent
         btnRefreshVidList.FlatAppearance.BorderColor = SystemColors.Highlight
         btnRefreshVidList.FlatAppearance.BorderSize = 0
-        btnRefreshVidList.Image = My.Resources.Resources.imageRestore
+        btnRefreshVidList.Image = My.Resources.Resources.imageRefresh
         btnRefreshVidList.ImageAlign = ContentAlignment.MiddleLeft
         btnRefreshVidList.Location = New Point(647, 91)
         btnRefreshVidList.Name = "btnRefreshVidList"

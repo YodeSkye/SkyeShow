@@ -124,9 +124,6 @@
   <data name="imageHide" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imageHide.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="imageCopy" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>My Project\imageCopy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="imageSave" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imageSave.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -139,17 +136,11 @@
   <data name="imageQuickShift" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imageQuickShift.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="imageMaximizeWindow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>My Project\imageMaximizeWindow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="imageSoundMute" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imageSoundMute.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="imagePlay" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imagePlay.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="imageRestoreWindow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>My Project\imageRestoreWindow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="imageLog" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\imageLog.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

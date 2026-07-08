@@ -569,7 +569,6 @@ Namespace My
 		Friend FrmMain As MainForm
 		Friend FrmHelp As Help
 		Friend FrmLog As Log
-		Private FrmInfo As InfoForm
 		Private WithEvents FrmBalloonTimer As New Timer
 		Private WithEvents ScreenSaverWatcher As New Timer
 		Private ScreenSaverRunning As Boolean = False
@@ -1350,35 +1349,6 @@ Namespace My
 			End If
 			HideBalloon()
 		End Sub
-		Friend Sub ShowInfo(title As String, message As String, postmessage As String, Optional icon As Icon = Nothing, Optional wordwrap As Boolean = False, Optional scrolltotop As Boolean = True, Optional showmaximized As Boolean = False)
-			Try
-				If FrmInfo IsNot Nothing Then FrmInfo.Close()
-				FrmInfo = New InfoForm
-				If icon Is Nothing Then : FrmInfo.Icon = My.Resources.Resources.IconApp 'DirectCast(AppResources.GetObject("iconApp"), Icon)
-				Else : FrmInfo.Icon = icon
-				End If
-				FrmInfo.Text = My.Application.Info.Title + " " + title
-				FrmInfo.rtbMessage.ResetText()
-				FrmInfo.rtbMessage.AppendText(message)
-				If scrolltotop Then FrmInfo.rtbMessage.Select(0, 0)
-				If wordwrap Then FrmInfo.rtbMessage.WordWrap = True
-				FrmInfo.tbPostMessage.Text = postmessage
-				If title.Contains("Log") Then
-					Dim lines As Integer = 0
-					If FrmInfo.rtbMessage.Lines(0).Length > 0 Then lines = FrmInfo.rtbMessage.GetLineFromCharIndex(FrmInfo.rtbMessage.Text.Length)
-					If lines > 0 Then
-						FrmInfo.tbPostMessage.Text += "  (" + lines.ToString + IIf(lines > 1, " Lines", " Line").ToString + ")"
-						FrmInfo.btnClearLog.Visible = True
-					End If
-					FrmInfo.btnRefreshLog.Visible = True
-				End If
-				FrmInfo.btnClose.Select()
-				FrmInfo.Show()
-				If showmaximized Then FrmInfo.ChangeWindowState()
-				FrmInfo.rtbMessage.Focus()
-			Catch ex As Exception : WriteToLog("ShowInfo Managed Error" + Chr(13) + ex.ToString)
-			End Try
-		End Sub
 		Friend Sub ShowHelp(Optional showmaximized As Boolean = False)
 			Dim logtext As String = String.Empty
 			logtext += "Pictures -- When using QuickHide, the next picture will be displayed after the interval has expired. If the user intervenes during the interval, the current picture will remain."
@@ -1392,9 +1362,10 @@ Namespace My
 			logtext += Chr(13) + Chr(13) + "App -- Action On ScreenSave means that when the screen saver is activated or the workstation is locked, Pictures & Videos will either be suspended or closed. For Pictures, the suspend option will hold the countdown timer. For Videos, the suspend option will pause playback."
 			logtext += Chr(13) + Chr(13) + "Settings Window -- DoubleLeftClick on Pictures Tab will open and close Pictures. DoubleLeftClick on Videos Tab will open and close Videos."
 			If FrmHelp Is Nothing Then
-				FrmHelp = New Help
-				FrmHelp.Text = My.Application.Info.Title + " Help & About"
-				FrmHelp.Icon = My.Resources.Resources.iconInfo
+				FrmHelp = New Help With {
+					.Text = My.Application.Info.Title + " Help & About",
+					.Icon = My.Resources.Resources.iconInfo
+				}
 				FrmHelp.RTxtBoxMessage.Clear()
 				FrmHelp.RTxtBoxMessage.AppendText(logtext)
 				FrmHelp.RTxtBoxMessage.Select(0, 0)
@@ -1402,8 +1373,8 @@ Namespace My
 				FrmHelp.Show()
 			Else
 				FrmHelp.BringToFront()
-                FrmHelp.Focus()
-            End If
+				FrmHelp.Focus()
+			End If
 			If showmaximized Then FrmHelp.WindowState = FormWindowState.Maximized
 			FrmHelp.BtnOK.Select()
 		End Sub

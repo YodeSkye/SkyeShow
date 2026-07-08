@@ -567,6 +567,7 @@ Namespace My
 		Friend IgnoreFocusChange As Boolean = False
 		Friend HotKeys As New Collections.Generic.List(Of HotKey)
 		Friend FrmMain As MainForm
+		Friend FrmHelp As Help
 		Friend FrmLog As Log
 		Private FrmInfo As InfoForm
 		Private WithEvents FrmBalloonTimer As New Timer
@@ -677,8 +678,9 @@ Namespace My
 		Friend Sub CloseApp(Optional restart As Boolean = False)
 			If FrmVidsVisible() Then FrmVids.Close()
 			If FrmPicsVisible() Then frmPics.Close()
-			If FrmVidListVisible() Then frmVidList.Close()
-			If FrmLog?.Visible Then FrmLog.Close()
+            If FrmVidListVisible() Then frmVidList.Close()
+            If FrmHelp?.Visible Then FrmHelp.Close()
+            If FrmLog?.Visible Then FrmLog.Close()
 			FrmMain.Close()
 			If restart Then System.Windows.Forms.Application.Restart()
 		End Sub
@@ -1379,13 +1381,6 @@ Namespace My
 		End Sub
 		Friend Sub ShowHelp(Optional showmaximized As Boolean = False)
 			Dim logtext As String = String.Empty
-			'logtext += Chr(13) + Chr(13) + "App -- "
-			'logtext += Chr(13) + Chr(13) + "HotKeys -- "
-			'logtext += Chr(13) + Chr(13) + "Settings -- "
-			'logtext += Chr(13) + Chr(13) + "Pictures -- "
-			'logtext += Chr(13) + Chr(13) + "Videos -- "
-			'logtext += Chr(13) + Chr(13) + "Pictures & Videos -- "
-			'logtext += Chr(13) + Chr(13) + "WallPaper -- "
 			logtext += "Pictures -- When using QuickHide, the next picture will be displayed after the interval has expired. If the user intervenes during the interval, the current picture will remain."
 			logtext += Chr(13) + Chr(13) + "Pictures -- When using QuickHide, manually starting the Timer will restore the window."
 			logtext += Chr(13) + Chr(13) + "Pictures -- The Picture List is a simple list of file names stored in memory. When an error occurs trying to open a picture, that file name is simply removed from the Picture List and another is selected. A picture can only be viewed once until all pictures have been viewed, or the Picture List is manually refreshed."
@@ -1402,9 +1397,21 @@ Namespace My
 			logtext += Chr(13) + Chr(13) + "App -- Holding the ShiftKey down while the app is starting will put the app into 'Alternate Start Mode'. This means that the Picture & Video Lists will not AutoRefresh on StartUp and Pictures & Videos will not AutoView, regardless of Settings."
 			logtext += Chr(13) + Chr(13) + "Settings Window -- DoubleLeftClick on Pictures Tab will open and close Pictures. DoubleLeftClick on Videos Tab will open and close Videos."
 			logtext += Chr(13) + Chr(13) + "CommandLine -- The CommandLine Structure is '" + My.Application.Info.ProductName + " path', where 'path' is a fully qualified Video File Path. If the Path has any spaces, it MUST be encased in Double Quotation Marks. The CommandLine Structure can be used Manually from the Windows Command Prompt or Automatically through the Windows Explorer Shell. Use OpenWith from the file context menu, or use ContextEdit v1.2 or similar program or hack the Windows Registry manually(Not Recommended) to add context menu items(Shell Commands) to the various Video file types. Using " + My.Application.Info.ProductName + " as an Picture Viewer is NOT supported."
-			If showmaximized Then : ShowInfo("Help & About", logtext, "v" + My.Application.Info.Version.Major.ToString + "." + My.Application.Info.Version.Minor.ToString, My.Resources.Resources.iconInfo, True, True, True)
-			Else : ShowInfo("Help & About", logtext, "v" + My.Application.Info.Version.Major.ToString + "." + My.Application.Info.Version.Minor.ToString, My.Resources.Resources.iconInfo, True, True, False)
-			End If
+			If FrmHelp Is Nothing Then
+				FrmHelp = New Help
+				FrmHelp.Text = My.Application.Info.Title + " Help & About"
+				FrmHelp.Icon = My.Resources.Resources.iconInfo
+				FrmHelp.RTxtBoxMessage.Clear()
+				FrmHelp.RTxtBoxMessage.AppendText(logtext)
+				FrmHelp.RTxtBoxMessage.Select(0, 0)
+				FrmHelp.TxtBoxPostMessage.Text = "v" + My.Application.Info.Version.Major.ToString + "." + My.Application.Info.Version.Minor.ToString
+				FrmHelp.Show()
+			Else
+				FrmHelp.BringToFront()
+                FrmHelp.Focus()
+            End If
+			If showmaximized Then FrmHelp.WindowState = FormWindowState.Maximized
+			FrmHelp.BtnOK.Select()
 		End Sub
 		Friend Sub ShowLog(Optional showmaximized As Boolean = False)
 			If FrmLog Is Nothing Then

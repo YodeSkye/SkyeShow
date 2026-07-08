@@ -7,16 +7,14 @@ Namespace My
 
 		' Declarations
 		Friend CurrentProcess As Diagnostics.Process = Diagnostics.Process.GetCurrentProcess
-		Friend AlternateStart As Boolean = False
 
 		' Events
 		Public Sub New()
 			MyBase.New(ApplicationServices.AuthenticationMode.Windows)
-			If My.Computer.Keyboard.ShiftKeyDown Then AlternateStart = True
-			Me.EnableVisualStyles = True
-			Me.IsSingleInstance = True
-			Me.SaveMySettingsOnExit = False
-			Me.ShutdownStyle = ApplicationServices.ShutdownMode.AfterMainFormCloses
+			EnableVisualStyles = True
+			IsSingleInstance = True
+			SaveMySettingsOnExit = False
+			ShutdownStyle = ApplicationServices.ShutdownMode.AfterMainFormCloses
 			CurrentProcess.PriorityClass = Diagnostics.ProcessPriorityClass.AboveNormal
 		End Sub
 		Protected Overrides Function OnStartup(e As ApplicationServices.StartupEventArgs) As Boolean
@@ -42,8 +40,8 @@ Namespace My
 		End Function
 		Protected Overrides Sub OnCreateMainForm()
 			App.FrmMain = New MainForm
-			Me.MainForm = App.FrmMain
-			My.App.Initialize()
+			MainForm = App.FrmMain
+			App.Initialize()
 		End Sub
 
 	End Class

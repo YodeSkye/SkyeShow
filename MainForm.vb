@@ -328,24 +328,24 @@ Partial Friend Class MainForm
 	End Sub
 	Private Sub FrmShown(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Shown
 		HideForm()
-		Me.Opacity = 1
+		Opacity = 1
 #If DEBUG Then
-		Me.Left = 0
-		Me.btnErrorTest.Visible = True
+		Left = 0
+		btnErrorTest.Visible = True
 		ShowForm()
-		Me.btnClose.Focus()
+		btnClose.Focus()
 #Else
 #End If
-		If My.Application.AlternateStart OrElse Not My.App.RefreshFileListsOnStartUp Then
-			My.App.IsGeneratingFileList = False
-			If Not My.Application.AlternateStart AndAlso Not My.App.WorkSpaceSuspended Then
-				If My.App.PicAutoView And My.App.ImageFiles.Count > 0 Then My.App.ShowImages()
-				If My.App.VidAutoView And My.App.VideoFilesCount > 0 Then My.App.ShowVideos()
+		If App.RefreshFileListsOnStartUp Then
+			App.IsGeneratingFileList = True
+			GetFiles(App.GetFilesType.All)
+		Else
+			App.IsGeneratingFileList = False
+			If Not App.WorkSpaceSuspended Then
+				If App.PicAutoView AndAlso App.ImageFiles.Count > 0 Then App.ShowImages()
+				If App.VidAutoView AndAlso App.VideoFilesCount > 0 Then App.ShowVideos()
 			End If
 			ToggleContextMenu()
-		Else
-			My.App.IsGeneratingFileList = True
-			GetFiles(My.App.GetFilesType.All)
 		End If
 	End Sub
 	Private Sub FrmClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing

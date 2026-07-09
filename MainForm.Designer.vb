@@ -1703,7 +1703,7 @@ Inherits System.Windows.Forms.Form
         btnlvPicFolders.FlatAppearance.BorderSize = 0
         btnlvPicFolders.Image = My.Resources.Resources.imageFolder
         btnlvPicFolders.ImageAlign = ContentAlignment.MiddleLeft
-        btnlvPicFolders.Location = New Point(469, 98)
+        btnlvPicFolders.Location = New Point(488, 98)
         btnlvPicFolders.Name = "btnlvPicFolders"
         btnlvPicFolders.Size = New Size(175, 32)
         btnlvPicFolders.TabIndex = 5
@@ -1720,7 +1720,7 @@ Inherits System.Windows.Forms.Form
         btnRefreshPicList.FlatAppearance.BorderSize = 0
         btnRefreshPicList.Image = My.Resources.Resources.imageRefresh
         btnRefreshPicList.ImageAlign = ContentAlignment.MiddleLeft
-        btnRefreshPicList.Location = New Point(650, 98)
+        btnRefreshPicList.Location = New Point(669, 98)
         btnRefreshPicList.Name = "btnRefreshPicList"
         btnRefreshPicList.Size = New Size(100, 32)
         btnRefreshPicList.TabIndex = 6
@@ -1763,9 +1763,10 @@ Inherits System.Windows.Forms.Form
         PanelApp.Controls.Add(chbxRefreshFileListsOnStartUp)
         PanelApp.Controls.Add(grbxActionOnScreenSave)
         PanelApp.Controls.Add(chbxHideCursorWhenFullscreen)
-        PanelApp.Location = New Point(144, 12)
+        PanelApp.Dock = DockStyle.Fill
+        PanelApp.Location = New Point(138, 0)
         PanelApp.Name = "PanelApp"
-        PanelApp.Size = New Size(760, 477)
+        PanelApp.Size = New Size(779, 534)
         PanelApp.TabIndex = 107
         ' 
         ' PanelPics
@@ -1786,9 +1787,10 @@ Inherits System.Windows.Forms.Form
         PanelPics.Controls.Add(btnRefreshPicList)
         PanelPics.Controls.Add(label4)
         PanelPics.Controls.Add(chbxPicTimerAutoStart)
-        PanelPics.Location = New Point(144, 12)
+        PanelPics.Dock = DockStyle.Fill
+        PanelPics.Location = New Point(138, 0)
         PanelPics.Name = "PanelPics"
-        PanelPics.Size = New Size(760, 477)
+        PanelPics.Size = New Size(779, 534)
         PanelPics.TabIndex = 108
         ' 
         ' grbxHotKeysPics
@@ -1962,7 +1964,7 @@ Inherits System.Windows.Forms.Form
         lvPicFolders.MultiSelect = False
         lvPicFolders.Name = "lvPicFolders"
         lvPicFolders.ShowGroups = False
-        lvPicFolders.Size = New Size(742, 86)
+        lvPicFolders.Size = New Size(761, 86)
         lvPicFolders.TabIndex = 1
         lvPicFolders.TabStop = False
         lvPicFolders.UseCompatibleStateImageBehavior = False
@@ -2692,9 +2694,10 @@ Inherits System.Windows.Forms.Form
         PanelVids.Controls.Add(gpbxVidScale)
         PanelVids.Controls.Add(gpbxVidPlayMode)
         PanelVids.Controls.Add(gpbxVidLocationMode)
-        PanelVids.Location = New Point(144, 12)
+        PanelVids.Dock = DockStyle.Fill
+        PanelVids.Location = New Point(138, 0)
         PanelVids.Name = "PanelVids"
-        PanelVids.Size = New Size(760, 477)
+        PanelVids.Size = New Size(779, 534)
         PanelVids.TabIndex = 109
         ' 
         ' PanelActions

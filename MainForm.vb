@@ -1,6 +1,5 @@
 
 Imports System.ComponentModel
-Imports System.Diagnostics
 Imports SkyeShow.My
 
 Partial Friend Class MainForm
@@ -243,10 +242,8 @@ Partial Friend Class MainForm
 #End Region
 
 	' Declarations
-	<Browsable(False)>
-	<DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)>
+	<Browsable(False), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)>
 	Friend BackgroundworkerGetFiles As New System.ComponentModel.BackgroundWorker
-	Private Const TabTextSpacer As String = "          "
 	Private mMove As Boolean = False
 	Private mOffset, mPosition As Point
 	Private nonNumberEntered As Boolean
@@ -261,33 +258,19 @@ Partial Friend Class MainForm
 	Private GenerateVideoListStartTime As TimeSpan
 	Private GenerateVideoListEndTime As TimeSpan
 	Private ImageActiveOnRefresh, VideoActiveOnRefresh As Boolean
-	Private tabcontrolSettingsImages As ImageList
 
 	' Form Events
 	Friend Sub New()
-		'Initialize Globals
-		'Initialize Locals
-		InitializeComponent() 'Located here because of ImageList initialization requires Me.components
+
+		' Initialize Locals
+		InitializeComponent()
 		folderbrowser.RootFolder = System.Environment.SpecialFolder.Desktop
 		folderbrowser.ShowNewFolderButton = False
 		uiWPFileBrowser.Title = "Select An Image..."
 		uiWPFileBrowser.DefaultExt = "jpg"
 		uiWPFileBrowser.Filter = "Image Files|*.jpg;*.jpeg;*.bmp;*.png;*.tif;*.tiff"
-		Me.tabcontrolSettingsImages = New ImageList(Me.components) With {
-			.ColorDepth = ColorDepth.Depth32Bit,
-			.ImageSize = New Size(16, 16),
-			.TransparentColor = System.Drawing.Color.Transparent}
-		Me.tabcontrolSettingsImages.Images.Add("imageApp", My.Resources.Resources.imageApp)
-		Me.tabcontrolSettingsImages.Images.Add("imageImage", My.Resources.Resources.imageImage)
-		Me.tabcontrolSettingsImages.Images.Add("imageVideo", My.Resources.Resources.imageVideo)
-		Me.tcSettings.ImageList = Me.tabcontrolSettingsImages
-		Me.tpApp.Text = TabTextSpacer + "App" + TabTextSpacer
-		Me.tpApp.ImageKey = "imageApp"
-		Me.tpPics.Text = TabTextSpacer + "Pictures" + TabTextSpacer
-		Me.tpPics.ImageKey = "imageImage"
-		Me.tpVids.Text = TabTextSpacer + "Videos" + TabTextSpacer
-		Me.tpVids.ImageKey = "imageVideo"
-		'Initialize Form
+
+		' Initialize Form
 		Me.Text = "Settings For " + My.Application.Info.Title + "  v" + My.Application.Info.Version.Major.ToString + "." + My.Application.Info.Version.Minor.ToString
 		Me.lvPicFolders.Columns.Add(Nothing, 0, HorizontalAlignment.Center)
 		Me.lvPicFolders.Columns.Add(Nothing, 0, HorizontalAlignment.Center)
@@ -300,6 +283,7 @@ Partial Friend Class MainForm
 		Next
 		AddHandler BackgroundworkerGetFiles.DoWork, AddressOf BackgroundworkerGetFilesDoWork
 		AddHandler BackgroundworkerGetFiles.RunWorkerCompleted, AddressOf BackgroundworkerGetFilesRunWorkerCompleted
+
 	End Sub
 	Protected Overrides Sub WndProc(ByRef m As System.Windows.Forms.Message)
 		Try
@@ -352,20 +336,21 @@ Partial Friend Class MainForm
 		My.App.Finalize()
 	End Sub
     Private Sub FrmMouseDown(ByVal sender As Object, ByVal e As MouseEventArgs) Handles MyBase.MouseDown
-        Static senderControl As Control
-        If e.Button = MouseButtons.Left And WindowState = FormWindowState.Normal Then
+		'Static senderControl As Control
+		If e.Button = MouseButtons.Left And WindowState = FormWindowState.Normal Then
             mMove = True
-            If sender.GetType Is GetType(TabPage) Then
-                senderControl = DirectCast(sender, Control)
-                mOffset = New Point(-e.X - SystemInformation.FrameBorderSize.Width - tcSettings.Left - senderControl.Left, -e.Y - SystemInformation.FrameBorderSize.Height - SystemInformation.CaptionHeight - tcSettings.Top - senderControl.Top)
-                senderControl = Nothing
-                'ElseIf sender.GetType Is GetType(Panel) Then
-                '	senderControl = DirectCast(sender, Control)
-                '	mOffset = New Point(-e.X - 1 - senderControl.Left - Me.tpWP.Left - Me.tcSettings.Left - SystemInformation.FrameBorderSize.Width, -e.Y - 1 - senderControl.Top - Me.tpWP.Top - Me.tcSettings.Top - SystemInformation.FrameBorderSize.Height - SystemInformation.CaptionHeight)
-                '	senderControl = Nothing
-            Else : mOffset = New Point(-e.X - SystemInformation.FrameBorderSize.Width, -e.Y - SystemInformation.FrameBorderSize.Height - SystemInformation.CaptionHeight)
-            End If
-        End If
+			'If sender.GetType Is GetType(TabPage) Then
+			'	senderControl = DirectCast(sender, Control)
+			'	mOffset = New Point(-e.X - SystemInformation.FrameBorderSize.Width - tcSettings.Left - senderControl.Left, -e.Y - SystemInformation.FrameBorderSize.Height - SystemInformation.CaptionHeight - tcSettings.Top - senderControl.Top)
+			'	senderControl = Nothing
+			'	'ElseIf sender.GetType Is GetType(Panel) Then
+			'	'	senderControl = DirectCast(sender, Control)
+			'	'	mOffset = New Point(-e.X - 1 - senderControl.Left - Me.tpWP.Left - Me.tcSettings.Left - SystemInformation.FrameBorderSize.Width, -e.Y - 1 - senderControl.Top - Me.tpWP.Top - Me.tcSettings.Top - SystemInformation.FrameBorderSize.Height - SystemInformation.CaptionHeight)
+			'	'	senderControl = Nothing
+			'Else : mOffset = New Point(-e.X - SystemInformation.FrameBorderSize.Width, -e.Y - SystemInformation.FrameBorderSize.Height - SystemInformation.CaptionHeight)
+			'End If
+			mOffset = New Point(-e.X - SystemInformation.FrameBorderSize.Width, -e.Y - SystemInformation.FrameBorderSize.Height - SystemInformation.CaptionHeight)
+		End If
     End Sub
     Private Sub FrmMouseMove(ByVal sender As Object, ByVal e As MouseEventArgs) Handles MyBase.MouseMove
         If mMove Then
@@ -401,28 +386,7 @@ Partial Friend Class MainForm
 				End If
 		End Select
 	End Sub
-    Private Sub TabcontrolSettingsMouseDoubleClick(sender As Object, e As MouseEventArgs)
-        On Error Resume Next
-        If e.Button = MouseButtons.Left Then
-            Select Case tcSettings.SelectedTab.Name
-                Case tpPics.Name
-                    If cmiViewPics.Enabled Then
-                        If FrmPicsVisible Then : frmPics.Close
-                        Else : ShowImages
-                        End If
-                        ToggleContextMenu
-                    End If
-                Case tpVids.Name
-                    If cmiPlayVids.Enabled Then
-                        If FrmVidsVisible Then : FrmVids.Close
-                        Else : ShowVideos
-                        End If
-                        ToggleContextMenu
-                    End If
-            End Select
-        End If
-    End Sub
-    Private Sub CMSkyeShowOpening(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmSkyeShow.Opening
+	Private Sub CMSkyeShowOpening(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmSkyeShow.Opening
 		If My.App.ErrorAlert Then e.Cancel = True
 	End Sub
 	Private Sub CMListOpening(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmList.Opening
@@ -1392,9 +1356,6 @@ Partial Friend Class MainForm
 				If Me.WindowState = FormWindowState.Minimized Then Me.WindowState = FormWindowState.Normal
 				HideForm()
 			Case False
-				If My.App.FrmPicsVisible And Not My.App.FrmVidsVisible Then : Me.tcSettings.SelectedTab = Me.tpPics
-				ElseIf My.App.FrmVidsVisible And Not My.App.FrmPicsVisible Then : Me.tcSettings.SelectedTab = Me.tpVids
-				End If
 				Me.Show()
 				Me.Activate()
 				Me.cmiSettings.Checked = True

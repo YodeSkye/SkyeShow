@@ -148,92 +148,95 @@ Inherits System.Windows.Forms.Form
         btnErrorTest = New Button()
         tipInfo = New ToolTip(components)
         btnInfo = New Button()
+        btnlvPicFolders = New Button()
+        btnRefreshPicList = New Button()
+        radbtnPicPlayModeLinearWithRandomStart = New RadioButton()
         btnLog = New Button()
         PanelApp = New Panel()
         PanelPics = New Panel()
-        PanelVids = New Panel()
-        lvPicFolders = New ListView()
-        lblPicFileCount = New Label()
-        chbxPicTimerCountdown = New CheckBox()
-        chbxPicAutoView = New CheckBox()
-        chbxPicLockFullScreen = New CheckBox()
-        btnlvPicFolders = New Button()
-        btnRefreshPicList = New Button()
-        chbxPicTimerAutoStart = New CheckBox()
-        label4 = New Label()
-        radbtnPicPlayModeLinear = New RadioButton()
-        radbtnPicPlayModeRandom = New RadioButton()
-        radbtnPicPlayModeLinearWithRandomStart = New RadioButton()
-        gpbxPicPlayMode = New GroupBox()
-        btnPicTimerEnabled = New Button()
-        radbtnPicLocationModeTopLeft = New RadioButton()
-        radbtnPicLocationModeTopCenterLeftInside = New RadioButton()
-        radbtnPicLocationModeRightCenter = New RadioButton()
-        radbtnPicLocationModeTopCenterRight = New RadioButton()
-        radbtnPicLocationModeTopRight = New RadioButton()
-        radbtnPicLocationModeTopCenter = New RadioButton()
-        radbtnPicLocationModeTopCenterLeft = New RadioButton()
-        radbtnPicLocationModeTopCenterInside = New RadioButton()
-        radbtnPicLocationModeRightCenterTopInside = New RadioButton()
-        radbtnPicLocationModeTopCenterRightInside = New RadioButton()
-        radbtnPicLocationModeLeftCenter = New RadioButton()
-        radbtnPicLocationModeRightCenterBottomInside = New RadioButton()
-        radbtnPicLocationModeBottomCenter = New RadioButton()
-        radbtnPicLocationModeBottomCenterRightInside = New RadioButton()
-        radbtnPicLocationModeLeftCenterBottom = New RadioButton()
-        radbtnPicLocationModeBottomRight = New RadioButton()
-        radbtnPicLocationModeBottomCenterLeft = New RadioButton()
-        radbtnPicLocationModeManual = New RadioButton()
-        radbtnPicLocationModeBottomCenterRight = New RadioButton()
-        radbtnPicLocationModeRightCenterBottom = New RadioButton()
-        radbtnPicLocationModeRightCenterTop = New RadioButton()
-        radbtnPicLocationModeBottomCenterLeftInside = New RadioButton()
-        radbtnPicLocationModeRightCenterInside = New RadioButton()
-        radbtnPicLocationModeBottomCenterInside = New RadioButton()
-        radbtnPicLocationModeLeftCenterTopInside = New RadioButton()
-        radbtnPicLocationModeLeftCenterInside = New RadioButton()
-        radbtnPicLocationModeLeftCenterBottomInside = New RadioButton()
-        radbtnPicLocationModeBottomLeft = New RadioButton()
-        radbtnPicLocationModeLeftCenterTop = New RadioButton()
-        radbtnPicLocationModeTopRightInside = New RadioButton()
-        radbtnPicLocationModeBottomRightInside = New RadioButton()
-        radbtnPicLocationModeBottomLeftInside = New RadioButton()
-        radbtnPicLocationModeTopLeftInside = New RadioButton()
-        gpbxPicLocationMode = New GroupBox()
-        radbtnPicJustifyRight = New RadioButton()
-        radbtnPicJustifyLeft = New RadioButton()
-        radbtnPicJustifyCenter = New RadioButton()
-        gpbxPicJustify = New GroupBox()
-        txbxPicTimerInterval = New TextBox()
-        radbtnPicTimerCountdownLocationModeTopLeft = New RadioButton()
-        radbtnPicTimerCountdownLocationModeRightCenter = New RadioButton()
-        radbtnPicTimerCountdownLocationModeTopCenterRight = New RadioButton()
-        radbtnPicTimerCountdownLocationModeTopRight = New RadioButton()
-        radbtnPicTimerCountdownLocationModeTopCenter = New RadioButton()
-        radbtnPicTimerCountdownLocationModeTopCenterLeft = New RadioButton()
-        radbtnPicTimerCountdownLocationModeLeftCenter = New RadioButton()
-        radbtnPicTimerCountdownLocationModeBottomCenter = New RadioButton()
-        radbtnPicTimerCountdownLocationModeLeftCenterBottom = New RadioButton()
-        radbtnPicTimerCountdownLocationModeBottomRight = New RadioButton()
-        radbtnPicTimerCountdownLocationModeBottomCenterLeft = New RadioButton()
-        radbtnPicTimerCountdownLocationModeBottomCenterRight = New RadioButton()
-        radbtnPicTimerCountdownLocationModeRightCenterBottom = New RadioButton()
-        radbtnPicTimerCountdownLocationModeRightCenterTop = New RadioButton()
-        radbtnPicTimerCountdownLocationModeBottomLeft = New RadioButton()
-        radbtnPicTimerCountdownLocationModeLeftCenterTop = New RadioButton()
-        gpbxPicTimerCountdownLocationMode = New GroupBox()
-        lblHotKeyPicShowFileInfo = New Label()
-        lblHotKeyPicToggleFullScreen = New Label()
-        lblHotKeyPicToggle = New Label()
-        btnHotKeyPicShowFileInfoDisable = New Button()
-        txbxHotKeyPicShowFileInfo = New TextBox()
-        btnHotKeysPicsSet = New Button()
-        btnHotKeysPicsUndo = New Button()
-        btnHotKeyPicToggleFullScreenDisable = New Button()
-        txbxHotKeyPicToggleFullScreen = New TextBox()
-        btnHotKeyPicToggleDisable = New Button()
-        txbxHotKeyPicToggle = New TextBox()
         grbxHotKeysPics = New GroupBox()
+        txbxHotKeyPicToggle = New TextBox()
+        btnHotKeyPicToggleDisable = New Button()
+        txbxHotKeyPicToggleFullScreen = New TextBox()
+        btnHotKeyPicToggleFullScreenDisable = New Button()
+        btnHotKeysPicsUndo = New Button()
+        btnHotKeysPicsSet = New Button()
+        txbxHotKeyPicShowFileInfo = New TextBox()
+        btnHotKeyPicShowFileInfoDisable = New Button()
+        lblHotKeyPicToggle = New Label()
+        lblHotKeyPicToggleFullScreen = New Label()
+        lblHotKeyPicShowFileInfo = New Label()
+        lvPicFolders = New ListView()
+        gpbxPicTimerCountdownLocationMode = New GroupBox()
+        radbtnPicTimerCountdownLocationModeLeftCenterTop = New RadioButton()
+        radbtnPicTimerCountdownLocationModeBottomLeft = New RadioButton()
+        radbtnPicTimerCountdownLocationModeRightCenterTop = New RadioButton()
+        radbtnPicTimerCountdownLocationModeRightCenterBottom = New RadioButton()
+        radbtnPicTimerCountdownLocationModeBottomCenterRight = New RadioButton()
+        radbtnPicTimerCountdownLocationModeBottomCenterLeft = New RadioButton()
+        radbtnPicTimerCountdownLocationModeBottomRight = New RadioButton()
+        radbtnPicTimerCountdownLocationModeLeftCenterBottom = New RadioButton()
+        radbtnPicTimerCountdownLocationModeBottomCenter = New RadioButton()
+        radbtnPicTimerCountdownLocationModeLeftCenter = New RadioButton()
+        radbtnPicTimerCountdownLocationModeTopCenterLeft = New RadioButton()
+        radbtnPicTimerCountdownLocationModeTopCenter = New RadioButton()
+        radbtnPicTimerCountdownLocationModeTopRight = New RadioButton()
+        radbtnPicTimerCountdownLocationModeTopCenterRight = New RadioButton()
+        radbtnPicTimerCountdownLocationModeRightCenter = New RadioButton()
+        radbtnPicTimerCountdownLocationModeTopLeft = New RadioButton()
+        chbxPicTimerCountdown = New CheckBox()
+        txbxPicTimerInterval = New TextBox()
+        chbxPicAutoView = New CheckBox()
+        gpbxPicJustify = New GroupBox()
+        radbtnPicJustifyCenter = New RadioButton()
+        radbtnPicJustifyLeft = New RadioButton()
+        radbtnPicJustifyRight = New RadioButton()
+        chbxPicLockFullScreen = New CheckBox()
+        gpbxPicLocationMode = New GroupBox()
+        radbtnPicLocationModeTopLeftInside = New RadioButton()
+        radbtnPicLocationModeBottomLeftInside = New RadioButton()
+        radbtnPicLocationModeBottomRightInside = New RadioButton()
+        radbtnPicLocationModeTopRightInside = New RadioButton()
+        radbtnPicLocationModeLeftCenterTop = New RadioButton()
+        radbtnPicLocationModeBottomLeft = New RadioButton()
+        radbtnPicLocationModeLeftCenterBottomInside = New RadioButton()
+        radbtnPicLocationModeLeftCenterInside = New RadioButton()
+        radbtnPicLocationModeLeftCenterTopInside = New RadioButton()
+        radbtnPicLocationModeBottomCenterInside = New RadioButton()
+        radbtnPicLocationModeRightCenterInside = New RadioButton()
+        radbtnPicLocationModeBottomCenterLeftInside = New RadioButton()
+        radbtnPicLocationModeRightCenterTop = New RadioButton()
+        radbtnPicLocationModeRightCenterBottom = New RadioButton()
+        radbtnPicLocationModeBottomCenterRight = New RadioButton()
+        radbtnPicLocationModeManual = New RadioButton()
+        radbtnPicLocationModeBottomCenterLeft = New RadioButton()
+        radbtnPicLocationModeBottomRight = New RadioButton()
+        radbtnPicLocationModeLeftCenterBottom = New RadioButton()
+        radbtnPicLocationModeBottomCenterRightInside = New RadioButton()
+        radbtnPicLocationModeBottomCenter = New RadioButton()
+        radbtnPicLocationModeRightCenterBottomInside = New RadioButton()
+        radbtnPicLocationModeLeftCenter = New RadioButton()
+        radbtnPicLocationModeTopCenterRightInside = New RadioButton()
+        radbtnPicLocationModeRightCenterTopInside = New RadioButton()
+        radbtnPicLocationModeTopCenterInside = New RadioButton()
+        radbtnPicLocationModeTopCenterLeft = New RadioButton()
+        radbtnPicLocationModeTopCenter = New RadioButton()
+        radbtnPicLocationModeTopRight = New RadioButton()
+        radbtnPicLocationModeTopCenterRight = New RadioButton()
+        radbtnPicLocationModeRightCenter = New RadioButton()
+        radbtnPicLocationModeTopCenterLeftInside = New RadioButton()
+        radbtnPicLocationModeTopLeft = New RadioButton()
+        lblPicFileCount = New Label()
+        btnPicTimerEnabled = New Button()
+        gpbxPicPlayMode = New GroupBox()
+        radbtnPicPlayModeRandom = New RadioButton()
+        radbtnPicPlayModeLinear = New RadioButton()
+        label4 = New Label()
+        chbxPicTimerAutoStart = New CheckBox()
+        PanelVids = New Panel()
+        PanelActions = New Panel()
+        PanelPageSelector = New Panel()
+        LVPageSelector = New Skye.UI.ListViewEX()
         cmSkyeShow.SuspendLayout()
         cmList.SuspendLayout()
         grbxActionOnScreenSave.SuspendLayout()
@@ -244,12 +247,14 @@ Inherits System.Windows.Forms.Form
         grbxVidTimeLocationMode.SuspendLayout()
         PanelApp.SuspendLayout()
         PanelPics.SuspendLayout()
-        PanelVids.SuspendLayout()
-        gpbxPicPlayMode.SuspendLayout()
-        gpbxPicLocationMode.SuspendLayout()
-        gpbxPicJustify.SuspendLayout()
-        gpbxPicTimerCountdownLocationMode.SuspendLayout()
         grbxHotKeysPics.SuspendLayout()
+        gpbxPicTimerCountdownLocationMode.SuspendLayout()
+        gpbxPicJustify.SuspendLayout()
+        gpbxPicLocationMode.SuspendLayout()
+        gpbxPicPlayMode.SuspendLayout()
+        PanelVids.SuspendLayout()
+        PanelActions.SuspendLayout()
+        PanelPageSelector.SuspendLayout()
         SuspendLayout()
         ' 
         ' btnClose
@@ -258,7 +263,7 @@ Inherits System.Windows.Forms.Form
         btnClose.Font = New Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         btnClose.Image = My.Resources.Resources.imageClose
         btnClose.ImageAlign = ContentAlignment.MiddleLeft
-        btnClose.Location = New Point(574, 506)
+        btnClose.Location = New Point(577, 28)
         btnClose.Name = "btnClose"
         btnClose.Size = New Size(198, 46)
         btnClose.TabIndex = 0
@@ -408,7 +413,7 @@ Inherits System.Windows.Forms.Form
         txbxInsideLocationOffset.Location = New Point(34, 336)
         txbxInsideLocationOffset.MaxLength = 4
         txbxInsideLocationOffset.Name = "txbxInsideLocationOffset"
-        txbxInsideLocationOffset.Size = New Size(80, 25)
+        txbxInsideLocationOffset.Size = New Size(80, 29)
         txbxInsideLocationOffset.TabIndex = 70
         txbxInsideLocationOffset.TextAlign = HorizontalAlignment.Center
         ' 
@@ -546,7 +551,7 @@ Inherits System.Windows.Forms.Form
         txbxHotKeyVidToggle.Location = New Point(8, 39)
         txbxHotKeyVidToggle.Name = "txbxHotKeyVidToggle"
         txbxHotKeyVidToggle.ShortcutsEnabled = False
-        txbxHotKeyVidToggle.Size = New Size(151, 25)
+        txbxHotKeyVidToggle.Size = New Size(151, 29)
         txbxHotKeyVidToggle.TabIndex = 45
         txbxHotKeyVidToggle.TabStop = False
         txbxHotKeyVidToggle.TextAlign = HorizontalAlignment.Center
@@ -571,7 +576,7 @@ Inherits System.Windows.Forms.Form
         txbxHotKeyVidToggleFullScreen.Location = New Point(8, 82)
         txbxHotKeyVidToggleFullScreen.Name = "txbxHotKeyVidToggleFullScreen"
         txbxHotKeyVidToggleFullScreen.ShortcutsEnabled = False
-        txbxHotKeyVidToggleFullScreen.Size = New Size(151, 25)
+        txbxHotKeyVidToggleFullScreen.Size = New Size(151, 29)
         txbxHotKeyVidToggleFullScreen.TabIndex = 42
         txbxHotKeyVidToggleFullScreen.TabStop = False
         txbxHotKeyVidToggleFullScreen.TextAlign = HorizontalAlignment.Center
@@ -623,7 +628,7 @@ Inherits System.Windows.Forms.Form
         txbxHotKeyVidShowFileInfo.Location = New Point(8, 125)
         txbxHotKeyVidShowFileInfo.Name = "txbxHotKeyVidShowFileInfo"
         txbxHotKeyVidShowFileInfo.ShortcutsEnabled = False
-        txbxHotKeyVidShowFileInfo.Size = New Size(151, 25)
+        txbxHotKeyVidShowFileInfo.Size = New Size(151, 29)
         txbxHotKeyVidShowFileInfo.TabIndex = 10
         txbxHotKeyVidShowFileInfo.TabStop = False
         txbxHotKeyVidShowFileInfo.TextAlign = HorizontalAlignment.Center
@@ -684,7 +689,7 @@ Inherits System.Windows.Forms.Form
         cobxVidTimeDisplayMode.FormattingEnabled = True
         cobxVidTimeDisplayMode.Location = New Point(261, 281)
         cobxVidTimeDisplayMode.Name = "cobxVidTimeDisplayMode"
-        cobxVidTimeDisplayMode.Size = New Size(156, 25)
+        cobxVidTimeDisplayMode.Size = New Size(156, 29)
         cobxVidTimeDisplayMode.TabIndex = 105
         ' 
         ' chbxVidLockFullScreen
@@ -1474,7 +1479,7 @@ Inherits System.Windows.Forms.Form
         btnSaveSettings.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         btnSaveSettings.Image = My.Resources.Resources.imageSave
         btnSaveSettings.ImageAlign = ContentAlignment.TopLeft
-        btnSaveSettings.Location = New Point(12, 506)
+        btnSaveSettings.Location = New Point(15, 28)
         btnSaveSettings.Name = "btnSaveSettings"
         btnSaveSettings.Size = New Size(62, 46)
         btnSaveSettings.TabIndex = 100
@@ -1488,7 +1493,7 @@ Inherits System.Windows.Forms.Form
         btnRestoreSettings.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         btnRestoreSettings.Image = My.Resources.Resources.imageRestore
         btnRestoreSettings.ImageAlign = ContentAlignment.TopLeft
-        btnRestoreSettings.Location = New Point(73, 506)
+        btnRestoreSettings.Location = New Point(76, 28)
         btnRestoreSettings.Name = "btnRestoreSettings"
         btnRestoreSettings.Size = New Size(62, 46)
         btnRestoreSettings.TabIndex = 101
@@ -1661,7 +1666,7 @@ Inherits System.Windows.Forms.Form
         btnErrorTest.FlatAppearance.MouseDownBackColor = Color.Transparent
         btnErrorTest.FlatAppearance.MouseOverBackColor = Color.Transparent
         btnErrorTest.Image = My.Resources.Resources.imageError
-        btnErrorTest.Location = New Point(544, 517)
+        btnErrorTest.Location = New Point(547, 39)
         btnErrorTest.Name = "btnErrorTest"
         btnErrorTest.Size = New Size(24, 24)
         btnErrorTest.TabIndex = 0
@@ -1683,7 +1688,7 @@ Inherits System.Windows.Forms.Form
         btnInfo.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         btnInfo.Image = My.Resources.Resources.ImageInfo
         btnInfo.ImageAlign = ContentAlignment.TopLeft
-        btnInfo.Location = New Point(141, 506)
+        btnInfo.Location = New Point(144, 28)
         btnInfo.Name = "btnInfo"
         btnInfo.Size = New Size(62, 46)
         btnInfo.TabIndex = 105
@@ -1691,132 +1696,6 @@ Inherits System.Windows.Forms.Form
         btnInfo.TextAlign = ContentAlignment.BottomRight
         tipInfo.SetToolTip(btnInfo, "Help & About")
         btnInfo.UseVisualStyleBackColor = True
-        ' 
-        ' btnLog
-        ' 
-        btnLog.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        btnLog.Image = My.Resources.Resources.imageLog
-        btnLog.ImageAlign = ContentAlignment.TopLeft
-        btnLog.Location = New Point(202, 506)
-        btnLog.Name = "btnLog"
-        btnLog.Size = New Size(62, 46)
-        btnLog.TabIndex = 106
-        btnLog.Text = "Log"
-        btnLog.TextAlign = ContentAlignment.BottomRight
-        btnLog.UseVisualStyleBackColor = True
-        ' 
-        ' PanelApp
-        ' 
-        PanelApp.Controls.Add(chbxHotKeys)
-        PanelApp.Controls.Add(chbxSaveFileLists)
-        PanelApp.Controls.Add(txbxInsideLocationOffset)
-        PanelApp.Controls.Add(chbxLoadFileListsInBackground)
-        PanelApp.Controls.Add(lblInsideLocationOffset)
-        PanelApp.Controls.Add(chbxRefreshFileListsOnStartUp)
-        PanelApp.Controls.Add(grbxActionOnScreenSave)
-        PanelApp.Controls.Add(chbxHideCursorWhenFullscreen)
-        PanelApp.Location = New Point(772, 12)
-        PanelApp.Name = "PanelApp"
-        PanelApp.Size = New Size(760, 477)
-        PanelApp.TabIndex = 107
-        ' 
-        ' PanelPics
-        ' 
-        PanelPics.Controls.Add(grbxHotKeysPics)
-        PanelPics.Controls.Add(lvPicFolders)
-        PanelPics.Controls.Add(gpbxPicTimerCountdownLocationMode)
-        PanelPics.Controls.Add(chbxPicTimerCountdown)
-        PanelPics.Controls.Add(txbxPicTimerInterval)
-        PanelPics.Controls.Add(chbxPicAutoView)
-        PanelPics.Controls.Add(gpbxPicJustify)
-        PanelPics.Controls.Add(chbxPicLockFullScreen)
-        PanelPics.Controls.Add(gpbxPicLocationMode)
-        PanelPics.Controls.Add(lblPicFileCount)
-        PanelPics.Controls.Add(btnPicTimerEnabled)
-        PanelPics.Controls.Add(btnlvPicFolders)
-        PanelPics.Controls.Add(gpbxPicPlayMode)
-        PanelPics.Controls.Add(btnRefreshPicList)
-        PanelPics.Controls.Add(label4)
-        PanelPics.Controls.Add(chbxPicTimerAutoStart)
-        PanelPics.Location = New Point(772, 12)
-        PanelPics.Name = "PanelPics"
-        PanelPics.Size = New Size(760, 477)
-        PanelPics.TabIndex = 108
-        ' 
-        ' PanelVids
-        ' 
-        PanelVids.Controls.Add(chbkVidMute)
-        PanelVids.Controls.Add(lvVidFolders)
-        PanelVids.Controls.Add(grbxHotKeysVids)
-        PanelVids.Controls.Add(grbxVidTimeLocationMode)
-        PanelVids.Controls.Add(cobxVidTimeDisplayMode)
-        PanelVids.Controls.Add(btnRefreshVidList)
-        PanelVids.Controls.Add(btnlvVidFolders)
-        PanelVids.Controls.Add(chbxVidLockFullScreen)
-        PanelVids.Controls.Add(lblVidFileCount)
-        PanelVids.Controls.Add(chbxVidAutoView)
-        PanelVids.Controls.Add(chbxVidTime)
-        PanelVids.Controls.Add(gpbxVidScale)
-        PanelVids.Controls.Add(gpbxVidPlayMode)
-        PanelVids.Controls.Add(gpbxVidLocationMode)
-        PanelVids.Location = New Point(772, 12)
-        PanelVids.Name = "PanelVids"
-        PanelVids.Size = New Size(760, 477)
-        PanelVids.TabIndex = 109
-        ' 
-        ' lvPicFolders
-        ' 
-        lvPicFolders.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        lvPicFolders.BorderStyle = BorderStyle.FixedSingle
-        lvPicFolders.ContextMenuStrip = cmList
-        lvPicFolders.FullRowSelect = True
-        lvPicFolders.HeaderStyle = ColumnHeaderStyle.None
-        lvPicFolders.LabelWrap = False
-        lvPicFolders.Location = New Point(7, 14)
-        lvPicFolders.MultiSelect = False
-        lvPicFolders.Name = "lvPicFolders"
-        lvPicFolders.ShowGroups = False
-        lvPicFolders.Size = New Size(742, 86)
-        lvPicFolders.TabIndex = 1
-        lvPicFolders.TabStop = False
-        lvPicFolders.UseCompatibleStateImageBehavior = False
-        lvPicFolders.View = View.Details
-        ' 
-        ' lblPicFileCount
-        ' 
-        lblPicFileCount.Location = New Point(8, 100)
-        lblPicFileCount.Name = "lblPicFileCount"
-        lblPicFileCount.Size = New Size(254, 22)
-        lblPicFileCount.TabIndex = 0
-        ' 
-        ' chbxPicTimerCountdown
-        ' 
-        chbxPicTimerCountdown.Location = New Point(553, 291)
-        chbxPicTimerCountdown.Name = "chbxPicTimerCountdown"
-        chbxPicTimerCountdown.Size = New Size(165, 21)
-        chbxPicTimerCountdown.TabIndex = 75
-        chbxPicTimerCountdown.Text = "Show Timer Countdown"
-        chbxPicTimerCountdown.UseVisualStyleBackColor = True
-        ' 
-        ' chbxPicAutoView
-        ' 
-        chbxPicAutoView.CheckAlign = ContentAlignment.MiddleRight
-        chbxPicAutoView.Location = New Point(668, 136)
-        chbxPicAutoView.Name = "chbxPicAutoView"
-        chbxPicAutoView.Size = New Size(81, 22)
-        chbxPicAutoView.TabIndex = 30
-        chbxPicAutoView.Text = "AutoView"
-        chbxPicAutoView.UseVisualStyleBackColor = True
-        ' 
-        ' chbxPicLockFullScreen
-        ' 
-        chbxPicLockFullScreen.CheckAlign = ContentAlignment.MiddleRight
-        chbxPicLockFullScreen.Location = New Point(266, 183)
-        chbxPicLockFullScreen.Name = "chbxPicLockFullScreen"
-        chbxPicLockFullScreen.Size = New Size(119, 22)
-        chbxPicLockFullScreen.TabIndex = 25
-        chbxPicLockFullScreen.Text = "Lock Full Screen"
-        chbxPicLockFullScreen.UseVisualStyleBackColor = True
         ' 
         ' btnlvPicFolders
         ' 
@@ -1851,44 +1730,6 @@ Inherits System.Windows.Forms.Form
         tipInfo.SetToolTip(btnRefreshPicList, "LeftClick = Refresh Picture List (Ctrl = Reset)" & vbCrLf & "RightClick = Refresh All File Lists (Ctrl = Reset)")
         btnRefreshPicList.UseVisualStyleBackColor = True
         ' 
-        ' chbxPicTimerAutoStart
-        ' 
-        chbxPicTimerAutoStart.Location = New Point(639, 218)
-        chbxPicTimerAutoStart.Margin = New Padding(3, 4, 3, 4)
-        chbxPicTimerAutoStart.Name = "chbxPicTimerAutoStart"
-        chbxPicTimerAutoStart.Size = New Size(118, 22)
-        chbxPicTimerAutoStart.TabIndex = 65
-        chbxPicTimerAutoStart.Text = "AutoStart Timer"
-        chbxPicTimerAutoStart.TextAlign = ContentAlignment.MiddleCenter
-        chbxPicTimerAutoStart.UseVisualStyleBackColor = True
-        ' 
-        ' label4
-        ' 
-        label4.Location = New Point(554, 245)
-        label4.Name = "label4"
-        label4.Size = New Size(80, 22)
-        label4.TabIndex = 21
-        label4.Text = "Interval (s)"
-        label4.TextAlign = ContentAlignment.TopCenter
-        ' 
-        ' radbtnPicPlayModeLinear
-        ' 
-        radbtnPicPlayModeLinear.Location = New Point(7, 19)
-        radbtnPicPlayModeLinear.Name = "radbtnPicPlayModeLinear"
-        radbtnPicPlayModeLinear.Size = New Size(61, 24)
-        radbtnPicPlayModeLinear.TabIndex = 0
-        radbtnPicPlayModeLinear.Text = "Linear"
-        radbtnPicPlayModeLinear.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicPlayModeRandom
-        ' 
-        radbtnPicPlayModeRandom.Location = New Point(172, 19)
-        radbtnPicPlayModeRandom.Name = "radbtnPicPlayModeRandom"
-        radbtnPicPlayModeRandom.Size = New Size(75, 24)
-        radbtnPicPlayModeRandom.TabIndex = 2
-        radbtnPicPlayModeRandom.Text = "Random"
-        radbtnPicPlayModeRandom.UseVisualStyleBackColor = True
-        ' 
         ' radbtnPicPlayModeLinearWithRandomStart
         ' 
         radbtnPicPlayModeLinearWithRandomStart.Location = New Point(84, 19)
@@ -1899,360 +1740,499 @@ Inherits System.Windows.Forms.Form
         tipInfo.SetToolTip(radbtnPicPlayModeLinearWithRandomStart, "Linear With Random Start")
         radbtnPicPlayModeLinearWithRandomStart.UseVisualStyleBackColor = True
         ' 
-        ' gpbxPicPlayMode
-        ' 
-        gpbxPicPlayMode.Controls.Add(radbtnPicPlayModeLinearWithRandomStart)
-        gpbxPicPlayMode.Controls.Add(radbtnPicPlayModeRandom)
-        gpbxPicPlayMode.Controls.Add(radbtnPicPlayModeLinear)
-        gpbxPicPlayMode.Location = New Point(7, 140)
-        gpbxPicPlayMode.Name = "gpbxPicPlayMode"
-        gpbxPicPlayMode.Size = New Size(248, 47)
-        gpbxPicPlayMode.TabIndex = 10
-        gpbxPicPlayMode.TabStop = False
-        gpbxPicPlayMode.Text = "Picture Advance Mode"
-        ' 
-        ' btnPicTimerEnabled
-        ' 
-        btnPicTimerEnabled.FlatStyle = FlatStyle.Flat
-        btnPicTimerEnabled.Location = New Point(553, 213)
-        btnPicTimerEnabled.Margin = New Padding(3, 4, 3, 4)
-        btnPicTimerEnabled.Name = "btnPicTimerEnabled"
-        btnPicTimerEnabled.Size = New Size(80, 31)
-        btnPicTimerEnabled.TabIndex = 60
-        btnPicTimerEnabled.TabStop = False
-        btnPicTimerEnabled.Text = "Timer"
-        btnPicTimerEnabled.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeTopLeft
-        ' 
-        radbtnPicLocationModeTopLeft.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeTopLeft.Location = New Point(6, 20)
-        radbtnPicLocationModeTopLeft.Name = "radbtnPicLocationModeTopLeft"
-        radbtnPicLocationModeTopLeft.Size = New Size(16, 16)
-        radbtnPicLocationModeTopLeft.TabIndex = 1
-        radbtnPicLocationModeTopLeft.Text = "  "
-        radbtnPicLocationModeTopLeft.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeTopCenterLeftInside
-        ' 
-        radbtnPicLocationModeTopCenterLeftInside.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeTopCenterLeftInside.Location = New Point(62, 48)
-        radbtnPicLocationModeTopCenterLeftInside.Name = "radbtnPicLocationModeTopCenterLeftInside"
-        radbtnPicLocationModeTopCenterLeftInside.Size = New Size(16, 16)
-        radbtnPicLocationModeTopCenterLeftInside.TabIndex = 81
-        radbtnPicLocationModeTopCenterLeftInside.Text = "  "
-        radbtnPicLocationModeTopCenterLeftInside.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeRightCenter
-        ' 
-        radbtnPicLocationModeRightCenter.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeRightCenter.Location = New Point(174, 104)
-        radbtnPicLocationModeRightCenter.Name = "radbtnPicLocationModeRightCenter"
-        radbtnPicLocationModeRightCenter.Size = New Size(16, 16)
-        radbtnPicLocationModeRightCenter.TabIndex = 7
-        radbtnPicLocationModeRightCenter.Text = "  "
-        radbtnPicLocationModeRightCenter.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeTopCenterRight
-        ' 
-        radbtnPicLocationModeTopCenterRight.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeTopCenterRight.Location = New Point(132, 20)
-        radbtnPicLocationModeTopCenterRight.Name = "radbtnPicLocationModeTopCenterRight"
-        radbtnPicLocationModeTopCenterRight.Size = New Size(16, 16)
-        radbtnPicLocationModeTopCenterRight.TabIndex = 4
-        radbtnPicLocationModeTopCenterRight.Text = "  "
-        radbtnPicLocationModeTopCenterRight.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeTopRight
-        ' 
-        radbtnPicLocationModeTopRight.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeTopRight.Location = New Point(174, 20)
-        radbtnPicLocationModeTopRight.Name = "radbtnPicLocationModeTopRight"
-        radbtnPicLocationModeTopRight.Size = New Size(16, 16)
-        radbtnPicLocationModeTopRight.TabIndex = 5
-        radbtnPicLocationModeTopRight.Text = "  "
-        radbtnPicLocationModeTopRight.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeTopCenter
-        ' 
-        radbtnPicLocationModeTopCenter.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeTopCenter.Location = New Point(90, 20)
-        radbtnPicLocationModeTopCenter.Name = "radbtnPicLocationModeTopCenter"
-        radbtnPicLocationModeTopCenter.Size = New Size(16, 16)
-        radbtnPicLocationModeTopCenter.TabIndex = 3
-        radbtnPicLocationModeTopCenter.Text = "  "
-        radbtnPicLocationModeTopCenter.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeTopCenterLeft
-        ' 
-        radbtnPicLocationModeTopCenterLeft.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeTopCenterLeft.Location = New Point(48, 20)
-        radbtnPicLocationModeTopCenterLeft.Name = "radbtnPicLocationModeTopCenterLeft"
-        radbtnPicLocationModeTopCenterLeft.Size = New Size(16, 16)
-        radbtnPicLocationModeTopCenterLeft.TabIndex = 2
-        radbtnPicLocationModeTopCenterLeft.Text = "  "
-        radbtnPicLocationModeTopCenterLeft.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeTopCenterInside
-        ' 
-        radbtnPicLocationModeTopCenterInside.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeTopCenterInside.Location = New Point(90, 48)
-        radbtnPicLocationModeTopCenterInside.Name = "radbtnPicLocationModeTopCenterInside"
-        radbtnPicLocationModeTopCenterInside.Size = New Size(16, 16)
-        radbtnPicLocationModeTopCenterInside.TabIndex = 82
-        radbtnPicLocationModeTopCenterInside.Text = "  "
-        radbtnPicLocationModeTopCenterInside.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeRightCenterTopInside
-        ' 
-        radbtnPicLocationModeRightCenterTopInside.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeRightCenterTopInside.Location = New Point(146, 76)
-        radbtnPicLocationModeRightCenterTopInside.Name = "radbtnPicLocationModeRightCenterTopInside"
-        radbtnPicLocationModeRightCenterTopInside.Size = New Size(16, 16)
-        radbtnPicLocationModeRightCenterTopInside.TabIndex = 84
-        radbtnPicLocationModeRightCenterTopInside.Text = "  "
-        radbtnPicLocationModeRightCenterTopInside.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeTopCenterRightInside
-        ' 
-        radbtnPicLocationModeTopCenterRightInside.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeTopCenterRightInside.Location = New Point(118, 48)
-        radbtnPicLocationModeTopCenterRightInside.Name = "radbtnPicLocationModeTopCenterRightInside"
-        radbtnPicLocationModeTopCenterRightInside.Size = New Size(16, 16)
-        radbtnPicLocationModeTopCenterRightInside.TabIndex = 83
-        radbtnPicLocationModeTopCenterRightInside.Text = "  "
-        radbtnPicLocationModeTopCenterRightInside.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeLeftCenter
-        ' 
-        radbtnPicLocationModeLeftCenter.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeLeftCenter.Location = New Point(6, 104)
-        radbtnPicLocationModeLeftCenter.Name = "radbtnPicLocationModeLeftCenter"
-        radbtnPicLocationModeLeftCenter.Size = New Size(16, 16)
-        radbtnPicLocationModeLeftCenter.TabIndex = 15
-        radbtnPicLocationModeLeftCenter.Text = "  "
-        radbtnPicLocationModeLeftCenter.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeRightCenterBottomInside
-        ' 
-        radbtnPicLocationModeRightCenterBottomInside.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeRightCenterBottomInside.Location = New Point(146, 132)
-        radbtnPicLocationModeRightCenterBottomInside.Name = "radbtnPicLocationModeRightCenterBottomInside"
-        radbtnPicLocationModeRightCenterBottomInside.Size = New Size(16, 16)
-        radbtnPicLocationModeRightCenterBottomInside.TabIndex = 87
-        radbtnPicLocationModeRightCenterBottomInside.Text = "  "
-        radbtnPicLocationModeRightCenterBottomInside.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeBottomCenter
-        ' 
-        radbtnPicLocationModeBottomCenter.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeBottomCenter.Location = New Point(90, 188)
-        radbtnPicLocationModeBottomCenter.Name = "radbtnPicLocationModeBottomCenter"
-        radbtnPicLocationModeBottomCenter.Size = New Size(16, 16)
-        radbtnPicLocationModeBottomCenter.TabIndex = 11
-        radbtnPicLocationModeBottomCenter.Text = "  "
-        radbtnPicLocationModeBottomCenter.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeBottomCenterRightInside
-        ' 
-        radbtnPicLocationModeBottomCenterRightInside.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeBottomCenterRightInside.Location = New Point(118, 160)
-        radbtnPicLocationModeBottomCenterRightInside.Name = "radbtnPicLocationModeBottomCenterRightInside"
-        radbtnPicLocationModeBottomCenterRightInside.Size = New Size(16, 16)
-        radbtnPicLocationModeBottomCenterRightInside.TabIndex = 85
-        radbtnPicLocationModeBottomCenterRightInside.Text = "  "
-        radbtnPicLocationModeBottomCenterRightInside.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeLeftCenterBottom
-        ' 
-        radbtnPicLocationModeLeftCenterBottom.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeLeftCenterBottom.Location = New Point(6, 146)
-        radbtnPicLocationModeLeftCenterBottom.Name = "radbtnPicLocationModeLeftCenterBottom"
-        radbtnPicLocationModeLeftCenterBottom.Size = New Size(16, 16)
-        radbtnPicLocationModeLeftCenterBottom.TabIndex = 14
-        radbtnPicLocationModeLeftCenterBottom.Text = "  "
-        radbtnPicLocationModeLeftCenterBottom.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeBottomRight
-        ' 
-        radbtnPicLocationModeBottomRight.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeBottomRight.Location = New Point(174, 188)
-        radbtnPicLocationModeBottomRight.Name = "radbtnPicLocationModeBottomRight"
-        radbtnPicLocationModeBottomRight.Size = New Size(16, 16)
-        radbtnPicLocationModeBottomRight.TabIndex = 8
-        radbtnPicLocationModeBottomRight.Text = "  "
-        radbtnPicLocationModeBottomRight.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeBottomCenterLeft
-        ' 
-        radbtnPicLocationModeBottomCenterLeft.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeBottomCenterLeft.Location = New Point(48, 188)
-        radbtnPicLocationModeBottomCenterLeft.Name = "radbtnPicLocationModeBottomCenterLeft"
-        radbtnPicLocationModeBottomCenterLeft.Size = New Size(16, 16)
-        radbtnPicLocationModeBottomCenterLeft.TabIndex = 12
-        radbtnPicLocationModeBottomCenterLeft.Text = "  "
-        radbtnPicLocationModeBottomCenterLeft.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeManual
-        ' 
-        radbtnPicLocationModeManual.CheckAlign = ContentAlignment.BottomCenter
-        radbtnPicLocationModeManual.Location = New Point(69, 78)
-        radbtnPicLocationModeManual.Name = "radbtnPicLocationModeManual"
-        radbtnPicLocationModeManual.Size = New Size(57, 40)
-        radbtnPicLocationModeManual.TabIndex = 0
-        radbtnPicLocationModeManual.Text = "Manual"
-        radbtnPicLocationModeManual.TextAlign = ContentAlignment.TopCenter
-        radbtnPicLocationModeManual.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeBottomCenterRight
-        ' 
-        radbtnPicLocationModeBottomCenterRight.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeBottomCenterRight.Location = New Point(132, 188)
-        radbtnPicLocationModeBottomCenterRight.Name = "radbtnPicLocationModeBottomCenterRight"
-        radbtnPicLocationModeBottomCenterRight.Size = New Size(16, 16)
-        radbtnPicLocationModeBottomCenterRight.TabIndex = 10
-        radbtnPicLocationModeBottomCenterRight.Text = "  "
-        radbtnPicLocationModeBottomCenterRight.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeRightCenterBottom
-        ' 
-        radbtnPicLocationModeRightCenterBottom.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeRightCenterBottom.Location = New Point(174, 146)
-        radbtnPicLocationModeRightCenterBottom.Name = "radbtnPicLocationModeRightCenterBottom"
-        radbtnPicLocationModeRightCenterBottom.Size = New Size(16, 16)
-        radbtnPicLocationModeRightCenterBottom.TabIndex = 8
-        radbtnPicLocationModeRightCenterBottom.Text = "  "
-        radbtnPicLocationModeRightCenterBottom.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeRightCenterTop
-        ' 
-        radbtnPicLocationModeRightCenterTop.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeRightCenterTop.Location = New Point(174, 62)
-        radbtnPicLocationModeRightCenterTop.Name = "radbtnPicLocationModeRightCenterTop"
-        radbtnPicLocationModeRightCenterTop.Size = New Size(16, 16)
-        radbtnPicLocationModeRightCenterTop.TabIndex = 6
-        radbtnPicLocationModeRightCenterTop.Text = "  "
-        radbtnPicLocationModeRightCenterTop.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeBottomCenterLeftInside
-        ' 
-        radbtnPicLocationModeBottomCenterLeftInside.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeBottomCenterLeftInside.Location = New Point(62, 160)
-        radbtnPicLocationModeBottomCenterLeftInside.Name = "radbtnPicLocationModeBottomCenterLeftInside"
-        radbtnPicLocationModeBottomCenterLeftInside.Size = New Size(16, 16)
-        radbtnPicLocationModeBottomCenterLeftInside.TabIndex = 89
-        radbtnPicLocationModeBottomCenterLeftInside.Text = "  "
-        radbtnPicLocationModeBottomCenterLeftInside.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeRightCenterInside
-        ' 
-        radbtnPicLocationModeRightCenterInside.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeRightCenterInside.Location = New Point(146, 104)
-        radbtnPicLocationModeRightCenterInside.Name = "radbtnPicLocationModeRightCenterInside"
-        radbtnPicLocationModeRightCenterInside.Size = New Size(16, 16)
-        radbtnPicLocationModeRightCenterInside.TabIndex = 86
-        radbtnPicLocationModeRightCenterInside.Text = "  "
-        radbtnPicLocationModeRightCenterInside.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeBottomCenterInside
-        ' 
-        radbtnPicLocationModeBottomCenterInside.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeBottomCenterInside.Location = New Point(90, 160)
-        radbtnPicLocationModeBottomCenterInside.Name = "radbtnPicLocationModeBottomCenterInside"
-        radbtnPicLocationModeBottomCenterInside.Size = New Size(16, 16)
-        radbtnPicLocationModeBottomCenterInside.TabIndex = 88
-        radbtnPicLocationModeBottomCenterInside.Text = "  "
-        radbtnPicLocationModeBottomCenterInside.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeLeftCenterTopInside
-        ' 
-        radbtnPicLocationModeLeftCenterTopInside.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeLeftCenterTopInside.Location = New Point(34, 76)
-        radbtnPicLocationModeLeftCenterTopInside.Name = "radbtnPicLocationModeLeftCenterTopInside"
-        radbtnPicLocationModeLeftCenterTopInside.Size = New Size(16, 16)
-        radbtnPicLocationModeLeftCenterTopInside.TabIndex = 95
-        radbtnPicLocationModeLeftCenterTopInside.Text = "  "
-        radbtnPicLocationModeLeftCenterTopInside.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeLeftCenterInside
-        ' 
-        radbtnPicLocationModeLeftCenterInside.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeLeftCenterInside.Location = New Point(34, 104)
-        radbtnPicLocationModeLeftCenterInside.Name = "radbtnPicLocationModeLeftCenterInside"
-        radbtnPicLocationModeLeftCenterInside.Size = New Size(16, 16)
-        radbtnPicLocationModeLeftCenterInside.TabIndex = 94
-        radbtnPicLocationModeLeftCenterInside.Text = "  "
-        radbtnPicLocationModeLeftCenterInside.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeLeftCenterBottomInside
-        ' 
-        radbtnPicLocationModeLeftCenterBottomInside.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeLeftCenterBottomInside.Location = New Point(34, 132)
-        radbtnPicLocationModeLeftCenterBottomInside.Name = "radbtnPicLocationModeLeftCenterBottomInside"
-        radbtnPicLocationModeLeftCenterBottomInside.Size = New Size(16, 16)
-        radbtnPicLocationModeLeftCenterBottomInside.TabIndex = 90
-        radbtnPicLocationModeLeftCenterBottomInside.Text = "  "
-        radbtnPicLocationModeLeftCenterBottomInside.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeBottomLeft
-        ' 
-        radbtnPicLocationModeBottomLeft.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeBottomLeft.Location = New Point(6, 188)
-        radbtnPicLocationModeBottomLeft.Name = "radbtnPicLocationModeBottomLeft"
-        radbtnPicLocationModeBottomLeft.Size = New Size(16, 16)
-        radbtnPicLocationModeBottomLeft.TabIndex = 13
-        radbtnPicLocationModeBottomLeft.Text = "  "
-        radbtnPicLocationModeBottomLeft.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeLeftCenterTop
-        ' 
-        radbtnPicLocationModeLeftCenterTop.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeLeftCenterTop.Location = New Point(6, 62)
-        radbtnPicLocationModeLeftCenterTop.Name = "radbtnPicLocationModeLeftCenterTop"
-        radbtnPicLocationModeLeftCenterTop.Size = New Size(16, 16)
-        radbtnPicLocationModeLeftCenterTop.TabIndex = 16
-        radbtnPicLocationModeLeftCenterTop.Text = "  "
-        radbtnPicLocationModeLeftCenterTop.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeTopRightInside
-        ' 
-        radbtnPicLocationModeTopRightInside.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeTopRightInside.Location = New Point(146, 48)
-        radbtnPicLocationModeTopRightInside.Name = "radbtnPicLocationModeTopRightInside"
-        radbtnPicLocationModeTopRightInside.Size = New Size(16, 16)
-        radbtnPicLocationModeTopRightInside.TabIndex = 96
-        radbtnPicLocationModeTopRightInside.Text = "  "
-        radbtnPicLocationModeTopRightInside.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeBottomRightInside
-        ' 
-        radbtnPicLocationModeBottomRightInside.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeBottomRightInside.Location = New Point(146, 160)
-        radbtnPicLocationModeBottomRightInside.Name = "radbtnPicLocationModeBottomRightInside"
-        radbtnPicLocationModeBottomRightInside.Size = New Size(16, 16)
-        radbtnPicLocationModeBottomRightInside.TabIndex = 93
-        radbtnPicLocationModeBottomRightInside.Text = "  "
-        radbtnPicLocationModeBottomRightInside.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeBottomLeftInside
-        ' 
-        radbtnPicLocationModeBottomLeftInside.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeBottomLeftInside.Location = New Point(34, 160)
-        radbtnPicLocationModeBottomLeftInside.Name = "radbtnPicLocationModeBottomLeftInside"
-        radbtnPicLocationModeBottomLeftInside.Size = New Size(16, 16)
-        radbtnPicLocationModeBottomLeftInside.TabIndex = 92
-        radbtnPicLocationModeBottomLeftInside.Text = "  "
-        radbtnPicLocationModeBottomLeftInside.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicLocationModeTopLeftInside
-        ' 
-        radbtnPicLocationModeTopLeftInside.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeTopLeftInside.Location = New Point(34, 48)
-        radbtnPicLocationModeTopLeftInside.Name = "radbtnPicLocationModeTopLeftInside"
-        radbtnPicLocationModeTopLeftInside.Size = New Size(16, 16)
-        radbtnPicLocationModeTopLeftInside.TabIndex = 91
-        radbtnPicLocationModeTopLeftInside.Text = "  "
-        radbtnPicLocationModeTopLeftInside.UseVisualStyleBackColor = True
+        ' btnLog
+        ' 
+        btnLog.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
+        btnLog.Image = My.Resources.Resources.imageLog
+        btnLog.ImageAlign = ContentAlignment.TopLeft
+        btnLog.Location = New Point(205, 28)
+        btnLog.Name = "btnLog"
+        btnLog.Size = New Size(62, 46)
+        btnLog.TabIndex = 106
+        btnLog.Text = "Log"
+        btnLog.TextAlign = ContentAlignment.BottomRight
+        btnLog.UseVisualStyleBackColor = True
+        ' 
+        ' PanelApp
+        ' 
+        PanelApp.Controls.Add(chbxHotKeys)
+        PanelApp.Controls.Add(chbxSaveFileLists)
+        PanelApp.Controls.Add(txbxInsideLocationOffset)
+        PanelApp.Controls.Add(chbxLoadFileListsInBackground)
+        PanelApp.Controls.Add(lblInsideLocationOffset)
+        PanelApp.Controls.Add(chbxRefreshFileListsOnStartUp)
+        PanelApp.Controls.Add(grbxActionOnScreenSave)
+        PanelApp.Controls.Add(chbxHideCursorWhenFullscreen)
+        PanelApp.Location = New Point(144, 12)
+        PanelApp.Name = "PanelApp"
+        PanelApp.Size = New Size(760, 477)
+        PanelApp.TabIndex = 107
+        ' 
+        ' PanelPics
+        ' 
+        PanelPics.Controls.Add(grbxHotKeysPics)
+        PanelPics.Controls.Add(lvPicFolders)
+        PanelPics.Controls.Add(gpbxPicTimerCountdownLocationMode)
+        PanelPics.Controls.Add(chbxPicTimerCountdown)
+        PanelPics.Controls.Add(txbxPicTimerInterval)
+        PanelPics.Controls.Add(chbxPicAutoView)
+        PanelPics.Controls.Add(gpbxPicJustify)
+        PanelPics.Controls.Add(chbxPicLockFullScreen)
+        PanelPics.Controls.Add(gpbxPicLocationMode)
+        PanelPics.Controls.Add(lblPicFileCount)
+        PanelPics.Controls.Add(btnPicTimerEnabled)
+        PanelPics.Controls.Add(btnlvPicFolders)
+        PanelPics.Controls.Add(gpbxPicPlayMode)
+        PanelPics.Controls.Add(btnRefreshPicList)
+        PanelPics.Controls.Add(label4)
+        PanelPics.Controls.Add(chbxPicTimerAutoStart)
+        PanelPics.Location = New Point(144, 12)
+        PanelPics.Name = "PanelPics"
+        PanelPics.Size = New Size(760, 477)
+        PanelPics.TabIndex = 108
+        ' 
+        ' grbxHotKeysPics
+        ' 
+        grbxHotKeysPics.Controls.Add(txbxHotKeyPicToggle)
+        grbxHotKeysPics.Controls.Add(btnHotKeyPicToggleDisable)
+        grbxHotKeysPics.Controls.Add(txbxHotKeyPicToggleFullScreen)
+        grbxHotKeysPics.Controls.Add(btnHotKeyPicToggleFullScreenDisable)
+        grbxHotKeysPics.Controls.Add(btnHotKeysPicsUndo)
+        grbxHotKeysPics.Controls.Add(btnHotKeysPicsSet)
+        grbxHotKeysPics.Controls.Add(txbxHotKeyPicShowFileInfo)
+        grbxHotKeysPics.Controls.Add(btnHotKeyPicShowFileInfoDisable)
+        grbxHotKeysPics.Controls.Add(lblHotKeyPicToggle)
+        grbxHotKeysPics.Controls.Add(lblHotKeyPicToggleFullScreen)
+        grbxHotKeysPics.Controls.Add(lblHotKeyPicShowFileInfo)
+        grbxHotKeysPics.ForeColor = SystemColors.ControlText
+        grbxHotKeysPics.Location = New Point(287, 256)
+        grbxHotKeysPics.Name = "grbxHotKeysPics"
+        grbxHotKeysPics.Size = New Size(181, 196)
+        grbxHotKeysPics.TabIndex = 50
+        grbxHotKeysPics.TabStop = False
+        grbxHotKeysPics.Text = "HotKeys"
+        ' 
+        ' txbxHotKeyPicToggle
+        ' 
+        txbxHotKeyPicToggle.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
+        txbxHotKeyPicToggle.Location = New Point(8, 39)
+        txbxHotKeyPicToggle.Name = "txbxHotKeyPicToggle"
+        txbxHotKeyPicToggle.ShortcutsEnabled = False
+        txbxHotKeyPicToggle.Size = New Size(151, 29)
+        txbxHotKeyPicToggle.TabIndex = 45
+        txbxHotKeyPicToggle.TabStop = False
+        txbxHotKeyPicToggle.TextAlign = HorizontalAlignment.Center
+        txbxHotKeyPicToggle.WordWrap = False
+        ' 
+        ' btnHotKeyPicToggleDisable
+        ' 
+        btnHotKeyPicToggleDisable.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
+        btnHotKeyPicToggleDisable.FlatAppearance.BorderSize = 0
+        btnHotKeyPicToggleDisable.FlatStyle = FlatStyle.Flat
+        btnHotKeyPicToggleDisable.Image = My.Resources.Resources.imageRemove
+        btnHotKeyPicToggleDisable.Location = New Point(156, 43)
+        btnHotKeyPicToggleDisable.Name = "btnHotKeyPicToggleDisable"
+        btnHotKeyPicToggleDisable.Size = New Size(20, 17)
+        btnHotKeyPicToggleDisable.TabIndex = 46
+        btnHotKeyPicToggleDisable.TabStop = False
+        btnHotKeyPicToggleDisable.UseVisualStyleBackColor = True
+        ' 
+        ' txbxHotKeyPicToggleFullScreen
+        ' 
+        txbxHotKeyPicToggleFullScreen.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
+        txbxHotKeyPicToggleFullScreen.Location = New Point(8, 82)
+        txbxHotKeyPicToggleFullScreen.Name = "txbxHotKeyPicToggleFullScreen"
+        txbxHotKeyPicToggleFullScreen.ShortcutsEnabled = False
+        txbxHotKeyPicToggleFullScreen.Size = New Size(151, 29)
+        txbxHotKeyPicToggleFullScreen.TabIndex = 42
+        txbxHotKeyPicToggleFullScreen.TabStop = False
+        txbxHotKeyPicToggleFullScreen.TextAlign = HorizontalAlignment.Center
+        txbxHotKeyPicToggleFullScreen.WordWrap = False
+        ' 
+        ' btnHotKeyPicToggleFullScreenDisable
+        ' 
+        btnHotKeyPicToggleFullScreenDisable.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
+        btnHotKeyPicToggleFullScreenDisable.FlatAppearance.BorderSize = 0
+        btnHotKeyPicToggleFullScreenDisable.FlatStyle = FlatStyle.Flat
+        btnHotKeyPicToggleFullScreenDisable.Image = My.Resources.Resources.imageRemove
+        btnHotKeyPicToggleFullScreenDisable.Location = New Point(156, 86)
+        btnHotKeyPicToggleFullScreenDisable.Name = "btnHotKeyPicToggleFullScreenDisable"
+        btnHotKeyPicToggleFullScreenDisable.Size = New Size(20, 17)
+        btnHotKeyPicToggleFullScreenDisable.TabIndex = 43
+        btnHotKeyPicToggleFullScreenDisable.TabStop = False
+        btnHotKeyPicToggleFullScreenDisable.UseVisualStyleBackColor = True
+        ' 
+        ' btnHotKeysPicsUndo
+        ' 
+        btnHotKeysPicsUndo.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
+        btnHotKeysPicsUndo.ImageAlign = ContentAlignment.MiddleLeft
+        btnHotKeysPicsUndo.Location = New Point(7, 156)
+        btnHotKeysPicsUndo.Name = "btnHotKeysPicsUndo"
+        btnHotKeysPicsUndo.Size = New Size(83, 32)
+        btnHotKeysPicsUndo.TabIndex = 30
+        btnHotKeysPicsUndo.TabStop = False
+        btnHotKeysPicsUndo.Text = "Undo"
+        btnHotKeysPicsUndo.TextAlign = ContentAlignment.MiddleRight
+        btnHotKeysPicsUndo.UseVisualStyleBackColor = True
+        ' 
+        ' btnHotKeysPicsSet
+        ' 
+        btnHotKeysPicsSet.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
+        btnHotKeysPicsSet.Image = My.Resources.Resources.imageGo
+        btnHotKeysPicsSet.ImageAlign = ContentAlignment.MiddleLeft
+        btnHotKeysPicsSet.Location = New Point(96, 156)
+        btnHotKeysPicsSet.Name = "btnHotKeysPicsSet"
+        btnHotKeysPicsSet.Size = New Size(63, 32)
+        btnHotKeysPicsSet.TabIndex = 40
+        btnHotKeysPicsSet.TabStop = False
+        btnHotKeysPicsSet.Text = "Set"
+        btnHotKeysPicsSet.TextAlign = ContentAlignment.MiddleRight
+        btnHotKeysPicsSet.UseVisualStyleBackColor = True
+        ' 
+        ' txbxHotKeyPicShowFileInfo
+        ' 
+        txbxHotKeyPicShowFileInfo.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
+        txbxHotKeyPicShowFileInfo.Location = New Point(8, 125)
+        txbxHotKeyPicShowFileInfo.Name = "txbxHotKeyPicShowFileInfo"
+        txbxHotKeyPicShowFileInfo.ShortcutsEnabled = False
+        txbxHotKeyPicShowFileInfo.Size = New Size(151, 29)
+        txbxHotKeyPicShowFileInfo.TabIndex = 10
+        txbxHotKeyPicShowFileInfo.TabStop = False
+        txbxHotKeyPicShowFileInfo.TextAlign = HorizontalAlignment.Center
+        txbxHotKeyPicShowFileInfo.WordWrap = False
+        ' 
+        ' btnHotKeyPicShowFileInfoDisable
+        ' 
+        btnHotKeyPicShowFileInfoDisable.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
+        btnHotKeyPicShowFileInfoDisable.FlatAppearance.BorderSize = 0
+        btnHotKeyPicShowFileInfoDisable.FlatStyle = FlatStyle.Flat
+        btnHotKeyPicShowFileInfoDisable.Image = My.Resources.Resources.imageRemove
+        btnHotKeyPicShowFileInfoDisable.Location = New Point(156, 129)
+        btnHotKeyPicShowFileInfoDisable.Name = "btnHotKeyPicShowFileInfoDisable"
+        btnHotKeyPicShowFileInfoDisable.Size = New Size(20, 17)
+        btnHotKeyPicShowFileInfoDisable.TabIndex = 20
+        btnHotKeyPicShowFileInfoDisable.TabStop = False
+        btnHotKeyPicShowFileInfoDisable.UseVisualStyleBackColor = True
+        ' 
+        ' lblHotKeyPicToggle
+        ' 
+        lblHotKeyPicToggle.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
+        lblHotKeyPicToggle.BackColor = Color.Transparent
+        lblHotKeyPicToggle.ForeColor = SystemColors.ControlText
+        lblHotKeyPicToggle.Location = New Point(-20, 17)
+        lblHotKeyPicToggle.Name = "lblHotKeyPicToggle"
+        lblHotKeyPicToggle.Size = New Size(211, 23)
+        lblHotKeyPicToggle.TabIndex = 44
+        lblHotKeyPicToggle.Text = "PicToggle"
+        lblHotKeyPicToggle.TextAlign = ContentAlignment.BottomCenter
+        ' 
+        ' lblHotKeyPicToggleFullScreen
+        ' 
+        lblHotKeyPicToggleFullScreen.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
+        lblHotKeyPicToggleFullScreen.BackColor = Color.Transparent
+        lblHotKeyPicToggleFullScreen.ForeColor = SystemColors.ControlText
+        lblHotKeyPicToggleFullScreen.Location = New Point(-20, 60)
+        lblHotKeyPicToggleFullScreen.Name = "lblHotKeyPicToggleFullScreen"
+        lblHotKeyPicToggleFullScreen.Size = New Size(211, 23)
+        lblHotKeyPicToggleFullScreen.TabIndex = 41
+        lblHotKeyPicToggleFullScreen.Text = "PicToggleFullScreen"
+        lblHotKeyPicToggleFullScreen.TextAlign = ContentAlignment.BottomCenter
+        ' 
+        ' lblHotKeyPicShowFileInfo
+        ' 
+        lblHotKeyPicShowFileInfo.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
+        lblHotKeyPicShowFileInfo.BackColor = Color.Transparent
+        lblHotKeyPicShowFileInfo.ForeColor = SystemColors.ControlText
+        lblHotKeyPicShowFileInfo.Location = New Point(-20, 103)
+        lblHotKeyPicShowFileInfo.Name = "lblHotKeyPicShowFileInfo"
+        lblHotKeyPicShowFileInfo.Size = New Size(211, 23)
+        lblHotKeyPicShowFileInfo.TabIndex = 0
+        lblHotKeyPicShowFileInfo.Text = "PicShowFileInfo"
+        lblHotKeyPicShowFileInfo.TextAlign = ContentAlignment.BottomCenter
+        ' 
+        ' lvPicFolders
+        ' 
+        lvPicFolders.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        lvPicFolders.BorderStyle = BorderStyle.FixedSingle
+        lvPicFolders.ContextMenuStrip = cmList
+        lvPicFolders.FullRowSelect = True
+        lvPicFolders.HeaderStyle = ColumnHeaderStyle.None
+        lvPicFolders.LabelWrap = False
+        lvPicFolders.Location = New Point(7, 14)
+        lvPicFolders.MultiSelect = False
+        lvPicFolders.Name = "lvPicFolders"
+        lvPicFolders.ShowGroups = False
+        lvPicFolders.Size = New Size(742, 86)
+        lvPicFolders.TabIndex = 1
+        lvPicFolders.TabStop = False
+        lvPicFolders.UseCompatibleStateImageBehavior = False
+        lvPicFolders.View = View.Details
+        ' 
+        ' gpbxPicTimerCountdownLocationMode
+        ' 
+        gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeLeftCenterTop)
+        gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeBottomLeft)
+        gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeRightCenterTop)
+        gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeRightCenterBottom)
+        gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeBottomCenterRight)
+        gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeBottomCenterLeft)
+        gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeBottomRight)
+        gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeLeftCenterBottom)
+        gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeBottomCenter)
+        gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeLeftCenter)
+        gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeTopCenterLeft)
+        gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeTopCenter)
+        gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeTopRight)
+        gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeTopCenterRight)
+        gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeRightCenter)
+        gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeTopLeft)
+        gpbxPicTimerCountdownLocationMode.Location = New Point(553, 308)
+        gpbxPicTimerCountdownLocationMode.Name = "gpbxPicTimerCountdownLocationMode"
+        gpbxPicTimerCountdownLocationMode.Size = New Size(133, 144)
+        gpbxPicTimerCountdownLocationMode.TabIndex = 80
+        gpbxPicTimerCountdownLocationMode.TabStop = False
+        gpbxPicTimerCountdownLocationMode.Text = "Timer Location"
+        ' 
+        ' radbtnPicTimerCountdownLocationModeLeftCenterTop
+        ' 
+        radbtnPicTimerCountdownLocationModeLeftCenterTop.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicTimerCountdownLocationModeLeftCenterTop.Location = New Point(5, 45)
+        radbtnPicTimerCountdownLocationModeLeftCenterTop.Name = "radbtnPicTimerCountdownLocationModeLeftCenterTop"
+        radbtnPicTimerCountdownLocationModeLeftCenterTop.Size = New Size(16, 16)
+        radbtnPicTimerCountdownLocationModeLeftCenterTop.TabIndex = 16
+        radbtnPicTimerCountdownLocationModeLeftCenterTop.Text = "  "
+        radbtnPicTimerCountdownLocationModeLeftCenterTop.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicTimerCountdownLocationModeBottomLeft
+        ' 
+        radbtnPicTimerCountdownLocationModeBottomLeft.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicTimerCountdownLocationModeBottomLeft.Location = New Point(5, 123)
+        radbtnPicTimerCountdownLocationModeBottomLeft.Name = "radbtnPicTimerCountdownLocationModeBottomLeft"
+        radbtnPicTimerCountdownLocationModeBottomLeft.Size = New Size(16, 16)
+        radbtnPicTimerCountdownLocationModeBottomLeft.TabIndex = 13
+        radbtnPicTimerCountdownLocationModeBottomLeft.Text = "  "
+        radbtnPicTimerCountdownLocationModeBottomLeft.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicTimerCountdownLocationModeRightCenterTop
+        ' 
+        radbtnPicTimerCountdownLocationModeRightCenterTop.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicTimerCountdownLocationModeRightCenterTop.Location = New Point(113, 45)
+        radbtnPicTimerCountdownLocationModeRightCenterTop.Name = "radbtnPicTimerCountdownLocationModeRightCenterTop"
+        radbtnPicTimerCountdownLocationModeRightCenterTop.Size = New Size(16, 16)
+        radbtnPicTimerCountdownLocationModeRightCenterTop.TabIndex = 6
+        radbtnPicTimerCountdownLocationModeRightCenterTop.Text = "  "
+        radbtnPicTimerCountdownLocationModeRightCenterTop.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicTimerCountdownLocationModeRightCenterBottom
+        ' 
+        radbtnPicTimerCountdownLocationModeRightCenterBottom.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicTimerCountdownLocationModeRightCenterBottom.Location = New Point(113, 97)
+        radbtnPicTimerCountdownLocationModeRightCenterBottom.Name = "radbtnPicTimerCountdownLocationModeRightCenterBottom"
+        radbtnPicTimerCountdownLocationModeRightCenterBottom.Size = New Size(16, 16)
+        radbtnPicTimerCountdownLocationModeRightCenterBottom.TabIndex = 8
+        radbtnPicTimerCountdownLocationModeRightCenterBottom.Text = "  "
+        radbtnPicTimerCountdownLocationModeRightCenterBottom.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicTimerCountdownLocationModeBottomCenterRight
+        ' 
+        radbtnPicTimerCountdownLocationModeBottomCenterRight.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicTimerCountdownLocationModeBottomCenterRight.Location = New Point(86, 123)
+        radbtnPicTimerCountdownLocationModeBottomCenterRight.Name = "radbtnPicTimerCountdownLocationModeBottomCenterRight"
+        radbtnPicTimerCountdownLocationModeBottomCenterRight.Size = New Size(16, 16)
+        radbtnPicTimerCountdownLocationModeBottomCenterRight.TabIndex = 10
+        radbtnPicTimerCountdownLocationModeBottomCenterRight.Text = "  "
+        radbtnPicTimerCountdownLocationModeBottomCenterRight.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicTimerCountdownLocationModeBottomCenterLeft
+        ' 
+        radbtnPicTimerCountdownLocationModeBottomCenterLeft.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicTimerCountdownLocationModeBottomCenterLeft.Location = New Point(32, 123)
+        radbtnPicTimerCountdownLocationModeBottomCenterLeft.Name = "radbtnPicTimerCountdownLocationModeBottomCenterLeft"
+        radbtnPicTimerCountdownLocationModeBottomCenterLeft.Size = New Size(16, 16)
+        radbtnPicTimerCountdownLocationModeBottomCenterLeft.TabIndex = 12
+        radbtnPicTimerCountdownLocationModeBottomCenterLeft.Text = "  "
+        radbtnPicTimerCountdownLocationModeBottomCenterLeft.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicTimerCountdownLocationModeBottomRight
+        ' 
+        radbtnPicTimerCountdownLocationModeBottomRight.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicTimerCountdownLocationModeBottomRight.Location = New Point(113, 123)
+        radbtnPicTimerCountdownLocationModeBottomRight.Name = "radbtnPicTimerCountdownLocationModeBottomRight"
+        radbtnPicTimerCountdownLocationModeBottomRight.Size = New Size(16, 16)
+        radbtnPicTimerCountdownLocationModeBottomRight.TabIndex = 8
+        radbtnPicTimerCountdownLocationModeBottomRight.Text = "  "
+        radbtnPicTimerCountdownLocationModeBottomRight.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicTimerCountdownLocationModeLeftCenterBottom
+        ' 
+        radbtnPicTimerCountdownLocationModeLeftCenterBottom.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicTimerCountdownLocationModeLeftCenterBottom.Location = New Point(5, 97)
+        radbtnPicTimerCountdownLocationModeLeftCenterBottom.Name = "radbtnPicTimerCountdownLocationModeLeftCenterBottom"
+        radbtnPicTimerCountdownLocationModeLeftCenterBottom.Size = New Size(16, 16)
+        radbtnPicTimerCountdownLocationModeLeftCenterBottom.TabIndex = 14
+        radbtnPicTimerCountdownLocationModeLeftCenterBottom.Text = "  "
+        radbtnPicTimerCountdownLocationModeLeftCenterBottom.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicTimerCountdownLocationModeBottomCenter
+        ' 
+        radbtnPicTimerCountdownLocationModeBottomCenter.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicTimerCountdownLocationModeBottomCenter.Location = New Point(59, 123)
+        radbtnPicTimerCountdownLocationModeBottomCenter.Name = "radbtnPicTimerCountdownLocationModeBottomCenter"
+        radbtnPicTimerCountdownLocationModeBottomCenter.Size = New Size(16, 16)
+        radbtnPicTimerCountdownLocationModeBottomCenter.TabIndex = 11
+        radbtnPicTimerCountdownLocationModeBottomCenter.Text = "  "
+        radbtnPicTimerCountdownLocationModeBottomCenter.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicTimerCountdownLocationModeLeftCenter
+        ' 
+        radbtnPicTimerCountdownLocationModeLeftCenter.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicTimerCountdownLocationModeLeftCenter.Location = New Point(5, 71)
+        radbtnPicTimerCountdownLocationModeLeftCenter.Name = "radbtnPicTimerCountdownLocationModeLeftCenter"
+        radbtnPicTimerCountdownLocationModeLeftCenter.Size = New Size(16, 16)
+        radbtnPicTimerCountdownLocationModeLeftCenter.TabIndex = 15
+        radbtnPicTimerCountdownLocationModeLeftCenter.Text = "  "
+        radbtnPicTimerCountdownLocationModeLeftCenter.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicTimerCountdownLocationModeTopCenterLeft
+        ' 
+        radbtnPicTimerCountdownLocationModeTopCenterLeft.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicTimerCountdownLocationModeTopCenterLeft.Location = New Point(32, 19)
+        radbtnPicTimerCountdownLocationModeTopCenterLeft.Name = "radbtnPicTimerCountdownLocationModeTopCenterLeft"
+        radbtnPicTimerCountdownLocationModeTopCenterLeft.Size = New Size(16, 16)
+        radbtnPicTimerCountdownLocationModeTopCenterLeft.TabIndex = 2
+        radbtnPicTimerCountdownLocationModeTopCenterLeft.Text = "  "
+        radbtnPicTimerCountdownLocationModeTopCenterLeft.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicTimerCountdownLocationModeTopCenter
+        ' 
+        radbtnPicTimerCountdownLocationModeTopCenter.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicTimerCountdownLocationModeTopCenter.Location = New Point(59, 19)
+        radbtnPicTimerCountdownLocationModeTopCenter.Name = "radbtnPicTimerCountdownLocationModeTopCenter"
+        radbtnPicTimerCountdownLocationModeTopCenter.Size = New Size(16, 16)
+        radbtnPicTimerCountdownLocationModeTopCenter.TabIndex = 3
+        radbtnPicTimerCountdownLocationModeTopCenter.Text = "  "
+        radbtnPicTimerCountdownLocationModeTopCenter.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicTimerCountdownLocationModeTopRight
+        ' 
+        radbtnPicTimerCountdownLocationModeTopRight.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicTimerCountdownLocationModeTopRight.Location = New Point(113, 19)
+        radbtnPicTimerCountdownLocationModeTopRight.Name = "radbtnPicTimerCountdownLocationModeTopRight"
+        radbtnPicTimerCountdownLocationModeTopRight.Size = New Size(16, 16)
+        radbtnPicTimerCountdownLocationModeTopRight.TabIndex = 5
+        radbtnPicTimerCountdownLocationModeTopRight.Text = "  "
+        radbtnPicTimerCountdownLocationModeTopRight.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicTimerCountdownLocationModeTopCenterRight
+        ' 
+        radbtnPicTimerCountdownLocationModeTopCenterRight.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicTimerCountdownLocationModeTopCenterRight.Location = New Point(86, 19)
+        radbtnPicTimerCountdownLocationModeTopCenterRight.Name = "radbtnPicTimerCountdownLocationModeTopCenterRight"
+        radbtnPicTimerCountdownLocationModeTopCenterRight.Size = New Size(16, 16)
+        radbtnPicTimerCountdownLocationModeTopCenterRight.TabIndex = 4
+        radbtnPicTimerCountdownLocationModeTopCenterRight.Text = "  "
+        radbtnPicTimerCountdownLocationModeTopCenterRight.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicTimerCountdownLocationModeRightCenter
+        ' 
+        radbtnPicTimerCountdownLocationModeRightCenter.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicTimerCountdownLocationModeRightCenter.Location = New Point(113, 71)
+        radbtnPicTimerCountdownLocationModeRightCenter.Name = "radbtnPicTimerCountdownLocationModeRightCenter"
+        radbtnPicTimerCountdownLocationModeRightCenter.Size = New Size(16, 16)
+        radbtnPicTimerCountdownLocationModeRightCenter.TabIndex = 7
+        radbtnPicTimerCountdownLocationModeRightCenter.Text = "  "
+        radbtnPicTimerCountdownLocationModeRightCenter.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicTimerCountdownLocationModeTopLeft
+        ' 
+        radbtnPicTimerCountdownLocationModeTopLeft.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicTimerCountdownLocationModeTopLeft.Location = New Point(5, 19)
+        radbtnPicTimerCountdownLocationModeTopLeft.Name = "radbtnPicTimerCountdownLocationModeTopLeft"
+        radbtnPicTimerCountdownLocationModeTopLeft.Size = New Size(16, 16)
+        radbtnPicTimerCountdownLocationModeTopLeft.TabIndex = 1
+        radbtnPicTimerCountdownLocationModeTopLeft.Text = "  "
+        radbtnPicTimerCountdownLocationModeTopLeft.UseVisualStyleBackColor = True
+        ' 
+        ' chbxPicTimerCountdown
+        ' 
+        chbxPicTimerCountdown.Location = New Point(553, 291)
+        chbxPicTimerCountdown.Name = "chbxPicTimerCountdown"
+        chbxPicTimerCountdown.Size = New Size(165, 21)
+        chbxPicTimerCountdown.TabIndex = 75
+        chbxPicTimerCountdown.Text = "Show Timer Countdown"
+        chbxPicTimerCountdown.UseVisualStyleBackColor = True
+        ' 
+        ' txbxPicTimerInterval
+        ' 
+        txbxPicTimerInterval.Location = New Point(553, 264)
+        txbxPicTimerInterval.MaxLength = 5
+        txbxPicTimerInterval.Name = "txbxPicTimerInterval"
+        txbxPicTimerInterval.Size = New Size(80, 29)
+        txbxPicTimerInterval.TabIndex = 70
+        txbxPicTimerInterval.TextAlign = HorizontalAlignment.Center
+        ' 
+        ' chbxPicAutoView
+        ' 
+        chbxPicAutoView.CheckAlign = ContentAlignment.MiddleRight
+        chbxPicAutoView.Location = New Point(668, 136)
+        chbxPicAutoView.Name = "chbxPicAutoView"
+        chbxPicAutoView.Size = New Size(81, 22)
+        chbxPicAutoView.TabIndex = 30
+        chbxPicAutoView.Text = "AutoView"
+        chbxPicAutoView.UseVisualStyleBackColor = True
+        ' 
+        ' gpbxPicJustify
+        ' 
+        gpbxPicJustify.Controls.Add(radbtnPicJustifyCenter)
+        gpbxPicJustify.Controls.Add(radbtnPicJustifyLeft)
+        gpbxPicJustify.Controls.Add(radbtnPicJustifyRight)
+        gpbxPicJustify.Location = New Point(261, 140)
+        gpbxPicJustify.Name = "gpbxPicJustify"
+        gpbxPicJustify.Size = New Size(150, 47)
+        gpbxPicJustify.TabIndex = 20
+        gpbxPicJustify.TabStop = False
+        gpbxPicJustify.Text = "FullScreen Justify"
+        ' 
+        ' radbtnPicJustifyCenter
+        ' 
+        radbtnPicJustifyCenter.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicJustifyCenter.Location = New Point(59, 19)
+        radbtnPicJustifyCenter.Name = "radbtnPicJustifyCenter"
+        radbtnPicJustifyCenter.Size = New Size(24, 24)
+        radbtnPicJustifyCenter.TabIndex = 3
+        radbtnPicJustifyCenter.Text = "  "
+        radbtnPicJustifyCenter.TextAlign = ContentAlignment.MiddleCenter
+        radbtnPicJustifyCenter.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicJustifyLeft
+        ' 
+        radbtnPicJustifyLeft.Location = New Point(7, 19)
+        radbtnPicJustifyLeft.Name = "radbtnPicJustifyLeft"
+        radbtnPicJustifyLeft.Size = New Size(47, 24)
+        radbtnPicJustifyLeft.TabIndex = 1
+        radbtnPicJustifyLeft.Text = "Left"
+        radbtnPicJustifyLeft.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicJustifyRight
+        ' 
+        radbtnPicJustifyRight.CheckAlign = ContentAlignment.MiddleRight
+        radbtnPicJustifyRight.Location = New Point(87, 19)
+        radbtnPicJustifyRight.Name = "radbtnPicJustifyRight"
+        radbtnPicJustifyRight.Size = New Size(56, 24)
+        radbtnPicJustifyRight.TabIndex = 5
+        radbtnPicJustifyRight.Text = "Right"
+        radbtnPicJustifyRight.TextAlign = ContentAlignment.MiddleRight
+        radbtnPicJustifyRight.UseVisualStyleBackColor = True
+        ' 
+        ' chbxPicLockFullScreen
+        ' 
+        chbxPicLockFullScreen.CheckAlign = ContentAlignment.MiddleRight
+        chbxPicLockFullScreen.Location = New Point(266, 183)
+        chbxPicLockFullScreen.Name = "chbxPicLockFullScreen"
+        chbxPicLockFullScreen.Size = New Size(119, 22)
+        chbxPicLockFullScreen.TabIndex = 25
+        chbxPicLockFullScreen.Text = "Lock Full Screen"
+        chbxPicLockFullScreen.UseVisualStyleBackColor = True
         ' 
         ' gpbxPicLocationMode
         ' 
@@ -2296,418 +2276,479 @@ Inherits System.Windows.Forms.Form
         gpbxPicLocationMode.TabStop = False
         gpbxPicLocationMode.Text = "Image Location"
         ' 
-        ' radbtnPicJustifyRight
-        ' 
-        radbtnPicJustifyRight.CheckAlign = ContentAlignment.MiddleRight
-        radbtnPicJustifyRight.Location = New Point(87, 19)
-        radbtnPicJustifyRight.Name = "radbtnPicJustifyRight"
-        radbtnPicJustifyRight.Size = New Size(56, 24)
-        radbtnPicJustifyRight.TabIndex = 5
-        radbtnPicJustifyRight.Text = "Right"
-        radbtnPicJustifyRight.TextAlign = ContentAlignment.MiddleRight
-        radbtnPicJustifyRight.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicJustifyLeft
-        ' 
-        radbtnPicJustifyLeft.Location = New Point(7, 19)
-        radbtnPicJustifyLeft.Name = "radbtnPicJustifyLeft"
-        radbtnPicJustifyLeft.Size = New Size(47, 24)
-        radbtnPicJustifyLeft.TabIndex = 1
-        radbtnPicJustifyLeft.Text = "Left"
-        radbtnPicJustifyLeft.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicJustifyCenter
-        ' 
-        radbtnPicJustifyCenter.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicJustifyCenter.Location = New Point(59, 19)
-        radbtnPicJustifyCenter.Name = "radbtnPicJustifyCenter"
-        radbtnPicJustifyCenter.Size = New Size(24, 24)
-        radbtnPicJustifyCenter.TabIndex = 3
-        radbtnPicJustifyCenter.Text = "  "
-        radbtnPicJustifyCenter.TextAlign = ContentAlignment.MiddleCenter
-        radbtnPicJustifyCenter.UseVisualStyleBackColor = True
-        ' 
-        ' gpbxPicJustify
-        ' 
-        gpbxPicJustify.Controls.Add(radbtnPicJustifyCenter)
-        gpbxPicJustify.Controls.Add(radbtnPicJustifyLeft)
-        gpbxPicJustify.Controls.Add(radbtnPicJustifyRight)
-        gpbxPicJustify.Location = New Point(261, 140)
-        gpbxPicJustify.Name = "gpbxPicJustify"
-        gpbxPicJustify.Size = New Size(150, 47)
-        gpbxPicJustify.TabIndex = 20
-        gpbxPicJustify.TabStop = False
-        gpbxPicJustify.Text = "FullScreen Justify"
-        ' 
-        ' txbxPicTimerInterval
-        ' 
-        txbxPicTimerInterval.Location = New Point(553, 264)
-        txbxPicTimerInterval.MaxLength = 5
-        txbxPicTimerInterval.Name = "txbxPicTimerInterval"
-        txbxPicTimerInterval.Size = New Size(80, 25)
-        txbxPicTimerInterval.TabIndex = 70
-        txbxPicTimerInterval.TextAlign = HorizontalAlignment.Center
-        ' 
-        ' radbtnPicTimerCountdownLocationModeTopLeft
-        ' 
-        radbtnPicTimerCountdownLocationModeTopLeft.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicTimerCountdownLocationModeTopLeft.Location = New Point(5, 19)
-        radbtnPicTimerCountdownLocationModeTopLeft.Name = "radbtnPicTimerCountdownLocationModeTopLeft"
-        radbtnPicTimerCountdownLocationModeTopLeft.Size = New Size(16, 16)
-        radbtnPicTimerCountdownLocationModeTopLeft.TabIndex = 1
-        radbtnPicTimerCountdownLocationModeTopLeft.Text = "  "
-        radbtnPicTimerCountdownLocationModeTopLeft.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicTimerCountdownLocationModeRightCenter
-        ' 
-        radbtnPicTimerCountdownLocationModeRightCenter.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicTimerCountdownLocationModeRightCenter.Location = New Point(113, 71)
-        radbtnPicTimerCountdownLocationModeRightCenter.Name = "radbtnPicTimerCountdownLocationModeRightCenter"
-        radbtnPicTimerCountdownLocationModeRightCenter.Size = New Size(16, 16)
-        radbtnPicTimerCountdownLocationModeRightCenter.TabIndex = 7
-        radbtnPicTimerCountdownLocationModeRightCenter.Text = "  "
-        radbtnPicTimerCountdownLocationModeRightCenter.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicTimerCountdownLocationModeTopCenterRight
-        ' 
-        radbtnPicTimerCountdownLocationModeTopCenterRight.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicTimerCountdownLocationModeTopCenterRight.Location = New Point(86, 19)
-        radbtnPicTimerCountdownLocationModeTopCenterRight.Name = "radbtnPicTimerCountdownLocationModeTopCenterRight"
-        radbtnPicTimerCountdownLocationModeTopCenterRight.Size = New Size(16, 16)
-        radbtnPicTimerCountdownLocationModeTopCenterRight.TabIndex = 4
-        radbtnPicTimerCountdownLocationModeTopCenterRight.Text = "  "
-        radbtnPicTimerCountdownLocationModeTopCenterRight.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicTimerCountdownLocationModeTopRight
-        ' 
-        radbtnPicTimerCountdownLocationModeTopRight.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicTimerCountdownLocationModeTopRight.Location = New Point(113, 19)
-        radbtnPicTimerCountdownLocationModeTopRight.Name = "radbtnPicTimerCountdownLocationModeTopRight"
-        radbtnPicTimerCountdownLocationModeTopRight.Size = New Size(16, 16)
-        radbtnPicTimerCountdownLocationModeTopRight.TabIndex = 5
-        radbtnPicTimerCountdownLocationModeTopRight.Text = "  "
-        radbtnPicTimerCountdownLocationModeTopRight.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicTimerCountdownLocationModeTopCenter
-        ' 
-        radbtnPicTimerCountdownLocationModeTopCenter.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicTimerCountdownLocationModeTopCenter.Location = New Point(59, 19)
-        radbtnPicTimerCountdownLocationModeTopCenter.Name = "radbtnPicTimerCountdownLocationModeTopCenter"
-        radbtnPicTimerCountdownLocationModeTopCenter.Size = New Size(16, 16)
-        radbtnPicTimerCountdownLocationModeTopCenter.TabIndex = 3
-        radbtnPicTimerCountdownLocationModeTopCenter.Text = "  "
-        radbtnPicTimerCountdownLocationModeTopCenter.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicTimerCountdownLocationModeTopCenterLeft
-        ' 
-        radbtnPicTimerCountdownLocationModeTopCenterLeft.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicTimerCountdownLocationModeTopCenterLeft.Location = New Point(32, 19)
-        radbtnPicTimerCountdownLocationModeTopCenterLeft.Name = "radbtnPicTimerCountdownLocationModeTopCenterLeft"
-        radbtnPicTimerCountdownLocationModeTopCenterLeft.Size = New Size(16, 16)
-        radbtnPicTimerCountdownLocationModeTopCenterLeft.TabIndex = 2
-        radbtnPicTimerCountdownLocationModeTopCenterLeft.Text = "  "
-        radbtnPicTimerCountdownLocationModeTopCenterLeft.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicTimerCountdownLocationModeLeftCenter
-        ' 
-        radbtnPicTimerCountdownLocationModeLeftCenter.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicTimerCountdownLocationModeLeftCenter.Location = New Point(5, 71)
-        radbtnPicTimerCountdownLocationModeLeftCenter.Name = "radbtnPicTimerCountdownLocationModeLeftCenter"
-        radbtnPicTimerCountdownLocationModeLeftCenter.Size = New Size(16, 16)
-        radbtnPicTimerCountdownLocationModeLeftCenter.TabIndex = 15
-        radbtnPicTimerCountdownLocationModeLeftCenter.Text = "  "
-        radbtnPicTimerCountdownLocationModeLeftCenter.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicTimerCountdownLocationModeBottomCenter
-        ' 
-        radbtnPicTimerCountdownLocationModeBottomCenter.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicTimerCountdownLocationModeBottomCenter.Location = New Point(59, 123)
-        radbtnPicTimerCountdownLocationModeBottomCenter.Name = "radbtnPicTimerCountdownLocationModeBottomCenter"
-        radbtnPicTimerCountdownLocationModeBottomCenter.Size = New Size(16, 16)
-        radbtnPicTimerCountdownLocationModeBottomCenter.TabIndex = 11
-        radbtnPicTimerCountdownLocationModeBottomCenter.Text = "  "
-        radbtnPicTimerCountdownLocationModeBottomCenter.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicTimerCountdownLocationModeLeftCenterBottom
-        ' 
-        radbtnPicTimerCountdownLocationModeLeftCenterBottom.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicTimerCountdownLocationModeLeftCenterBottom.Location = New Point(5, 97)
-        radbtnPicTimerCountdownLocationModeLeftCenterBottom.Name = "radbtnPicTimerCountdownLocationModeLeftCenterBottom"
-        radbtnPicTimerCountdownLocationModeLeftCenterBottom.Size = New Size(16, 16)
-        radbtnPicTimerCountdownLocationModeLeftCenterBottom.TabIndex = 14
-        radbtnPicTimerCountdownLocationModeLeftCenterBottom.Text = "  "
-        radbtnPicTimerCountdownLocationModeLeftCenterBottom.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicTimerCountdownLocationModeBottomRight
-        ' 
-        radbtnPicTimerCountdownLocationModeBottomRight.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicTimerCountdownLocationModeBottomRight.Location = New Point(113, 123)
-        radbtnPicTimerCountdownLocationModeBottomRight.Name = "radbtnPicTimerCountdownLocationModeBottomRight"
-        radbtnPicTimerCountdownLocationModeBottomRight.Size = New Size(16, 16)
-        radbtnPicTimerCountdownLocationModeBottomRight.TabIndex = 8
-        radbtnPicTimerCountdownLocationModeBottomRight.Text = "  "
-        radbtnPicTimerCountdownLocationModeBottomRight.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicTimerCountdownLocationModeBottomCenterLeft
-        ' 
-        radbtnPicTimerCountdownLocationModeBottomCenterLeft.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicTimerCountdownLocationModeBottomCenterLeft.Location = New Point(32, 123)
-        radbtnPicTimerCountdownLocationModeBottomCenterLeft.Name = "radbtnPicTimerCountdownLocationModeBottomCenterLeft"
-        radbtnPicTimerCountdownLocationModeBottomCenterLeft.Size = New Size(16, 16)
-        radbtnPicTimerCountdownLocationModeBottomCenterLeft.TabIndex = 12
-        radbtnPicTimerCountdownLocationModeBottomCenterLeft.Text = "  "
-        radbtnPicTimerCountdownLocationModeBottomCenterLeft.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicTimerCountdownLocationModeBottomCenterRight
-        ' 
-        radbtnPicTimerCountdownLocationModeBottomCenterRight.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicTimerCountdownLocationModeBottomCenterRight.Location = New Point(86, 123)
-        radbtnPicTimerCountdownLocationModeBottomCenterRight.Name = "radbtnPicTimerCountdownLocationModeBottomCenterRight"
-        radbtnPicTimerCountdownLocationModeBottomCenterRight.Size = New Size(16, 16)
-        radbtnPicTimerCountdownLocationModeBottomCenterRight.TabIndex = 10
-        radbtnPicTimerCountdownLocationModeBottomCenterRight.Text = "  "
-        radbtnPicTimerCountdownLocationModeBottomCenterRight.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicTimerCountdownLocationModeRightCenterBottom
-        ' 
-        radbtnPicTimerCountdownLocationModeRightCenterBottom.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicTimerCountdownLocationModeRightCenterBottom.Location = New Point(113, 97)
-        radbtnPicTimerCountdownLocationModeRightCenterBottom.Name = "radbtnPicTimerCountdownLocationModeRightCenterBottom"
-        radbtnPicTimerCountdownLocationModeRightCenterBottom.Size = New Size(16, 16)
-        radbtnPicTimerCountdownLocationModeRightCenterBottom.TabIndex = 8
-        radbtnPicTimerCountdownLocationModeRightCenterBottom.Text = "  "
-        radbtnPicTimerCountdownLocationModeRightCenterBottom.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicTimerCountdownLocationModeRightCenterTop
-        ' 
-        radbtnPicTimerCountdownLocationModeRightCenterTop.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicTimerCountdownLocationModeRightCenterTop.Location = New Point(113, 45)
-        radbtnPicTimerCountdownLocationModeRightCenterTop.Name = "radbtnPicTimerCountdownLocationModeRightCenterTop"
-        radbtnPicTimerCountdownLocationModeRightCenterTop.Size = New Size(16, 16)
-        radbtnPicTimerCountdownLocationModeRightCenterTop.TabIndex = 6
-        radbtnPicTimerCountdownLocationModeRightCenterTop.Text = "  "
-        radbtnPicTimerCountdownLocationModeRightCenterTop.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicTimerCountdownLocationModeBottomLeft
-        ' 
-        radbtnPicTimerCountdownLocationModeBottomLeft.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicTimerCountdownLocationModeBottomLeft.Location = New Point(5, 123)
-        radbtnPicTimerCountdownLocationModeBottomLeft.Name = "radbtnPicTimerCountdownLocationModeBottomLeft"
-        radbtnPicTimerCountdownLocationModeBottomLeft.Size = New Size(16, 16)
-        radbtnPicTimerCountdownLocationModeBottomLeft.TabIndex = 13
-        radbtnPicTimerCountdownLocationModeBottomLeft.Text = "  "
-        radbtnPicTimerCountdownLocationModeBottomLeft.UseVisualStyleBackColor = True
-        ' 
-        ' radbtnPicTimerCountdownLocationModeLeftCenterTop
-        ' 
-        radbtnPicTimerCountdownLocationModeLeftCenterTop.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicTimerCountdownLocationModeLeftCenterTop.Location = New Point(5, 45)
-        radbtnPicTimerCountdownLocationModeLeftCenterTop.Name = "radbtnPicTimerCountdownLocationModeLeftCenterTop"
-        radbtnPicTimerCountdownLocationModeLeftCenterTop.Size = New Size(16, 16)
-        radbtnPicTimerCountdownLocationModeLeftCenterTop.TabIndex = 16
-        radbtnPicTimerCountdownLocationModeLeftCenterTop.Text = "  "
-        radbtnPicTimerCountdownLocationModeLeftCenterTop.UseVisualStyleBackColor = True
-        ' 
-        ' gpbxPicTimerCountdownLocationMode
-        ' 
-        gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeLeftCenterTop)
-        gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeBottomLeft)
-        gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeRightCenterTop)
-        gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeRightCenterBottom)
-        gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeBottomCenterRight)
-        gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeBottomCenterLeft)
-        gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeBottomRight)
-        gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeLeftCenterBottom)
-        gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeBottomCenter)
-        gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeLeftCenter)
-        gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeTopCenterLeft)
-        gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeTopCenter)
-        gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeTopRight)
-        gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeTopCenterRight)
-        gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeRightCenter)
-        gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeTopLeft)
-        gpbxPicTimerCountdownLocationMode.Location = New Point(553, 308)
-        gpbxPicTimerCountdownLocationMode.Name = "gpbxPicTimerCountdownLocationMode"
-        gpbxPicTimerCountdownLocationMode.Size = New Size(133, 144)
-        gpbxPicTimerCountdownLocationMode.TabIndex = 80
-        gpbxPicTimerCountdownLocationMode.TabStop = False
-        gpbxPicTimerCountdownLocationMode.Text = "Timer Location"
-        ' 
-        ' lblHotKeyPicShowFileInfo
-        ' 
-        lblHotKeyPicShowFileInfo.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        lblHotKeyPicShowFileInfo.BackColor = Color.Transparent
-        lblHotKeyPicShowFileInfo.ForeColor = SystemColors.ControlText
-        lblHotKeyPicShowFileInfo.Location = New Point(-20, 103)
-        lblHotKeyPicShowFileInfo.Name = "lblHotKeyPicShowFileInfo"
-        lblHotKeyPicShowFileInfo.Size = New Size(211, 23)
-        lblHotKeyPicShowFileInfo.TabIndex = 0
-        lblHotKeyPicShowFileInfo.Text = "PicShowFileInfo"
-        lblHotKeyPicShowFileInfo.TextAlign = ContentAlignment.BottomCenter
-        ' 
-        ' lblHotKeyPicToggleFullScreen
-        ' 
-        lblHotKeyPicToggleFullScreen.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        lblHotKeyPicToggleFullScreen.BackColor = Color.Transparent
-        lblHotKeyPicToggleFullScreen.ForeColor = SystemColors.ControlText
-        lblHotKeyPicToggleFullScreen.Location = New Point(-20, 60)
-        lblHotKeyPicToggleFullScreen.Name = "lblHotKeyPicToggleFullScreen"
-        lblHotKeyPicToggleFullScreen.Size = New Size(211, 23)
-        lblHotKeyPicToggleFullScreen.TabIndex = 41
-        lblHotKeyPicToggleFullScreen.Text = "PicToggleFullScreen"
-        lblHotKeyPicToggleFullScreen.TextAlign = ContentAlignment.BottomCenter
-        ' 
-        ' lblHotKeyPicToggle
-        ' 
-        lblHotKeyPicToggle.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        lblHotKeyPicToggle.BackColor = Color.Transparent
-        lblHotKeyPicToggle.ForeColor = SystemColors.ControlText
-        lblHotKeyPicToggle.Location = New Point(-20, 17)
-        lblHotKeyPicToggle.Name = "lblHotKeyPicToggle"
-        lblHotKeyPicToggle.Size = New Size(211, 23)
-        lblHotKeyPicToggle.TabIndex = 44
-        lblHotKeyPicToggle.Text = "PicToggle"
-        lblHotKeyPicToggle.TextAlign = ContentAlignment.BottomCenter
-        ' 
-        ' btnHotKeyPicShowFileInfoDisable
-        ' 
-        btnHotKeyPicShowFileInfoDisable.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        btnHotKeyPicShowFileInfoDisable.FlatAppearance.BorderSize = 0
-        btnHotKeyPicShowFileInfoDisable.FlatStyle = FlatStyle.Flat
-        btnHotKeyPicShowFileInfoDisable.Image = My.Resources.Resources.imageRemove
-        btnHotKeyPicShowFileInfoDisable.Location = New Point(156, 129)
-        btnHotKeyPicShowFileInfoDisable.Name = "btnHotKeyPicShowFileInfoDisable"
-        btnHotKeyPicShowFileInfoDisable.Size = New Size(20, 17)
-        btnHotKeyPicShowFileInfoDisable.TabIndex = 20
-        btnHotKeyPicShowFileInfoDisable.TabStop = False
-        btnHotKeyPicShowFileInfoDisable.UseVisualStyleBackColor = True
-        ' 
-        ' txbxHotKeyPicShowFileInfo
-        ' 
-        txbxHotKeyPicShowFileInfo.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        txbxHotKeyPicShowFileInfo.Location = New Point(8, 125)
-        txbxHotKeyPicShowFileInfo.Name = "txbxHotKeyPicShowFileInfo"
-        txbxHotKeyPicShowFileInfo.ShortcutsEnabled = False
-        txbxHotKeyPicShowFileInfo.Size = New Size(151, 25)
-        txbxHotKeyPicShowFileInfo.TabIndex = 10
-        txbxHotKeyPicShowFileInfo.TabStop = False
-        txbxHotKeyPicShowFileInfo.TextAlign = HorizontalAlignment.Center
-        txbxHotKeyPicShowFileInfo.WordWrap = False
-        ' 
-        ' btnHotKeysPicsSet
-        ' 
-        btnHotKeysPicsSet.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        btnHotKeysPicsSet.Image = My.Resources.Resources.imageGo
-        btnHotKeysPicsSet.ImageAlign = ContentAlignment.MiddleLeft
-        btnHotKeysPicsSet.Location = New Point(96, 156)
-        btnHotKeysPicsSet.Name = "btnHotKeysPicsSet"
-        btnHotKeysPicsSet.Size = New Size(63, 32)
-        btnHotKeysPicsSet.TabIndex = 40
-        btnHotKeysPicsSet.TabStop = False
-        btnHotKeysPicsSet.Text = "Set"
-        btnHotKeysPicsSet.TextAlign = ContentAlignment.MiddleRight
-        btnHotKeysPicsSet.UseVisualStyleBackColor = True
-        ' 
-        ' btnHotKeysPicsUndo
-        ' 
-        btnHotKeysPicsUndo.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        btnHotKeysPicsUndo.ImageAlign = ContentAlignment.MiddleLeft
-        btnHotKeysPicsUndo.Location = New Point(7, 156)
-        btnHotKeysPicsUndo.Name = "btnHotKeysPicsUndo"
-        btnHotKeysPicsUndo.Size = New Size(83, 32)
-        btnHotKeysPicsUndo.TabIndex = 30
-        btnHotKeysPicsUndo.TabStop = False
-        btnHotKeysPicsUndo.Text = "Undo"
-        btnHotKeysPicsUndo.TextAlign = ContentAlignment.MiddleRight
-        btnHotKeysPicsUndo.UseVisualStyleBackColor = True
-        ' 
-        ' btnHotKeyPicToggleFullScreenDisable
-        ' 
-        btnHotKeyPicToggleFullScreenDisable.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        btnHotKeyPicToggleFullScreenDisable.FlatAppearance.BorderSize = 0
-        btnHotKeyPicToggleFullScreenDisable.FlatStyle = FlatStyle.Flat
-        btnHotKeyPicToggleFullScreenDisable.Image = My.Resources.Resources.imageRemove
-        btnHotKeyPicToggleFullScreenDisable.Location = New Point(156, 86)
-        btnHotKeyPicToggleFullScreenDisable.Name = "btnHotKeyPicToggleFullScreenDisable"
-        btnHotKeyPicToggleFullScreenDisable.Size = New Size(20, 17)
-        btnHotKeyPicToggleFullScreenDisable.TabIndex = 43
-        btnHotKeyPicToggleFullScreenDisable.TabStop = False
-        btnHotKeyPicToggleFullScreenDisable.UseVisualStyleBackColor = True
-        ' 
-        ' txbxHotKeyPicToggleFullScreen
-        ' 
-        txbxHotKeyPicToggleFullScreen.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        txbxHotKeyPicToggleFullScreen.Location = New Point(8, 82)
-        txbxHotKeyPicToggleFullScreen.Name = "txbxHotKeyPicToggleFullScreen"
-        txbxHotKeyPicToggleFullScreen.ShortcutsEnabled = False
-        txbxHotKeyPicToggleFullScreen.Size = New Size(151, 25)
-        txbxHotKeyPicToggleFullScreen.TabIndex = 42
-        txbxHotKeyPicToggleFullScreen.TabStop = False
-        txbxHotKeyPicToggleFullScreen.TextAlign = HorizontalAlignment.Center
-        txbxHotKeyPicToggleFullScreen.WordWrap = False
-        ' 
-        ' btnHotKeyPicToggleDisable
-        ' 
-        btnHotKeyPicToggleDisable.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        btnHotKeyPicToggleDisable.FlatAppearance.BorderSize = 0
-        btnHotKeyPicToggleDisable.FlatStyle = FlatStyle.Flat
-        btnHotKeyPicToggleDisable.Image = My.Resources.Resources.imageRemove
-        btnHotKeyPicToggleDisable.Location = New Point(156, 43)
-        btnHotKeyPicToggleDisable.Name = "btnHotKeyPicToggleDisable"
-        btnHotKeyPicToggleDisable.Size = New Size(20, 17)
-        btnHotKeyPicToggleDisable.TabIndex = 46
-        btnHotKeyPicToggleDisable.TabStop = False
-        btnHotKeyPicToggleDisable.UseVisualStyleBackColor = True
-        ' 
-        ' txbxHotKeyPicToggle
-        ' 
-        txbxHotKeyPicToggle.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        txbxHotKeyPicToggle.Location = New Point(8, 39)
-        txbxHotKeyPicToggle.Name = "txbxHotKeyPicToggle"
-        txbxHotKeyPicToggle.ShortcutsEnabled = False
-        txbxHotKeyPicToggle.Size = New Size(151, 25)
-        txbxHotKeyPicToggle.TabIndex = 45
-        txbxHotKeyPicToggle.TabStop = False
-        txbxHotKeyPicToggle.TextAlign = HorizontalAlignment.Center
-        txbxHotKeyPicToggle.WordWrap = False
-        ' 
-        ' grbxHotKeysPics
-        ' 
-        grbxHotKeysPics.Controls.Add(txbxHotKeyPicToggle)
-        grbxHotKeysPics.Controls.Add(btnHotKeyPicToggleDisable)
-        grbxHotKeysPics.Controls.Add(txbxHotKeyPicToggleFullScreen)
-        grbxHotKeysPics.Controls.Add(btnHotKeyPicToggleFullScreenDisable)
-        grbxHotKeysPics.Controls.Add(btnHotKeysPicsUndo)
-        grbxHotKeysPics.Controls.Add(btnHotKeysPicsSet)
-        grbxHotKeysPics.Controls.Add(txbxHotKeyPicShowFileInfo)
-        grbxHotKeysPics.Controls.Add(btnHotKeyPicShowFileInfoDisable)
-        grbxHotKeysPics.Controls.Add(lblHotKeyPicToggle)
-        grbxHotKeysPics.Controls.Add(lblHotKeyPicToggleFullScreen)
-        grbxHotKeysPics.Controls.Add(lblHotKeyPicShowFileInfo)
-        grbxHotKeysPics.ForeColor = SystemColors.ControlText
-        grbxHotKeysPics.Location = New Point(287, 256)
-        grbxHotKeysPics.Name = "grbxHotKeysPics"
-        grbxHotKeysPics.Size = New Size(181, 196)
-        grbxHotKeysPics.TabIndex = 50
-        grbxHotKeysPics.TabStop = False
-        grbxHotKeysPics.Text = "HotKeys"
+        ' radbtnPicLocationModeTopLeftInside
+        ' 
+        radbtnPicLocationModeTopLeftInside.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicLocationModeTopLeftInside.Location = New Point(34, 48)
+        radbtnPicLocationModeTopLeftInside.Name = "radbtnPicLocationModeTopLeftInside"
+        radbtnPicLocationModeTopLeftInside.Size = New Size(16, 16)
+        radbtnPicLocationModeTopLeftInside.TabIndex = 91
+        radbtnPicLocationModeTopLeftInside.Text = "  "
+        radbtnPicLocationModeTopLeftInside.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicLocationModeBottomLeftInside
+        ' 
+        radbtnPicLocationModeBottomLeftInside.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicLocationModeBottomLeftInside.Location = New Point(34, 160)
+        radbtnPicLocationModeBottomLeftInside.Name = "radbtnPicLocationModeBottomLeftInside"
+        radbtnPicLocationModeBottomLeftInside.Size = New Size(16, 16)
+        radbtnPicLocationModeBottomLeftInside.TabIndex = 92
+        radbtnPicLocationModeBottomLeftInside.Text = "  "
+        radbtnPicLocationModeBottomLeftInside.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicLocationModeBottomRightInside
+        ' 
+        radbtnPicLocationModeBottomRightInside.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicLocationModeBottomRightInside.Location = New Point(146, 160)
+        radbtnPicLocationModeBottomRightInside.Name = "radbtnPicLocationModeBottomRightInside"
+        radbtnPicLocationModeBottomRightInside.Size = New Size(16, 16)
+        radbtnPicLocationModeBottomRightInside.TabIndex = 93
+        radbtnPicLocationModeBottomRightInside.Text = "  "
+        radbtnPicLocationModeBottomRightInside.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicLocationModeTopRightInside
+        ' 
+        radbtnPicLocationModeTopRightInside.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicLocationModeTopRightInside.Location = New Point(146, 48)
+        radbtnPicLocationModeTopRightInside.Name = "radbtnPicLocationModeTopRightInside"
+        radbtnPicLocationModeTopRightInside.Size = New Size(16, 16)
+        radbtnPicLocationModeTopRightInside.TabIndex = 96
+        radbtnPicLocationModeTopRightInside.Text = "  "
+        radbtnPicLocationModeTopRightInside.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicLocationModeLeftCenterTop
+        ' 
+        radbtnPicLocationModeLeftCenterTop.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicLocationModeLeftCenterTop.Location = New Point(6, 62)
+        radbtnPicLocationModeLeftCenterTop.Name = "radbtnPicLocationModeLeftCenterTop"
+        radbtnPicLocationModeLeftCenterTop.Size = New Size(16, 16)
+        radbtnPicLocationModeLeftCenterTop.TabIndex = 16
+        radbtnPicLocationModeLeftCenterTop.Text = "  "
+        radbtnPicLocationModeLeftCenterTop.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicLocationModeBottomLeft
+        ' 
+        radbtnPicLocationModeBottomLeft.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicLocationModeBottomLeft.Location = New Point(6, 188)
+        radbtnPicLocationModeBottomLeft.Name = "radbtnPicLocationModeBottomLeft"
+        radbtnPicLocationModeBottomLeft.Size = New Size(16, 16)
+        radbtnPicLocationModeBottomLeft.TabIndex = 13
+        radbtnPicLocationModeBottomLeft.Text = "  "
+        radbtnPicLocationModeBottomLeft.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicLocationModeLeftCenterBottomInside
+        ' 
+        radbtnPicLocationModeLeftCenterBottomInside.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicLocationModeLeftCenterBottomInside.Location = New Point(34, 132)
+        radbtnPicLocationModeLeftCenterBottomInside.Name = "radbtnPicLocationModeLeftCenterBottomInside"
+        radbtnPicLocationModeLeftCenterBottomInside.Size = New Size(16, 16)
+        radbtnPicLocationModeLeftCenterBottomInside.TabIndex = 90
+        radbtnPicLocationModeLeftCenterBottomInside.Text = "  "
+        radbtnPicLocationModeLeftCenterBottomInside.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicLocationModeLeftCenterInside
+        ' 
+        radbtnPicLocationModeLeftCenterInside.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicLocationModeLeftCenterInside.Location = New Point(34, 104)
+        radbtnPicLocationModeLeftCenterInside.Name = "radbtnPicLocationModeLeftCenterInside"
+        radbtnPicLocationModeLeftCenterInside.Size = New Size(16, 16)
+        radbtnPicLocationModeLeftCenterInside.TabIndex = 94
+        radbtnPicLocationModeLeftCenterInside.Text = "  "
+        radbtnPicLocationModeLeftCenterInside.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicLocationModeLeftCenterTopInside
+        ' 
+        radbtnPicLocationModeLeftCenterTopInside.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicLocationModeLeftCenterTopInside.Location = New Point(34, 76)
+        radbtnPicLocationModeLeftCenterTopInside.Name = "radbtnPicLocationModeLeftCenterTopInside"
+        radbtnPicLocationModeLeftCenterTopInside.Size = New Size(16, 16)
+        radbtnPicLocationModeLeftCenterTopInside.TabIndex = 95
+        radbtnPicLocationModeLeftCenterTopInside.Text = "  "
+        radbtnPicLocationModeLeftCenterTopInside.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicLocationModeBottomCenterInside
+        ' 
+        radbtnPicLocationModeBottomCenterInside.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicLocationModeBottomCenterInside.Location = New Point(90, 160)
+        radbtnPicLocationModeBottomCenterInside.Name = "radbtnPicLocationModeBottomCenterInside"
+        radbtnPicLocationModeBottomCenterInside.Size = New Size(16, 16)
+        radbtnPicLocationModeBottomCenterInside.TabIndex = 88
+        radbtnPicLocationModeBottomCenterInside.Text = "  "
+        radbtnPicLocationModeBottomCenterInside.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicLocationModeRightCenterInside
+        ' 
+        radbtnPicLocationModeRightCenterInside.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicLocationModeRightCenterInside.Location = New Point(146, 104)
+        radbtnPicLocationModeRightCenterInside.Name = "radbtnPicLocationModeRightCenterInside"
+        radbtnPicLocationModeRightCenterInside.Size = New Size(16, 16)
+        radbtnPicLocationModeRightCenterInside.TabIndex = 86
+        radbtnPicLocationModeRightCenterInside.Text = "  "
+        radbtnPicLocationModeRightCenterInside.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicLocationModeBottomCenterLeftInside
+        ' 
+        radbtnPicLocationModeBottomCenterLeftInside.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicLocationModeBottomCenterLeftInside.Location = New Point(62, 160)
+        radbtnPicLocationModeBottomCenterLeftInside.Name = "radbtnPicLocationModeBottomCenterLeftInside"
+        radbtnPicLocationModeBottomCenterLeftInside.Size = New Size(16, 16)
+        radbtnPicLocationModeBottomCenterLeftInside.TabIndex = 89
+        radbtnPicLocationModeBottomCenterLeftInside.Text = "  "
+        radbtnPicLocationModeBottomCenterLeftInside.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicLocationModeRightCenterTop
+        ' 
+        radbtnPicLocationModeRightCenterTop.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicLocationModeRightCenterTop.Location = New Point(174, 62)
+        radbtnPicLocationModeRightCenterTop.Name = "radbtnPicLocationModeRightCenterTop"
+        radbtnPicLocationModeRightCenterTop.Size = New Size(16, 16)
+        radbtnPicLocationModeRightCenterTop.TabIndex = 6
+        radbtnPicLocationModeRightCenterTop.Text = "  "
+        radbtnPicLocationModeRightCenterTop.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicLocationModeRightCenterBottom
+        ' 
+        radbtnPicLocationModeRightCenterBottom.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicLocationModeRightCenterBottom.Location = New Point(174, 146)
+        radbtnPicLocationModeRightCenterBottom.Name = "radbtnPicLocationModeRightCenterBottom"
+        radbtnPicLocationModeRightCenterBottom.Size = New Size(16, 16)
+        radbtnPicLocationModeRightCenterBottom.TabIndex = 8
+        radbtnPicLocationModeRightCenterBottom.Text = "  "
+        radbtnPicLocationModeRightCenterBottom.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicLocationModeBottomCenterRight
+        ' 
+        radbtnPicLocationModeBottomCenterRight.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicLocationModeBottomCenterRight.Location = New Point(132, 188)
+        radbtnPicLocationModeBottomCenterRight.Name = "radbtnPicLocationModeBottomCenterRight"
+        radbtnPicLocationModeBottomCenterRight.Size = New Size(16, 16)
+        radbtnPicLocationModeBottomCenterRight.TabIndex = 10
+        radbtnPicLocationModeBottomCenterRight.Text = "  "
+        radbtnPicLocationModeBottomCenterRight.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicLocationModeManual
+        ' 
+        radbtnPicLocationModeManual.CheckAlign = ContentAlignment.BottomCenter
+        radbtnPicLocationModeManual.Location = New Point(69, 78)
+        radbtnPicLocationModeManual.Name = "radbtnPicLocationModeManual"
+        radbtnPicLocationModeManual.Size = New Size(57, 40)
+        radbtnPicLocationModeManual.TabIndex = 0
+        radbtnPicLocationModeManual.Text = "Manual"
+        radbtnPicLocationModeManual.TextAlign = ContentAlignment.TopCenter
+        radbtnPicLocationModeManual.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicLocationModeBottomCenterLeft
+        ' 
+        radbtnPicLocationModeBottomCenterLeft.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicLocationModeBottomCenterLeft.Location = New Point(48, 188)
+        radbtnPicLocationModeBottomCenterLeft.Name = "radbtnPicLocationModeBottomCenterLeft"
+        radbtnPicLocationModeBottomCenterLeft.Size = New Size(16, 16)
+        radbtnPicLocationModeBottomCenterLeft.TabIndex = 12
+        radbtnPicLocationModeBottomCenterLeft.Text = "  "
+        radbtnPicLocationModeBottomCenterLeft.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicLocationModeBottomRight
+        ' 
+        radbtnPicLocationModeBottomRight.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicLocationModeBottomRight.Location = New Point(174, 188)
+        radbtnPicLocationModeBottomRight.Name = "radbtnPicLocationModeBottomRight"
+        radbtnPicLocationModeBottomRight.Size = New Size(16, 16)
+        radbtnPicLocationModeBottomRight.TabIndex = 8
+        radbtnPicLocationModeBottomRight.Text = "  "
+        radbtnPicLocationModeBottomRight.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicLocationModeLeftCenterBottom
+        ' 
+        radbtnPicLocationModeLeftCenterBottom.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicLocationModeLeftCenterBottom.Location = New Point(6, 146)
+        radbtnPicLocationModeLeftCenterBottom.Name = "radbtnPicLocationModeLeftCenterBottom"
+        radbtnPicLocationModeLeftCenterBottom.Size = New Size(16, 16)
+        radbtnPicLocationModeLeftCenterBottom.TabIndex = 14
+        radbtnPicLocationModeLeftCenterBottom.Text = "  "
+        radbtnPicLocationModeLeftCenterBottom.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicLocationModeBottomCenterRightInside
+        ' 
+        radbtnPicLocationModeBottomCenterRightInside.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicLocationModeBottomCenterRightInside.Location = New Point(118, 160)
+        radbtnPicLocationModeBottomCenterRightInside.Name = "radbtnPicLocationModeBottomCenterRightInside"
+        radbtnPicLocationModeBottomCenterRightInside.Size = New Size(16, 16)
+        radbtnPicLocationModeBottomCenterRightInside.TabIndex = 85
+        radbtnPicLocationModeBottomCenterRightInside.Text = "  "
+        radbtnPicLocationModeBottomCenterRightInside.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicLocationModeBottomCenter
+        ' 
+        radbtnPicLocationModeBottomCenter.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicLocationModeBottomCenter.Location = New Point(90, 188)
+        radbtnPicLocationModeBottomCenter.Name = "radbtnPicLocationModeBottomCenter"
+        radbtnPicLocationModeBottomCenter.Size = New Size(16, 16)
+        radbtnPicLocationModeBottomCenter.TabIndex = 11
+        radbtnPicLocationModeBottomCenter.Text = "  "
+        radbtnPicLocationModeBottomCenter.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicLocationModeRightCenterBottomInside
+        ' 
+        radbtnPicLocationModeRightCenterBottomInside.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicLocationModeRightCenterBottomInside.Location = New Point(146, 132)
+        radbtnPicLocationModeRightCenterBottomInside.Name = "radbtnPicLocationModeRightCenterBottomInside"
+        radbtnPicLocationModeRightCenterBottomInside.Size = New Size(16, 16)
+        radbtnPicLocationModeRightCenterBottomInside.TabIndex = 87
+        radbtnPicLocationModeRightCenterBottomInside.Text = "  "
+        radbtnPicLocationModeRightCenterBottomInside.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicLocationModeLeftCenter
+        ' 
+        radbtnPicLocationModeLeftCenter.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicLocationModeLeftCenter.Location = New Point(6, 104)
+        radbtnPicLocationModeLeftCenter.Name = "radbtnPicLocationModeLeftCenter"
+        radbtnPicLocationModeLeftCenter.Size = New Size(16, 16)
+        radbtnPicLocationModeLeftCenter.TabIndex = 15
+        radbtnPicLocationModeLeftCenter.Text = "  "
+        radbtnPicLocationModeLeftCenter.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicLocationModeTopCenterRightInside
+        ' 
+        radbtnPicLocationModeTopCenterRightInside.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicLocationModeTopCenterRightInside.Location = New Point(118, 48)
+        radbtnPicLocationModeTopCenterRightInside.Name = "radbtnPicLocationModeTopCenterRightInside"
+        radbtnPicLocationModeTopCenterRightInside.Size = New Size(16, 16)
+        radbtnPicLocationModeTopCenterRightInside.TabIndex = 83
+        radbtnPicLocationModeTopCenterRightInside.Text = "  "
+        radbtnPicLocationModeTopCenterRightInside.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicLocationModeRightCenterTopInside
+        ' 
+        radbtnPicLocationModeRightCenterTopInside.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicLocationModeRightCenterTopInside.Location = New Point(146, 76)
+        radbtnPicLocationModeRightCenterTopInside.Name = "radbtnPicLocationModeRightCenterTopInside"
+        radbtnPicLocationModeRightCenterTopInside.Size = New Size(16, 16)
+        radbtnPicLocationModeRightCenterTopInside.TabIndex = 84
+        radbtnPicLocationModeRightCenterTopInside.Text = "  "
+        radbtnPicLocationModeRightCenterTopInside.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicLocationModeTopCenterInside
+        ' 
+        radbtnPicLocationModeTopCenterInside.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicLocationModeTopCenterInside.Location = New Point(90, 48)
+        radbtnPicLocationModeTopCenterInside.Name = "radbtnPicLocationModeTopCenterInside"
+        radbtnPicLocationModeTopCenterInside.Size = New Size(16, 16)
+        radbtnPicLocationModeTopCenterInside.TabIndex = 82
+        radbtnPicLocationModeTopCenterInside.Text = "  "
+        radbtnPicLocationModeTopCenterInside.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicLocationModeTopCenterLeft
+        ' 
+        radbtnPicLocationModeTopCenterLeft.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicLocationModeTopCenterLeft.Location = New Point(48, 20)
+        radbtnPicLocationModeTopCenterLeft.Name = "radbtnPicLocationModeTopCenterLeft"
+        radbtnPicLocationModeTopCenterLeft.Size = New Size(16, 16)
+        radbtnPicLocationModeTopCenterLeft.TabIndex = 2
+        radbtnPicLocationModeTopCenterLeft.Text = "  "
+        radbtnPicLocationModeTopCenterLeft.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicLocationModeTopCenter
+        ' 
+        radbtnPicLocationModeTopCenter.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicLocationModeTopCenter.Location = New Point(90, 20)
+        radbtnPicLocationModeTopCenter.Name = "radbtnPicLocationModeTopCenter"
+        radbtnPicLocationModeTopCenter.Size = New Size(16, 16)
+        radbtnPicLocationModeTopCenter.TabIndex = 3
+        radbtnPicLocationModeTopCenter.Text = "  "
+        radbtnPicLocationModeTopCenter.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicLocationModeTopRight
+        ' 
+        radbtnPicLocationModeTopRight.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicLocationModeTopRight.Location = New Point(174, 20)
+        radbtnPicLocationModeTopRight.Name = "radbtnPicLocationModeTopRight"
+        radbtnPicLocationModeTopRight.Size = New Size(16, 16)
+        radbtnPicLocationModeTopRight.TabIndex = 5
+        radbtnPicLocationModeTopRight.Text = "  "
+        radbtnPicLocationModeTopRight.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicLocationModeTopCenterRight
+        ' 
+        radbtnPicLocationModeTopCenterRight.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicLocationModeTopCenterRight.Location = New Point(132, 20)
+        radbtnPicLocationModeTopCenterRight.Name = "radbtnPicLocationModeTopCenterRight"
+        radbtnPicLocationModeTopCenterRight.Size = New Size(16, 16)
+        radbtnPicLocationModeTopCenterRight.TabIndex = 4
+        radbtnPicLocationModeTopCenterRight.Text = "  "
+        radbtnPicLocationModeTopCenterRight.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicLocationModeRightCenter
+        ' 
+        radbtnPicLocationModeRightCenter.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicLocationModeRightCenter.Location = New Point(174, 104)
+        radbtnPicLocationModeRightCenter.Name = "radbtnPicLocationModeRightCenter"
+        radbtnPicLocationModeRightCenter.Size = New Size(16, 16)
+        radbtnPicLocationModeRightCenter.TabIndex = 7
+        radbtnPicLocationModeRightCenter.Text = "  "
+        radbtnPicLocationModeRightCenter.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicLocationModeTopCenterLeftInside
+        ' 
+        radbtnPicLocationModeTopCenterLeftInside.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicLocationModeTopCenterLeftInside.Location = New Point(62, 48)
+        radbtnPicLocationModeTopCenterLeftInside.Name = "radbtnPicLocationModeTopCenterLeftInside"
+        radbtnPicLocationModeTopCenterLeftInside.Size = New Size(16, 16)
+        radbtnPicLocationModeTopCenterLeftInside.TabIndex = 81
+        radbtnPicLocationModeTopCenterLeftInside.Text = "  "
+        radbtnPicLocationModeTopCenterLeftInside.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicLocationModeTopLeft
+        ' 
+        radbtnPicLocationModeTopLeft.CheckAlign = ContentAlignment.MiddleCenter
+        radbtnPicLocationModeTopLeft.Location = New Point(6, 20)
+        radbtnPicLocationModeTopLeft.Name = "radbtnPicLocationModeTopLeft"
+        radbtnPicLocationModeTopLeft.Size = New Size(16, 16)
+        radbtnPicLocationModeTopLeft.TabIndex = 1
+        radbtnPicLocationModeTopLeft.Text = "  "
+        radbtnPicLocationModeTopLeft.UseVisualStyleBackColor = True
+        ' 
+        ' lblPicFileCount
+        ' 
+        lblPicFileCount.Location = New Point(8, 100)
+        lblPicFileCount.Name = "lblPicFileCount"
+        lblPicFileCount.Size = New Size(254, 22)
+        lblPicFileCount.TabIndex = 0
+        ' 
+        ' btnPicTimerEnabled
+        ' 
+        btnPicTimerEnabled.FlatStyle = FlatStyle.Flat
+        btnPicTimerEnabled.Location = New Point(553, 213)
+        btnPicTimerEnabled.Margin = New Padding(3, 4, 3, 4)
+        btnPicTimerEnabled.Name = "btnPicTimerEnabled"
+        btnPicTimerEnabled.Size = New Size(80, 31)
+        btnPicTimerEnabled.TabIndex = 60
+        btnPicTimerEnabled.TabStop = False
+        btnPicTimerEnabled.Text = "Timer"
+        btnPicTimerEnabled.UseVisualStyleBackColor = True
+        ' 
+        ' gpbxPicPlayMode
+        ' 
+        gpbxPicPlayMode.Controls.Add(radbtnPicPlayModeLinearWithRandomStart)
+        gpbxPicPlayMode.Controls.Add(radbtnPicPlayModeRandom)
+        gpbxPicPlayMode.Controls.Add(radbtnPicPlayModeLinear)
+        gpbxPicPlayMode.Location = New Point(7, 140)
+        gpbxPicPlayMode.Name = "gpbxPicPlayMode"
+        gpbxPicPlayMode.Size = New Size(248, 47)
+        gpbxPicPlayMode.TabIndex = 10
+        gpbxPicPlayMode.TabStop = False
+        gpbxPicPlayMode.Text = "Picture Advance Mode"
+        ' 
+        ' radbtnPicPlayModeRandom
+        ' 
+        radbtnPicPlayModeRandom.Location = New Point(172, 19)
+        radbtnPicPlayModeRandom.Name = "radbtnPicPlayModeRandom"
+        radbtnPicPlayModeRandom.Size = New Size(75, 24)
+        radbtnPicPlayModeRandom.TabIndex = 2
+        radbtnPicPlayModeRandom.Text = "Random"
+        radbtnPicPlayModeRandom.UseVisualStyleBackColor = True
+        ' 
+        ' radbtnPicPlayModeLinear
+        ' 
+        radbtnPicPlayModeLinear.Location = New Point(7, 19)
+        radbtnPicPlayModeLinear.Name = "radbtnPicPlayModeLinear"
+        radbtnPicPlayModeLinear.Size = New Size(61, 24)
+        radbtnPicPlayModeLinear.TabIndex = 0
+        radbtnPicPlayModeLinear.Text = "Linear"
+        radbtnPicPlayModeLinear.UseVisualStyleBackColor = True
+        ' 
+        ' label4
+        ' 
+        label4.Location = New Point(554, 245)
+        label4.Name = "label4"
+        label4.Size = New Size(80, 22)
+        label4.TabIndex = 21
+        label4.Text = "Interval (s)"
+        label4.TextAlign = ContentAlignment.TopCenter
+        ' 
+        ' chbxPicTimerAutoStart
+        ' 
+        chbxPicTimerAutoStart.Location = New Point(639, 218)
+        chbxPicTimerAutoStart.Margin = New Padding(3, 4, 3, 4)
+        chbxPicTimerAutoStart.Name = "chbxPicTimerAutoStart"
+        chbxPicTimerAutoStart.Size = New Size(118, 22)
+        chbxPicTimerAutoStart.TabIndex = 65
+        chbxPicTimerAutoStart.Text = "AutoStart Timer"
+        chbxPicTimerAutoStart.TextAlign = ContentAlignment.MiddleCenter
+        chbxPicTimerAutoStart.UseVisualStyleBackColor = True
+        ' 
+        ' PanelVids
+        ' 
+        PanelVids.Controls.Add(chbkVidMute)
+        PanelVids.Controls.Add(lvVidFolders)
+        PanelVids.Controls.Add(grbxHotKeysVids)
+        PanelVids.Controls.Add(grbxVidTimeLocationMode)
+        PanelVids.Controls.Add(cobxVidTimeDisplayMode)
+        PanelVids.Controls.Add(btnRefreshVidList)
+        PanelVids.Controls.Add(btnlvVidFolders)
+        PanelVids.Controls.Add(chbxVidLockFullScreen)
+        PanelVids.Controls.Add(lblVidFileCount)
+        PanelVids.Controls.Add(chbxVidAutoView)
+        PanelVids.Controls.Add(chbxVidTime)
+        PanelVids.Controls.Add(gpbxVidScale)
+        PanelVids.Controls.Add(gpbxVidPlayMode)
+        PanelVids.Controls.Add(gpbxVidLocationMode)
+        PanelVids.Location = New Point(144, 12)
+        PanelVids.Name = "PanelVids"
+        PanelVids.Size = New Size(760, 477)
+        PanelVids.TabIndex = 109
+        ' 
+        ' PanelActions
+        ' 
+        PanelActions.Controls.Add(btnClose)
+        PanelActions.Controls.Add(btnRestoreSettings)
+        PanelActions.Controls.Add(btnSaveSettings)
+        PanelActions.Controls.Add(btnErrorTest)
+        PanelActions.Controls.Add(btnInfo)
+        PanelActions.Controls.Add(btnLog)
+        PanelActions.Dock = DockStyle.Bottom
+        PanelActions.Location = New Point(0, 534)
+        PanelActions.Name = "PanelActions"
+        PanelActions.Size = New Size(917, 96)
+        PanelActions.TabIndex = 110
+        ' 
+        ' PanelPageSelector
+        ' 
+        PanelPageSelector.Controls.Add(LVPageSelector)
+        PanelPageSelector.Dock = DockStyle.Left
+        PanelPageSelector.Location = New Point(0, 0)
+        PanelPageSelector.Name = "PanelPageSelector"
+        PanelPageSelector.Size = New Size(138, 534)
+        PanelPageSelector.TabIndex = 111
+        ' 
+        ' LVPageSelector
+        ' 
+        LVPageSelector.AutoArrange = False
+        LVPageSelector.BorderStyle = BorderStyle.None
+        LVPageSelector.Dock = DockStyle.Fill
+        LVPageSelector.EditableColumns = CType(resources.GetObject("LVPageSelector.EditableColumns"), List(Of Boolean))
+        LVPageSelector.HeaderStyle = ColumnHeaderStyle.None
+        LVPageSelector.InsertionLineColor = Color.Teal
+        LVPageSelector.Location = New Point(0, 0)
+        LVPageSelector.MultiSelect = False
+        LVPageSelector.Name = "LVPageSelector"
+        LVPageSelector.Scrollable = False
+        LVPageSelector.ShowGroups = False
+        LVPageSelector.Size = New Size(138, 534)
+        LVPageSelector.TabIndex = 0
+        LVPageSelector.UseCompatibleStateImageBehavior = False
         ' 
         ' MainForm
         ' 
         AutoScaleMode = AutoScaleMode.None
         AutoSizeMode = AutoSizeMode.GrowAndShrink
         AutoValidate = AutoValidate.EnableAllowFocusChange
-        ClientSize = New Size(1564, 564)
+        ClientSize = New Size(917, 630)
         Controls.Add(PanelApp)
-        Controls.Add(PanelVids)
         Controls.Add(PanelPics)
-        Controls.Add(btnLog)
-        Controls.Add(btnInfo)
-        Controls.Add(btnErrorTest)
-        Controls.Add(btnSaveSettings)
-        Controls.Add(btnClose)
-        Controls.Add(btnRestoreSettings)
-        Font = New Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Controls.Add(PanelVids)
+        Controls.Add(PanelPageSelector)
+        Controls.Add(PanelActions)
+        Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Icon = My.Resources.Resources.IconApp
         Margin = New Padding(3, 4, 3, 4)
         MaximizeBox = False
@@ -2728,13 +2769,15 @@ Inherits System.Windows.Forms.Form
         PanelApp.PerformLayout()
         PanelPics.ResumeLayout(False)
         PanelPics.PerformLayout()
-        PanelVids.ResumeLayout(False)
-        gpbxPicPlayMode.ResumeLayout(False)
-        gpbxPicLocationMode.ResumeLayout(False)
-        gpbxPicJustify.ResumeLayout(False)
-        gpbxPicTimerCountdownLocationMode.ResumeLayout(False)
         grbxHotKeysPics.ResumeLayout(False)
         grbxHotKeysPics.PerformLayout()
+        gpbxPicTimerCountdownLocationMode.ResumeLayout(False)
+        gpbxPicJustify.ResumeLayout(False)
+        gpbxPicLocationMode.ResumeLayout(False)
+        gpbxPicPlayMode.ResumeLayout(False)
+        PanelVids.ResumeLayout(False)
+        PanelActions.ResumeLayout(False)
+        PanelPageSelector.ResumeLayout(False)
         ResumeLayout(False)
 
     End Sub
@@ -2960,4 +3003,7 @@ Inherits System.Windows.Forms.Form
     Private WithEvents btnRefreshPicList As Button
     Private WithEvents label4 As Label
     Private WithEvents chbxPicTimerAutoStart As CheckBox
+    Friend WithEvents PanelActions As Panel
+    Friend WithEvents PanelPageSelector As Panel
+    Friend WithEvents LVPageSelector As Skye.UI.ListViewEX
 End Class

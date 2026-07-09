@@ -402,16 +402,16 @@ Inherits System.Windows.Forms.Form
         ' 
         ' chbxHotKeys
         ' 
-        chbxHotKeys.Location = New Point(34, 214)
+        chbxHotKeys.Location = New Point(112, 205)
         chbxHotKeys.Name = "chbxHotKeys"
-        chbxHotKeys.Size = New Size(103, 24)
+        chbxHotKeys.Size = New Size(140, 26)
         chbxHotKeys.TabIndex = 60
         chbxHotKeys.Text = "HotKeys"
         chbxHotKeys.UseVisualStyleBackColor = True
         ' 
         ' txbxInsideLocationOffset
         ' 
-        txbxInsideLocationOffset.Location = New Point(34, 336)
+        txbxInsideLocationOffset.Location = New Point(112, 308)
         txbxInsideLocationOffset.MaxLength = 4
         txbxInsideLocationOffset.Name = "txbxInsideLocationOffset"
         txbxInsideLocationOffset.Size = New Size(80, 29)
@@ -420,9 +420,9 @@ Inherits System.Windows.Forms.Form
         ' 
         ' lblInsideLocationOffset
         ' 
-        lblInsideLocationOffset.Location = New Point(32, 316)
+        lblInsideLocationOffset.Location = New Point(110, 288)
         lblInsideLocationOffset.Name = "lblInsideLocationOffset"
-        lblInsideLocationOffset.Size = New Size(134, 22)
+        lblInsideLocationOffset.Size = New Size(179, 22)
         lblInsideLocationOffset.TabIndex = 71
         lblInsideLocationOffset.Text = "Inside Location Offset"
         lblInsideLocationOffset.TextAlign = ContentAlignment.BottomLeft
@@ -432,9 +432,9 @@ Inherits System.Windows.Forms.Form
         grbxActionOnScreenSave.Controls.Add(radbtnActionOnScreenSaveClose)
         grbxActionOnScreenSave.Controls.Add(radbtnActionOnScreenSaveSuspend)
         grbxActionOnScreenSave.Controls.Add(radbtnActionOnScreenSaveNoAction)
-        grbxActionOnScreenSave.Location = New Point(390, 56)
+        grbxActionOnScreenSave.Location = New Point(486, 25)
         grbxActionOnScreenSave.Name = "grbxActionOnScreenSave"
-        grbxActionOnScreenSave.Size = New Size(318, 75)
+        grbxActionOnScreenSave.Size = New Size(318, 89)
         grbxActionOnScreenSave.TabIndex = 100
         grbxActionOnScreenSave.TabStop = False
         grbxActionOnScreenSave.Text = "Action On ScreenSave"
@@ -442,9 +442,9 @@ Inherits System.Windows.Forms.Form
         ' radbtnActionOnScreenSaveClose
         ' 
         radbtnActionOnScreenSaveClose.CheckAlign = ContentAlignment.BottomCenter
-        radbtnActionOnScreenSaveClose.Location = New Point(214, 24)
+        radbtnActionOnScreenSaveClose.Location = New Point(214, 26)
         radbtnActionOnScreenSaveClose.Name = "radbtnActionOnScreenSaveClose"
-        radbtnActionOnScreenSaveClose.Size = New Size(98, 35)
+        radbtnActionOnScreenSaveClose.Size = New Size(98, 43)
         radbtnActionOnScreenSaveClose.TabIndex = 2
         radbtnActionOnScreenSaveClose.TabStop = True
         radbtnActionOnScreenSaveClose.Text = "Close"
@@ -454,9 +454,9 @@ Inherits System.Windows.Forms.Form
         ' radbtnActionOnScreenSaveSuspend
         ' 
         radbtnActionOnScreenSaveSuspend.CheckAlign = ContentAlignment.BottomCenter
-        radbtnActionOnScreenSaveSuspend.Location = New Point(110, 24)
+        radbtnActionOnScreenSaveSuspend.Location = New Point(110, 26)
         radbtnActionOnScreenSaveSuspend.Name = "radbtnActionOnScreenSaveSuspend"
-        radbtnActionOnScreenSaveSuspend.Size = New Size(98, 35)
+        radbtnActionOnScreenSaveSuspend.Size = New Size(98, 43)
         radbtnActionOnScreenSaveSuspend.TabIndex = 1
         radbtnActionOnScreenSaveSuspend.TabStop = True
         radbtnActionOnScreenSaveSuspend.Text = "Suspend"
@@ -466,9 +466,9 @@ Inherits System.Windows.Forms.Form
         ' radbtnActionOnScreenSaveNoAction
         ' 
         radbtnActionOnScreenSaveNoAction.CheckAlign = ContentAlignment.BottomCenter
-        radbtnActionOnScreenSaveNoAction.Location = New Point(6, 24)
+        radbtnActionOnScreenSaveNoAction.Location = New Point(6, 26)
         radbtnActionOnScreenSaveNoAction.Name = "radbtnActionOnScreenSaveNoAction"
-        radbtnActionOnScreenSaveNoAction.Size = New Size(98, 35)
+        radbtnActionOnScreenSaveNoAction.Size = New Size(98, 43)
         radbtnActionOnScreenSaveNoAction.TabIndex = 0
         radbtnActionOnScreenSaveNoAction.TabStop = True
         radbtnActionOnScreenSaveNoAction.Text = "No Action"
@@ -477,36 +477,36 @@ Inherits System.Windows.Forms.Form
         ' 
         ' chbxHideCursorWhenFullscreen
         ' 
-        chbxHideCursorWhenFullscreen.Location = New Point(34, 176)
+        chbxHideCursorWhenFullscreen.Location = New Point(112, 166)
         chbxHideCursorWhenFullscreen.Name = "chbxHideCursorWhenFullscreen"
-        chbxHideCursorWhenFullscreen.Size = New Size(204, 21)
+        chbxHideCursorWhenFullscreen.Size = New Size(241, 26)
         chbxHideCursorWhenFullscreen.TabIndex = 40
         chbxHideCursorWhenFullscreen.Text = "Hide Cursor When Fullscreen"
         chbxHideCursorWhenFullscreen.UseVisualStyleBackColor = True
         ' 
         ' chbxRefreshFileListsOnStartUp
         ' 
-        chbxRefreshFileListsOnStartUp.Location = New Point(34, 136)
+        chbxRefreshFileListsOnStartUp.Location = New Point(112, 127)
         chbxRefreshFileListsOnStartUp.Name = "chbxRefreshFileListsOnStartUp"
-        chbxRefreshFileListsOnStartUp.Size = New Size(204, 21)
+        chbxRefreshFileListsOnStartUp.Size = New Size(241, 26)
         chbxRefreshFileListsOnStartUp.TabIndex = 30
         chbxRefreshFileListsOnStartUp.Text = "Refresh File Lists On StartUp?"
         chbxRefreshFileListsOnStartUp.UseVisualStyleBackColor = True
         ' 
         ' chbxLoadFileListsInBackground
         ' 
-        chbxLoadFileListsInBackground.Location = New Point(34, 96)
+        chbxLoadFileListsInBackground.Location = New Point(112, 88)
         chbxLoadFileListsInBackground.Name = "chbxLoadFileListsInBackground"
-        chbxLoadFileListsInBackground.Size = New Size(204, 21)
+        chbxLoadFileListsInBackground.Size = New Size(241, 26)
         chbxLoadFileListsInBackground.TabIndex = 20
         chbxLoadFileListsInBackground.Text = "Load File Lists In Background?"
         chbxLoadFileListsInBackground.UseVisualStyleBackColor = True
         ' 
         ' chbxSaveFileLists
         ' 
-        chbxSaveFileLists.Location = New Point(34, 56)
+        chbxSaveFileLists.Location = New Point(112, 49)
         chbxSaveFileLists.Name = "chbxSaveFileLists"
-        chbxSaveFileLists.Size = New Size(114, 21)
+        chbxSaveFileLists.Size = New Size(151, 26)
         chbxSaveFileLists.TabIndex = 10
         chbxSaveFileLists.Text = "Save File Lists?"
         chbxSaveFileLists.UseVisualStyleBackColor = True
@@ -1704,7 +1704,7 @@ Inherits System.Windows.Forms.Form
         btnlvPicFolders.FlatAppearance.BorderSize = 0
         btnlvPicFolders.Image = My.Resources.Resources.imageFolder
         btnlvPicFolders.ImageAlign = ContentAlignment.MiddleLeft
-        btnlvPicFolders.Location = New Point(530, 98)
+        btnlvPicFolders.Location = New Point(535, 98)
         btnlvPicFolders.Name = "btnlvPicFolders"
         btnlvPicFolders.Size = New Size(175, 32)
         btnlvPicFolders.TabIndex = 5
@@ -1721,7 +1721,7 @@ Inherits System.Windows.Forms.Form
         btnRefreshPicList.FlatAppearance.BorderSize = 0
         btnRefreshPicList.Image = My.Resources.Resources.imageRefresh
         btnRefreshPicList.ImageAlign = ContentAlignment.MiddleLeft
-        btnRefreshPicList.Location = New Point(711, 98)
+        btnRefreshPicList.Location = New Point(716, 98)
         btnRefreshPicList.Name = "btnRefreshPicList"
         btnRefreshPicList.Size = New Size(100, 32)
         btnRefreshPicList.TabIndex = 6
@@ -1765,9 +1765,9 @@ Inherits System.Windows.Forms.Form
         PanelApp.Controls.Add(grbxActionOnScreenSave)
         PanelApp.Controls.Add(chbxHideCursorWhenFullscreen)
         PanelApp.Dock = DockStyle.Fill
-        PanelApp.Location = New Point(96, 0)
+        PanelApp.Location = New Point(91, 0)
         PanelApp.Name = "PanelApp"
-        PanelApp.Size = New Size(821, 534)
+        PanelApp.Size = New Size(826, 534)
         PanelApp.TabIndex = 107
         ' 
         ' PanelPics
@@ -1789,9 +1789,9 @@ Inherits System.Windows.Forms.Form
         PanelPics.Controls.Add(label4)
         PanelPics.Controls.Add(chbxPicTimerAutoStart)
         PanelPics.Dock = DockStyle.Fill
-        PanelPics.Location = New Point(96, 0)
+        PanelPics.Location = New Point(91, 0)
         PanelPics.Name = "PanelPics"
-        PanelPics.Size = New Size(821, 534)
+        PanelPics.Size = New Size(826, 534)
         PanelPics.TabIndex = 108
         ' 
         ' grbxHotKeysPics
@@ -1965,7 +1965,7 @@ Inherits System.Windows.Forms.Form
         lvPicFolders.MultiSelect = False
         lvPicFolders.Name = "lvPicFolders"
         lvPicFolders.ShowGroups = False
-        lvPicFolders.Size = New Size(803, 86)
+        lvPicFolders.Size = New Size(808, 86)
         lvPicFolders.TabIndex = 1
         lvPicFolders.TabStop = False
         lvPicFolders.UseCompatibleStateImageBehavior = False
@@ -2696,9 +2696,9 @@ Inherits System.Windows.Forms.Form
         PanelVids.Controls.Add(gpbxVidPlayMode)
         PanelVids.Controls.Add(gpbxVidLocationMode)
         PanelVids.Dock = DockStyle.Fill
-        PanelVids.Location = New Point(96, 0)
+        PanelVids.Location = New Point(91, 0)
         PanelVids.Name = "PanelVids"
-        PanelVids.Size = New Size(821, 534)
+        PanelVids.Size = New Size(826, 534)
         PanelVids.TabIndex = 109
         ' 
         ' PanelActions
@@ -2721,7 +2721,7 @@ Inherits System.Windows.Forms.Form
         PanelPageSelector.Dock = DockStyle.Left
         PanelPageSelector.Location = New Point(0, 0)
         PanelPageSelector.Name = "PanelPageSelector"
-        PanelPageSelector.Size = New Size(96, 534)
+        PanelPageSelector.Size = New Size(91, 534)
         PanelPageSelector.TabIndex = 111
         ' 
         ' LVPageSelector
@@ -2739,7 +2739,7 @@ Inherits System.Windows.Forms.Form
         LVPageSelector.Name = "LVPageSelector"
         LVPageSelector.Scrollable = False
         LVPageSelector.ShowGroups = False
-        LVPageSelector.Size = New Size(96, 534)
+        LVPageSelector.Size = New Size(91, 534)
         LVPageSelector.TabIndex = 0
         LVPageSelector.TabStop = False
         LVPageSelector.UseCompatibleStateImageBehavior = False
@@ -2761,6 +2761,7 @@ Inherits System.Windows.Forms.Form
         Controls.Add(PanelVids)
         Controls.Add(PanelPageSelector)
         Controls.Add(PanelActions)
+        DoubleBuffered = True
         Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Icon = My.Resources.Resources.IconApp
         Margin = New Padding(3, 4, 3, 4)

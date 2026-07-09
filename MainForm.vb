@@ -607,12 +607,6 @@ Partial Friend Class MainForm
 		End If
 		ToggleContextMenu()
 	End Sub
-	Private Sub CMIBothMouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles cmiStartAll.MouseUp, cmiCloseAll.MouseUp
-		If e.Button = MouseButtons.Left Then
-			CMIViewImagesMouseUp(sender, e)
-			CMIPlayVideosMouseUp(sender, e)
-		End If
-	End Sub
 	Private Sub CMIVideoListMouseUp(sender As Object, e As MouseEventArgs) Handles cmiVidList.MouseUp
 		If e.Button = MouseButtons.Left Then
 			If My.App.FrmVidListVisible Then : My.App.frmVidList.Close()
@@ -1108,12 +1102,6 @@ Partial Friend Class MainForm
 		If My.App.FrmVidsVisible Then : Me.cmiPlayVids.Checked = True
 		Else : Me.cmiPlayVids.Checked = False
 		End If
-		If My.App.FrmPicsVisible And My.App.FrmVidsVisible Then : Me.cmiCloseAll.Visible = True
-		Else : Me.cmiCloseAll.Visible = False
-		End If
-		If Not My.App.FrmPicsVisible And Not My.App.FrmVidsVisible And (Me.cmiViewPics.Enabled And Me.cmiPlayVids.Enabled) Then : Me.cmiStartAll.Visible = True
-		Else : Me.cmiStartAll.Visible = False
-		End If
 		If My.App.FrmVidListVisible Then : Me.cmiVidList.Checked = True
 		Else : Me.cmiVidList.Checked = False
 		End If
@@ -1324,8 +1312,6 @@ Partial Friend Class MainForm
 			Me.cmiViewPics.ToolTipText = Nothing
 			Me.cmiPlayVids.Enabled = False
 			Me.cmiPlayVids.ToolTipText = Nothing
-			Me.cmiStartAll.Enabled = False
-			Me.cmiCloseAll.Enabled = False
 			Me.cmiVidList.Enabled = False
 			Me.lvPicFolders.Enabled = False
 			Me.btnRefreshPicList.Enabled = False
@@ -1424,8 +1410,6 @@ Partial Friend Class MainForm
 		Me.cmiViewPics.Enabled = True
 		Me.cmiPlayVids.ToolTipText = "RightClick = Show Maximized"
 		Me.cmiPlayVids.Enabled = True
-		Me.cmiStartAll.Enabled = True
-		Me.cmiCloseAll.Enabled = True
 		Me.cmiVidList.Enabled = True
 		VideoListOutOfSync = False
 		Dim mode As My.App.GetFilesType = CType(e.Result, My.App.GetFilesType)

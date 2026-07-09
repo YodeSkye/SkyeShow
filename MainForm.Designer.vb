@@ -17,8 +17,6 @@ Inherits System.Windows.Forms.Form
         cmSkyeShow = New ContextMenuStrip(components)
         cmiViewPics = New ToolStripMenuItem()
         cmiPlayVids = New ToolStripMenuItem()
-        cmiStartAll = New ToolStripMenuItem()
-        cmiCloseAll = New ToolStripMenuItem()
         toolStripSeparator1 = New ToolStripSeparator()
         cmiVidList = New ToolStripMenuItem()
         toolStripSeparator5 = New ToolStripSeparator()
@@ -282,17 +280,17 @@ Inherits System.Windows.Forms.Form
         ' cmSkyeShow
         ' 
         cmSkyeShow.Font = New Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        cmSkyeShow.Items.AddRange(New ToolStripItem() {cmiViewPics, cmiPlayVids, cmiStartAll, cmiCloseAll, toolStripSeparator1, cmiVidList, toolStripSeparator5, cmiHelp, cmiLog, cmiSettings, toolStripSeparator2, cmiExit})
+        cmSkyeShow.Items.AddRange(New ToolStripItem() {cmiViewPics, cmiPlayVids, toolStripSeparator1, cmiVidList, toolStripSeparator5, cmiHelp, cmiLog, cmiSettings, toolStripSeparator2, cmiExit})
         cmSkyeShow.Name = "cmenuYMShow"
         cmSkyeShow.RenderMode = ToolStripRenderMode.Professional
-        cmSkyeShow.Size = New Size(162, 220)
+        cmSkyeShow.Size = New Size(181, 198)
         ' 
         ' cmiViewPics
         ' 
         cmiViewPics.Enabled = False
         cmiViewPics.Image = My.Resources.Resources.ImageImage
         cmiViewPics.Name = "cmiViewPics"
-        cmiViewPics.Size = New Size(161, 22)
+        cmiViewPics.Size = New Size(180, 22)
         cmiViewPics.Text = "Pictures"
         ' 
         ' cmiPlayVids
@@ -300,48 +298,32 @@ Inherits System.Windows.Forms.Form
         cmiPlayVids.Enabled = False
         cmiPlayVids.Image = My.Resources.Resources.ImageVideo
         cmiPlayVids.Name = "cmiPlayVids"
-        cmiPlayVids.Size = New Size(161, 22)
+        cmiPlayVids.Size = New Size(180, 22)
         cmiPlayVids.Text = "Videos"
-        ' 
-        ' cmiStartAll
-        ' 
-        cmiStartAll.Image = My.Resources.Resources.imageStartAll
-        cmiStartAll.Name = "cmiStartAll"
-        cmiStartAll.Size = New Size(161, 22)
-        cmiStartAll.Text = "Both"
-        cmiStartAll.Visible = False
-        ' 
-        ' cmiCloseAll
-        ' 
-        cmiCloseAll.Image = My.Resources.Resources.imageClose
-        cmiCloseAll.Name = "cmiCloseAll"
-        cmiCloseAll.Size = New Size(161, 22)
-        cmiCloseAll.Text = "Close All"
-        cmiCloseAll.Visible = False
         ' 
         ' toolStripSeparator1
         ' 
         toolStripSeparator1.Name = "toolStripSeparator1"
-        toolStripSeparator1.Size = New Size(158, 6)
+        toolStripSeparator1.Size = New Size(177, 6)
         ' 
         ' cmiVidList
         ' 
         cmiVidList.Enabled = False
         cmiVidList.Image = My.Resources.Resources.imageVideoList
         cmiVidList.Name = "cmiVidList"
-        cmiVidList.Size = New Size(161, 22)
+        cmiVidList.Size = New Size(180, 22)
         cmiVidList.Text = "Video List"
         ' 
         ' toolStripSeparator5
         ' 
         toolStripSeparator5.Name = "toolStripSeparator5"
-        toolStripSeparator5.Size = New Size(158, 6)
+        toolStripSeparator5.Size = New Size(177, 6)
         ' 
         ' cmiHelp
         ' 
         cmiHelp.Image = My.Resources.Resources.ImageInfo
         cmiHelp.Name = "cmiHelp"
-        cmiHelp.Size = New Size(161, 22)
+        cmiHelp.Size = New Size(180, 22)
         cmiHelp.Text = "Help"
         cmiHelp.ToolTipText = "RightClick = Show Maximized"
         ' 
@@ -349,7 +331,7 @@ Inherits System.Windows.Forms.Form
         ' 
         cmiLog.Image = My.Resources.Resources.imageLog
         cmiLog.Name = "cmiLog"
-        cmiLog.Size = New Size(161, 22)
+        cmiLog.Size = New Size(180, 22)
         cmiLog.Text = "Log"
         cmiLog.ToolTipText = "RightClick = Show Maximized"
         ' 
@@ -357,19 +339,19 @@ Inherits System.Windows.Forms.Form
         ' 
         cmiSettings.Image = CType(resources.GetObject("cmiSettings.Image"), Image)
         cmiSettings.Name = "cmiSettings"
-        cmiSettings.Size = New Size(161, 22)
+        cmiSettings.Size = New Size(180, 22)
         cmiSettings.Text = "Settings"
         ' 
         ' toolStripSeparator2
         ' 
         toolStripSeparator2.Name = "toolStripSeparator2"
-        toolStripSeparator2.Size = New Size(158, 6)
+        toolStripSeparator2.Size = New Size(177, 6)
         ' 
         ' cmiExit
         ' 
         cmiExit.Image = My.Resources.Resources.imageClose
         cmiExit.Name = "cmiExit"
-        cmiExit.Size = New Size(161, 22)
+        cmiExit.Size = New Size(180, 22)
         cmiExit.Text = "Exit Skye Show"
         cmiExit.ToolTipText = "RightClick = ReStart YMShow"
         ' 
@@ -595,10 +577,10 @@ Inherits System.Windows.Forms.Form
         tpPics.Controls.Add(chbxPicAutoView)
         tpPics.Controls.Add(chbxPicTimerCountdown)
         tpPics.ImageKey = "iconImage.ico"
-        tpPics.Location = New Point(4, 26)
+        tpPics.Location = New Point(4, 24)
         tpPics.Margin = New Padding(0)
         tpPics.Name = "tpPics"
-        tpPics.Size = New Size(752, 449)
+        tpPics.Size = New Size(752, 451)
         tpPics.TabIndex = 0
         tpPics.Text = "                    ""Pics""                    "
         tpPics.UseVisualStyleBackColor = True
@@ -1550,11 +1532,11 @@ Inherits System.Windows.Forms.Form
         tpVids.Controls.Add(btnVidList)
         tpVids.Controls.Add(grbxVidTimeLocationMode)
         tpVids.ImageKey = "iconVideo.ico"
-        tpVids.Location = New Point(4, 26)
+        tpVids.Location = New Point(4, 24)
         tpVids.Margin = New Padding(0)
         tpVids.Name = "tpVids"
         tpVids.RightToLeft = RightToLeft.No
-        tpVids.Size = New Size(752, 449)
+        tpVids.Size = New Size(752, 451)
         tpVids.TabIndex = 1
         tpVids.Text = "                    ""Vids""                    "
         tpVids.UseVisualStyleBackColor = True
@@ -2998,8 +2980,6 @@ Inherits System.Windows.Forms.Form
     Private WithEvents radbtnPicJustifyRight As System.Windows.Forms.RadioButton
     Private WithEvents radbtnVideoScale33 As System.Windows.Forms.RadioButton
     Private WithEvents radbtnVideoScale66 As System.Windows.Forms.RadioButton
-    Private WithEvents cmiCloseAll As System.Windows.Forms.ToolStripMenuItem
-    Private WithEvents cmiStartAll As System.Windows.Forms.ToolStripMenuItem
     Private WithEvents radbtnVideoScale100 As System.Windows.Forms.RadioButton
     Private WithEvents radbtnVideoScaleFit As System.Windows.Forms.RadioButton
     Private WithEvents radbtnPicLocationModeLeftCenterTop As System.Windows.Forms.RadioButton

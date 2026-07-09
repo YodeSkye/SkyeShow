@@ -562,7 +562,6 @@ Partial Friend Class Vids
                     Else
                         My.App.VideoFilesSetState(My.App.VideoIndex, My.App.VideoFileState.PathNotFound)
                         If My.App.FrmMain.Visible Then My.App.FrmMain.UpdateSettings()
-                        If My.App.FrmVidListVisible Then My.App.frmVidList.GetData(True)
                         If My.App.VideoFilesCount = 0 Or opt = My.App.PlayOption.BySelection Then
                             Me.Close()
                             Exit Sub

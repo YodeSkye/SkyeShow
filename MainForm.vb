@@ -260,7 +260,7 @@ Partial Friend Class MainForm
 	Private GenerateVideoListType As My.App.GetFilesMode
 	Private GenerateVideoListStartTime As TimeSpan
 	Private GenerateVideoListEndTime As TimeSpan
-	Private ImageActiveOnRefresh, VideoActiveOnRefresh, VideoListActiveOnRefresh, VideoListOutOfSync As Boolean
+	Private ImageActiveOnRefresh, VideoActiveOnRefresh As Boolean
 	Private tabcontrolSettingsImages As ImageList
 
 	' Form Events
@@ -508,7 +508,6 @@ Partial Friend Class MainForm
 				'Me.listviewVideoFolders.EnsureVisible(index)
 			End If
 			'Finalize
-			If My.App.FrmVidListVisible Then My.App.frmVidList.GetData()
 		End If
 	End Sub
 	Private Sub CMISettingListAddItemMouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles cmiSettingListAddItem.MouseUp
@@ -546,7 +545,6 @@ Partial Friend Class MainForm
 							Next
 							For Each index As Integer In removelist : My.App.VidFolders.RemoveAt(index) : Next
 							If addSelectedPath Then
-								DisableVideoList()
 								My.App.VidFolders.Add(New My.App.VideoFolderType(folderbrowser.SelectedPath))
 								My.App.VidFolders.Sort(New My.App.VideoFolderType.Comparer)
 							End If
@@ -564,7 +562,6 @@ Partial Friend Class MainForm
 			Select Case cmListCurrentSourceControl
 				Case Me.lvPicFolders.Name : My.App.PicFolders.Remove(Me.lvPicFolders.SelectedItems(0).Tag.ToString)
 				Case Me.lvVidFolders.Name
-					DisableVideoList()
 					My.App.VidFolders.RemoveAt(Me.lvVidFolders.SelectedIndices(0))
 			End Select
 			ShowSettings()
@@ -575,7 +572,6 @@ Partial Friend Class MainForm
 			Select Case cmListCurrentSourceControl
 				Case Me.lvPicFolders.Name : My.App.PicFolders.Clear()
 				Case Me.lvVidFolders.Name
-					DisableVideoList()
 					My.App.VidFolders.Clear()
 			End Select
 			ShowSettings()
@@ -606,14 +602,6 @@ Partial Friend Class MainForm
 			If e.Button = MouseButtons.Right Then My.App.FrmVids.ToggleFullScreen()
 		End If
 		ToggleContextMenu()
-	End Sub
-	Private Sub CMIVideoListMouseUp(sender As Object, e As MouseEventArgs) Handles cmiVidList.MouseUp
-		If e.Button = MouseButtons.Left Then
-			If My.App.FrmVidListVisible Then : My.App.frmVidList.Close()
-			Else : My.App.ShowVideoList()
-			End If
-			ToggleContextMenu()
-		End If
 	End Sub
 	Private Sub CMIHelpMouseUp(sender As Object, e As MouseEventArgs) Handles cmiHelp.MouseUp
 		Select Case e.Button
@@ -740,8 +728,8 @@ Partial Friend Class MainForm
 	Private Sub RadbtnActionOnScreenSaveCloseClick(sender As Object, e As EventArgs) Handles radbtnActionOnScreenSaveClose.Click
 		My.App.ActionOnScreenSave = My.App.ScreenSaveActions.Close
 	End Sub
-	Private Sub BtnEnter(ByVal sender As Object, ByVal e As EventArgs) Handles btnVidList.Enter, btnSaveSettings.Enter, btnRestoreSettings.Enter, btnRefreshVidList.Enter, btnRefreshPicList.Enter, btnPicTimerEnabled.Enter, btnlvVidFolders.Enter, btnlvPicFolders.Enter, btnHotKeyVidToggleFullScreenDisable.Enter, btnHotKeyVidToggleDisable.Enter, btnHotKeyVidShowFileInfoDisable.Enter, btnHotKeysVidsUndo.Enter, btnHotKeysVidsSet.Enter, btnHotKeysPicsUndo.Enter, btnHotKeysPicsSet.Enter, btnHotKeyPicToggleFullScreenDisable.Enter, btnHotKeyPicToggleDisable.Enter, btnHotKeyPicShowFileInfoDisable.Enter, btnErrorTest.Enter
-		Me.btnClose.Focus()
+	Private Sub BtnEnter(ByVal sender As Object, ByVal e As EventArgs) Handles btnSaveSettings.Enter, btnRestoreSettings.Enter, btnRefreshVidList.Enter, btnRefreshPicList.Enter, btnPicTimerEnabled.Enter, btnlvVidFolders.Enter, btnlvPicFolders.Enter, btnHotKeyVidToggleFullScreenDisable.Enter, btnHotKeyVidToggleDisable.Enter, btnHotKeyVidShowFileInfoDisable.Enter, btnHotKeysVidsUndo.Enter, btnHotKeysVidsSet.Enter, btnHotKeysPicsUndo.Enter, btnHotKeysPicsSet.Enter, btnHotKeyPicToggleFullScreenDisable.Enter, btnHotKeyPicToggleDisable.Enter, btnHotKeyPicShowFileInfoDisable.Enter, btnErrorTest.Enter
+		btnClose.Focus()
 	End Sub
 	Private Sub BtnHotKeyDisableClick(sender As Object, e As EventArgs) Handles btnHotKeyVidToggleFullScreenDisable.Click, btnHotKeyVidToggleDisable.Click, btnHotKeyVidShowFileInfoDisable.Click, btnHotKeyPicToggleFullScreenDisable.Click, btnHotKeyPicToggleDisable.Click, btnHotKeyPicShowFileInfoDisable.Click
 		Static senderTextBox As TextBox
@@ -830,20 +818,6 @@ Partial Friend Class MainForm
 			End If
 		End If
 	End Sub
-	Private Sub BtnVideoFileListMouseUp(sender As Object, e As MouseEventArgs) Handles btnVidList.MouseUp
-		If e.Button = MouseButtons.Left Then
-			If My.App.FrmVidListVisible Then
-				If My.App.frmVidList.WindowState = FormWindowState.Minimized Then My.App.frmVidList.WindowState = FormWindowState.Normal
-				My.App.frmVidList.Focus()
-			Else : My.App.ShowVideoList()
-			End If
-#If DEBUG Then
-#Else
-				HideForm
-#End If
-			ToggleContextMenu()
-		End If
-	End Sub
 	Private Sub BtnInfoMouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles btnInfo.MouseUp
 		If e.X >= 0 And e.X <= CType(sender, Button).Width And e.Y >= 0 And e.Y <= CType(sender, Button).Height Then
 			Select Case e.Button
@@ -883,7 +857,6 @@ Partial Friend Class MainForm
 	Private Sub BtnRefreshListMouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles btnRefreshVidList.MouseUp, btnRefreshPicList.MouseUp
 		If My.App.FrmPicsVisible Then : ImageActiveOnRefresh = True : Else : ImageActiveOnRefresh = False : End If
 		If My.App.FrmVidsVisible Then : VideoActiveOnRefresh = True : Else : VideoActiveOnRefresh = False : End If
-		If My.App.FrmVidListVisible Then : VideoListActiveOnRefresh = True : Else : VideoListActiveOnRefresh = False : End If
 		Select Case e.Button
 			Case MouseButtons.Left
 				If sender Is Me.btnRefreshPicList Then
@@ -1034,18 +1007,8 @@ Partial Friend Class MainForm
 			Me.tipInfo.SetToolTip(Me.lblVidFileCount, s)
 			If My.App.VideoFilesCount = 0 Then
 				Me.cmiPlayVids.Enabled = False
-				Me.cmiVidList.Enabled = False
-				Me.btnVidList.Enabled = False
 			Else
 				Me.cmiPlayVids.Enabled = True
-				Me.cmiVidList.Enabled = True
-				If VideoListOutOfSync Then
-					Me.cmiVidList.Enabled = False
-					Me.btnVidList.Enabled = False
-				Else
-					Me.cmiVidList.Enabled = True
-					Me.btnVidList.Enabled = True
-				End If
 			End If
 		End If
 		Select Case My.App.VidLocationMode
@@ -1087,10 +1050,8 @@ Partial Friend Class MainForm
 		Me.chbkVidMute.Checked = My.App.VidVolumeMute
 	End Sub
 	Friend Sub RestoreSettings()
-		DisableVideoList()
 		My.App.GetSettings()
 		My.App.VideoFilesResetEnabled()
-		VideoListOutOfSync = False
 		ShowSettings()
 		If My.App.FrmPicsVisible Then My.App.frmPics.DrawImage()
 		If My.App.FrmVidsVisible Then My.App.FrmVids.SetSize()
@@ -1101,9 +1062,6 @@ Partial Friend Class MainForm
 		End If
 		If My.App.FrmVidsVisible Then : Me.cmiPlayVids.Checked = True
 		Else : Me.cmiPlayVids.Checked = False
-		End If
-		If My.App.FrmVidListVisible Then : Me.cmiVidList.Checked = True
-		Else : Me.cmiVidList.Checked = False
 		End If
 		AppNotify()
 	End Sub
@@ -1312,18 +1270,15 @@ Partial Friend Class MainForm
 			Me.cmiViewPics.ToolTipText = Nothing
 			Me.cmiPlayVids.Enabled = False
 			Me.cmiPlayVids.ToolTipText = Nothing
-			Me.cmiVidList.Enabled = False
 			Me.lvPicFolders.Enabled = False
 			Me.btnRefreshPicList.Enabled = False
 			Me.lvVidFolders.Enabled = False
 			Me.btnRefreshVidList.Enabled = False
-			Me.btnVidList.Enabled = False
 			Me.btnRestoreSettings.Enabled = False
 			Me.lblPicFileCount.Text = My.App.GeneratingFileListAlertText
 			Me.lblVidFileCount.Text = My.App.GeneratingFileListAlertText
 			Me.tipInfo.SetToolTip(Me.lblVidFileCount, My.App.GeneratingFileListAlertText)
 			If My.App.FrmVidsVisible Then My.App.FrmVids.Close()
-			If (mode = My.App.GetFilesType.Vids Or mode = My.App.GetFilesType.All) And My.App.FrmVidListVisible Then My.App.frmVidList.Close()
 			If (mode = My.App.GetFilesType.Pics Or mode = My.App.GetFilesType.All) And My.App.FrmPicsVisible Then My.App.frmPics.Close()
 
 			If My.App.LoadFileListsInBackground Then : My.Application.CurrentProcess.PriorityClass = Diagnostics.ProcessPriorityClass.BelowNormal
@@ -1404,14 +1359,11 @@ Partial Friend Class MainForm
 		Me.btnRefreshPicList.Enabled = True
 		Me.lvVidFolders.Enabled = True
 		Me.btnRefreshVidList.Enabled = True
-		Me.btnVidList.Enabled = True
 		Me.btnRestoreSettings.Enabled = True
 		Me.cmiViewPics.ToolTipText = "RightClick = Show Maximized"
 		Me.cmiViewPics.Enabled = True
 		Me.cmiPlayVids.ToolTipText = "RightClick = Show Maximized"
 		Me.cmiPlayVids.Enabled = True
-		Me.cmiVidList.Enabled = True
-		VideoListOutOfSync = False
 		Dim mode As My.App.GetFilesType = CType(e.Result, My.App.GetFilesType)
 		If (mode = My.App.GetFilesType.Pics Or mode = My.App.GetFilesType.All) Then
 			My.App.WriteToLog("Image List " + Me.GenerateImageListType.ToString + " (" + My.App.ImageFiles.Count.ToString + ") (" + Skye.Common.GenerateLogTime(GenerateImageListStartTime, GenerateImageListEndTime) + ")")
@@ -1431,7 +1383,6 @@ Partial Friend Class MainForm
 			If Not String.IsNullOrEmpty(My.App.CommandLinePath) Then : My.App.ShowVideoFromCommandLine()
 			Else : If ((My.App.VidAutoView And (mode = My.App.GetFilesType.Vids Or mode = My.App.GetFilesType.All)) Or VideoActiveOnRefresh) And My.App.VideoFilesCount > 0 Then My.App.ShowVideos()
 			End If
-			If (mode = My.App.GetFilesType.Vids Or mode = My.App.GetFilesType.All) And VideoListActiveOnRefresh And My.App.VideoFilesCount(My.App.VideoFilesCountMode.Total) > 0 Then My.App.ShowVideoList()
 		End If
 		ToggleContextMenu()
 	End Sub
@@ -1454,10 +1405,6 @@ Partial Friend Class MainForm
 			Me.Hide()
 			Me.cmiSettings.Checked = False
 		End If
-	End Sub
-	Private Sub DisableVideoList()
-		If My.App.FrmVidListVisible Then My.App.frmVidList.Close()
-		VideoListOutOfSync = True
 	End Sub
 	Private Sub ToggleFolderList(mode As My.App.GetFilesType, Optional reset As Boolean = False)
 		If mode = My.App.GetFilesType.Pics Or mode = My.App.GetFilesType.All Then

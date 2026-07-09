@@ -18,8 +18,6 @@ Inherits System.Windows.Forms.Form
         cmiViewPics = New ToolStripMenuItem()
         cmiPlayVids = New ToolStripMenuItem()
         toolStripSeparator1 = New ToolStripSeparator()
-        cmiVidList = New ToolStripMenuItem()
-        toolStripSeparator5 = New ToolStripSeparator()
         cmiHelp = New ToolStripMenuItem()
         cmiLog = New ToolStripMenuItem()
         cmiSettings = New ToolStripMenuItem()
@@ -197,7 +195,6 @@ Inherits System.Windows.Forms.Form
         lblVidFileCount = New Label()
         btnlvVidFolders = New Button()
         btnRefreshVidList = New Button()
-        btnVidList = New Button()
         grbxVidTimeLocationMode = New GroupBox()
         radbtnVidTimeLocationModeLeftCenterTop = New RadioButton()
         radbtnVidTimeLocationModeBottomLeft = New RadioButton()
@@ -280,10 +277,10 @@ Inherits System.Windows.Forms.Form
         ' cmSkyeShow
         ' 
         cmSkyeShow.Font = New Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        cmSkyeShow.Items.AddRange(New ToolStripItem() {cmiViewPics, cmiPlayVids, toolStripSeparator1, cmiVidList, toolStripSeparator5, cmiHelp, cmiLog, cmiSettings, toolStripSeparator2, cmiExit})
+        cmSkyeShow.Items.AddRange(New ToolStripItem() {cmiViewPics, cmiPlayVids, toolStripSeparator1, cmiHelp, cmiLog, cmiSettings, toolStripSeparator2, cmiExit})
         cmSkyeShow.Name = "cmenuYMShow"
         cmSkyeShow.RenderMode = ToolStripRenderMode.Professional
-        cmSkyeShow.Size = New Size(181, 198)
+        cmSkyeShow.Size = New Size(181, 170)
         ' 
         ' cmiViewPics
         ' 
@@ -305,19 +302,6 @@ Inherits System.Windows.Forms.Form
         ' 
         toolStripSeparator1.Name = "toolStripSeparator1"
         toolStripSeparator1.Size = New Size(177, 6)
-        ' 
-        ' cmiVidList
-        ' 
-        cmiVidList.Enabled = False
-        cmiVidList.Image = My.Resources.Resources.imageVideoList
-        cmiVidList.Name = "cmiVidList"
-        cmiVidList.Size = New Size(180, 22)
-        cmiVidList.Text = "Video List"
-        ' 
-        ' toolStripSeparator5
-        ' 
-        toolStripSeparator5.Name = "toolStripSeparator5"
-        toolStripSeparator5.Size = New Size(177, 6)
         ' 
         ' cmiHelp
         ' 
@@ -1529,14 +1513,13 @@ Inherits System.Windows.Forms.Form
         tpVids.Controls.Add(lblVidFileCount)
         tpVids.Controls.Add(btnlvVidFolders)
         tpVids.Controls.Add(btnRefreshVidList)
-        tpVids.Controls.Add(btnVidList)
         tpVids.Controls.Add(grbxVidTimeLocationMode)
         tpVids.ImageKey = "iconVideo.ico"
-        tpVids.Location = New Point(4, 24)
+        tpVids.Location = New Point(4, 26)
         tpVids.Margin = New Padding(0)
         tpVids.Name = "tpVids"
         tpVids.RightToLeft = RightToLeft.No
-        tpVids.Size = New Size(752, 451)
+        tpVids.Size = New Size(752, 449)
         tpVids.TabIndex = 1
         tpVids.Text = "                    ""Vids""                    "
         tpVids.UseVisualStyleBackColor = True
@@ -2321,24 +2304,6 @@ Inherits System.Windows.Forms.Form
         tipInfo.SetToolTip(btnRefreshVidList, "LeftClick = Refresh Video List (Ctrl = Reset)" & vbCrLf & "RightClick = Refresh All File Lists (Ctrl = Reset)")
         btnRefreshVidList.UseVisualStyleBackColor = False
         ' 
-        ' btnVidList
-        ' 
-        btnVidList.Anchor = AnchorStyles.Top Or AnchorStyles.Right
-        btnVidList.BackColor = Color.Transparent
-        btnVidList.FlatAppearance.BorderColor = SystemColors.Highlight
-        btnVidList.FlatAppearance.BorderSize = 0
-        btnVidList.Image = My.Resources.Resources.imageVideoList
-        btnVidList.ImageAlign = ContentAlignment.MiddleLeft
-        btnVidList.Location = New Point(344, 91)
-        btnVidList.Name = "btnVidList"
-        btnVidList.Size = New Size(116, 32)
-        btnVidList.TabIndex = 20
-        btnVidList.TabStop = False
-        btnVidList.Text = "Show Vid List"
-        btnVidList.TextAlign = ContentAlignment.MiddleRight
-        btnVidList.UseMnemonic = False
-        btnVidList.UseVisualStyleBackColor = False
-        ' 
         ' grbxVidTimeLocationMode
         ' 
         grbxVidTimeLocationMode.BackColor = Color.Transparent
@@ -2893,7 +2858,6 @@ Inherits System.Windows.Forms.Form
     Private WithEvents radbtnVidPlayModeLinearWithRandomStart As System.Windows.Forms.RadioButton
     Private WithEvents btnRefreshPicList As System.Windows.Forms.Button
     Private WithEvents btnRefreshVidList As System.Windows.Forms.Button
-    Private WithEvents btnVidList As System.Windows.Forms.Button
     Private WithEvents btnlvVidFolders As System.Windows.Forms.Button
     Private lvVidFolders As System.Windows.Forms.ListView
     Private lblVidFileCount As System.Windows.Forms.Label
@@ -2935,12 +2899,10 @@ Inherits System.Windows.Forms.Form
     Private WithEvents chbxHideCursorWhenFullscreen As System.Windows.Forms.CheckBox
     Friend WithEvents cmiViewPics As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents cmiPlayVids As System.Windows.Forms.ToolStripMenuItem
-    Private WithEvents cmiVidList As System.Windows.Forms.ToolStripMenuItem
     Private tsSeparatorEnabled As System.Windows.Forms.ToolStripSeparator
     Private WithEvents cmList As System.Windows.Forms.ContextMenuStrip
     Private WithEvents cmSkyeShow As System.Windows.Forms.ContextMenuStrip
     Private toolStripSeparator4 As System.Windows.Forms.ToolStripSeparator
-    Private toolStripSeparator5 As System.Windows.Forms.ToolStripSeparator
     Private WithEvents btnClose As System.Windows.Forms.Button
     Private WithEvents tpPics As System.Windows.Forms.TabPage
     Private WithEvents tpVids As System.Windows.Forms.TabPage

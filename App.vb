@@ -252,7 +252,6 @@ Namespace My
 		Friend VideoIndexPrevious As Integer = -1
 		Friend VideoIsOnTop As Boolean = True
 		Friend FrmVids As Vids
-		Friend frmVidList As VidList
 
 		' Saved Settings
 		Friend VidFolders As New Collections.Generic.List(Of VideoFolderType)
@@ -284,10 +283,6 @@ Namespace My
 			VideoIndex = VideoFiles.Count - 1
 			ShowVideos(True)
 			FrmMain.ToggleContextMenu()
-		End Sub
-		Friend Sub ShowVideoList()
-			frmVidList = New VidList
-			frmVidList.Show()
 		End Sub
 		Friend Sub SaveVideoFileList()
 			Try
@@ -390,11 +385,6 @@ Namespace My
 		Friend Function FrmVidsVisible() As Boolean
 			If FrmVids IsNot Nothing AndAlso FrmVids.Visible Then Return True
 			Return False
-		End Function
-		Friend Function FrmVidListVisible() As Boolean
-			If frmVidList IsNot Nothing AndAlso frmVidList.Visible Then : Return True
-			Else : Return False
-			End If
 		End Function
 		Friend Function VideoFileReEnable(index As Integer) As VideoFileType
 			Dim file As VideoFileType = VideoFiles(index)
@@ -676,9 +666,8 @@ Namespace My
 		Friend Sub CloseApp(Optional restart As Boolean = False)
 			If FrmVidsVisible() Then FrmVids.Close()
 			If FrmPicsVisible() Then frmPics.Close()
-            If FrmVidListVisible() Then frmVidList.Close()
-            If FrmHelp?.Visible Then FrmHelp.Close()
-            If FrmLog?.Visible Then FrmLog.Close()
+			If FrmHelp?.Visible Then FrmHelp.Close()
+			If FrmLog?.Visible Then FrmLog.Close()
 			FrmMain.Close()
 			If restart Then System.Windows.Forms.Application.Restart()
 		End Sub
@@ -1094,7 +1083,6 @@ Namespace My
 					Case ScreenSaveActions.Close : frmPics.Close()
 				End Select
 			End If
-			If FrmVidListVisible() AndAlso ActionOnScreenSave = ScreenSaveActions.Close Then frmVidList.Close()
 			Debug.Print("SSActive @ " & Now)
 		End Sub
 		Friend Sub SwapValues(ByRef x As Integer, ByRef y As Integer)

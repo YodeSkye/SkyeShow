@@ -65,9 +65,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Update="VidList.Designer.vb">
-      <DependentUpon>VidList.vb</DependentUpon>
-    </Compile>
     <Compile Update="Pics.Designer.vb">
       <DependentUpon>Pics.vb</DependentUpon>
     </Compile>

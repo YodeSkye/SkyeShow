@@ -235,6 +235,9 @@ Inherits System.Windows.Forms.Form
         tipInfo = New ToolTip(components)
         btnInfo = New Button()
         btnLog = New Button()
+        PanelApp = New Panel()
+        PanelPics = New Panel()
+        PanelVids = New Panel()
         cmSkyeShow.SuspendLayout()
         cmList.SuspendLayout()
         tcSettings.SuspendLayout()
@@ -256,7 +259,7 @@ Inherits System.Windows.Forms.Form
         ' 
         ' btnClose
         ' 
-        btnClose.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        btnClose.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         btnClose.Font = New Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         btnClose.Image = My.Resources.Resources.imageClose
         btnClose.ImageAlign = ContentAlignment.MiddleLeft
@@ -280,14 +283,14 @@ Inherits System.Windows.Forms.Form
         cmSkyeShow.Items.AddRange(New ToolStripItem() {cmiViewPics, cmiPlayVids, toolStripSeparator1, cmiHelp, cmiLog, cmiSettings, toolStripSeparator2, cmiExit})
         cmSkyeShow.Name = "cmenuYMShow"
         cmSkyeShow.RenderMode = ToolStripRenderMode.Professional
-        cmSkyeShow.Size = New Size(181, 170)
+        cmSkyeShow.Size = New Size(162, 148)
         ' 
         ' cmiViewPics
         ' 
         cmiViewPics.Enabled = False
         cmiViewPics.Image = My.Resources.Resources.ImageImage
         cmiViewPics.Name = "cmiViewPics"
-        cmiViewPics.Size = New Size(180, 22)
+        cmiViewPics.Size = New Size(161, 22)
         cmiViewPics.Text = "Pictures"
         ' 
         ' cmiPlayVids
@@ -295,19 +298,19 @@ Inherits System.Windows.Forms.Form
         cmiPlayVids.Enabled = False
         cmiPlayVids.Image = My.Resources.Resources.ImageVideo
         cmiPlayVids.Name = "cmiPlayVids"
-        cmiPlayVids.Size = New Size(180, 22)
+        cmiPlayVids.Size = New Size(161, 22)
         cmiPlayVids.Text = "Videos"
         ' 
         ' toolStripSeparator1
         ' 
         toolStripSeparator1.Name = "toolStripSeparator1"
-        toolStripSeparator1.Size = New Size(177, 6)
+        toolStripSeparator1.Size = New Size(158, 6)
         ' 
         ' cmiHelp
         ' 
         cmiHelp.Image = My.Resources.Resources.ImageInfo
         cmiHelp.Name = "cmiHelp"
-        cmiHelp.Size = New Size(180, 22)
+        cmiHelp.Size = New Size(161, 22)
         cmiHelp.Text = "Help"
         cmiHelp.ToolTipText = "RightClick = Show Maximized"
         ' 
@@ -315,7 +318,7 @@ Inherits System.Windows.Forms.Form
         ' 
         cmiLog.Image = My.Resources.Resources.imageLog
         cmiLog.Name = "cmiLog"
-        cmiLog.Size = New Size(180, 22)
+        cmiLog.Size = New Size(161, 22)
         cmiLog.Text = "Log"
         cmiLog.ToolTipText = "RightClick = Show Maximized"
         ' 
@@ -323,25 +326,24 @@ Inherits System.Windows.Forms.Form
         ' 
         cmiSettings.Image = CType(resources.GetObject("cmiSettings.Image"), Image)
         cmiSettings.Name = "cmiSettings"
-        cmiSettings.Size = New Size(180, 22)
+        cmiSettings.Size = New Size(161, 22)
         cmiSettings.Text = "Settings"
         ' 
         ' toolStripSeparator2
         ' 
         toolStripSeparator2.Name = "toolStripSeparator2"
-        toolStripSeparator2.Size = New Size(177, 6)
+        toolStripSeparator2.Size = New Size(158, 6)
         ' 
         ' cmiExit
         ' 
         cmiExit.Image = My.Resources.Resources.imageClose
         cmiExit.Name = "cmiExit"
-        cmiExit.Size = New Size(180, 22)
+        cmiExit.Size = New Size(161, 22)
         cmiExit.Text = "Exit Skye Show"
         cmiExit.ToolTipText = "RightClick = ReStart YMShow"
         ' 
         ' lvVidFolders
         ' 
-        lvVidFolders.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         lvVidFolders.BorderStyle = BorderStyle.FixedSingle
         lvVidFolders.ContextMenuStrip = cmList
         lvVidFolders.FullRowSelect = True
@@ -399,7 +401,6 @@ Inherits System.Windows.Forms.Form
         ' 
         ' tcSettings
         ' 
-        tcSettings.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         tcSettings.Controls.Add(tpApp)
         tcSettings.Controls.Add(tpPics)
         tcSettings.Controls.Add(tpVids)
@@ -561,10 +562,10 @@ Inherits System.Windows.Forms.Form
         tpPics.Controls.Add(chbxPicAutoView)
         tpPics.Controls.Add(chbxPicTimerCountdown)
         tpPics.ImageKey = "iconImage.ico"
-        tpPics.Location = New Point(4, 24)
+        tpPics.Location = New Point(4, 26)
         tpPics.Margin = New Padding(0)
         tpPics.Name = "tpPics"
-        tpPics.Size = New Size(752, 451)
+        tpPics.Size = New Size(752, 449)
         tpPics.TabIndex = 0
         tpPics.Text = "                    ""Pics""                    "
         tpPics.UseVisualStyleBackColor = True
@@ -2271,7 +2272,6 @@ Inherits System.Windows.Forms.Form
         ' 
         ' btnlvVidFolders
         ' 
-        btnlvVidFolders.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnlvVidFolders.BackColor = Color.Transparent
         btnlvVidFolders.FlatAppearance.BorderSize = 0
         btnlvVidFolders.Image = My.Resources.Resources.imageFolder
@@ -2288,7 +2288,6 @@ Inherits System.Windows.Forms.Form
         ' 
         ' btnRefreshVidList
         ' 
-        btnRefreshVidList.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnRefreshVidList.BackColor = Color.Transparent
         btnRefreshVidList.FlatAppearance.BorderColor = SystemColors.Highlight
         btnRefreshVidList.FlatAppearance.BorderSize = 0
@@ -2676,7 +2675,7 @@ Inherits System.Windows.Forms.Form
         ' 
         ' btnErrorTest
         ' 
-        btnErrorTest.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        btnErrorTest.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         btnErrorTest.FlatAppearance.BorderColor = SystemColors.ControlDark
         btnErrorTest.FlatAppearance.BorderSize = 0
         btnErrorTest.FlatAppearance.MouseDownBackColor = Color.Transparent
@@ -2726,12 +2725,36 @@ Inherits System.Windows.Forms.Form
         btnLog.TextAlign = ContentAlignment.BottomRight
         btnLog.UseVisualStyleBackColor = True
         ' 
+        ' PanelApp
+        ' 
+        PanelApp.Location = New Point(772, 12)
+        PanelApp.Name = "PanelApp"
+        PanelApp.Size = New Size(760, 477)
+        PanelApp.TabIndex = 107
+        ' 
+        ' PanelPics
+        ' 
+        PanelPics.Location = New Point(772, 12)
+        PanelPics.Name = "PanelPics"
+        PanelPics.Size = New Size(760, 477)
+        PanelPics.TabIndex = 108
+        ' 
+        ' PanelVids
+        ' 
+        PanelVids.Location = New Point(772, 12)
+        PanelVids.Name = "PanelVids"
+        PanelVids.Size = New Size(760, 477)
+        PanelVids.TabIndex = 109
+        ' 
         ' MainForm
         ' 
         AutoScaleMode = AutoScaleMode.None
         AutoSizeMode = AutoSizeMode.GrowAndShrink
         AutoValidate = AutoValidate.EnableAllowFocusChange
-        ClientSize = New Size(784, 564)
+        ClientSize = New Size(1564, 564)
+        Controls.Add(PanelApp)
+        Controls.Add(PanelVids)
+        Controls.Add(PanelPics)
         Controls.Add(btnLog)
         Controls.Add(btnInfo)
         Controls.Add(btnErrorTest)
@@ -2994,4 +3017,7 @@ Inherits System.Windows.Forms.Form
     Private WithEvents cmiExit As System.Windows.Forms.ToolStripMenuItem
     Private toolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents chbkVidMute As CheckBox
+    Friend WithEvents PanelApp As Panel
+    Friend WithEvents PanelPics As Panel
+    Friend WithEvents PanelVids As Panel
 End Class

@@ -229,8 +229,8 @@ Inherits System.Windows.Forms.Form
         lblPicFileCount = New Label()
         btnPicTimerEnabled = New Button()
         gpbxPicPlayMode = New GroupBox()
-        radbtnPicPlayModeRandom = New RadioButton()
         radbtnPicPlayModeLinear = New RadioButton()
+        radbtnPicPlayModeRandom = New RadioButton()
         label4 = New Label()
         chbxPicTimerAutoStart = New CheckBox()
         PanelVids = New Panel()
@@ -262,13 +262,11 @@ Inherits System.Windows.Forms.Form
         ' 
         btnClose.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         btnClose.Font = New Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnClose.Image = My.Resources.Resources.imageClose
-        btnClose.ImageAlign = ContentAlignment.MiddleLeft
-        btnClose.Location = New Point(577, 28)
+        btnClose.Image = My.Resources.Resources.ImageOK
+        btnClose.Location = New Point(426, 16)
         btnClose.Name = "btnClose"
-        btnClose.Size = New Size(198, 46)
+        btnClose.Size = New Size(64, 64)
         btnClose.TabIndex = 0
-        btnClose.Text = "Close"
         btnClose.TextAlign = ContentAlignment.MiddleRight
         tipInfo.SetToolTip(btnClose, "Close Window")
         btnClose.UseVisualStyleBackColor = True
@@ -280,18 +278,18 @@ Inherits System.Windows.Forms.Form
         ' 
         ' cmSkyeShow
         ' 
-        cmSkyeShow.Font = New Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        cmSkyeShow.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         cmSkyeShow.Items.AddRange(New ToolStripItem() {cmiViewPics, cmiPlayVids, toolStripSeparator1, cmiHelp, cmiLog, cmiSettings, toolStripSeparator2, cmiExit})
         cmSkyeShow.Name = "cmenuYMShow"
         cmSkyeShow.RenderMode = ToolStripRenderMode.Professional
-        cmSkyeShow.Size = New Size(162, 148)
+        cmSkyeShow.Size = New Size(185, 172)
         ' 
         ' cmiViewPics
         ' 
         cmiViewPics.Enabled = False
         cmiViewPics.Image = My.Resources.Resources.ImageImage
         cmiViewPics.Name = "cmiViewPics"
-        cmiViewPics.Size = New Size(161, 22)
+        cmiViewPics.Size = New Size(184, 26)
         cmiViewPics.Text = "Pictures"
         ' 
         ' cmiPlayVids
@@ -299,19 +297,19 @@ Inherits System.Windows.Forms.Form
         cmiPlayVids.Enabled = False
         cmiPlayVids.Image = My.Resources.Resources.ImageVideo
         cmiPlayVids.Name = "cmiPlayVids"
-        cmiPlayVids.Size = New Size(161, 22)
+        cmiPlayVids.Size = New Size(184, 26)
         cmiPlayVids.Text = "Videos"
         ' 
         ' toolStripSeparator1
         ' 
         toolStripSeparator1.Name = "toolStripSeparator1"
-        toolStripSeparator1.Size = New Size(158, 6)
+        toolStripSeparator1.Size = New Size(181, 6)
         ' 
         ' cmiHelp
         ' 
         cmiHelp.Image = My.Resources.Resources.ImageInfo
         cmiHelp.Name = "cmiHelp"
-        cmiHelp.Size = New Size(161, 22)
+        cmiHelp.Size = New Size(184, 26)
         cmiHelp.Text = "Help"
         cmiHelp.ToolTipText = "RightClick = Show Maximized"
         ' 
@@ -319,7 +317,7 @@ Inherits System.Windows.Forms.Form
         ' 
         cmiLog.Image = My.Resources.Resources.imageLog
         cmiLog.Name = "cmiLog"
-        cmiLog.Size = New Size(161, 22)
+        cmiLog.Size = New Size(184, 26)
         cmiLog.Text = "Log"
         cmiLog.ToolTipText = "RightClick = Show Maximized"
         ' 
@@ -327,19 +325,19 @@ Inherits System.Windows.Forms.Form
         ' 
         cmiSettings.Image = CType(resources.GetObject("cmiSettings.Image"), Image)
         cmiSettings.Name = "cmiSettings"
-        cmiSettings.Size = New Size(161, 22)
+        cmiSettings.Size = New Size(184, 26)
         cmiSettings.Text = "Settings"
         ' 
         ' toolStripSeparator2
         ' 
         toolStripSeparator2.Name = "toolStripSeparator2"
-        toolStripSeparator2.Size = New Size(158, 6)
+        toolStripSeparator2.Size = New Size(181, 6)
         ' 
         ' cmiExit
         ' 
         cmiExit.Image = My.Resources.Resources.imageClose
         cmiExit.Name = "cmiExit"
-        cmiExit.Size = New Size(161, 22)
+        cmiExit.Size = New Size(184, 26)
         cmiExit.Text = "Exit Skye Show"
         cmiExit.ToolTipText = "RightClick = ReStart YMShow"
         ' 
@@ -360,44 +358,44 @@ Inherits System.Windows.Forms.Form
         ' 
         ' cmList
         ' 
-        cmList.Font = New Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        cmList.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         cmList.Items.AddRange(New ToolStripItem() {cmiSettingListEnableItem, tsSeparatorEnabled, cmiSettingListAddItem, toolStripSeparator4, cmiSettingListRemoveItem, cmiSettingListRemoveAll})
         cmList.Name = "contextmenuSettingList"
         cmList.RenderMode = ToolStripRenderMode.Professional
-        cmList.Size = New Size(153, 104)
+        cmList.Size = New Size(173, 120)
         ' 
         ' cmiSettingListEnableItem
         ' 
         cmiSettingListEnableItem.Name = "cmiSettingListEnableItem"
-        cmiSettingListEnableItem.Size = New Size(152, 22)
+        cmiSettingListEnableItem.Size = New Size(172, 26)
         ' 
         ' tsSeparatorEnabled
         ' 
         tsSeparatorEnabled.Name = "tsSeparatorEnabled"
-        tsSeparatorEnabled.Size = New Size(149, 6)
+        tsSeparatorEnabled.Size = New Size(169, 6)
         ' 
         ' cmiSettingListAddItem
         ' 
         cmiSettingListAddItem.Image = My.Resources.Resources.imageAdd
         cmiSettingListAddItem.Name = "cmiSettingListAddItem"
-        cmiSettingListAddItem.Size = New Size(152, 22)
+        cmiSettingListAddItem.Size = New Size(172, 26)
         cmiSettingListAddItem.Text = "Add Item"
         ' 
         ' toolStripSeparator4
         ' 
         toolStripSeparator4.Name = "toolStripSeparator4"
-        toolStripSeparator4.Size = New Size(149, 6)
+        toolStripSeparator4.Size = New Size(169, 6)
         ' 
         ' cmiSettingListRemoveItem
         ' 
         cmiSettingListRemoveItem.Name = "cmiSettingListRemoveItem"
-        cmiSettingListRemoveItem.Size = New Size(152, 22)
+        cmiSettingListRemoveItem.Size = New Size(172, 26)
         cmiSettingListRemoveItem.Text = "Remove Item"
         ' 
         ' cmiSettingListRemoveAll
         ' 
         cmiSettingListRemoveAll.Name = "cmiSettingListRemoveAll"
-        cmiSettingListRemoveAll.Size = New Size(152, 22)
+        cmiSettingListRemoveAll.Size = New Size(172, 26)
         cmiSettingListRemoveAll.Text = "Remove All"
         ' 
         ' chbxHotKeys
@@ -437,7 +435,7 @@ Inherits System.Windows.Forms.Form
         grbxActionOnScreenSave.Size = New Size(318, 89)
         grbxActionOnScreenSave.TabIndex = 100
         grbxActionOnScreenSave.TabStop = False
-        grbxActionOnScreenSave.Text = "Action On ScreenSave"
+        grbxActionOnScreenSave.Text = "Action on Lock Screen or Screen Saver"
         ' 
         ' radbtnActionOnScreenSaveClose
         ' 
@@ -1479,12 +1477,10 @@ Inherits System.Windows.Forms.Form
         ' 
         btnSaveSettings.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         btnSaveSettings.Image = My.Resources.Resources.imageSave
-        btnSaveSettings.ImageAlign = ContentAlignment.TopLeft
-        btnSaveSettings.Location = New Point(15, 28)
+        btnSaveSettings.Location = New Point(12, 24)
         btnSaveSettings.Name = "btnSaveSettings"
-        btnSaveSettings.Size = New Size(62, 46)
+        btnSaveSettings.Size = New Size(48, 48)
         btnSaveSettings.TabIndex = 100
-        btnSaveSettings.Text = "Save"
         btnSaveSettings.TextAlign = ContentAlignment.BottomRight
         tipInfo.SetToolTip(btnSaveSettings, "Save All Settings")
         btnSaveSettings.UseVisualStyleBackColor = True
@@ -1493,12 +1489,10 @@ Inherits System.Windows.Forms.Form
         ' 
         btnRestoreSettings.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         btnRestoreSettings.Image = My.Resources.Resources.imageRestore
-        btnRestoreSettings.ImageAlign = ContentAlignment.TopLeft
-        btnRestoreSettings.Location = New Point(76, 28)
+        btnRestoreSettings.Location = New Point(73, 24)
         btnRestoreSettings.Name = "btnRestoreSettings"
-        btnRestoreSettings.Size = New Size(62, 46)
+        btnRestoreSettings.Size = New Size(48, 48)
         btnRestoreSettings.TabIndex = 101
-        btnRestoreSettings.Text = "Restore"
         btnRestoreSettings.TextAlign = ContentAlignment.BottomRight
         tipInfo.SetToolTip(btnRestoreSettings, "Restore All Settings")
         btnRestoreSettings.UseVisualStyleBackColor = True
@@ -1667,9 +1661,9 @@ Inherits System.Windows.Forms.Form
         btnErrorTest.FlatAppearance.MouseDownBackColor = Color.Transparent
         btnErrorTest.FlatAppearance.MouseOverBackColor = Color.Transparent
         btnErrorTest.Image = My.Resources.Resources.imageError
-        btnErrorTest.Location = New Point(547, 39)
+        btnErrorTest.Location = New Point(153, 24)
         btnErrorTest.Name = "btnErrorTest"
-        btnErrorTest.Size = New Size(24, 24)
+        btnErrorTest.Size = New Size(48, 48)
         btnErrorTest.TabIndex = 0
         btnErrorTest.TabStop = False
         tipInfo.SetToolTip(btnErrorTest, "LeftClick = Test Error" & vbCrLf & "RightClick = Cause Exception")
@@ -1687,13 +1681,11 @@ Inherits System.Windows.Forms.Form
         ' btnInfo
         ' 
         btnInfo.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        btnInfo.Image = My.Resources.Resources.ImageInfo
-        btnInfo.ImageAlign = ContentAlignment.TopLeft
-        btnInfo.Location = New Point(144, 28)
+        btnInfo.Image = My.Resources.Resources.imageInfo32
+        btnInfo.Location = New Point(796, 24)
         btnInfo.Name = "btnInfo"
-        btnInfo.Size = New Size(62, 46)
+        btnInfo.Size = New Size(48, 48)
         btnInfo.TabIndex = 105
-        btnInfo.Text = "Help"
         btnInfo.TextAlign = ContentAlignment.BottomRight
         tipInfo.SetToolTip(btnInfo, "Help & About")
         btnInfo.UseVisualStyleBackColor = True
@@ -1704,9 +1696,9 @@ Inherits System.Windows.Forms.Form
         btnlvPicFolders.FlatAppearance.BorderSize = 0
         btnlvPicFolders.Image = My.Resources.Resources.imageFolder
         btnlvPicFolders.ImageAlign = ContentAlignment.MiddleLeft
-        btnlvPicFolders.Location = New Point(535, 98)
+        btnlvPicFolders.Location = New Point(507, 98)
         btnlvPicFolders.Name = "btnlvPicFolders"
-        btnlvPicFolders.Size = New Size(175, 32)
+        btnlvPicFolders.Size = New Size(202, 32)
         btnlvPicFolders.TabIndex = 5
         btnlvPicFolders.TabStop = False
         btnlvPicFolders.TextAlign = ContentAlignment.MiddleRight
@@ -1721,7 +1713,7 @@ Inherits System.Windows.Forms.Form
         btnRefreshPicList.FlatAppearance.BorderSize = 0
         btnRefreshPicList.Image = My.Resources.Resources.imageRefresh
         btnRefreshPicList.ImageAlign = ContentAlignment.MiddleLeft
-        btnRefreshPicList.Location = New Point(716, 98)
+        btnRefreshPicList.Location = New Point(715, 98)
         btnRefreshPicList.Name = "btnRefreshPicList"
         btnRefreshPicList.Size = New Size(100, 32)
         btnRefreshPicList.TabIndex = 6
@@ -1733,9 +1725,9 @@ Inherits System.Windows.Forms.Form
         ' 
         ' radbtnPicPlayModeLinearWithRandomStart
         ' 
-        radbtnPicPlayModeLinearWithRandomStart.Location = New Point(84, 19)
+        radbtnPicPlayModeLinearWithRandomStart.Location = New Point(91, 22)
         radbtnPicPlayModeLinearWithRandomStart.Name = "radbtnPicPlayModeLinearWithRandomStart"
-        radbtnPicPlayModeLinearWithRandomStart.Size = New Size(74, 24)
+        radbtnPicPlayModeLinearWithRandomStart.Size = New Size(91, 33)
         radbtnPicPlayModeLinearWithRandomStart.TabIndex = 1
         radbtnPicPlayModeLinearWithRandomStart.Text = "Linear +"
         tipInfo.SetToolTip(radbtnPicPlayModeLinearWithRandomStart, "Linear With Random Start")
@@ -1745,12 +1737,10 @@ Inherits System.Windows.Forms.Form
         ' 
         btnLog.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         btnLog.Image = My.Resources.Resources.imageLog
-        btnLog.ImageAlign = ContentAlignment.TopLeft
-        btnLog.Location = New Point(205, 28)
+        btnLog.Location = New Point(857, 24)
         btnLog.Name = "btnLog"
-        btnLog.Size = New Size(62, 46)
+        btnLog.Size = New Size(48, 48)
         btnLog.TabIndex = 106
-        btnLog.Text = "Log"
         btnLog.TextAlign = ContentAlignment.BottomRight
         btnLog.UseVisualStyleBackColor = True
         ' 
@@ -1808,20 +1798,19 @@ Inherits System.Windows.Forms.Form
         grbxHotKeysPics.Controls.Add(lblHotKeyPicToggleFullScreen)
         grbxHotKeysPics.Controls.Add(lblHotKeyPicShowFileInfo)
         grbxHotKeysPics.ForeColor = SystemColors.ControlText
-        grbxHotKeysPics.Location = New Point(287, 256)
+        grbxHotKeysPics.Location = New Point(564, 307)
         grbxHotKeysPics.Name = "grbxHotKeysPics"
-        grbxHotKeysPics.Size = New Size(181, 196)
+        grbxHotKeysPics.Size = New Size(250, 215)
         grbxHotKeysPics.TabIndex = 50
         grbxHotKeysPics.TabStop = False
         grbxHotKeysPics.Text = "HotKeys"
         ' 
         ' txbxHotKeyPicToggle
         ' 
-        txbxHotKeyPicToggle.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        txbxHotKeyPicToggle.Location = New Point(8, 39)
+        txbxHotKeyPicToggle.Location = New Point(8, 41)
         txbxHotKeyPicToggle.Name = "txbxHotKeyPicToggle"
         txbxHotKeyPicToggle.ShortcutsEnabled = False
-        txbxHotKeyPicToggle.Size = New Size(151, 29)
+        txbxHotKeyPicToggle.Size = New Size(203, 29)
         txbxHotKeyPicToggle.TabIndex = 45
         txbxHotKeyPicToggle.TabStop = False
         txbxHotKeyPicToggle.TextAlign = HorizontalAlignment.Center
@@ -1829,24 +1818,21 @@ Inherits System.Windows.Forms.Form
         ' 
         ' btnHotKeyPicToggleDisable
         ' 
-        btnHotKeyPicToggleDisable.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         btnHotKeyPicToggleDisable.FlatAppearance.BorderSize = 0
-        btnHotKeyPicToggleDisable.FlatStyle = FlatStyle.Flat
         btnHotKeyPicToggleDisable.Image = My.Resources.Resources.imageRemove
-        btnHotKeyPicToggleDisable.Location = New Point(156, 43)
+        btnHotKeyPicToggleDisable.Location = New Point(211, 40)
         btnHotKeyPicToggleDisable.Name = "btnHotKeyPicToggleDisable"
-        btnHotKeyPicToggleDisable.Size = New Size(20, 17)
+        btnHotKeyPicToggleDisable.Size = New Size(31, 31)
         btnHotKeyPicToggleDisable.TabIndex = 46
         btnHotKeyPicToggleDisable.TabStop = False
         btnHotKeyPicToggleDisable.UseVisualStyleBackColor = True
         ' 
         ' txbxHotKeyPicToggleFullScreen
         ' 
-        txbxHotKeyPicToggleFullScreen.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        txbxHotKeyPicToggleFullScreen.Location = New Point(8, 82)
+        txbxHotKeyPicToggleFullScreen.Location = New Point(8, 92)
         txbxHotKeyPicToggleFullScreen.Name = "txbxHotKeyPicToggleFullScreen"
         txbxHotKeyPicToggleFullScreen.ShortcutsEnabled = False
-        txbxHotKeyPicToggleFullScreen.Size = New Size(151, 29)
+        txbxHotKeyPicToggleFullScreen.Size = New Size(203, 29)
         txbxHotKeyPicToggleFullScreen.TabIndex = 42
         txbxHotKeyPicToggleFullScreen.TabStop = False
         txbxHotKeyPicToggleFullScreen.TextAlign = HorizontalAlignment.Center
@@ -1854,24 +1840,21 @@ Inherits System.Windows.Forms.Form
         ' 
         ' btnHotKeyPicToggleFullScreenDisable
         ' 
-        btnHotKeyPicToggleFullScreenDisable.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         btnHotKeyPicToggleFullScreenDisable.FlatAppearance.BorderSize = 0
-        btnHotKeyPicToggleFullScreenDisable.FlatStyle = FlatStyle.Flat
         btnHotKeyPicToggleFullScreenDisable.Image = My.Resources.Resources.imageRemove
-        btnHotKeyPicToggleFullScreenDisable.Location = New Point(156, 86)
+        btnHotKeyPicToggleFullScreenDisable.Location = New Point(211, 91)
         btnHotKeyPicToggleFullScreenDisable.Name = "btnHotKeyPicToggleFullScreenDisable"
-        btnHotKeyPicToggleFullScreenDisable.Size = New Size(20, 17)
+        btnHotKeyPicToggleFullScreenDisable.Size = New Size(31, 31)
         btnHotKeyPicToggleFullScreenDisable.TabIndex = 43
         btnHotKeyPicToggleFullScreenDisable.TabStop = False
         btnHotKeyPicToggleFullScreenDisable.UseVisualStyleBackColor = True
         ' 
         ' btnHotKeysPicsUndo
         ' 
-        btnHotKeysPicsUndo.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         btnHotKeysPicsUndo.ImageAlign = ContentAlignment.MiddleLeft
-        btnHotKeysPicsUndo.Location = New Point(7, 156)
+        btnHotKeysPicsUndo.Location = New Point(7, 175)
         btnHotKeysPicsUndo.Name = "btnHotKeysPicsUndo"
-        btnHotKeysPicsUndo.Size = New Size(83, 32)
+        btnHotKeysPicsUndo.Size = New Size(96, 32)
         btnHotKeysPicsUndo.TabIndex = 30
         btnHotKeysPicsUndo.TabStop = False
         btnHotKeysPicsUndo.Text = "Undo"
@@ -1880,12 +1863,11 @@ Inherits System.Windows.Forms.Form
         ' 
         ' btnHotKeysPicsSet
         ' 
-        btnHotKeysPicsSet.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         btnHotKeysPicsSet.Image = My.Resources.Resources.imageGo
         btnHotKeysPicsSet.ImageAlign = ContentAlignment.MiddleLeft
-        btnHotKeysPicsSet.Location = New Point(96, 156)
+        btnHotKeysPicsSet.Location = New Point(137, 175)
         btnHotKeysPicsSet.Name = "btnHotKeysPicsSet"
-        btnHotKeysPicsSet.Size = New Size(63, 32)
+        btnHotKeysPicsSet.Size = New Size(96, 32)
         btnHotKeysPicsSet.TabIndex = 40
         btnHotKeysPicsSet.TabStop = False
         btnHotKeysPicsSet.Text = "Set"
@@ -1894,11 +1876,10 @@ Inherits System.Windows.Forms.Form
         ' 
         ' txbxHotKeyPicShowFileInfo
         ' 
-        txbxHotKeyPicShowFileInfo.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        txbxHotKeyPicShowFileInfo.Location = New Point(8, 125)
+        txbxHotKeyPicShowFileInfo.Location = New Point(8, 142)
         txbxHotKeyPicShowFileInfo.Name = "txbxHotKeyPicShowFileInfo"
         txbxHotKeyPicShowFileInfo.ShortcutsEnabled = False
-        txbxHotKeyPicShowFileInfo.Size = New Size(151, 29)
+        txbxHotKeyPicShowFileInfo.Size = New Size(203, 29)
         txbxHotKeyPicShowFileInfo.TabIndex = 10
         txbxHotKeyPicShowFileInfo.TabStop = False
         txbxHotKeyPicShowFileInfo.TextAlign = HorizontalAlignment.Center
@@ -1906,52 +1887,47 @@ Inherits System.Windows.Forms.Form
         ' 
         ' btnHotKeyPicShowFileInfoDisable
         ' 
-        btnHotKeyPicShowFileInfoDisable.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         btnHotKeyPicShowFileInfoDisable.FlatAppearance.BorderSize = 0
-        btnHotKeyPicShowFileInfoDisable.FlatStyle = FlatStyle.Flat
         btnHotKeyPicShowFileInfoDisable.Image = My.Resources.Resources.imageRemove
-        btnHotKeyPicShowFileInfoDisable.Location = New Point(156, 129)
+        btnHotKeyPicShowFileInfoDisable.Location = New Point(211, 141)
         btnHotKeyPicShowFileInfoDisable.Name = "btnHotKeyPicShowFileInfoDisable"
-        btnHotKeyPicShowFileInfoDisable.Size = New Size(20, 17)
+        btnHotKeyPicShowFileInfoDisable.Size = New Size(31, 31)
         btnHotKeyPicShowFileInfoDisable.TabIndex = 20
         btnHotKeyPicShowFileInfoDisable.TabStop = False
         btnHotKeyPicShowFileInfoDisable.UseVisualStyleBackColor = True
         ' 
         ' lblHotKeyPicToggle
         ' 
-        lblHotKeyPicToggle.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         lblHotKeyPicToggle.BackColor = Color.Transparent
         lblHotKeyPicToggle.ForeColor = SystemColors.ControlText
-        lblHotKeyPicToggle.Location = New Point(-20, 17)
+        lblHotKeyPicToggle.Location = New Point(8, 18)
         lblHotKeyPicToggle.Name = "lblHotKeyPicToggle"
-        lblHotKeyPicToggle.Size = New Size(211, 23)
+        lblHotKeyPicToggle.Size = New Size(203, 23)
         lblHotKeyPicToggle.TabIndex = 44
         lblHotKeyPicToggle.Text = "PicToggle"
-        lblHotKeyPicToggle.TextAlign = ContentAlignment.BottomCenter
+        lblHotKeyPicToggle.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' lblHotKeyPicToggleFullScreen
         ' 
-        lblHotKeyPicToggleFullScreen.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         lblHotKeyPicToggleFullScreen.BackColor = Color.Transparent
         lblHotKeyPicToggleFullScreen.ForeColor = SystemColors.ControlText
-        lblHotKeyPicToggleFullScreen.Location = New Point(-20, 60)
+        lblHotKeyPicToggleFullScreen.Location = New Point(8, 69)
         lblHotKeyPicToggleFullScreen.Name = "lblHotKeyPicToggleFullScreen"
-        lblHotKeyPicToggleFullScreen.Size = New Size(211, 23)
+        lblHotKeyPicToggleFullScreen.Size = New Size(203, 23)
         lblHotKeyPicToggleFullScreen.TabIndex = 41
         lblHotKeyPicToggleFullScreen.Text = "PicToggleFullScreen"
-        lblHotKeyPicToggleFullScreen.TextAlign = ContentAlignment.BottomCenter
+        lblHotKeyPicToggleFullScreen.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' lblHotKeyPicShowFileInfo
         ' 
-        lblHotKeyPicShowFileInfo.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         lblHotKeyPicShowFileInfo.BackColor = Color.Transparent
         lblHotKeyPicShowFileInfo.ForeColor = SystemColors.ControlText
-        lblHotKeyPicShowFileInfo.Location = New Point(-20, 103)
+        lblHotKeyPicShowFileInfo.Location = New Point(8, 119)
         lblHotKeyPicShowFileInfo.Name = "lblHotKeyPicShowFileInfo"
-        lblHotKeyPicShowFileInfo.Size = New Size(211, 23)
+        lblHotKeyPicShowFileInfo.Size = New Size(203, 23)
         lblHotKeyPicShowFileInfo.TabIndex = 0
         lblHotKeyPicShowFileInfo.Text = "PicShowFileInfo"
-        lblHotKeyPicShowFileInfo.TextAlign = ContentAlignment.BottomCenter
+        lblHotKeyPicShowFileInfo.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' lvPicFolders
         ' 
@@ -1961,11 +1937,11 @@ Inherits System.Windows.Forms.Form
         lvPicFolders.FullRowSelect = True
         lvPicFolders.HeaderStyle = ColumnHeaderStyle.None
         lvPicFolders.LabelWrap = False
-        lvPicFolders.Location = New Point(7, 14)
+        lvPicFolders.Location = New Point(12, 12)
         lvPicFolders.MultiSelect = False
         lvPicFolders.Name = "lvPicFolders"
         lvPicFolders.ShowGroups = False
-        lvPicFolders.Size = New Size(808, 86)
+        lvPicFolders.Size = New Size(802, 86)
         lvPicFolders.TabIndex = 1
         lvPicFolders.TabStop = False
         lvPicFolders.UseCompatibleStateImageBehavior = False
@@ -1989,9 +1965,9 @@ Inherits System.Windows.Forms.Form
         gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeTopCenterRight)
         gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeRightCenter)
         gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeTopLeft)
-        gpbxPicTimerCountdownLocationMode.Location = New Point(553, 308)
+        gpbxPicTimerCountdownLocationMode.Location = New Point(293, 371)
         gpbxPicTimerCountdownLocationMode.Name = "gpbxPicTimerCountdownLocationMode"
-        gpbxPicTimerCountdownLocationMode.Size = New Size(133, 144)
+        gpbxPicTimerCountdownLocationMode.Size = New Size(133, 150)
         gpbxPicTimerCountdownLocationMode.TabIndex = 80
         gpbxPicTimerCountdownLocationMode.TabStop = False
         gpbxPicTimerCountdownLocationMode.Text = "Timer Location"
@@ -1999,7 +1975,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicTimerCountdownLocationModeLeftCenterTop
         ' 
         radbtnPicTimerCountdownLocationModeLeftCenterTop.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicTimerCountdownLocationModeLeftCenterTop.Location = New Point(5, 45)
+        radbtnPicTimerCountdownLocationModeLeftCenterTop.Location = New Point(5, 50)
         radbtnPicTimerCountdownLocationModeLeftCenterTop.Name = "radbtnPicTimerCountdownLocationModeLeftCenterTop"
         radbtnPicTimerCountdownLocationModeLeftCenterTop.Size = New Size(16, 16)
         radbtnPicTimerCountdownLocationModeLeftCenterTop.TabIndex = 16
@@ -2009,7 +1985,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicTimerCountdownLocationModeBottomLeft
         ' 
         radbtnPicTimerCountdownLocationModeBottomLeft.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicTimerCountdownLocationModeBottomLeft.Location = New Point(5, 123)
+        radbtnPicTimerCountdownLocationModeBottomLeft.Location = New Point(5, 128)
         radbtnPicTimerCountdownLocationModeBottomLeft.Name = "radbtnPicTimerCountdownLocationModeBottomLeft"
         radbtnPicTimerCountdownLocationModeBottomLeft.Size = New Size(16, 16)
         radbtnPicTimerCountdownLocationModeBottomLeft.TabIndex = 13
@@ -2019,7 +1995,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicTimerCountdownLocationModeRightCenterTop
         ' 
         radbtnPicTimerCountdownLocationModeRightCenterTop.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicTimerCountdownLocationModeRightCenterTop.Location = New Point(113, 45)
+        radbtnPicTimerCountdownLocationModeRightCenterTop.Location = New Point(113, 50)
         radbtnPicTimerCountdownLocationModeRightCenterTop.Name = "radbtnPicTimerCountdownLocationModeRightCenterTop"
         radbtnPicTimerCountdownLocationModeRightCenterTop.Size = New Size(16, 16)
         radbtnPicTimerCountdownLocationModeRightCenterTop.TabIndex = 6
@@ -2029,7 +2005,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicTimerCountdownLocationModeRightCenterBottom
         ' 
         radbtnPicTimerCountdownLocationModeRightCenterBottom.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicTimerCountdownLocationModeRightCenterBottom.Location = New Point(113, 97)
+        radbtnPicTimerCountdownLocationModeRightCenterBottom.Location = New Point(113, 102)
         radbtnPicTimerCountdownLocationModeRightCenterBottom.Name = "radbtnPicTimerCountdownLocationModeRightCenterBottom"
         radbtnPicTimerCountdownLocationModeRightCenterBottom.Size = New Size(16, 16)
         radbtnPicTimerCountdownLocationModeRightCenterBottom.TabIndex = 8
@@ -2039,7 +2015,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicTimerCountdownLocationModeBottomCenterRight
         ' 
         radbtnPicTimerCountdownLocationModeBottomCenterRight.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicTimerCountdownLocationModeBottomCenterRight.Location = New Point(86, 123)
+        radbtnPicTimerCountdownLocationModeBottomCenterRight.Location = New Point(86, 128)
         radbtnPicTimerCountdownLocationModeBottomCenterRight.Name = "radbtnPicTimerCountdownLocationModeBottomCenterRight"
         radbtnPicTimerCountdownLocationModeBottomCenterRight.Size = New Size(16, 16)
         radbtnPicTimerCountdownLocationModeBottomCenterRight.TabIndex = 10
@@ -2049,7 +2025,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicTimerCountdownLocationModeBottomCenterLeft
         ' 
         radbtnPicTimerCountdownLocationModeBottomCenterLeft.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicTimerCountdownLocationModeBottomCenterLeft.Location = New Point(32, 123)
+        radbtnPicTimerCountdownLocationModeBottomCenterLeft.Location = New Point(32, 128)
         radbtnPicTimerCountdownLocationModeBottomCenterLeft.Name = "radbtnPicTimerCountdownLocationModeBottomCenterLeft"
         radbtnPicTimerCountdownLocationModeBottomCenterLeft.Size = New Size(16, 16)
         radbtnPicTimerCountdownLocationModeBottomCenterLeft.TabIndex = 12
@@ -2059,7 +2035,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicTimerCountdownLocationModeBottomRight
         ' 
         radbtnPicTimerCountdownLocationModeBottomRight.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicTimerCountdownLocationModeBottomRight.Location = New Point(113, 123)
+        radbtnPicTimerCountdownLocationModeBottomRight.Location = New Point(113, 128)
         radbtnPicTimerCountdownLocationModeBottomRight.Name = "radbtnPicTimerCountdownLocationModeBottomRight"
         radbtnPicTimerCountdownLocationModeBottomRight.Size = New Size(16, 16)
         radbtnPicTimerCountdownLocationModeBottomRight.TabIndex = 8
@@ -2069,7 +2045,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicTimerCountdownLocationModeLeftCenterBottom
         ' 
         radbtnPicTimerCountdownLocationModeLeftCenterBottom.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicTimerCountdownLocationModeLeftCenterBottom.Location = New Point(5, 97)
+        radbtnPicTimerCountdownLocationModeLeftCenterBottom.Location = New Point(5, 102)
         radbtnPicTimerCountdownLocationModeLeftCenterBottom.Name = "radbtnPicTimerCountdownLocationModeLeftCenterBottom"
         radbtnPicTimerCountdownLocationModeLeftCenterBottom.Size = New Size(16, 16)
         radbtnPicTimerCountdownLocationModeLeftCenterBottom.TabIndex = 14
@@ -2079,7 +2055,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicTimerCountdownLocationModeBottomCenter
         ' 
         radbtnPicTimerCountdownLocationModeBottomCenter.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicTimerCountdownLocationModeBottomCenter.Location = New Point(59, 123)
+        radbtnPicTimerCountdownLocationModeBottomCenter.Location = New Point(59, 128)
         radbtnPicTimerCountdownLocationModeBottomCenter.Name = "radbtnPicTimerCountdownLocationModeBottomCenter"
         radbtnPicTimerCountdownLocationModeBottomCenter.Size = New Size(16, 16)
         radbtnPicTimerCountdownLocationModeBottomCenter.TabIndex = 11
@@ -2089,7 +2065,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicTimerCountdownLocationModeLeftCenter
         ' 
         radbtnPicTimerCountdownLocationModeLeftCenter.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicTimerCountdownLocationModeLeftCenter.Location = New Point(5, 71)
+        radbtnPicTimerCountdownLocationModeLeftCenter.Location = New Point(5, 76)
         radbtnPicTimerCountdownLocationModeLeftCenter.Name = "radbtnPicTimerCountdownLocationModeLeftCenter"
         radbtnPicTimerCountdownLocationModeLeftCenter.Size = New Size(16, 16)
         radbtnPicTimerCountdownLocationModeLeftCenter.TabIndex = 15
@@ -2099,7 +2075,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicTimerCountdownLocationModeTopCenterLeft
         ' 
         radbtnPicTimerCountdownLocationModeTopCenterLeft.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicTimerCountdownLocationModeTopCenterLeft.Location = New Point(32, 19)
+        radbtnPicTimerCountdownLocationModeTopCenterLeft.Location = New Point(32, 24)
         radbtnPicTimerCountdownLocationModeTopCenterLeft.Name = "radbtnPicTimerCountdownLocationModeTopCenterLeft"
         radbtnPicTimerCountdownLocationModeTopCenterLeft.Size = New Size(16, 16)
         radbtnPicTimerCountdownLocationModeTopCenterLeft.TabIndex = 2
@@ -2109,7 +2085,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicTimerCountdownLocationModeTopCenter
         ' 
         radbtnPicTimerCountdownLocationModeTopCenter.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicTimerCountdownLocationModeTopCenter.Location = New Point(59, 19)
+        radbtnPicTimerCountdownLocationModeTopCenter.Location = New Point(59, 24)
         radbtnPicTimerCountdownLocationModeTopCenter.Name = "radbtnPicTimerCountdownLocationModeTopCenter"
         radbtnPicTimerCountdownLocationModeTopCenter.Size = New Size(16, 16)
         radbtnPicTimerCountdownLocationModeTopCenter.TabIndex = 3
@@ -2119,7 +2095,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicTimerCountdownLocationModeTopRight
         ' 
         radbtnPicTimerCountdownLocationModeTopRight.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicTimerCountdownLocationModeTopRight.Location = New Point(113, 19)
+        radbtnPicTimerCountdownLocationModeTopRight.Location = New Point(113, 24)
         radbtnPicTimerCountdownLocationModeTopRight.Name = "radbtnPicTimerCountdownLocationModeTopRight"
         radbtnPicTimerCountdownLocationModeTopRight.Size = New Size(16, 16)
         radbtnPicTimerCountdownLocationModeTopRight.TabIndex = 5
@@ -2129,7 +2105,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicTimerCountdownLocationModeTopCenterRight
         ' 
         radbtnPicTimerCountdownLocationModeTopCenterRight.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicTimerCountdownLocationModeTopCenterRight.Location = New Point(86, 19)
+        radbtnPicTimerCountdownLocationModeTopCenterRight.Location = New Point(86, 24)
         radbtnPicTimerCountdownLocationModeTopCenterRight.Name = "radbtnPicTimerCountdownLocationModeTopCenterRight"
         radbtnPicTimerCountdownLocationModeTopCenterRight.Size = New Size(16, 16)
         radbtnPicTimerCountdownLocationModeTopCenterRight.TabIndex = 4
@@ -2139,7 +2115,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicTimerCountdownLocationModeRightCenter
         ' 
         radbtnPicTimerCountdownLocationModeRightCenter.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicTimerCountdownLocationModeRightCenter.Location = New Point(113, 71)
+        radbtnPicTimerCountdownLocationModeRightCenter.Location = New Point(113, 76)
         radbtnPicTimerCountdownLocationModeRightCenter.Name = "radbtnPicTimerCountdownLocationModeRightCenter"
         radbtnPicTimerCountdownLocationModeRightCenter.Size = New Size(16, 16)
         radbtnPicTimerCountdownLocationModeRightCenter.TabIndex = 7
@@ -2149,7 +2125,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicTimerCountdownLocationModeTopLeft
         ' 
         radbtnPicTimerCountdownLocationModeTopLeft.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicTimerCountdownLocationModeTopLeft.Location = New Point(5, 19)
+        radbtnPicTimerCountdownLocationModeTopLeft.Location = New Point(5, 24)
         radbtnPicTimerCountdownLocationModeTopLeft.Name = "radbtnPicTimerCountdownLocationModeTopLeft"
         radbtnPicTimerCountdownLocationModeTopLeft.Size = New Size(16, 16)
         radbtnPicTimerCountdownLocationModeTopLeft.TabIndex = 1
@@ -2158,16 +2134,16 @@ Inherits System.Windows.Forms.Form
         ' 
         ' chbxPicTimerCountdown
         ' 
-        chbxPicTimerCountdown.Location = New Point(553, 291)
+        chbxPicTimerCountdown.Location = New Point(295, 341)
         chbxPicTimerCountdown.Name = "chbxPicTimerCountdown"
-        chbxPicTimerCountdown.Size = New Size(165, 21)
+        chbxPicTimerCountdown.Size = New Size(204, 30)
         chbxPicTimerCountdown.TabIndex = 75
         chbxPicTimerCountdown.Text = "Show Timer Countdown"
         chbxPicTimerCountdown.UseVisualStyleBackColor = True
         ' 
         ' txbxPicTimerInterval
         ' 
-        txbxPicTimerInterval.Location = New Point(553, 264)
+        txbxPicTimerInterval.Location = New Point(295, 314)
         txbxPicTimerInterval.MaxLength = 5
         txbxPicTimerInterval.Name = "txbxPicTimerInterval"
         txbxPicTimerInterval.Size = New Size(80, 29)
@@ -2177,9 +2153,9 @@ Inherits System.Windows.Forms.Form
         ' chbxPicAutoView
         ' 
         chbxPicAutoView.CheckAlign = ContentAlignment.MiddleRight
-        chbxPicAutoView.Location = New Point(668, 136)
+        chbxPicAutoView.Location = New Point(666, 140)
         chbxPicAutoView.Name = "chbxPicAutoView"
-        chbxPicAutoView.Size = New Size(81, 22)
+        chbxPicAutoView.Size = New Size(99, 37)
         chbxPicAutoView.TabIndex = 30
         chbxPicAutoView.Text = "AutoView"
         chbxPicAutoView.UseVisualStyleBackColor = True
@@ -2189,19 +2165,19 @@ Inherits System.Windows.Forms.Form
         gpbxPicJustify.Controls.Add(radbtnPicJustifyCenter)
         gpbxPicJustify.Controls.Add(radbtnPicJustifyLeft)
         gpbxPicJustify.Controls.Add(radbtnPicJustifyRight)
-        gpbxPicJustify.Location = New Point(261, 140)
+        gpbxPicJustify.Location = New Point(285, 140)
         gpbxPicJustify.Name = "gpbxPicJustify"
-        gpbxPicJustify.Size = New Size(150, 47)
+        gpbxPicJustify.Size = New Size(242, 65)
         gpbxPicJustify.TabIndex = 20
         gpbxPicJustify.TabStop = False
-        gpbxPicJustify.Text = "FullScreen Justify"
+        gpbxPicJustify.Text = "Fullscreen Justify"
         ' 
         ' radbtnPicJustifyCenter
         ' 
         radbtnPicJustifyCenter.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicJustifyCenter.Location = New Point(59, 19)
+        radbtnPicJustifyCenter.Location = New Point(99, 22)
         radbtnPicJustifyCenter.Name = "radbtnPicJustifyCenter"
-        radbtnPicJustifyCenter.Size = New Size(24, 24)
+        radbtnPicJustifyCenter.Size = New Size(33, 33)
         radbtnPicJustifyCenter.TabIndex = 3
         radbtnPicJustifyCenter.Text = "  "
         radbtnPicJustifyCenter.TextAlign = ContentAlignment.MiddleCenter
@@ -2209,9 +2185,9 @@ Inherits System.Windows.Forms.Form
         ' 
         ' radbtnPicJustifyLeft
         ' 
-        radbtnPicJustifyLeft.Location = New Point(7, 19)
+        radbtnPicJustifyLeft.Location = New Point(17, 22)
         radbtnPicJustifyLeft.Name = "radbtnPicJustifyLeft"
-        radbtnPicJustifyLeft.Size = New Size(47, 24)
+        radbtnPicJustifyLeft.Size = New Size(55, 33)
         radbtnPicJustifyLeft.TabIndex = 1
         radbtnPicJustifyLeft.Text = "Left"
         radbtnPicJustifyLeft.UseVisualStyleBackColor = True
@@ -2219,9 +2195,9 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicJustifyRight
         ' 
         radbtnPicJustifyRight.CheckAlign = ContentAlignment.MiddleRight
-        radbtnPicJustifyRight.Location = New Point(87, 19)
+        radbtnPicJustifyRight.Location = New Point(149, 22)
         radbtnPicJustifyRight.Name = "radbtnPicJustifyRight"
-        radbtnPicJustifyRight.Size = New Size(56, 24)
+        radbtnPicJustifyRight.Size = New Size(77, 33)
         radbtnPicJustifyRight.TabIndex = 5
         radbtnPicJustifyRight.Text = "Right"
         radbtnPicJustifyRight.TextAlign = ContentAlignment.MiddleRight
@@ -2230,11 +2206,11 @@ Inherits System.Windows.Forms.Form
         ' chbxPicLockFullScreen
         ' 
         chbxPicLockFullScreen.CheckAlign = ContentAlignment.MiddleRight
-        chbxPicLockFullScreen.Location = New Point(266, 183)
+        chbxPicLockFullScreen.Location = New Point(327, 205)
         chbxPicLockFullScreen.Name = "chbxPicLockFullScreen"
-        chbxPicLockFullScreen.Size = New Size(119, 22)
+        chbxPicLockFullScreen.Size = New Size(145, 26)
         chbxPicLockFullScreen.TabIndex = 25
-        chbxPicLockFullScreen.Text = "Lock Full Screen"
+        chbxPicLockFullScreen.Text = "Lock Fullscreen"
         chbxPicLockFullScreen.UseVisualStyleBackColor = True
         ' 
         ' gpbxPicLocationMode
@@ -2272,9 +2248,9 @@ Inherits System.Windows.Forms.Form
         gpbxPicLocationMode.Controls.Add(radbtnPicLocationModeRightCenter)
         gpbxPicLocationMode.Controls.Add(radbtnPicLocationModeTopCenterLeftInside)
         gpbxPicLocationMode.Controls.Add(radbtnPicLocationModeTopLeft)
-        gpbxPicLocationMode.Location = New Point(7, 242)
+        gpbxPicLocationMode.Location = New Point(12, 299)
         gpbxPicLocationMode.Name = "gpbxPicLocationMode"
-        gpbxPicLocationMode.Size = New Size(195, 210)
+        gpbxPicLocationMode.Size = New Size(214, 224)
         gpbxPicLocationMode.TabIndex = 40
         gpbxPicLocationMode.TabStop = False
         gpbxPicLocationMode.Text = "Image Location"
@@ -2282,7 +2258,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeTopLeftInside
         ' 
         radbtnPicLocationModeTopLeftInside.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeTopLeftInside.Location = New Point(34, 48)
+        radbtnPicLocationModeTopLeftInside.Location = New Point(43, 56)
         radbtnPicLocationModeTopLeftInside.Name = "radbtnPicLocationModeTopLeftInside"
         radbtnPicLocationModeTopLeftInside.Size = New Size(16, 16)
         radbtnPicLocationModeTopLeftInside.TabIndex = 91
@@ -2292,7 +2268,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeBottomLeftInside
         ' 
         radbtnPicLocationModeBottomLeftInside.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeBottomLeftInside.Location = New Point(34, 160)
+        radbtnPicLocationModeBottomLeftInside.Location = New Point(43, 168)
         radbtnPicLocationModeBottomLeftInside.Name = "radbtnPicLocationModeBottomLeftInside"
         radbtnPicLocationModeBottomLeftInside.Size = New Size(16, 16)
         radbtnPicLocationModeBottomLeftInside.TabIndex = 92
@@ -2302,7 +2278,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeBottomRightInside
         ' 
         radbtnPicLocationModeBottomRightInside.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeBottomRightInside.Location = New Point(146, 160)
+        radbtnPicLocationModeBottomRightInside.Location = New Point(155, 168)
         radbtnPicLocationModeBottomRightInside.Name = "radbtnPicLocationModeBottomRightInside"
         radbtnPicLocationModeBottomRightInside.Size = New Size(16, 16)
         radbtnPicLocationModeBottomRightInside.TabIndex = 93
@@ -2312,7 +2288,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeTopRightInside
         ' 
         radbtnPicLocationModeTopRightInside.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeTopRightInside.Location = New Point(146, 48)
+        radbtnPicLocationModeTopRightInside.Location = New Point(155, 56)
         radbtnPicLocationModeTopRightInside.Name = "radbtnPicLocationModeTopRightInside"
         radbtnPicLocationModeTopRightInside.Size = New Size(16, 16)
         radbtnPicLocationModeTopRightInside.TabIndex = 96
@@ -2322,7 +2298,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeLeftCenterTop
         ' 
         radbtnPicLocationModeLeftCenterTop.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeLeftCenterTop.Location = New Point(6, 62)
+        radbtnPicLocationModeLeftCenterTop.Location = New Point(15, 70)
         radbtnPicLocationModeLeftCenterTop.Name = "radbtnPicLocationModeLeftCenterTop"
         radbtnPicLocationModeLeftCenterTop.Size = New Size(16, 16)
         radbtnPicLocationModeLeftCenterTop.TabIndex = 16
@@ -2332,7 +2308,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeBottomLeft
         ' 
         radbtnPicLocationModeBottomLeft.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeBottomLeft.Location = New Point(6, 188)
+        radbtnPicLocationModeBottomLeft.Location = New Point(15, 196)
         radbtnPicLocationModeBottomLeft.Name = "radbtnPicLocationModeBottomLeft"
         radbtnPicLocationModeBottomLeft.Size = New Size(16, 16)
         radbtnPicLocationModeBottomLeft.TabIndex = 13
@@ -2342,7 +2318,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeLeftCenterBottomInside
         ' 
         radbtnPicLocationModeLeftCenterBottomInside.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeLeftCenterBottomInside.Location = New Point(34, 132)
+        radbtnPicLocationModeLeftCenterBottomInside.Location = New Point(43, 140)
         radbtnPicLocationModeLeftCenterBottomInside.Name = "radbtnPicLocationModeLeftCenterBottomInside"
         radbtnPicLocationModeLeftCenterBottomInside.Size = New Size(16, 16)
         radbtnPicLocationModeLeftCenterBottomInside.TabIndex = 90
@@ -2352,7 +2328,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeLeftCenterInside
         ' 
         radbtnPicLocationModeLeftCenterInside.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeLeftCenterInside.Location = New Point(34, 104)
+        radbtnPicLocationModeLeftCenterInside.Location = New Point(43, 112)
         radbtnPicLocationModeLeftCenterInside.Name = "radbtnPicLocationModeLeftCenterInside"
         radbtnPicLocationModeLeftCenterInside.Size = New Size(16, 16)
         radbtnPicLocationModeLeftCenterInside.TabIndex = 94
@@ -2362,7 +2338,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeLeftCenterTopInside
         ' 
         radbtnPicLocationModeLeftCenterTopInside.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeLeftCenterTopInside.Location = New Point(34, 76)
+        radbtnPicLocationModeLeftCenterTopInside.Location = New Point(43, 84)
         radbtnPicLocationModeLeftCenterTopInside.Name = "radbtnPicLocationModeLeftCenterTopInside"
         radbtnPicLocationModeLeftCenterTopInside.Size = New Size(16, 16)
         radbtnPicLocationModeLeftCenterTopInside.TabIndex = 95
@@ -2372,7 +2348,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeBottomCenterInside
         ' 
         radbtnPicLocationModeBottomCenterInside.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeBottomCenterInside.Location = New Point(90, 160)
+        radbtnPicLocationModeBottomCenterInside.Location = New Point(99, 168)
         radbtnPicLocationModeBottomCenterInside.Name = "radbtnPicLocationModeBottomCenterInside"
         radbtnPicLocationModeBottomCenterInside.Size = New Size(16, 16)
         radbtnPicLocationModeBottomCenterInside.TabIndex = 88
@@ -2382,7 +2358,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeRightCenterInside
         ' 
         radbtnPicLocationModeRightCenterInside.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeRightCenterInside.Location = New Point(146, 104)
+        radbtnPicLocationModeRightCenterInside.Location = New Point(155, 112)
         radbtnPicLocationModeRightCenterInside.Name = "radbtnPicLocationModeRightCenterInside"
         radbtnPicLocationModeRightCenterInside.Size = New Size(16, 16)
         radbtnPicLocationModeRightCenterInside.TabIndex = 86
@@ -2392,7 +2368,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeBottomCenterLeftInside
         ' 
         radbtnPicLocationModeBottomCenterLeftInside.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeBottomCenterLeftInside.Location = New Point(62, 160)
+        radbtnPicLocationModeBottomCenterLeftInside.Location = New Point(71, 168)
         radbtnPicLocationModeBottomCenterLeftInside.Name = "radbtnPicLocationModeBottomCenterLeftInside"
         radbtnPicLocationModeBottomCenterLeftInside.Size = New Size(16, 16)
         radbtnPicLocationModeBottomCenterLeftInside.TabIndex = 89
@@ -2402,7 +2378,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeRightCenterTop
         ' 
         radbtnPicLocationModeRightCenterTop.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeRightCenterTop.Location = New Point(174, 62)
+        radbtnPicLocationModeRightCenterTop.Location = New Point(183, 70)
         radbtnPicLocationModeRightCenterTop.Name = "radbtnPicLocationModeRightCenterTop"
         radbtnPicLocationModeRightCenterTop.Size = New Size(16, 16)
         radbtnPicLocationModeRightCenterTop.TabIndex = 6
@@ -2412,7 +2388,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeRightCenterBottom
         ' 
         radbtnPicLocationModeRightCenterBottom.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeRightCenterBottom.Location = New Point(174, 146)
+        radbtnPicLocationModeRightCenterBottom.Location = New Point(183, 154)
         radbtnPicLocationModeRightCenterBottom.Name = "radbtnPicLocationModeRightCenterBottom"
         radbtnPicLocationModeRightCenterBottom.Size = New Size(16, 16)
         radbtnPicLocationModeRightCenterBottom.TabIndex = 8
@@ -2422,7 +2398,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeBottomCenterRight
         ' 
         radbtnPicLocationModeBottomCenterRight.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeBottomCenterRight.Location = New Point(132, 188)
+        radbtnPicLocationModeBottomCenterRight.Location = New Point(141, 196)
         radbtnPicLocationModeBottomCenterRight.Name = "radbtnPicLocationModeBottomCenterRight"
         radbtnPicLocationModeBottomCenterRight.Size = New Size(16, 16)
         radbtnPicLocationModeBottomCenterRight.TabIndex = 10
@@ -2432,9 +2408,9 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeManual
         ' 
         radbtnPicLocationModeManual.CheckAlign = ContentAlignment.BottomCenter
-        radbtnPicLocationModeManual.Location = New Point(69, 78)
+        radbtnPicLocationModeManual.Location = New Point(70, 86)
         radbtnPicLocationModeManual.Name = "radbtnPicLocationModeManual"
-        radbtnPicLocationModeManual.Size = New Size(57, 40)
+        radbtnPicLocationModeManual.Size = New Size(71, 40)
         radbtnPicLocationModeManual.TabIndex = 0
         radbtnPicLocationModeManual.Text = "Manual"
         radbtnPicLocationModeManual.TextAlign = ContentAlignment.TopCenter
@@ -2443,7 +2419,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeBottomCenterLeft
         ' 
         radbtnPicLocationModeBottomCenterLeft.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeBottomCenterLeft.Location = New Point(48, 188)
+        radbtnPicLocationModeBottomCenterLeft.Location = New Point(57, 196)
         radbtnPicLocationModeBottomCenterLeft.Name = "radbtnPicLocationModeBottomCenterLeft"
         radbtnPicLocationModeBottomCenterLeft.Size = New Size(16, 16)
         radbtnPicLocationModeBottomCenterLeft.TabIndex = 12
@@ -2453,7 +2429,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeBottomRight
         ' 
         radbtnPicLocationModeBottomRight.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeBottomRight.Location = New Point(174, 188)
+        radbtnPicLocationModeBottomRight.Location = New Point(183, 196)
         radbtnPicLocationModeBottomRight.Name = "radbtnPicLocationModeBottomRight"
         radbtnPicLocationModeBottomRight.Size = New Size(16, 16)
         radbtnPicLocationModeBottomRight.TabIndex = 8
@@ -2463,7 +2439,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeLeftCenterBottom
         ' 
         radbtnPicLocationModeLeftCenterBottom.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeLeftCenterBottom.Location = New Point(6, 146)
+        radbtnPicLocationModeLeftCenterBottom.Location = New Point(15, 154)
         radbtnPicLocationModeLeftCenterBottom.Name = "radbtnPicLocationModeLeftCenterBottom"
         radbtnPicLocationModeLeftCenterBottom.Size = New Size(16, 16)
         radbtnPicLocationModeLeftCenterBottom.TabIndex = 14
@@ -2473,7 +2449,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeBottomCenterRightInside
         ' 
         radbtnPicLocationModeBottomCenterRightInside.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeBottomCenterRightInside.Location = New Point(118, 160)
+        radbtnPicLocationModeBottomCenterRightInside.Location = New Point(127, 168)
         radbtnPicLocationModeBottomCenterRightInside.Name = "radbtnPicLocationModeBottomCenterRightInside"
         radbtnPicLocationModeBottomCenterRightInside.Size = New Size(16, 16)
         radbtnPicLocationModeBottomCenterRightInside.TabIndex = 85
@@ -2483,7 +2459,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeBottomCenter
         ' 
         radbtnPicLocationModeBottomCenter.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeBottomCenter.Location = New Point(90, 188)
+        radbtnPicLocationModeBottomCenter.Location = New Point(99, 196)
         radbtnPicLocationModeBottomCenter.Name = "radbtnPicLocationModeBottomCenter"
         radbtnPicLocationModeBottomCenter.Size = New Size(16, 16)
         radbtnPicLocationModeBottomCenter.TabIndex = 11
@@ -2493,7 +2469,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeRightCenterBottomInside
         ' 
         radbtnPicLocationModeRightCenterBottomInside.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeRightCenterBottomInside.Location = New Point(146, 132)
+        radbtnPicLocationModeRightCenterBottomInside.Location = New Point(155, 140)
         radbtnPicLocationModeRightCenterBottomInside.Name = "radbtnPicLocationModeRightCenterBottomInside"
         radbtnPicLocationModeRightCenterBottomInside.Size = New Size(16, 16)
         radbtnPicLocationModeRightCenterBottomInside.TabIndex = 87
@@ -2503,7 +2479,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeLeftCenter
         ' 
         radbtnPicLocationModeLeftCenter.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeLeftCenter.Location = New Point(6, 104)
+        radbtnPicLocationModeLeftCenter.Location = New Point(15, 112)
         radbtnPicLocationModeLeftCenter.Name = "radbtnPicLocationModeLeftCenter"
         radbtnPicLocationModeLeftCenter.Size = New Size(16, 16)
         radbtnPicLocationModeLeftCenter.TabIndex = 15
@@ -2513,7 +2489,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeTopCenterRightInside
         ' 
         radbtnPicLocationModeTopCenterRightInside.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeTopCenterRightInside.Location = New Point(118, 48)
+        radbtnPicLocationModeTopCenterRightInside.Location = New Point(127, 56)
         radbtnPicLocationModeTopCenterRightInside.Name = "radbtnPicLocationModeTopCenterRightInside"
         radbtnPicLocationModeTopCenterRightInside.Size = New Size(16, 16)
         radbtnPicLocationModeTopCenterRightInside.TabIndex = 83
@@ -2523,7 +2499,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeRightCenterTopInside
         ' 
         radbtnPicLocationModeRightCenterTopInside.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeRightCenterTopInside.Location = New Point(146, 76)
+        radbtnPicLocationModeRightCenterTopInside.Location = New Point(155, 84)
         radbtnPicLocationModeRightCenterTopInside.Name = "radbtnPicLocationModeRightCenterTopInside"
         radbtnPicLocationModeRightCenterTopInside.Size = New Size(16, 16)
         radbtnPicLocationModeRightCenterTopInside.TabIndex = 84
@@ -2533,7 +2509,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeTopCenterInside
         ' 
         radbtnPicLocationModeTopCenterInside.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeTopCenterInside.Location = New Point(90, 48)
+        radbtnPicLocationModeTopCenterInside.Location = New Point(99, 56)
         radbtnPicLocationModeTopCenterInside.Name = "radbtnPicLocationModeTopCenterInside"
         radbtnPicLocationModeTopCenterInside.Size = New Size(16, 16)
         radbtnPicLocationModeTopCenterInside.TabIndex = 82
@@ -2543,7 +2519,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeTopCenterLeft
         ' 
         radbtnPicLocationModeTopCenterLeft.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeTopCenterLeft.Location = New Point(48, 20)
+        radbtnPicLocationModeTopCenterLeft.Location = New Point(57, 28)
         radbtnPicLocationModeTopCenterLeft.Name = "radbtnPicLocationModeTopCenterLeft"
         radbtnPicLocationModeTopCenterLeft.Size = New Size(16, 16)
         radbtnPicLocationModeTopCenterLeft.TabIndex = 2
@@ -2553,7 +2529,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeTopCenter
         ' 
         radbtnPicLocationModeTopCenter.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeTopCenter.Location = New Point(90, 20)
+        radbtnPicLocationModeTopCenter.Location = New Point(99, 28)
         radbtnPicLocationModeTopCenter.Name = "radbtnPicLocationModeTopCenter"
         radbtnPicLocationModeTopCenter.Size = New Size(16, 16)
         radbtnPicLocationModeTopCenter.TabIndex = 3
@@ -2563,7 +2539,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeTopRight
         ' 
         radbtnPicLocationModeTopRight.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeTopRight.Location = New Point(174, 20)
+        radbtnPicLocationModeTopRight.Location = New Point(183, 28)
         radbtnPicLocationModeTopRight.Name = "radbtnPicLocationModeTopRight"
         radbtnPicLocationModeTopRight.Size = New Size(16, 16)
         radbtnPicLocationModeTopRight.TabIndex = 5
@@ -2573,7 +2549,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeTopCenterRight
         ' 
         radbtnPicLocationModeTopCenterRight.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeTopCenterRight.Location = New Point(132, 20)
+        radbtnPicLocationModeTopCenterRight.Location = New Point(141, 28)
         radbtnPicLocationModeTopCenterRight.Name = "radbtnPicLocationModeTopCenterRight"
         radbtnPicLocationModeTopCenterRight.Size = New Size(16, 16)
         radbtnPicLocationModeTopCenterRight.TabIndex = 4
@@ -2583,7 +2559,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeRightCenter
         ' 
         radbtnPicLocationModeRightCenter.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeRightCenter.Location = New Point(174, 104)
+        radbtnPicLocationModeRightCenter.Location = New Point(183, 112)
         radbtnPicLocationModeRightCenter.Name = "radbtnPicLocationModeRightCenter"
         radbtnPicLocationModeRightCenter.Size = New Size(16, 16)
         radbtnPicLocationModeRightCenter.TabIndex = 7
@@ -2593,7 +2569,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeTopCenterLeftInside
         ' 
         radbtnPicLocationModeTopCenterLeftInside.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeTopCenterLeftInside.Location = New Point(62, 48)
+        radbtnPicLocationModeTopCenterLeftInside.Location = New Point(71, 56)
         radbtnPicLocationModeTopCenterLeftInside.Name = "radbtnPicLocationModeTopCenterLeftInside"
         radbtnPicLocationModeTopCenterLeftInside.Size = New Size(16, 16)
         radbtnPicLocationModeTopCenterLeftInside.TabIndex = 81
@@ -2603,7 +2579,7 @@ Inherits System.Windows.Forms.Form
         ' radbtnPicLocationModeTopLeft
         ' 
         radbtnPicLocationModeTopLeft.CheckAlign = ContentAlignment.MiddleCenter
-        radbtnPicLocationModeTopLeft.Location = New Point(6, 20)
+        radbtnPicLocationModeTopLeft.Location = New Point(15, 28)
         radbtnPicLocationModeTopLeft.Name = "radbtnPicLocationModeTopLeft"
         radbtnPicLocationModeTopLeft.Size = New Size(16, 16)
         radbtnPicLocationModeTopLeft.TabIndex = 1
@@ -2612,7 +2588,7 @@ Inherits System.Windows.Forms.Form
         ' 
         ' lblPicFileCount
         ' 
-        lblPicFileCount.Location = New Point(8, 100)
+        lblPicFileCount.Location = New Point(11, 100)
         lblPicFileCount.Name = "lblPicFileCount"
         lblPicFileCount.Size = New Size(254, 22)
         lblPicFileCount.TabIndex = 0
@@ -2620,7 +2596,7 @@ Inherits System.Windows.Forms.Form
         ' btnPicTimerEnabled
         ' 
         btnPicTimerEnabled.FlatStyle = FlatStyle.Flat
-        btnPicTimerEnabled.Location = New Point(553, 213)
+        btnPicTimerEnabled.Location = New Point(295, 263)
         btnPicTimerEnabled.Margin = New Padding(3, 4, 3, 4)
         btnPicTimerEnabled.Name = "btnPicTimerEnabled"
         btnPicTimerEnabled.Size = New Size(80, 31)
@@ -2632,36 +2608,36 @@ Inherits System.Windows.Forms.Form
         ' gpbxPicPlayMode
         ' 
         gpbxPicPlayMode.Controls.Add(radbtnPicPlayModeLinearWithRandomStart)
-        gpbxPicPlayMode.Controls.Add(radbtnPicPlayModeRandom)
         gpbxPicPlayMode.Controls.Add(radbtnPicPlayModeLinear)
+        gpbxPicPlayMode.Controls.Add(radbtnPicPlayModeRandom)
         gpbxPicPlayMode.Location = New Point(7, 140)
         gpbxPicPlayMode.Name = "gpbxPicPlayMode"
-        gpbxPicPlayMode.Size = New Size(248, 47)
+        gpbxPicPlayMode.Size = New Size(275, 65)
         gpbxPicPlayMode.TabIndex = 10
         gpbxPicPlayMode.TabStop = False
         gpbxPicPlayMode.Text = "Picture Advance Mode"
         ' 
-        ' radbtnPicPlayModeRandom
-        ' 
-        radbtnPicPlayModeRandom.Location = New Point(172, 19)
-        radbtnPicPlayModeRandom.Name = "radbtnPicPlayModeRandom"
-        radbtnPicPlayModeRandom.Size = New Size(75, 24)
-        radbtnPicPlayModeRandom.TabIndex = 2
-        radbtnPicPlayModeRandom.Text = "Random"
-        radbtnPicPlayModeRandom.UseVisualStyleBackColor = True
-        ' 
         ' radbtnPicPlayModeLinear
         ' 
-        radbtnPicPlayModeLinear.Location = New Point(7, 19)
+        radbtnPicPlayModeLinear.Location = New Point(11, 22)
         radbtnPicPlayModeLinear.Name = "radbtnPicPlayModeLinear"
-        radbtnPicPlayModeLinear.Size = New Size(61, 24)
+        radbtnPicPlayModeLinear.Size = New Size(71, 33)
         radbtnPicPlayModeLinear.TabIndex = 0
         radbtnPicPlayModeLinear.Text = "Linear"
         radbtnPicPlayModeLinear.UseVisualStyleBackColor = True
         ' 
+        ' radbtnPicPlayModeRandom
+        ' 
+        radbtnPicPlayModeRandom.Location = New Point(185, 22)
+        radbtnPicPlayModeRandom.Name = "radbtnPicPlayModeRandom"
+        radbtnPicPlayModeRandom.Size = New Size(87, 33)
+        radbtnPicPlayModeRandom.TabIndex = 2
+        radbtnPicPlayModeRandom.Text = "Random"
+        radbtnPicPlayModeRandom.UseVisualStyleBackColor = True
+        ' 
         ' label4
         ' 
-        label4.Location = New Point(554, 245)
+        label4.Location = New Point(296, 295)
         label4.Name = "label4"
         label4.Size = New Size(80, 22)
         label4.TabIndex = 21
@@ -2670,10 +2646,10 @@ Inherits System.Windows.Forms.Form
         ' 
         ' chbxPicTimerAutoStart
         ' 
-        chbxPicTimerAutoStart.Location = New Point(639, 218)
+        chbxPicTimerAutoStart.Location = New Point(382, 260)
         chbxPicTimerAutoStart.Margin = New Padding(3, 4, 3, 4)
         chbxPicTimerAutoStart.Name = "chbxPicTimerAutoStart"
-        chbxPicTimerAutoStart.Size = New Size(118, 22)
+        chbxPicTimerAutoStart.Size = New Size(140, 38)
         chbxPicTimerAutoStart.TabIndex = 65
         chbxPicTimerAutoStart.Text = "AutoStart Timer"
         chbxPicTimerAutoStart.TextAlign = ContentAlignment.MiddleCenter
@@ -2756,8 +2732,8 @@ Inherits System.Windows.Forms.Form
         AutoSizeMode = AutoSizeMode.GrowAndShrink
         AutoValidate = AutoValidate.EnableAllowFocusChange
         ClientSize = New Size(917, 630)
-        Controls.Add(PanelApp)
         Controls.Add(PanelPics)
+        Controls.Add(PanelApp)
         Controls.Add(PanelVids)
         Controls.Add(PanelPageSelector)
         Controls.Add(PanelActions)

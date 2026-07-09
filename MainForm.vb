@@ -375,16 +375,6 @@ Partial Friend Class MainForm
     Private Sub MainForm_Move(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Move
         If Not mMove AndAlso Me.WindowState = FormWindowState.Normal Then CheckMove(Me.Location)
     End Sub
-    Private Sub PagePanel_Paint(sender As Object, e As PaintEventArgs) Handles PanelApp.Paint, PanelPics.Paint, PanelVids.Paint
-        Using p As New Pen(Color.FromArgb(100, 100, 100))
-            e.Graphics.DrawLine(p, e.ClipRectangle.Left, 0, e.ClipRectangle.Left, e.ClipRectangle.Height)
-        End Using
-    End Sub
-    Private Sub PanelActions_Paint(sender As Object, e As PaintEventArgs) Handles PanelActions.Paint
-        Using p As New Pen(Color.FromArgb(60, 60, 60))
-            e.Graphics.DrawLine(p, 0, 0, PanelActions.Width, 0)
-        End Using
-    End Sub
     ' Control Events
     Private Sub NotifyiconSkyeShowMouseClick(ByVal sender As Object, ByVal e As MouseEventArgs) Handles notifyiconSkyeShow.MouseClick
         Select Case e.Button
@@ -404,6 +394,16 @@ Partial Friend Class MainForm
                 End If
         End Select
     End Sub
+    Private Sub PagePanel_Paint(sender As Object, e As PaintEventArgs) Handles PanelApp.Paint, PanelPics.Paint, PanelVids.Paint
+        Using p As New Pen(Color.FromArgb(100, 100, 100))
+            e.Graphics.DrawLine(p, e.ClipRectangle.Left, 0, e.ClipRectangle.Left, e.ClipRectangle.Height)
+        End Using
+    End Sub
+    Private Sub PanelActions_Paint(sender As Object, e As PaintEventArgs) Handles PanelActions.Paint
+        Using p As New Pen(Color.FromArgb(60, 60, 60))
+            e.Graphics.DrawLine(p, 0, 0, PanelActions.Width, 0)
+        End Using
+    End Sub
     Private Sub LVPageSelector_MouseDown(sender As Object, e As MouseEventArgs) Handles LVPageSelector.MouseDown
         ' Find the item under the mouse
         suppressPageSelection = True
@@ -415,7 +415,12 @@ Partial Friend Class MainForm
         item.Selected = True
         Dim selectedSource As String = item.Text
 
-        SetPage(selectedSource)
+        Select Case e.Clicks
+            Case 1
+                SetPage(selectedSource)
+            Case 2
+                Debug.Print("Double CLICK")
+        End Select
         suppressPageSelection = False
     End Sub
     Private Sub LVPageSelector_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LVPageSelector.SelectedIndexChanged

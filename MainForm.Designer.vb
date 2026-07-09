@@ -237,6 +237,7 @@ Inherits System.Windows.Forms.Form
         PanelActions = New Panel()
         PanelPageSelector = New Panel()
         LVPageSelector = New Skye.UI.ListViewEX()
+        ILPageSelector = New ImageList(components)
         cmSkyeShow.SuspendLayout()
         cmList.SuspendLayout()
         grbxActionOnScreenSave.SuspendLayout()
@@ -1703,7 +1704,7 @@ Inherits System.Windows.Forms.Form
         btnlvPicFolders.FlatAppearance.BorderSize = 0
         btnlvPicFolders.Image = My.Resources.Resources.imageFolder
         btnlvPicFolders.ImageAlign = ContentAlignment.MiddleLeft
-        btnlvPicFolders.Location = New Point(488, 98)
+        btnlvPicFolders.Location = New Point(530, 98)
         btnlvPicFolders.Name = "btnlvPicFolders"
         btnlvPicFolders.Size = New Size(175, 32)
         btnlvPicFolders.TabIndex = 5
@@ -1720,7 +1721,7 @@ Inherits System.Windows.Forms.Form
         btnRefreshPicList.FlatAppearance.BorderSize = 0
         btnRefreshPicList.Image = My.Resources.Resources.imageRefresh
         btnRefreshPicList.ImageAlign = ContentAlignment.MiddleLeft
-        btnRefreshPicList.Location = New Point(669, 98)
+        btnRefreshPicList.Location = New Point(711, 98)
         btnRefreshPicList.Name = "btnRefreshPicList"
         btnRefreshPicList.Size = New Size(100, 32)
         btnRefreshPicList.TabIndex = 6
@@ -1764,9 +1765,9 @@ Inherits System.Windows.Forms.Form
         PanelApp.Controls.Add(grbxActionOnScreenSave)
         PanelApp.Controls.Add(chbxHideCursorWhenFullscreen)
         PanelApp.Dock = DockStyle.Fill
-        PanelApp.Location = New Point(138, 0)
+        PanelApp.Location = New Point(96, 0)
         PanelApp.Name = "PanelApp"
-        PanelApp.Size = New Size(779, 534)
+        PanelApp.Size = New Size(821, 534)
         PanelApp.TabIndex = 107
         ' 
         ' PanelPics
@@ -1788,9 +1789,9 @@ Inherits System.Windows.Forms.Form
         PanelPics.Controls.Add(label4)
         PanelPics.Controls.Add(chbxPicTimerAutoStart)
         PanelPics.Dock = DockStyle.Fill
-        PanelPics.Location = New Point(138, 0)
+        PanelPics.Location = New Point(96, 0)
         PanelPics.Name = "PanelPics"
-        PanelPics.Size = New Size(779, 534)
+        PanelPics.Size = New Size(821, 534)
         PanelPics.TabIndex = 108
         ' 
         ' grbxHotKeysPics
@@ -1964,7 +1965,7 @@ Inherits System.Windows.Forms.Form
         lvPicFolders.MultiSelect = False
         lvPicFolders.Name = "lvPicFolders"
         lvPicFolders.ShowGroups = False
-        lvPicFolders.Size = New Size(761, 86)
+        lvPicFolders.Size = New Size(803, 86)
         lvPicFolders.TabIndex = 1
         lvPicFolders.TabStop = False
         lvPicFolders.UseCompatibleStateImageBehavior = False
@@ -2695,9 +2696,9 @@ Inherits System.Windows.Forms.Form
         PanelVids.Controls.Add(gpbxVidPlayMode)
         PanelVids.Controls.Add(gpbxVidLocationMode)
         PanelVids.Dock = DockStyle.Fill
-        PanelVids.Location = New Point(138, 0)
+        PanelVids.Location = New Point(96, 0)
         PanelVids.Name = "PanelVids"
-        PanelVids.Size = New Size(779, 534)
+        PanelVids.Size = New Size(821, 534)
         PanelVids.TabIndex = 109
         ' 
         ' PanelActions
@@ -2720,25 +2721,34 @@ Inherits System.Windows.Forms.Form
         PanelPageSelector.Dock = DockStyle.Left
         PanelPageSelector.Location = New Point(0, 0)
         PanelPageSelector.Name = "PanelPageSelector"
-        PanelPageSelector.Size = New Size(138, 534)
+        PanelPageSelector.Size = New Size(96, 534)
         PanelPageSelector.TabIndex = 111
         ' 
         ' LVPageSelector
         ' 
         LVPageSelector.AutoArrange = False
+        LVPageSelector.BackColor = SystemColors.Control
         LVPageSelector.BorderStyle = BorderStyle.None
         LVPageSelector.Dock = DockStyle.Fill
         LVPageSelector.EditableColumns = CType(resources.GetObject("LVPageSelector.EditableColumns"), List(Of Boolean))
         LVPageSelector.HeaderStyle = ColumnHeaderStyle.None
         LVPageSelector.InsertionLineColor = Color.Teal
+        LVPageSelector.LargeImageList = ILPageSelector
         LVPageSelector.Location = New Point(0, 0)
         LVPageSelector.MultiSelect = False
         LVPageSelector.Name = "LVPageSelector"
         LVPageSelector.Scrollable = False
         LVPageSelector.ShowGroups = False
-        LVPageSelector.Size = New Size(138, 534)
+        LVPageSelector.Size = New Size(96, 534)
         LVPageSelector.TabIndex = 0
+        LVPageSelector.TabStop = False
         LVPageSelector.UseCompatibleStateImageBehavior = False
+        ' 
+        ' ILPageSelector
+        ' 
+        ILPageSelector.ColorDepth = ColorDepth.Depth32Bit
+        ILPageSelector.ImageSize = New Size(48, 48)
+        ILPageSelector.TransparentColor = Color.Transparent
         ' 
         ' MainForm
         ' 
@@ -3009,4 +3019,5 @@ Inherits System.Windows.Forms.Form
     Friend WithEvents PanelActions As Panel
     Friend WithEvents PanelPageSelector As Panel
     Friend WithEvents LVPageSelector As Skye.UI.ListViewEX
+    Friend WithEvents ILPageSelector As ImageList
 End Class

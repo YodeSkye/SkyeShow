@@ -247,6 +247,7 @@ Partial Friend Class MainForm
 	Private mMove As Boolean = False
 	Private mOffset, mPosition As Point
 	Private nonNumberEntered As Boolean
+	Private suppressPageSelection As Boolean = False
 	Private cmListCurrentSourceControl As String
 	Private cmiSettingListEnableItemLastIndex As Integer
 	Private folderbrowser As New FolderBrowserDialog
@@ -260,31 +261,6 @@ Partial Friend Class MainForm
 	Private ImageActiveOnRefresh, VideoActiveOnRefresh As Boolean
 
 	' Form Events
-	Friend Sub New()
-
-		' Initialize Locals
-		InitializeComponent()
-		folderbrowser.RootFolder = System.Environment.SpecialFolder.Desktop
-		folderbrowser.ShowNewFolderButton = False
-		uiWPFileBrowser.Title = "Select An Image..."
-		uiWPFileBrowser.DefaultExt = "jpg"
-		uiWPFileBrowser.Filter = "Image Files|*.jpg;*.jpeg;*.bmp;*.png;*.tif;*.tiff"
-
-		' Initialize Form
-		Me.Text = "Settings For " + My.Application.Info.Title + "  v" + My.Application.Info.Version.Major.ToString + "." + My.Application.Info.Version.Minor.ToString
-		Me.lvPicFolders.Columns.Add(Nothing, 0, HorizontalAlignment.Center)
-		Me.lvPicFolders.Columns.Add(Nothing, 0, HorizontalAlignment.Center)
-		Me.lvPicFolders.Columns.Add(Nothing, 0, HorizontalAlignment.Center)
-		Me.lvVidFolders.Columns.Add(Nothing, 0, HorizontalAlignment.Center)
-		Me.lvVidFolders.Columns.Add(Nothing, 0, HorizontalAlignment.Center)
-		Me.lvVidFolders.Columns.Add(Nothing, 0, HorizontalAlignment.Center)
-		For Each mode As My.App.VideoPositionMode In [Enum].GetValues(Of My.App.VideoPositionMode)()
-			Me.cobxVidTimeDisplayMode.Items.Add(My.App.VideoPositionModeToString(mode))
-		Next
-		AddHandler BackgroundworkerGetFiles.DoWork, AddressOf BackgroundworkerGetFilesDoWork
-		AddHandler BackgroundworkerGetFiles.RunWorkerCompleted, AddressOf BackgroundworkerGetFilesRunWorkerCompleted
-
-	End Sub
 	Protected Overrides Sub WndProc(ByRef m As System.Windows.Forms.Message)
 		Try
 			Select Case m.Msg
@@ -305,6 +281,38 @@ Partial Friend Class MainForm
 			End Select
 		Catch ex As Exception : My.App.WriteToLog("MainForm WndProc Handler Error" + Chr(13) + ex.ToString)
 		End Try
+	End Sub
+	Friend Sub New()
+
+		' Initialize Locals
+		InitializeComponent()
+		folderbrowser.RootFolder = System.Environment.SpecialFolder.Desktop
+		folderbrowser.ShowNewFolderButton = False
+		uiWPFileBrowser.Title = "Select An Image..."
+		uiWPFileBrowser.DefaultExt = "jpg"
+		uiWPFileBrowser.Filter = "Image Files|*.jpg;*.jpeg;*.bmp;*.png;*.tif;*.tiff"
+
+		' Initialize Form
+		Text = "Settings For " + My.Application.Info.Title + "  v" + My.Application.Info.Version.Major.ToString + "." + My.Application.Info.Version.Minor.ToString
+		ILPageSelector.Images.Add(My.Resources.Resources.ImageApp48)
+		ILPageSelector.Images.Add(My.Resources.Resources.ImageImage48)
+		ILPageSelector.Images.Add(My.Resources.Resources.ImageVideo48)
+		LVPageSelector.Items.Add(New ListViewItem("App", 0))
+		LVPageSelector.Items.Add(New ListViewItem("Pics", 1))
+		LVPageSelector.Items.Add(New ListViewItem("Vids", 2))
+		LVPageSelector.Items(0).Selected = True
+		lvPicFolders.Columns.Add(Nothing, 0, HorizontalAlignment.Center)
+		lvPicFolders.Columns.Add(Nothing, 0, HorizontalAlignment.Center)
+		lvPicFolders.Columns.Add(Nothing, 0, HorizontalAlignment.Center)
+		lvVidFolders.Columns.Add(Nothing, 0, HorizontalAlignment.Center)
+		lvVidFolders.Columns.Add(Nothing, 0, HorizontalAlignment.Center)
+		lvVidFolders.Columns.Add(Nothing, 0, HorizontalAlignment.Center)
+		For Each mode As App.VideoPositionMode In [Enum].GetValues(Of App.VideoPositionMode)()
+			cobxVidTimeDisplayMode.Items.Add(App.VideoPositionModeToString(mode))
+		Next
+		AddHandler BackgroundworkerGetFiles.DoWork, AddressOf BackgroundworkerGetFilesDoWork
+		AddHandler BackgroundworkerGetFiles.RunWorkerCompleted, AddressOf BackgroundworkerGetFilesRunWorkerCompleted
+
 	End Sub
 	Private Sub FrmLoad(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
 		ShowSettings()
@@ -331,6 +339,7 @@ Partial Friend Class MainForm
 			End If
 			ToggleContextMenu()
 		End If
+		LVPageSelector.Focus()
 	End Sub
 	Private Sub FrmClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
 		My.App.Finalize()
@@ -385,6 +394,25 @@ Partial Friend Class MainForm
 					My.App.ShowLog()
 				End If
 		End Select
+	End Sub
+	Private Sub LVPageSelector_MouseDown(sender As Object, e As MouseEventArgs) Handles LVPageSelector.MouseDown
+		' Find the item under the mouse
+		suppressPageSelection = True
+		Dim info As ListViewHitTestInfo = LVPageSelector.HitTest(e.Location)
+		Dim item As ListViewItem = info.Item
+		If item Is Nothing Then Return
+
+		' Ensure it becomes selected (for visual feedback)
+		item.Selected = True
+		Dim selectedSource As String = item.Text
+
+		SetPage(selectedSource)
+		suppressPageSelection = False
+	End Sub
+	Private Sub LVPageSelector_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LVPageSelector.SelectedIndexChanged
+		If suppressPageSelection OrElse LVPageSelector.SelectedItems.Count = 0 Then Return
+		Dim selectedSource As String = LVPageSelector.SelectedItems(0).Text
+		SetPage(LVPageSelector.SelectedItems(0).Text)
 	End Sub
 	Private Sub CMSkyeShowOpening(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmSkyeShow.Opening
 		If My.App.ErrorAlert Then e.Cancel = True
@@ -880,6 +908,22 @@ Partial Friend Class MainForm
 			Me.btnLog.ResetFont()
 			Me.btnLog.ResetForeColor()
 		End If
+	End Sub
+	Private Sub SetPage(page As String)
+		PanelApp.Enabled = False
+		PanelPics.Enabled = False
+		PanelVids.Enabled = False
+		Select Case page
+			Case "App"
+				PanelApp.Enabled = True
+				PanelApp.BringToFront()
+			Case "Pics"
+				PanelPics.Enabled = True
+				PanelPics.BringToFront()
+			Case "Vids"
+				PanelVids.Enabled = True
+				PanelVids.BringToFront()
+		End Select
 	End Sub
 	Friend Sub ShowSettings()
 		ShowSettingsSkyeShow()

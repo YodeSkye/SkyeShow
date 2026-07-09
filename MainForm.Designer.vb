@@ -1476,7 +1476,7 @@ Inherits System.Windows.Forms.Form
         ' btnSaveSettings
         ' 
         btnSaveSettings.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        btnSaveSettings.Image = My.Resources.Resources.imageSave
+        btnSaveSettings.Image = My.Resources.Resources.ImageSave32
         btnSaveSettings.Location = New Point(12, 24)
         btnSaveSettings.Name = "btnSaveSettings"
         btnSaveSettings.Size = New Size(48, 48)
@@ -1488,7 +1488,7 @@ Inherits System.Windows.Forms.Form
         ' btnRestoreSettings
         ' 
         btnRestoreSettings.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        btnRestoreSettings.Image = My.Resources.Resources.imageRestore
+        btnRestoreSettings.Image = My.Resources.Resources.ImageUndo32
         btnRestoreSettings.Location = New Point(73, 24)
         btnRestoreSettings.Name = "btnRestoreSettings"
         btnRestoreSettings.Size = New Size(48, 48)
@@ -1660,7 +1660,7 @@ Inherits System.Windows.Forms.Form
         btnErrorTest.FlatAppearance.BorderSize = 0
         btnErrorTest.FlatAppearance.MouseDownBackColor = Color.Transparent
         btnErrorTest.FlatAppearance.MouseOverBackColor = Color.Transparent
-        btnErrorTest.Image = My.Resources.Resources.imageError
+        btnErrorTest.Image = My.Resources.Resources.ImageError32
         btnErrorTest.Location = New Point(153, 24)
         btnErrorTest.Name = "btnErrorTest"
         btnErrorTest.Size = New Size(48, 48)
@@ -1736,7 +1736,7 @@ Inherits System.Windows.Forms.Form
         ' btnLog
         ' 
         btnLog.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        btnLog.Image = My.Resources.Resources.imageLog
+        btnLog.Image = My.Resources.Resources.ImageLog32
         btnLog.Location = New Point(857, 24)
         btnLog.Name = "btnLog"
         btnLog.Size = New Size(48, 48)
@@ -1851,6 +1851,7 @@ Inherits System.Windows.Forms.Form
         ' 
         ' btnHotKeysPicsUndo
         ' 
+        btnHotKeysPicsUndo.Image = My.Resources.Resources.ImageUndo16
         btnHotKeysPicsUndo.ImageAlign = ContentAlignment.MiddleLeft
         btnHotKeysPicsUndo.Location = New Point(7, 175)
         btnHotKeysPicsUndo.Name = "btnHotKeysPicsUndo"

@@ -419,7 +419,26 @@ Partial Friend Class MainForm
             Case 1
                 SetPage(selectedSource)
             Case 2
-                Debug.Print("Double CLICK")
+                Select Case selectedSource
+                    Case "Pics"
+                        If cmiViewPics.Enabled Then
+                            If App.FrmPicsVisible Then
+                                App.frmPics.Close()
+                            Else
+                                App.ShowImages()
+                            End If
+                            ToggleContextMenu()
+                        End If
+                    Case "Vids"
+                        If cmiPlayVids.Enabled Then
+                            If App.FrmVidsVisible Then
+                                App.FrmVids.Close()
+                            Else
+                                App.ShowVideos()
+                            End If
+                            ToggleContextMenu()
+                        End If
+                End Select
         End Select
         suppressPageSelection = False
     End Sub

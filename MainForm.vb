@@ -351,34 +351,34 @@ Partial Friend Class MainForm
 	Private Sub FrmClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
 		My.App.Finalize()
 	End Sub
-	Private Sub FrmMouseDown(ByVal sender As Object, ByVal e As MouseEventArgs) Handles tpVids.MouseDown, tpPics.MouseDown, tpApp.MouseDown, MyBase.MouseDown
-		Static senderControl As Control
-		If e.Button = MouseButtons.Left And Me.WindowState = FormWindowState.Normal Then
-			mMove = True
-			If sender.GetType Is GetType(TabPage) Then
-				senderControl = DirectCast(sender, Control)
-				mOffset = New Point(-e.X - SystemInformation.FrameBorderSize.Width - Me.tcSettings.Left - senderControl.Left, -e.Y - SystemInformation.FrameBorderSize.Height - SystemInformation.CaptionHeight - Me.tcSettings.Top - senderControl.Top)
-				senderControl = Nothing
-				'ElseIf sender.GetType Is GetType(Panel) Then
-				'	senderControl = DirectCast(sender, Control)
-				'	mOffset = New Point(-e.X - 1 - senderControl.Left - Me.tpWP.Left - Me.tcSettings.Left - SystemInformation.FrameBorderSize.Width, -e.Y - 1 - senderControl.Top - Me.tpWP.Top - Me.tcSettings.Top - SystemInformation.FrameBorderSize.Height - SystemInformation.CaptionHeight)
-				'	senderControl = Nothing
-			Else : mOffset = New Point(-e.X - SystemInformation.FrameBorderSize.Width, -e.Y - SystemInformation.FrameBorderSize.Height - SystemInformation.CaptionHeight)
-			End If
-		End If
-	End Sub
-	Private Sub FrmMouseMove(ByVal sender As Object, ByVal e As MouseEventArgs) Handles tpVids.MouseMove, tpPics.MouseMove, tpApp.MouseMove, MyBase.MouseMove
-		If mMove Then
-			mPosition = Control.MousePosition
-			mPosition.Offset(mOffset.X, mOffset.Y)
-			CheckMove(mPosition)
-			Location = mPosition
-		End If
-	End Sub
-	Private Sub FrmMouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles tpVids.MouseUp, tpPics.MouseUp, tpApp.MouseUp, MyBase.MouseUp
-		mMove = False
-	End Sub
-	Private Sub FrmMove(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Move
+    Private Sub FrmMouseDown(ByVal sender As Object, ByVal e As MouseEventArgs) Handles MyBase.MouseDown
+        Static senderControl As Control
+        If e.Button = MouseButtons.Left And WindowState = FormWindowState.Normal Then
+            mMove = True
+            If sender.GetType Is GetType(TabPage) Then
+                senderControl = DirectCast(sender, Control)
+                mOffset = New Point(-e.X - SystemInformation.FrameBorderSize.Width - tcSettings.Left - senderControl.Left, -e.Y - SystemInformation.FrameBorderSize.Height - SystemInformation.CaptionHeight - tcSettings.Top - senderControl.Top)
+                senderControl = Nothing
+                'ElseIf sender.GetType Is GetType(Panel) Then
+                '	senderControl = DirectCast(sender, Control)
+                '	mOffset = New Point(-e.X - 1 - senderControl.Left - Me.tpWP.Left - Me.tcSettings.Left - SystemInformation.FrameBorderSize.Width, -e.Y - 1 - senderControl.Top - Me.tpWP.Top - Me.tcSettings.Top - SystemInformation.FrameBorderSize.Height - SystemInformation.CaptionHeight)
+                '	senderControl = Nothing
+            Else : mOffset = New Point(-e.X - SystemInformation.FrameBorderSize.Width, -e.Y - SystemInformation.FrameBorderSize.Height - SystemInformation.CaptionHeight)
+            End If
+        End If
+    End Sub
+    Private Sub FrmMouseMove(ByVal sender As Object, ByVal e As MouseEventArgs) Handles MyBase.MouseMove
+        If mMove Then
+            mPosition = MousePosition
+            mPosition.Offset(mOffset.X, mOffset.Y)
+            CheckMove(mPosition)
+            Location = mPosition
+        End If
+    End Sub
+    Private Sub FrmMouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles MyBase.MouseUp
+        mMove = False
+    End Sub
+    Private Sub FrmMove(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Move
 		If Not mMove AndAlso Me.WindowState = FormWindowState.Normal Then CheckMove(Me.Location)
 	End Sub
 
@@ -401,28 +401,28 @@ Partial Friend Class MainForm
 				End If
 		End Select
 	End Sub
-	Private Sub TabcontrolSettingsMouseDoubleClick(sender As Object, e As MouseEventArgs) Handles tcSettings.MouseDoubleClick
-		On Error Resume Next
-		If e.Button = MouseButtons.Left Then
-			Select Case Me.tcSettings.SelectedTab.Name
-				Case Me.tpPics.Name
-					If Me.cmiViewPics.Enabled Then
-						If My.App.FrmPicsVisible Then : My.App.frmPics.Close()
-						Else : My.App.ShowImages()
-						End If
-						ToggleContextMenu()
-					End If
-				Case Me.tpVids.Name
-					If Me.cmiPlayVids.Enabled Then
-						If My.App.FrmVidsVisible Then : My.App.FrmVids.Close()
-						Else : My.App.ShowVideos()
-						End If
-						ToggleContextMenu()
-					End If
-			End Select
-		End If
-	End Sub
-	Private Sub CMSkyeShowOpening(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmSkyeShow.Opening
+    Private Sub TabcontrolSettingsMouseDoubleClick(sender As Object, e As MouseEventArgs)
+        On Error Resume Next
+        If e.Button = MouseButtons.Left Then
+            Select Case tcSettings.SelectedTab.Name
+                Case tpPics.Name
+                    If cmiViewPics.Enabled Then
+                        If FrmPicsVisible Then : frmPics.Close
+                        Else : ShowImages
+                        End If
+                        ToggleContextMenu
+                    End If
+                Case tpVids.Name
+                    If cmiPlayVids.Enabled Then
+                        If FrmVidsVisible Then : FrmVids.Close
+                        Else : ShowVideos
+                        End If
+                        ToggleContextMenu
+                    End If
+            End Select
+        End If
+    End Sub
+    Private Sub CMSkyeShowOpening(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmSkyeShow.Opening
 		If My.App.ErrorAlert Then e.Cancel = True
 	End Sub
 	Private Sub CMListOpening(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmList.Opening

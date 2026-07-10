@@ -344,24 +344,18 @@ Partial Friend Class MainForm
     Private Sub MainForm_Closing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         My.App.Finalize()
     End Sub
-    Private Sub MainForm_MouseDown(ByVal sender As Object, ByVal e As MouseEventArgs) Handles MyBase.MouseDown
-        'Static senderControl As Control
-        If e.Button = MouseButtons.Left And WindowState = FormWindowState.Normal Then
+    Private Sub MainForm_MouseDown(sender As Object, e As MouseEventArgs) Handles MyBase.MouseDown, PanelApp.MouseDown, PanelPics.MouseDown, PanelVids.MouseDown, PanelActions.MouseDown
+        If e.Button = MouseButtons.Left AndAlso WindowState = FormWindowState.Normal Then
             mMove = True
-            'If sender.GetType Is GetType(TabPage) Then
-            '	senderControl = DirectCast(sender, Control)
-            '	mOffset = New Point(-e.X - SystemInformation.FrameBorderSize.Width - tcSettings.Left - senderControl.Left, -e.Y - SystemInformation.FrameBorderSize.Height - SystemInformation.CaptionHeight - tcSettings.Top - senderControl.Top)
-            '	senderControl = Nothing
-            '	'ElseIf sender.GetType Is GetType(Panel) Then
-            '	'	senderControl = DirectCast(sender, Control)
-            '	'	mOffset = New Point(-e.X - 1 - senderControl.Left - Me.tpWP.Left - Me.tcSettings.Left - SystemInformation.FrameBorderSize.Width, -e.Y - 1 - senderControl.Top - Me.tpWP.Top - Me.tcSettings.Top - SystemInformation.FrameBorderSize.Height - SystemInformation.CaptionHeight)
-            '	'	senderControl = Nothing
-            'Else : mOffset = New Point(-e.X - SystemInformation.FrameBorderSize.Width, -e.Y - SystemInformation.FrameBorderSize.Height - SystemInformation.CaptionHeight)
-            'End If
-            mOffset = New Point(-e.X - SystemInformation.FrameBorderSize.Width, -e.Y - SystemInformation.FrameBorderSize.Height - SystemInformation.CaptionHeight)
+            Dim ctrl As Control = DirectCast(sender, Control)
+            If TypeOf ctrl Is Panel Then
+                mOffset = New Point(-e.X - 4 - ctrl.Left - SystemInformation.FrameBorderSize.Width, -e.Y - 4 - ctrl.Top - SystemInformation.FrameBorderSize.Height - SystemInformation.CaptionHeight)
+            Else
+                mOffset = New Point(-e.X - SystemInformation.FrameBorderSize.Width, -e.Y - SystemInformation.FrameBorderSize.Height - SystemInformation.CaptionHeight)
+            End If
         End If
     End Sub
-    Private Sub MainForm_MouseMove(ByVal sender As Object, ByVal e As MouseEventArgs) Handles MyBase.MouseMove
+    Private Sub MainForm_MouseMove(ByVal sender As Object, ByVal e As MouseEventArgs) Handles MyBase.MouseMove, PanelApp.MouseMove, PanelPics.MouseMove, PanelVids.MouseMove, PanelActions.MouseMove
         If mMove Then
             mPosition = MousePosition
             mPosition.Offset(mOffset.X, mOffset.Y)
@@ -369,12 +363,13 @@ Partial Friend Class MainForm
             Location = mPosition
         End If
     End Sub
-    Private Sub MainForm_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles MyBase.MouseUp
+    Private Sub MainForm_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles MyBase.MouseUp, PanelApp.MouseUp, PanelPics.MouseUp, PanelVids.MouseUp, PanelActions.MouseUp
         mMove = False
     End Sub
     Private Sub MainForm_Move(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Move
         If Not mMove AndAlso Me.WindowState = FormWindowState.Normal Then CheckMove(Me.Location)
     End Sub
+
     ' Control Events
     Private Sub NotifyiconSkyeShowMouseClick(ByVal sender As Object, ByVal e As MouseEventArgs) Handles notifyiconSkyeShow.MouseClick
         Select Case e.Button
@@ -395,8 +390,9 @@ Partial Friend Class MainForm
         End Select
     End Sub
     Private Sub PagePanel_Paint(sender As Object, e As PaintEventArgs) Handles PanelApp.Paint, PanelPics.Paint, PanelVids.Paint
+        Dim pagePanel As Panel = DirectCast(sender, Panel)
         Using p As New Pen(Color.FromArgb(100, 100, 100))
-            e.Graphics.DrawLine(p, e.ClipRectangle.Left, 0, e.ClipRectangle.Left, e.ClipRectangle.Height)
+            e.Graphics.DrawLine(p, 0, 0, 0, pagePanel.Height)
         End Using
     End Sub
     Private Sub PanelActions_Paint(sender As Object, e As PaintEventArgs) Handles PanelActions.Paint
@@ -871,7 +867,6 @@ Partial Friend Class MainForm
                     Debug.Print("btnErrorTestMouseUp --> TEST ERROR - DO NOT PANIC!!")
                     MsgBox("Just Checking, DO NOT PANIC!!", MsgBoxStyle.Critical, "Test Error")
                     My.App.WriteToLog("Test Error - DO NOT PANIC!!")
-                    My.App.ShowLog()
                 Case MouseButtons.Right
                     My.App.SetErrorAlert()
                     My.App.WriteToLog("Test Exception - DO NOT PANIC!!")
@@ -929,8 +924,7 @@ Partial Friend Class MainForm
         ElseIf App.ErrorAlert Then
             notifyiconSkyeShow.Icon = My.Resources.Resources.IconAppError
             notifyiconSkyeShow.Text += Chr(13) + "** ERROR **" + Chr(13) + "LeftClick = Clear" + Chr(13) + "RightClick = View Log"
-            btnLog.Font = New Font(Font, FontStyle.Bold)
-            btnLog.ForeColor = Color.Firebrick
+            btnLog.BackColor = Color.Red
             TipInfoEX.SetText(btnLog, TipInfoEX.GetText(btnLog) + vbCr + "An Error Has Occurred")
         Else
             If App.ImageIsOnTop And App.VideoIsOnTop Then : notifyiconSkyeShow.Icon = My.Resources.Resources.IconApp
@@ -938,8 +932,7 @@ Partial Friend Class MainForm
                 notifyiconSkyeShow.Icon = My.Resources.Resources.IconAppHidden
                 notifyiconSkyeShow.Text += Chr(13) + "One Or More Windows Are Hidden. Click To Restore."
             End If
-            btnLog.ResetFont()
-            btnLog.ResetForeColor()
+            btnLog.ResetBackColor()
         End If
     End Sub
     Private Sub SetPage(page As String)
@@ -1478,13 +1471,11 @@ Partial Friend Class MainForm
         End If
     End Sub
     Private Sub CheckMove(ByRef location As Point)
-        If location.X + Me.Width > My.Computer.Screen.WorkingArea.Right Then location.X = My.Computer.Screen.WorkingArea.Right - Me.Width
-        If location.Y + Me.Height > My.Computer.Screen.WorkingArea.Bottom Then location.Y = My.Computer.Screen.WorkingArea.Bottom - Me.Height
-        If location.X < My.Computer.Screen.WorkingArea.Left Then location.X = My.Computer.Screen.WorkingArea.Left
-        If location.Y < My.Computer.Screen.WorkingArea.Top Then location.Y = My.Computer.Screen.WorkingArea.Top
+        Dim screen As Rectangle = System.Windows.Forms.Screen.FromControl(Me).WorkingArea
+        If location.X + Width > screen.Right Then location.X = screen.Right - Width + App.AdjustScreenBoundsNormalWindow
+        If location.Y + Height > screen.Bottom Then location.Y = screen.Bottom - Height + App.AdjustScreenBoundsNormalWindow
+        If location.X < screen.Left Then location.X = screen.Left - App.AdjustScreenBoundsNormalWindow
+        If location.Y < screen.Top Then location.Y = screen.Top
     End Sub
-    Public Function ShouldSerializebackgroundworkerGetFiles() As Boolean
-        Return False
-    End Function
 
 End Class

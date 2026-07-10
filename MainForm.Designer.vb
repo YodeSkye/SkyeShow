@@ -1892,7 +1892,7 @@ Inherits System.Windows.Forms.Form
         btnErrorTest.FlatAppearance.MouseOverBackColor = Color.Transparent
         btnErrorTest.Image = My.Resources.Resources.ImageError32
         TipInfoEX.SetImage(btnErrorTest, My.Resources.Resources.ImageError16)
-        btnErrorTest.Location = New Point(153, 24)
+        btnErrorTest.Location = New Point(216, 24)
         btnErrorTest.Name = "btnErrorTest"
         btnErrorTest.Size = New Size(48, 48)
         btnErrorTest.TabIndex = 0
@@ -3106,7 +3106,9 @@ Inherits System.Windows.Forms.Form
         LVPageSelector.BorderStyle = BorderStyle.None
         LVPageSelector.Dock = DockStyle.Fill
         LVPageSelector.EditableColumns = CType(resources.GetObject("LVPageSelector.EditableColumns"), List(Of Boolean))
+        LVPageSelector.FullRowSelect = True
         LVPageSelector.HeaderStyle = ColumnHeaderStyle.None
+        LVPageSelector.HideSelection = True
         TipInfoEX.SetImage(LVPageSelector, Nothing)
         LVPageSelector.InsertionLineColor = Color.Teal
         LVPageSelector.LargeImageList = ILPageSelector

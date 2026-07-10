@@ -921,25 +921,25 @@ Partial Friend Class MainForm
 
     ' Methods
     Friend Sub AppNotify()
-        Me.notifyiconSkyeShow.Text = My.Application.Info.Title
-        Me.tipInfo.SetToolTip(Me.btnLog, "Log")
-        If My.App.IsGeneratingFileList Then
-            Me.notifyiconSkyeShow.Icon = My.Resources.Resources.IconAppLoading
-            Me.notifyiconSkyeShow.Text += Chr(13) + My.App.GeneratingFileListAlertText
-        ElseIf My.App.ErrorAlert Then
-            Me.notifyiconSkyeShow.Icon = My.Resources.Resources.IconAppError
-            Me.notifyiconSkyeShow.Text += Chr(13) + "** ERROR **" + Chr(13) + "LeftClick = Clear" + Chr(13) + "RightClick = View Log"
-            Me.btnLog.Font = New Font(Me.Font, FontStyle.Bold)
-            Me.btnLog.ForeColor = Color.Firebrick
-            Me.tipInfo.SetToolTip(Me.btnLog, Me.tipInfo.GetToolTip(Me.btnLog) + vbCr + "An Error Has Occurred")
+        notifyiconSkyeShow.Text = Application.Info.Title
+        TipInfoEX.SetText(btnLog, "Show Log")
+        If App.IsGeneratingFileList Then
+            notifyiconSkyeShow.Icon = My.Resources.Resources.IconAppLoading
+            notifyiconSkyeShow.Text += Chr(13) + App.GeneratingFileListAlertText
+        ElseIf App.ErrorAlert Then
+            notifyiconSkyeShow.Icon = My.Resources.Resources.IconAppError
+            notifyiconSkyeShow.Text += Chr(13) + "** ERROR **" + Chr(13) + "LeftClick = Clear" + Chr(13) + "RightClick = View Log"
+            btnLog.Font = New Font(Font, FontStyle.Bold)
+            btnLog.ForeColor = Color.Firebrick
+            TipInfoEX.SetText(btnLog, TipInfoEX.GetText(btnLog) + vbCr + "An Error Has Occurred")
         Else
-            If My.App.ImageIsOnTop And My.App.VideoIsOnTop Then : Me.notifyiconSkyeShow.Icon = My.Resources.Resources.IconApp
+            If App.ImageIsOnTop And App.VideoIsOnTop Then : notifyiconSkyeShow.Icon = My.Resources.Resources.IconApp
             Else
-                Me.notifyiconSkyeShow.Icon = My.Resources.Resources.IconAppHidden
-                Me.notifyiconSkyeShow.Text += Chr(13) + "One Or More Windows Are Hidden. Click To Restore."
+                notifyiconSkyeShow.Icon = My.Resources.Resources.IconAppHidden
+                notifyiconSkyeShow.Text += Chr(13) + "One Or More Windows Are Hidden. Click To Restore."
             End If
-            Me.btnLog.ResetFont()
-            Me.btnLog.ResetForeColor()
+            btnLog.ResetFont()
+            btnLog.ResetForeColor()
         End If
     End Sub
     Private Sub SetPage(page As String)
@@ -982,45 +982,45 @@ Partial Friend Class MainForm
             s += (My.App.ImageFiles.Count - My.App.ImageRepeatList.Count).ToString + " " + My.App.VideoFilesCountMode.UnViewed.ToString
             s += ", " + My.App.ImageRepeatList.Count.ToString + " " + My.App.VideoFilesCountMode.Viewed.ToString
             s += ", " + My.App.ImageFiles.Count.ToString + " " + My.App.VideoFilesCountMode.Total.ToString
-            Me.tipInfo.SetToolTip(Me.lblPicFileCount, s)
-            If My.App.ImageFiles.Count = 0 Then : Me.cmiViewPics.Enabled = False
-            Else : Me.cmiViewPics.Enabled = True
+            TipInfoEX.SetText(lblPicFileCount, s)
+            If My.App.ImageFiles.Count = 0 Then : cmiViewPics.Enabled = False
+            Else : cmiViewPics.Enabled = True
             End If
         End If
-        Select Case My.App.PicLocationMode
-            Case My.App.LocationMode.Manual : Me.radbtnPicLocationModeManual.Checked = True
-            Case My.App.LocationMode.TopLeft : Me.radbtnPicLocationModeTopLeft.Checked = True
-            Case My.App.LocationMode.TopCenterLeft : Me.radbtnPicLocationModeTopCenterLeft.Checked = True
-            Case My.App.LocationMode.TopCenter : Me.radbtnPicLocationModeTopCenter.Checked = True
-            Case My.App.LocationMode.TopCenterRight : Me.radbtnPicLocationModeTopCenterRight.Checked = True
-            Case My.App.LocationMode.TopRight : Me.radbtnPicLocationModeTopRight.Checked = True
-            Case My.App.LocationMode.RightCenterTop : Me.radbtnPicLocationModeRightCenterTop.Checked = True
-            Case My.App.LocationMode.RightCenter : Me.radbtnPicLocationModeRightCenter.Checked = True
-            Case My.App.LocationMode.RightCenterBottom : Me.radbtnPicLocationModeRightCenterBottom.Checked = True
-            Case My.App.LocationMode.BottomRight : Me.radbtnPicLocationModeBottomRight.Checked = True
-            Case My.App.LocationMode.BottomCenterRight : Me.radbtnPicLocationModeBottomCenterRight.Checked = True
-            Case My.App.LocationMode.BottomCenter : Me.radbtnPicLocationModeBottomCenter.Checked = True
-            Case My.App.LocationMode.BottomCenterLeft : Me.radbtnPicLocationModeBottomCenterLeft.Checked = True
-            Case My.App.LocationMode.BottomLeft : Me.radbtnPicLocationModeBottomLeft.Checked = True
-            Case My.App.LocationMode.LeftCenterBottom : Me.radbtnPicLocationModeLeftCenterBottom.Checked = True
-            Case My.App.LocationMode.LeftCenter : Me.radbtnPicLocationModeLeftCenter.Checked = True
-            Case My.App.LocationMode.LeftCenterTop : Me.radbtnPicLocationModeLeftCenterTop.Checked = True
-            Case My.App.LocationMode.TopLeftInside : Me.radbtnPicLocationModeTopLeftInside.Checked = True
-            Case My.App.LocationMode.TopCenterLeftInside : Me.radbtnPicLocationModeTopCenterLeftInside.Checked = True
-            Case My.App.LocationMode.TopCenterInside : Me.radbtnPicLocationModeTopCenterInside.Checked = True
-            Case My.App.LocationMode.TopCenterRightInside : Me.radbtnPicLocationModeTopCenterRightInside.Checked = True
-            Case My.App.LocationMode.TopRightInside : Me.radbtnPicLocationModeTopRightInside.Checked = True
-            Case My.App.LocationMode.RightCenterTopInside : Me.radbtnPicLocationModeRightCenterTopInside.Checked = True
-            Case My.App.LocationMode.RightCenterInside : Me.radbtnPicLocationModeRightCenterInside.Checked = True
-            Case My.App.LocationMode.RightCenterBottomInside : Me.radbtnPicLocationModeRightCenterBottomInside.Checked = True
-            Case My.App.LocationMode.BottomRightInside : Me.radbtnPicLocationModeBottomRightInside.Checked = True
-            Case My.App.LocationMode.BottomCenterRightInside : Me.radbtnPicLocationModeBottomCenterRightInside.Checked = True
-            Case My.App.LocationMode.BottomCenterInside : Me.radbtnPicLocationModeBottomCenterInside.Checked = True
-            Case My.App.LocationMode.BottomCenterLeftInside : Me.radbtnPicLocationModeBottomCenterLeftInside.Checked = True
-            Case My.App.LocationMode.BottomLeftInside : Me.radbtnPicLocationModeBottomLeftInside.Checked = True
-            Case My.App.LocationMode.LeftCenterBottomInside : Me.radbtnPicLocationModeLeftCenterBottomInside.Checked = True
-            Case My.App.LocationMode.LeftCenterInside : Me.radbtnPicLocationModeLeftCenterInside.Checked = True
-            Case My.App.LocationMode.LeftCenterTopInside : Me.radbtnPicLocationModeLeftCenterTopInside.Checked = True
+        Select Case App.PicLocationMode
+            Case App.LocationMode.Manual : radbtnPicLocationModeManual.Checked = True
+            Case App.LocationMode.TopLeft : radbtnPicLocationModeTopLeft.Checked = True
+            Case App.LocationMode.TopCenterLeft : radbtnPicLocationModeTopCenterLeft.Checked = True
+            Case App.LocationMode.TopCenter : radbtnPicLocationModeTopCenter.Checked = True
+            Case App.LocationMode.TopCenterRight : radbtnPicLocationModeTopCenterRight.Checked = True
+            Case App.LocationMode.TopRight : radbtnPicLocationModeTopRight.Checked = True
+            Case App.LocationMode.RightCenterTop : radbtnPicLocationModeRightCenterTop.Checked = True
+            Case App.LocationMode.RightCenter : radbtnPicLocationModeRightCenter.Checked = True
+            Case App.LocationMode.RightCenterBottom : radbtnPicLocationModeRightCenterBottom.Checked = True
+            Case App.LocationMode.BottomRight : radbtnPicLocationModeBottomRight.Checked = True
+            Case App.LocationMode.BottomCenterRight : radbtnPicLocationModeBottomCenterRight.Checked = True
+            Case App.LocationMode.BottomCenter : radbtnPicLocationModeBottomCenter.Checked = True
+            Case App.LocationMode.BottomCenterLeft : radbtnPicLocationModeBottomCenterLeft.Checked = True
+            Case App.LocationMode.BottomLeft : radbtnPicLocationModeBottomLeft.Checked = True
+            Case App.LocationMode.LeftCenterBottom : radbtnPicLocationModeLeftCenterBottom.Checked = True
+            Case App.LocationMode.LeftCenter : radbtnPicLocationModeLeftCenter.Checked = True
+            Case App.LocationMode.LeftCenterTop : radbtnPicLocationModeLeftCenterTop.Checked = True
+            Case App.LocationMode.TopLeftInside : radbtnPicLocationModeTopLeftInside.Checked = True
+            Case App.LocationMode.TopCenterLeftInside : radbtnPicLocationModeTopCenterLeftInside.Checked = True
+            Case App.LocationMode.TopCenterInside : radbtnPicLocationModeTopCenterInside.Checked = True
+            Case App.LocationMode.TopCenterRightInside : radbtnPicLocationModeTopCenterRightInside.Checked = True
+            Case App.LocationMode.TopRightInside : radbtnPicLocationModeTopRightInside.Checked = True
+            Case App.LocationMode.RightCenterTopInside : radbtnPicLocationModeRightCenterTopInside.Checked = True
+            Case App.LocationMode.RightCenterInside : radbtnPicLocationModeRightCenterInside.Checked = True
+            Case App.LocationMode.RightCenterBottomInside : radbtnPicLocationModeRightCenterBottomInside.Checked = True
+            Case App.LocationMode.BottomRightInside : radbtnPicLocationModeBottomRightInside.Checked = True
+            Case App.LocationMode.BottomCenterRightInside : radbtnPicLocationModeBottomCenterRightInside.Checked = True
+            Case App.LocationMode.BottomCenterInside : radbtnPicLocationModeBottomCenterInside.Checked = True
+            Case App.LocationMode.BottomCenterLeftInside : radbtnPicLocationModeBottomCenterLeftInside.Checked = True
+            Case App.LocationMode.BottomLeftInside : radbtnPicLocationModeBottomLeftInside.Checked = True
+            Case App.LocationMode.LeftCenterBottomInside : radbtnPicLocationModeLeftCenterBottomInside.Checked = True
+            Case App.LocationMode.LeftCenterInside : radbtnPicLocationModeLeftCenterInside.Checked = True
+            Case App.LocationMode.LeftCenterTopInside : radbtnPicLocationModeLeftCenterTopInside.Checked = True
         End Select
         If My.App.PicTimerEnabled Then
             Me.btnPicTimerEnabled.FlatAppearance.BorderColor = Color.Teal
@@ -1045,7 +1045,7 @@ Partial Friend Class MainForm
             s += Chr(13) + My.App.VideoFilesCount(My.App.VideoFilesCountMode.Viewed).ToString + " " + My.App.VideoFilesCountMode.Viewed.ToString
             s += ", " + My.App.VideoFilesCount(My.App.VideoFilesCountMode.Disabled).ToString + " " + My.App.VideoFilesCountMode.Disabled.ToString
             s += ", " + My.App.VideoFilesCount(My.App.VideoFilesCountMode.InValid).ToString + " " + My.App.VideoFilesCountMode.InValid.ToString
-            Me.tipInfo.SetToolTip(Me.lblVidFileCount, s)
+            Me.TipInfoEX.SetText(Me.lblVidFileCount, s)
             If My.App.VideoFilesCount = 0 Then
                 Me.cmiPlayVids.Enabled = False
             Else
@@ -1318,7 +1318,7 @@ Partial Friend Class MainForm
             Me.btnRestoreSettings.Enabled = False
             Me.lblPicFileCount.Text = My.App.GeneratingFileListAlertText
             Me.lblVidFileCount.Text = My.App.GeneratingFileListAlertText
-            Me.tipInfo.SetToolTip(Me.lblVidFileCount, My.App.GeneratingFileListAlertText)
+            Me.TipInfoEX.SetText(Me.lblVidFileCount, My.App.GeneratingFileListAlertText)
             If My.App.FrmVidsVisible Then My.App.FrmVids.Close()
             If (mode = My.App.GetFilesType.Pics Or mode = My.App.GetFilesType.All) And My.App.FrmPicsVisible Then My.App.frmPics.Close()
 
@@ -1445,8 +1445,8 @@ Partial Friend Class MainForm
         End If
     End Sub
     Private Sub ToggleFolderList(mode As My.App.GetFilesType, Optional reset As Boolean = False)
+        Me.TipInfoEX.HideTooltip()
         If mode = My.App.GetFilesType.Pics Or mode = My.App.GetFilesType.All Then
-            Me.tipInfo.Hide(Me.btnlvPicFolders)
             If Me.lvPicFolders.Columns(1).Width = 0 And Not reset Then
                 If Me.lvPicFolders.Items.Count < 5 Then : Me.lvPicFolders.Columns(1).Width = Me.lvPicFolders.Width
                 Else : Me.lvPicFolders.Columns(1).Width = Me.lvPicFolders.Width - 18
@@ -1462,7 +1462,6 @@ Partial Friend Class MainForm
             End If
         End If
         If mode = My.App.GetFilesType.Vids Or mode = My.App.GetFilesType.All Then
-            Me.tipInfo.Hide(Me.btnlvVidFolders)
             If Me.lvVidFolders.Columns(1).Width = 0 And Not reset Then
                 If Me.lvVidFolders.Items.Count < 5 Then : Me.lvVidFolders.Columns(1).Width = Me.lvVidFolders.Width
                 Else : Me.lvVidFolders.Columns(1).Width = Me.lvVidFolders.Width - 18

@@ -146,7 +146,6 @@ Inherits System.Windows.Forms.Form
         radioButton31 = New RadioButton()
         radioButton32 = New RadioButton()
         btnErrorTest = New Button()
-        tipInfo = New ToolTip(components)
         btnInfo = New Button()
         btnlvPicFolders = New Button()
         btnRefreshPicList = New Button()
@@ -271,7 +270,6 @@ Inherits System.Windows.Forms.Form
         btnClose.TabIndex = 0
         TipInfoEX.SetText(btnClose, "Close Window")
         btnClose.TextAlign = ContentAlignment.MiddleRight
-        tipInfo.SetToolTip(btnClose, "Close Window")
         btnClose.UseVisualStyleBackColor = True
         ' 
         ' notifyiconSkyeShow
@@ -1368,7 +1366,6 @@ Inherits System.Windows.Forms.Form
         radbtnVidPlayModeLinearWithRandomStart.TabIndex = 2
         TipInfoEX.SetText(radbtnVidPlayModeLinearWithRandomStart, "Linear With Random Start")
         radbtnVidPlayModeLinearWithRandomStart.Text = "Linear +"
-        tipInfo.SetToolTip(radbtnVidPlayModeLinearWithRandomStart, "Linear With Random Start")
         radbtnVidPlayModeLinearWithRandomStart.UseVisualStyleBackColor = True
         ' 
         ' radbtnVidPlayModeRandom
@@ -1413,7 +1410,7 @@ Inherits System.Windows.Forms.Form
         lblVidFileCount.Name = "lblVidFileCount"
         lblVidFileCount.Size = New Size(254, 22)
         lblVidFileCount.TabIndex = 0
-        TipInfoEX.SetText(lblVidFileCount, Nothing)
+        TipInfoEX.SetText(lblVidFileCount, "Vid File Info")
         ' 
         ' btnlvVidFolders
         ' 
@@ -1429,7 +1426,6 @@ Inherits System.Windows.Forms.Form
         btnlvVidFolders.TabStop = False
         TipInfoEX.SetText(btnlvVidFolders, "Folder List View Mode")
         btnlvVidFolders.TextAlign = ContentAlignment.MiddleRight
-        tipInfo.SetToolTip(btnlvVidFolders, "Folder List View Mode")
         btnlvVidFolders.UseMnemonic = False
         btnlvVidFolders.UseVisualStyleBackColor = False
         ' 
@@ -1449,7 +1445,6 @@ Inherits System.Windows.Forms.Form
         TipInfoEX.SetText(btnRefreshVidList, "LeftClick = Refresh Video List (Ctrl = Reset)" & vbCrLf & "RightClick = Refresh All File Lists (Ctrl = Reset)")
         btnRefreshVidList.Text = "Refresh"
         btnRefreshVidList.TextAlign = ContentAlignment.MiddleRight
-        tipInfo.SetToolTip(btnRefreshVidList, "LeftClick = Refresh Video List (Ctrl = Reset)" & vbCrLf & "RightClick = Refresh All File Lists (Ctrl = Reset)")
         btnRefreshVidList.UseVisualStyleBackColor = False
         ' 
         ' grbxVidTimeLocationMode
@@ -1683,7 +1678,6 @@ Inherits System.Windows.Forms.Form
         btnSaveSettings.TabIndex = 100
         TipInfoEX.SetText(btnSaveSettings, "Save All Settings")
         btnSaveSettings.TextAlign = ContentAlignment.BottomRight
-        tipInfo.SetToolTip(btnSaveSettings, "Save All Settings")
         btnSaveSettings.UseVisualStyleBackColor = True
         ' 
         ' btnRestoreSettings
@@ -1697,7 +1691,6 @@ Inherits System.Windows.Forms.Form
         btnRestoreSettings.TabIndex = 101
         TipInfoEX.SetText(btnRestoreSettings, "Restore All Settings")
         btnRestoreSettings.TextAlign = ContentAlignment.BottomRight
-        tipInfo.SetToolTip(btnRestoreSettings, "Restore All Settings")
         btnRestoreSettings.UseVisualStyleBackColor = True
         ' 
         ' radioButton16
@@ -1905,17 +1898,7 @@ Inherits System.Windows.Forms.Form
         btnErrorTest.TabIndex = 0
         btnErrorTest.TabStop = False
         TipInfoEX.SetText(btnErrorTest, "LeftClick = Test Error" & vbCrLf & "RightClick = Cause Exception")
-        tipInfo.SetToolTip(btnErrorTest, "LeftClick = Test Error" & vbCrLf & "RightClick = Cause Exception")
         btnErrorTest.Visible = False
-        ' 
-        ' tipInfo
-        ' 
-        tipInfo.AutomaticDelay = 250
-        tipInfo.AutoPopDelay = 10000
-        tipInfo.InitialDelay = 250
-        tipInfo.ReshowDelay = 50
-        tipInfo.UseAnimation = False
-        tipInfo.UseFading = False
         ' 
         ' btnInfo
         ' 
@@ -1928,7 +1911,6 @@ Inherits System.Windows.Forms.Form
         btnInfo.TabIndex = 105
         TipInfoEX.SetText(btnInfo, "Show Help & About")
         btnInfo.TextAlign = ContentAlignment.BottomRight
-        tipInfo.SetToolTip(btnInfo, "Help & About")
         btnInfo.UseVisualStyleBackColor = True
         ' 
         ' btnlvPicFolders
@@ -1945,7 +1927,6 @@ Inherits System.Windows.Forms.Form
         btnlvPicFolders.TabStop = False
         TipInfoEX.SetText(btnlvPicFolders, "Folder List View Mode")
         btnlvPicFolders.TextAlign = ContentAlignment.MiddleRight
-        tipInfo.SetToolTip(btnlvPicFolders, "Folder List View Mode")
         btnlvPicFolders.UseMnemonic = False
         btnlvPicFolders.UseVisualStyleBackColor = True
         ' 
@@ -1965,7 +1946,6 @@ Inherits System.Windows.Forms.Form
         TipInfoEX.SetText(btnRefreshPicList, "LeftClick = Refresh Picture List (Ctrl = Reset)" & vbCrLf & "RightClick = Refresh All File Lists (Ctrl = Reset)")
         btnRefreshPicList.Text = "Refresh"
         btnRefreshPicList.TextAlign = ContentAlignment.MiddleRight
-        tipInfo.SetToolTip(btnRefreshPicList, "LeftClick = Refresh Picture List (Ctrl = Reset)" & vbCrLf & "RightClick = Refresh All File Lists (Ctrl = Reset)")
         btnRefreshPicList.UseVisualStyleBackColor = True
         ' 
         ' radbtnPicPlayModeLinearWithRandomStart
@@ -1977,19 +1957,18 @@ Inherits System.Windows.Forms.Form
         radbtnPicPlayModeLinearWithRandomStart.TabIndex = 1
         TipInfoEX.SetText(radbtnPicPlayModeLinearWithRandomStart, "Linear With Random Start")
         radbtnPicPlayModeLinearWithRandomStart.Text = "Linear +"
-        tipInfo.SetToolTip(radbtnPicPlayModeLinearWithRandomStart, "Linear With Random Start")
         radbtnPicPlayModeLinearWithRandomStart.UseVisualStyleBackColor = True
         ' 
         ' btnLog
         ' 
         btnLog.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         btnLog.Image = My.Resources.Resources.ImageLog32
-        TipInfoEX.SetImage(btnLog, Nothing)
+        TipInfoEX.SetImage(btnLog, My.Resources.Resources.imageLog)
         btnLog.Location = New Point(857, 24)
         btnLog.Name = "btnLog"
         btnLog.Size = New Size(48, 48)
         btnLog.TabIndex = 106
-        TipInfoEX.SetText(btnLog, Nothing)
+        TipInfoEX.SetText(btnLog, "Show Log")
         btnLog.TextAlign = ContentAlignment.BottomRight
         btnLog.UseVisualStyleBackColor = True
         ' 
@@ -2991,7 +2970,7 @@ Inherits System.Windows.Forms.Form
         lblPicFileCount.Name = "lblPicFileCount"
         lblPicFileCount.Size = New Size(254, 22)
         lblPicFileCount.TabIndex = 0
-        TipInfoEX.SetText(lblPicFileCount, Nothing)
+        TipInfoEX.SetText(lblPicFileCount, "Pic File Info")
         ' 
         ' btnPicTimerEnabled
         ' 
@@ -3148,7 +3127,9 @@ Inherits System.Windows.Forms.Form
         ' 
         ' TipInfoEX
         ' 
-        TipInfoEX.Font = New Font("Segoe UI", 10F)
+        TipInfoEX.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        TipInfoEX.ShadowAlpha = 0
+        TipInfoEX.ShadowThickness = 0
         ' 
         ' MainForm
         ' 
@@ -3156,8 +3137,8 @@ Inherits System.Windows.Forms.Form
         AutoSizeMode = AutoSizeMode.GrowAndShrink
         AutoValidate = AutoValidate.EnableAllowFocusChange
         ClientSize = New Size(917, 630)
-        Controls.Add(PanelVids)
         Controls.Add(PanelPics)
+        Controls.Add(PanelVids)
         Controls.Add(PanelApp)
         Controls.Add(PanelPageSelector)
         Controls.Add(PanelActions)
@@ -3298,7 +3279,6 @@ Inherits System.Windows.Forms.Form
     Private WithEvents cmiHelp As System.Windows.Forms.ToolStripMenuItem
     Private WithEvents btnLog As System.Windows.Forms.Button
     Private WithEvents btnInfo As System.Windows.Forms.Button
-    Private tipInfo As System.Windows.Forms.ToolTip
     Private WithEvents btnErrorTest As System.Windows.Forms.Button
     Private WithEvents radbtnVideoScale33 As System.Windows.Forms.RadioButton
     Private WithEvents radbtnVideoScale66 As System.Windows.Forms.RadioButton

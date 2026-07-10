@@ -46,31 +46,31 @@ Inherits System.Windows.Forms.Form
         ' 
         ' cmPics
         ' 
-        cmPics.Font = New Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        cmPics.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         cmPics.Items.AddRange(New ToolStripItem() {cmiFullScreen, cmiSeparator1, cmiQuickHide, cmiQuickShift, cmiQuickRestore, cmiSeparator2, cmiTimer, cmiAdvance, cmiShowFileInfo, cmiViewImage, cmiSeparator3, cmiDeleteImage, cmiSeparator4, cmiClose})
         cmPics.Name = "contextmenuImageForm"
         cmPics.RenderMode = ToolStripRenderMode.Professional
-        cmPics.Size = New Size(204, 270)
+        cmPics.Size = New Size(233, 310)
         ' 
         ' cmiFullScreen
         ' 
-        cmiFullScreen.Image = My.Resources.Resources.imageFullScreen
+        cmiFullScreen.Image = My.Resources.Resources.ImageFullscreen
         cmiFullScreen.Name = "cmiFullScreen"
         cmiFullScreen.ShortcutKeyDisplayString = "ESC"
-        cmiFullScreen.Size = New Size(203, 22)
+        cmiFullScreen.Size = New Size(232, 26)
         cmiFullScreen.Text = "Full Screen"
         ' 
         ' cmiSeparator1
         ' 
         cmiSeparator1.Name = "cmiSeparator1"
-        cmiSeparator1.Size = New Size(200, 6)
+        cmiSeparator1.Size = New Size(229, 6)
         ' 
         ' cmiQuickHide
         ' 
         cmiQuickHide.Image = My.Resources.Resources.imageHide
         cmiQuickHide.Name = "cmiQuickHide"
         cmiQuickHide.ShortcutKeyDisplayString = "DELETE"
-        cmiQuickHide.Size = New Size(203, 22)
+        cmiQuickHide.Size = New Size(232, 26)
         cmiQuickHide.Text = "Quick Hide"
         cmiQuickHide.ToolTipText = "RightClick = Perma Hide (Shift+Delete)"
         ' 
@@ -79,7 +79,7 @@ Inherits System.Windows.Forms.Form
         cmiQuickShift.Image = My.Resources.Resources.imageQuickShift
         cmiQuickShift.Name = "cmiQuickShift"
         cmiQuickShift.ShortcutKeyDisplayString = "INSERT"
-        cmiQuickShift.Size = New Size(203, 22)
+        cmiQuickShift.Size = New Size(232, 26)
         cmiQuickShift.Text = "Quick Shift"
         ' 
         ' cmiQuickRestore
@@ -87,28 +87,28 @@ Inherits System.Windows.Forms.Form
         cmiQuickRestore.Image = My.Resources.Resources.imageRestore
         cmiQuickRestore.Name = "cmiQuickRestore"
         cmiQuickRestore.ShortcutKeyDisplayString = "HOME"
-        cmiQuickRestore.Size = New Size(203, 22)
+        cmiQuickRestore.Size = New Size(232, 26)
         cmiQuickRestore.Text = "Quick Restore"
         ' 
         ' cmiSeparator2
         ' 
         cmiSeparator2.Name = "cmiSeparator2"
-        cmiSeparator2.Size = New Size(200, 6)
+        cmiSeparator2.Size = New Size(229, 6)
         ' 
         ' cmiTimer
         ' 
-        cmiTimer.Image = My.Resources.Resources.imageTimer
+        cmiTimer.Image = My.Resources.Resources.ImageTimer
         cmiTimer.Name = "cmiTimer"
         cmiTimer.ShortcutKeyDisplayString = "UPARROW"
-        cmiTimer.Size = New Size(203, 22)
+        cmiTimer.Size = New Size(232, 26)
         cmiTimer.Text = "Timer"
         ' 
         ' cmiAdvance
         ' 
-        cmiAdvance.Image = My.Resources.Resources.imageAdvance
+        cmiAdvance.Image = My.Resources.Resources.ImageAdvance
         cmiAdvance.Name = "cmiAdvance"
         cmiAdvance.ShortcutKeyDisplayString = "-->, -V-, <--"
-        cmiAdvance.Size = New Size(203, 22)
+        cmiAdvance.Size = New Size(232, 26)
         cmiAdvance.Text = "Advance"
         cmiAdvance.ToolTipText = "LeftClick |RightArrow| = Forward" & vbCrLf & "CtrlLeftClick |DownArrow| = Random" & vbCrLf & "RightClick |LeftArrow| = Backward" & vbCrLf & "CtrlRightClick = Previous Image"
         ' 
@@ -117,39 +117,39 @@ Inherits System.Windows.Forms.Form
         cmiShowFileInfo.Image = My.Resources.Resources.ImageImage
         cmiShowFileInfo.Name = "cmiShowFileInfo"
         cmiShowFileInfo.ShortcutKeyDisplayString = "?"
-        cmiShowFileInfo.Size = New Size(203, 22)
+        cmiShowFileInfo.Size = New Size(232, 26)
         cmiShowFileInfo.Text = "Show Image Info"
         ' 
         ' cmiViewImage
         ' 
         cmiViewImage.Image = My.Resources.Resources.imageGo
         cmiViewImage.Name = "cmiViewImage"
-        cmiViewImage.Size = New Size(203, 22)
+        cmiViewImage.Size = New Size(232, 26)
         cmiViewImage.Text = "View Image"
         cmiViewImage.ToolTipText = "RightClick = Open File Location"
         ' 
         ' cmiSeparator3
         ' 
         cmiSeparator3.Name = "cmiSeparator3"
-        cmiSeparator3.Size = New Size(200, 6)
+        cmiSeparator3.Size = New Size(229, 6)
         ' 
         ' cmiDeleteImage
         ' 
         cmiDeleteImage.Image = My.Resources.Resources.imageRemove
         cmiDeleteImage.Name = "cmiDeleteImage"
-        cmiDeleteImage.Size = New Size(203, 22)
+        cmiDeleteImage.Size = New Size(232, 26)
         ' 
         ' cmiSeparator4
         ' 
         cmiSeparator4.Name = "cmiSeparator4"
-        cmiSeparator4.Size = New Size(200, 6)
+        cmiSeparator4.Size = New Size(229, 6)
         ' 
         ' cmiClose
         ' 
         cmiClose.Image = My.Resources.Resources.imageClose
         cmiClose.Name = "cmiClose"
         cmiClose.ShortcutKeyDisplayString = "END"
-        cmiClose.Size = New Size(203, 22)
+        cmiClose.Size = New Size(232, 26)
         cmiClose.Text = "Close"
         ' 
         ' lblCountdown

@@ -35,31 +35,31 @@ Inherits System.Windows.Forms.Form
         ' 
         ' cmVids
         ' 
-        cmVids.Font = New Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        cmVids.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         cmVids.Items.AddRange(New ToolStripItem() {cmiFullScreen, cmiSeparator1, cmiQuickHide, cmiQuickShift, cmiQuickRestore, cmiSeparator2, cmiPlay, cmiAdvance, cmiShowFileInfo, cmiViewVideo, cmiMuteVideo, cmiSeparator3, cmiDeleteVideo, cmiSeparator4, cmiClose})
         cmVids.Name = "contextmenuVideo"
         cmVids.RenderMode = ToolStripRenderMode.Professional
-        cmVids.Size = New Size(204, 292)
+        cmVids.Size = New Size(233, 336)
         ' 
         ' cmiFullScreen
         ' 
         cmiFullScreen.Image = My.Resources.Resources.ImageFullscreen
         cmiFullScreen.Name = "cmiFullScreen"
         cmiFullScreen.ShortcutKeyDisplayString = "ESC"
-        cmiFullScreen.Size = New Size(203, 22)
+        cmiFullScreen.Size = New Size(232, 26)
         cmiFullScreen.Text = "Fullscreen"
         ' 
         ' cmiSeparator1
         ' 
         cmiSeparator1.Name = "cmiSeparator1"
-        cmiSeparator1.Size = New Size(200, 6)
+        cmiSeparator1.Size = New Size(229, 6)
         ' 
         ' cmiQuickHide
         ' 
         cmiQuickHide.Image = My.Resources.Resources.imageHide
         cmiQuickHide.Name = "cmiQuickHide"
         cmiQuickHide.ShortcutKeyDisplayString = "DELETE"
-        cmiQuickHide.Size = New Size(203, 22)
+        cmiQuickHide.Size = New Size(232, 26)
         cmiQuickHide.Text = "Quick Hide"
         cmiQuickHide.ToolTipText = "RightClick = Perma Hide (Shift+Delete)"
         ' 
@@ -68,7 +68,7 @@ Inherits System.Windows.Forms.Form
         cmiQuickShift.Image = My.Resources.Resources.imageQuickShift
         cmiQuickShift.Name = "cmiQuickShift"
         cmiQuickShift.ShortcutKeyDisplayString = "INSERT"
-        cmiQuickShift.Size = New Size(203, 22)
+        cmiQuickShift.Size = New Size(232, 26)
         cmiQuickShift.Text = "Quick Shift"
         ' 
         ' cmiQuickRestore
@@ -76,27 +76,27 @@ Inherits System.Windows.Forms.Form
         cmiQuickRestore.Image = My.Resources.Resources.imageRestore
         cmiQuickRestore.Name = "cmiQuickRestore"
         cmiQuickRestore.ShortcutKeyDisplayString = "HOME"
-        cmiQuickRestore.Size = New Size(203, 22)
+        cmiQuickRestore.Size = New Size(232, 26)
         cmiQuickRestore.Text = "Quick Restore"
         ' 
         ' cmiSeparator2
         ' 
         cmiSeparator2.Name = "cmiSeparator2"
-        cmiSeparator2.Size = New Size(200, 6)
+        cmiSeparator2.Size = New Size(229, 6)
         ' 
         ' cmiPlay
         ' 
         cmiPlay.Name = "cmiPlay"
         cmiPlay.ShortcutKeyDisplayString = "UPARROW"
-        cmiPlay.Size = New Size(203, 22)
+        cmiPlay.Size = New Size(232, 26)
         cmiPlay.Text = "Play"
         ' 
         ' cmiAdvance
         ' 
-        cmiAdvance.Image = My.Resources.Resources.imageAdvance
+        cmiAdvance.Image = My.Resources.Resources.ImageAdvance
         cmiAdvance.Name = "cmiAdvance"
         cmiAdvance.ShortcutKeyDisplayString = "-->, -V-, <--"
-        cmiAdvance.Size = New Size(203, 22)
+        cmiAdvance.Size = New Size(232, 26)
         cmiAdvance.Text = "Advance"
         cmiAdvance.ToolTipText = "LeftClick |CtrlRightArrow| = Forward" & vbCrLf & "CtrlLeftClick |CtrlDownArrow| = Random" & vbCrLf & "RightClick |CtrlLeftArrow| = Backward" & vbCrLf & "CtrlRightClick = Previous Video"
         ' 
@@ -105,14 +105,14 @@ Inherits System.Windows.Forms.Form
         cmiShowFileInfo.Image = My.Resources.Resources.ImageVideo
         cmiShowFileInfo.Name = "cmiShowFileInfo"
         cmiShowFileInfo.ShortcutKeyDisplayString = "?"
-        cmiShowFileInfo.Size = New Size(203, 22)
+        cmiShowFileInfo.Size = New Size(232, 26)
         cmiShowFileInfo.Text = "Show Video Info"
         ' 
         ' cmiViewVideo
         ' 
         cmiViewVideo.Image = My.Resources.Resources.imageGo
         cmiViewVideo.Name = "cmiViewVideo"
-        cmiViewVideo.Size = New Size(203, 22)
+        cmiViewVideo.Size = New Size(232, 26)
         cmiViewVideo.Text = "View Video"
         cmiViewVideo.ToolTipText = "RightClick = Open File Location"
         ' 
@@ -120,31 +120,31 @@ Inherits System.Windows.Forms.Form
         ' 
         cmiMuteVideo.Image = My.Resources.Resources.imageSoundMute
         cmiMuteVideo.Name = "cmiMuteVideo"
-        cmiMuteVideo.Size = New Size(203, 22)
+        cmiMuteVideo.Size = New Size(232, 26)
         cmiMuteVideo.Text = "Mute Audio"
         ' 
         ' cmiSeparator3
         ' 
         cmiSeparator3.Name = "cmiSeparator3"
-        cmiSeparator3.Size = New Size(200, 6)
+        cmiSeparator3.Size = New Size(229, 6)
         ' 
         ' cmiDeleteVideo
         ' 
         cmiDeleteVideo.Image = My.Resources.Resources.imageRemove
         cmiDeleteVideo.Name = "cmiDeleteVideo"
-        cmiDeleteVideo.Size = New Size(203, 22)
+        cmiDeleteVideo.Size = New Size(232, 26)
         ' 
         ' cmiSeparator4
         ' 
         cmiSeparator4.Name = "cmiSeparator4"
-        cmiSeparator4.Size = New Size(200, 6)
+        cmiSeparator4.Size = New Size(229, 6)
         ' 
         ' cmiClose
         ' 
         cmiClose.Image = My.Resources.Resources.imageClose
         cmiClose.Name = "cmiClose"
         cmiClose.ShortcutKeyDisplayString = "END"
-        cmiClose.Size = New Size(203, 22)
+        cmiClose.Size = New Size(232, 26)
         cmiClose.Text = "Close"
         ' 
         ' lblTime

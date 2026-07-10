@@ -2056,13 +2056,13 @@ Inherits System.Windows.Forms.Form
         ' 
         btnHotKeyPicToggleDisable.FlatAppearance.BorderSize = 0
         btnHotKeyPicToggleDisable.Image = My.Resources.Resources.imageRemove
-        TipInfoEX.SetImage(btnHotKeyPicToggleDisable, Nothing)
+        TipInfoEX.SetImage(btnHotKeyPicToggleDisable, My.Resources.Resources.imageRemove)
         btnHotKeyPicToggleDisable.Location = New Point(211, 40)
         btnHotKeyPicToggleDisable.Name = "btnHotKeyPicToggleDisable"
         btnHotKeyPicToggleDisable.Size = New Size(31, 31)
         btnHotKeyPicToggleDisable.TabIndex = 46
         btnHotKeyPicToggleDisable.TabStop = False
-        TipInfoEX.SetText(btnHotKeyPicToggleDisable, Nothing)
+        TipInfoEX.SetText(btnHotKeyPicToggleDisable, "Disable This HotKey")
         btnHotKeyPicToggleDisable.UseVisualStyleBackColor = True
         ' 
         ' txbxHotKeyPicToggleFullScreen
@@ -2082,13 +2082,13 @@ Inherits System.Windows.Forms.Form
         ' 
         btnHotKeyPicToggleFullScreenDisable.FlatAppearance.BorderSize = 0
         btnHotKeyPicToggleFullScreenDisable.Image = My.Resources.Resources.imageRemove
-        TipInfoEX.SetImage(btnHotKeyPicToggleFullScreenDisable, Nothing)
+        TipInfoEX.SetImage(btnHotKeyPicToggleFullScreenDisable, My.Resources.Resources.imageRemove)
         btnHotKeyPicToggleFullScreenDisable.Location = New Point(211, 91)
         btnHotKeyPicToggleFullScreenDisable.Name = "btnHotKeyPicToggleFullScreenDisable"
         btnHotKeyPicToggleFullScreenDisable.Size = New Size(31, 31)
         btnHotKeyPicToggleFullScreenDisable.TabIndex = 43
         btnHotKeyPicToggleFullScreenDisable.TabStop = False
-        TipInfoEX.SetText(btnHotKeyPicToggleFullScreenDisable, Nothing)
+        TipInfoEX.SetText(btnHotKeyPicToggleFullScreenDisable, "Disable This HotKey")
         btnHotKeyPicToggleFullScreenDisable.UseVisualStyleBackColor = True
         ' 
         ' btnHotKeysPicsUndo
@@ -2111,7 +2111,7 @@ Inherits System.Windows.Forms.Form
         btnHotKeysPicsSet.Image = My.Resources.Resources.imageGo
         TipInfoEX.SetImage(btnHotKeysPicsSet, Nothing)
         btnHotKeysPicsSet.ImageAlign = ContentAlignment.MiddleLeft
-        btnHotKeysPicsSet.Location = New Point(137, 175)
+        btnHotKeysPicsSet.Location = New Point(115, 175)
         btnHotKeysPicsSet.Name = "btnHotKeysPicsSet"
         btnHotKeysPicsSet.Size = New Size(96, 32)
         btnHotKeysPicsSet.TabIndex = 40
@@ -2138,13 +2138,13 @@ Inherits System.Windows.Forms.Form
         ' 
         btnHotKeyPicShowFileInfoDisable.FlatAppearance.BorderSize = 0
         btnHotKeyPicShowFileInfoDisable.Image = My.Resources.Resources.imageRemove
-        TipInfoEX.SetImage(btnHotKeyPicShowFileInfoDisable, Nothing)
+        TipInfoEX.SetImage(btnHotKeyPicShowFileInfoDisable, My.Resources.Resources.imageRemove)
         btnHotKeyPicShowFileInfoDisable.Location = New Point(211, 141)
         btnHotKeyPicShowFileInfoDisable.Name = "btnHotKeyPicShowFileInfoDisable"
         btnHotKeyPicShowFileInfoDisable.Size = New Size(31, 31)
         btnHotKeyPicShowFileInfoDisable.TabIndex = 20
         btnHotKeyPicShowFileInfoDisable.TabStop = False
-        TipInfoEX.SetText(btnHotKeyPicShowFileInfoDisable, Nothing)
+        TipInfoEX.SetText(btnHotKeyPicShowFileInfoDisable, "Disable This HotKey")
         btnHotKeyPicShowFileInfoDisable.UseVisualStyleBackColor = True
         ' 
         ' lblHotKeyPicToggle
@@ -2225,7 +2225,7 @@ Inherits System.Windows.Forms.Form
         gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeRightCenter)
         gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeTopLeft)
         TipInfoEX.SetImage(gpbxPicTimerCountdownLocationMode, Nothing)
-        gpbxPicTimerCountdownLocationMode.Location = New Point(293, 371)
+        gpbxPicTimerCountdownLocationMode.Location = New Point(285, 373)
         gpbxPicTimerCountdownLocationMode.Name = "gpbxPicTimerCountdownLocationMode"
         gpbxPicTimerCountdownLocationMode.Size = New Size(133, 150)
         gpbxPicTimerCountdownLocationMode.TabIndex = 80
@@ -2428,7 +2428,7 @@ Inherits System.Windows.Forms.Form
         ' chbxPicTimerCountdown
         ' 
         TipInfoEX.SetImage(chbxPicTimerCountdown, Nothing)
-        chbxPicTimerCountdown.Location = New Point(295, 341)
+        chbxPicTimerCountdown.Location = New Point(285, 345)
         chbxPicTimerCountdown.Name = "chbxPicTimerCountdown"
         chbxPicTimerCountdown.Size = New Size(204, 30)
         chbxPicTimerCountdown.TabIndex = 75
@@ -2439,7 +2439,7 @@ Inherits System.Windows.Forms.Form
         ' txbxPicTimerInterval
         ' 
         TipInfoEX.SetImage(txbxPicTimerInterval, Nothing)
-        txbxPicTimerInterval.Location = New Point(295, 314)
+        txbxPicTimerInterval.Location = New Point(285, 314)
         txbxPicTimerInterval.MaxLength = 5
         txbxPicTimerInterval.Name = "txbxPicTimerInterval"
         txbxPicTimerInterval.Size = New Size(80, 29)
@@ -2451,7 +2451,7 @@ Inherits System.Windows.Forms.Form
         ' 
         chbxPicAutoView.CheckAlign = ContentAlignment.MiddleRight
         TipInfoEX.SetImage(chbxPicAutoView, Nothing)
-        chbxPicAutoView.Location = New Point(666, 140)
+        chbxPicAutoView.Location = New Point(715, 179)
         chbxPicAutoView.Name = "chbxPicAutoView"
         chbxPicAutoView.Size = New Size(99, 37)
         chbxPicAutoView.TabIndex = 30
@@ -2465,7 +2465,7 @@ Inherits System.Windows.Forms.Form
         gpbxPicJustify.Controls.Add(radbtnPicJustifyLeft)
         gpbxPicJustify.Controls.Add(radbtnPicJustifyRight)
         TipInfoEX.SetImage(gpbxPicJustify, Nothing)
-        gpbxPicJustify.Location = New Point(285, 140)
+        gpbxPicJustify.Location = New Point(285, 158)
         gpbxPicJustify.Name = "gpbxPicJustify"
         gpbxPicJustify.Size = New Size(242, 65)
         gpbxPicJustify.TabIndex = 20
@@ -2514,9 +2514,10 @@ Inherits System.Windows.Forms.Form
         ' 
         chbxPicLockFullScreen.CheckAlign = ContentAlignment.MiddleRight
         TipInfoEX.SetImage(chbxPicLockFullScreen, Nothing)
-        chbxPicLockFullScreen.Location = New Point(327, 205)
+        chbxPicLockFullScreen.Location = New Point(532, 184)
         chbxPicLockFullScreen.Name = "chbxPicLockFullScreen"
-        chbxPicLockFullScreen.Size = New Size(145, 26)
+        chbxPicLockFullScreen.RightToLeft = RightToLeft.Yes
+        chbxPicLockFullScreen.Size = New Size(135, 26)
         chbxPicLockFullScreen.TabIndex = 25
         TipInfoEX.SetText(chbxPicLockFullScreen, Nothing)
         chbxPicLockFullScreen.Text = "Lock Fullscreen"
@@ -2976,7 +2977,7 @@ Inherits System.Windows.Forms.Form
         ' 
         btnPicTimerEnabled.FlatStyle = FlatStyle.Flat
         TipInfoEX.SetImage(btnPicTimerEnabled, Nothing)
-        btnPicTimerEnabled.Location = New Point(295, 263)
+        btnPicTimerEnabled.Location = New Point(285, 263)
         btnPicTimerEnabled.Margin = New Padding(3, 4, 3, 4)
         btnPicTimerEnabled.Name = "btnPicTimerEnabled"
         btnPicTimerEnabled.Size = New Size(80, 31)
@@ -2991,8 +2992,9 @@ Inherits System.Windows.Forms.Form
         gpbxPicPlayMode.Controls.Add(radbtnPicPlayModeLinearWithRandomStart)
         gpbxPicPlayMode.Controls.Add(radbtnPicPlayModeLinear)
         gpbxPicPlayMode.Controls.Add(radbtnPicPlayModeRandom)
+        gpbxPicPlayMode.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         TipInfoEX.SetImage(gpbxPicPlayMode, Nothing)
-        gpbxPicPlayMode.Location = New Point(7, 140)
+        gpbxPicPlayMode.Location = New Point(7, 158)
         gpbxPicPlayMode.Name = "gpbxPicPlayMode"
         gpbxPicPlayMode.Size = New Size(275, 65)
         gpbxPicPlayMode.TabIndex = 10
@@ -3025,7 +3027,7 @@ Inherits System.Windows.Forms.Form
         ' label4
         ' 
         TipInfoEX.SetImage(label4, Nothing)
-        label4.Location = New Point(296, 295)
+        label4.Location = New Point(285, 295)
         label4.Name = "label4"
         label4.Size = New Size(80, 22)
         label4.TabIndex = 21
@@ -3036,10 +3038,10 @@ Inherits System.Windows.Forms.Form
         ' chbxPicTimerAutoStart
         ' 
         TipInfoEX.SetImage(chbxPicTimerAutoStart, Nothing)
-        chbxPicTimerAutoStart.Location = New Point(382, 260)
+        chbxPicTimerAutoStart.Location = New Point(370, 260)
         chbxPicTimerAutoStart.Margin = New Padding(3, 4, 3, 4)
         chbxPicTimerAutoStart.Name = "chbxPicTimerAutoStart"
-        chbxPicTimerAutoStart.Size = New Size(140, 38)
+        chbxPicTimerAutoStart.Size = New Size(141, 38)
         chbxPicTimerAutoStart.TabIndex = 65
         TipInfoEX.SetText(chbxPicTimerAutoStart, Nothing)
         chbxPicTimerAutoStart.Text = "AutoStart Timer"

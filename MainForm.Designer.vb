@@ -351,10 +351,10 @@ Inherits System.Windows.Forms.Form
         lvVidFolders.FullRowSelect = True
         lvVidFolders.HeaderStyle = ColumnHeaderStyle.None
         TipInfoEX.SetImage(lvVidFolders, Nothing)
-        lvVidFolders.Location = New Point(7, 11)
+        lvVidFolders.Location = New Point(12, 12)
         lvVidFolders.MultiSelect = False
         lvVidFolders.Name = "lvVidFolders"
-        lvVidFolders.Size = New Size(742, 86)
+        lvVidFolders.Size = New Size(802, 86)
         lvVidFolders.TabIndex = 10
         lvVidFolders.TabStop = False
         TipInfoEX.SetText(lvVidFolders, Nothing)
@@ -540,14 +540,15 @@ Inherits System.Windows.Forms.Form
         ' 
         ' chbkVidMute
         ' 
+        chbkVidMute.Appearance = Appearance.Button
         chbkVidMute.BackColor = Color.Transparent
         chbkVidMute.Image = CType(resources.GetObject("chbkVidMute.Image"), Image)
         TipInfoEX.SetImage(chbkVidMute, Nothing)
-        chbkVidMute.ImageAlign = ContentAlignment.MiddleLeft
-        chbkVidMute.Location = New Point(261, 208)
+        chbkVidMute.ImageAlign = ContentAlignment.BottomLeft
+        chbkVidMute.Location = New Point(302, 262)
         chbkVidMute.Name = "chbkVidMute"
-        chbkVidMute.Size = New Size(129, 52)
-        chbkVidMute.TabIndex = 131
+        chbkVidMute.Size = New Size(144, 48)
+        chbkVidMute.TabIndex = 99
         TipInfoEX.SetText(chbkVidMute, Nothing)
         chbkVidMute.Text = "Mute Audio"
         chbkVidMute.TextAlign = ContentAlignment.MiddleRight
@@ -569,9 +570,9 @@ Inherits System.Windows.Forms.Form
         grbxHotKeysVids.Controls.Add(lblHotKeyVidShowFileInfo)
         grbxHotKeysVids.ForeColor = SystemColors.ControlText
         TipInfoEX.SetImage(grbxHotKeysVids, Nothing)
-        grbxHotKeysVids.Location = New Point(567, 253)
+        grbxHotKeysVids.Location = New Point(564, 309)
         grbxHotKeysVids.Name = "grbxHotKeysVids"
-        grbxHotKeysVids.Size = New Size(181, 196)
+        grbxHotKeysVids.Size = New Size(250, 215)
         grbxHotKeysVids.TabIndex = 130
         grbxHotKeysVids.TabStop = False
         grbxHotKeysVids.Text = "HotKeys"
@@ -581,10 +582,10 @@ Inherits System.Windows.Forms.Form
         ' 
         txbxHotKeyVidToggle.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         TipInfoEX.SetImage(txbxHotKeyVidToggle, Nothing)
-        txbxHotKeyVidToggle.Location = New Point(8, 39)
+        txbxHotKeyVidToggle.Location = New Point(8, 46)
         txbxHotKeyVidToggle.Name = "txbxHotKeyVidToggle"
         txbxHotKeyVidToggle.ShortcutsEnabled = False
-        txbxHotKeyVidToggle.Size = New Size(151, 29)
+        txbxHotKeyVidToggle.Size = New Size(203, 29)
         txbxHotKeyVidToggle.TabIndex = 45
         txbxHotKeyVidToggle.TabStop = False
         TipInfoEX.SetText(txbxHotKeyVidToggle, Nothing)
@@ -595,12 +596,11 @@ Inherits System.Windows.Forms.Form
         ' 
         btnHotKeyVidToggleDisable.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         btnHotKeyVidToggleDisable.FlatAppearance.BorderSize = 0
-        btnHotKeyVidToggleDisable.FlatStyle = FlatStyle.Flat
         btnHotKeyVidToggleDisable.Image = My.Resources.Resources.imageRemove
         TipInfoEX.SetImage(btnHotKeyVidToggleDisable, Nothing)
-        btnHotKeyVidToggleDisable.Location = New Point(156, 43)
+        btnHotKeyVidToggleDisable.Location = New Point(217, 52)
         btnHotKeyVidToggleDisable.Name = "btnHotKeyVidToggleDisable"
-        btnHotKeyVidToggleDisable.Size = New Size(20, 17)
+        btnHotKeyVidToggleDisable.Size = New Size(31, 31)
         btnHotKeyVidToggleDisable.TabIndex = 46
         btnHotKeyVidToggleDisable.TabStop = False
         TipInfoEX.SetText(btnHotKeyVidToggleDisable, Nothing)
@@ -610,10 +610,10 @@ Inherits System.Windows.Forms.Form
         ' 
         txbxHotKeyVidToggleFullScreen.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         TipInfoEX.SetImage(txbxHotKeyVidToggleFullScreen, Nothing)
-        txbxHotKeyVidToggleFullScreen.Location = New Point(8, 82)
+        txbxHotKeyVidToggleFullScreen.Location = New Point(8, 95)
         txbxHotKeyVidToggleFullScreen.Name = "txbxHotKeyVidToggleFullScreen"
         txbxHotKeyVidToggleFullScreen.ShortcutsEnabled = False
-        txbxHotKeyVidToggleFullScreen.Size = New Size(151, 29)
+        txbxHotKeyVidToggleFullScreen.Size = New Size(203, 29)
         txbxHotKeyVidToggleFullScreen.TabIndex = 42
         txbxHotKeyVidToggleFullScreen.TabStop = False
         TipInfoEX.SetText(txbxHotKeyVidToggleFullScreen, Nothing)
@@ -624,12 +624,11 @@ Inherits System.Windows.Forms.Form
         ' 
         btnHotKeyVidToggleFullScreenDisable.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         btnHotKeyVidToggleFullScreenDisable.FlatAppearance.BorderSize = 0
-        btnHotKeyVidToggleFullScreenDisable.FlatStyle = FlatStyle.Flat
         btnHotKeyVidToggleFullScreenDisable.Image = My.Resources.Resources.imageRemove
         TipInfoEX.SetImage(btnHotKeyVidToggleFullScreenDisable, Nothing)
-        btnHotKeyVidToggleFullScreenDisable.Location = New Point(156, 86)
+        btnHotKeyVidToggleFullScreenDisable.Location = New Point(217, 95)
         btnHotKeyVidToggleFullScreenDisable.Name = "btnHotKeyVidToggleFullScreenDisable"
-        btnHotKeyVidToggleFullScreenDisable.Size = New Size(20, 17)
+        btnHotKeyVidToggleFullScreenDisable.Size = New Size(31, 31)
         btnHotKeyVidToggleFullScreenDisable.TabIndex = 43
         btnHotKeyVidToggleFullScreenDisable.TabStop = False
         TipInfoEX.SetText(btnHotKeyVidToggleFullScreenDisable, Nothing)
@@ -638,11 +637,12 @@ Inherits System.Windows.Forms.Form
         ' btnHotKeysVidsUndo
         ' 
         btnHotKeysVidsUndo.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
+        btnHotKeysVidsUndo.Image = My.Resources.Resources.ImageUndo16
         TipInfoEX.SetImage(btnHotKeysVidsUndo, Nothing)
         btnHotKeysVidsUndo.ImageAlign = ContentAlignment.MiddleLeft
-        btnHotKeysVidsUndo.Location = New Point(7, 156)
+        btnHotKeysVidsUndo.Location = New Point(8, 177)
         btnHotKeysVidsUndo.Name = "btnHotKeysVidsUndo"
-        btnHotKeysVidsUndo.Size = New Size(83, 32)
+        btnHotKeysVidsUndo.Size = New Size(96, 32)
         btnHotKeysVidsUndo.TabIndex = 30
         btnHotKeysVidsUndo.TabStop = False
         TipInfoEX.SetText(btnHotKeysVidsUndo, Nothing)
@@ -656,9 +656,9 @@ Inherits System.Windows.Forms.Form
         btnHotKeysVidsSet.Image = My.Resources.Resources.imageGo
         TipInfoEX.SetImage(btnHotKeysVidsSet, Nothing)
         btnHotKeysVidsSet.ImageAlign = ContentAlignment.MiddleLeft
-        btnHotKeysVidsSet.Location = New Point(96, 156)
+        btnHotKeysVidsSet.Location = New Point(115, 177)
         btnHotKeysVidsSet.Name = "btnHotKeysVidsSet"
-        btnHotKeysVidsSet.Size = New Size(63, 32)
+        btnHotKeysVidsSet.Size = New Size(96, 32)
         btnHotKeysVidsSet.TabIndex = 40
         btnHotKeysVidsSet.TabStop = False
         TipInfoEX.SetText(btnHotKeysVidsSet, Nothing)
@@ -670,10 +670,10 @@ Inherits System.Windows.Forms.Form
         ' 
         txbxHotKeyVidShowFileInfo.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         TipInfoEX.SetImage(txbxHotKeyVidShowFileInfo, Nothing)
-        txbxHotKeyVidShowFileInfo.Location = New Point(8, 125)
+        txbxHotKeyVidShowFileInfo.Location = New Point(8, 144)
         txbxHotKeyVidShowFileInfo.Name = "txbxHotKeyVidShowFileInfo"
         txbxHotKeyVidShowFileInfo.ShortcutsEnabled = False
-        txbxHotKeyVidShowFileInfo.Size = New Size(151, 29)
+        txbxHotKeyVidShowFileInfo.Size = New Size(203, 29)
         txbxHotKeyVidShowFileInfo.TabIndex = 10
         txbxHotKeyVidShowFileInfo.TabStop = False
         TipInfoEX.SetText(txbxHotKeyVidShowFileInfo, Nothing)
@@ -684,12 +684,11 @@ Inherits System.Windows.Forms.Form
         ' 
         btnHotKeyVidShowFileInfoDisable.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         btnHotKeyVidShowFileInfoDisable.FlatAppearance.BorderSize = 0
-        btnHotKeyVidShowFileInfoDisable.FlatStyle = FlatStyle.Flat
         btnHotKeyVidShowFileInfoDisable.Image = My.Resources.Resources.imageRemove
         TipInfoEX.SetImage(btnHotKeyVidShowFileInfoDisable, Nothing)
-        btnHotKeyVidShowFileInfoDisable.Location = New Point(156, 129)
+        btnHotKeyVidShowFileInfoDisable.Location = New Point(217, 138)
         btnHotKeyVidShowFileInfoDisable.Name = "btnHotKeyVidShowFileInfoDisable"
-        btnHotKeyVidShowFileInfoDisable.Size = New Size(20, 17)
+        btnHotKeyVidShowFileInfoDisable.Size = New Size(31, 31)
         btnHotKeyVidShowFileInfoDisable.TabIndex = 20
         btnHotKeyVidShowFileInfoDisable.TabStop = False
         TipInfoEX.SetText(btnHotKeyVidShowFileInfoDisable, Nothing)
@@ -701,9 +700,9 @@ Inherits System.Windows.Forms.Form
         lblHotKeyVidToggle.BackColor = Color.Transparent
         lblHotKeyVidToggle.ForeColor = SystemColors.ControlText
         TipInfoEX.SetImage(lblHotKeyVidToggle, Nothing)
-        lblHotKeyVidToggle.Location = New Point(-21, 17)
+        lblHotKeyVidToggle.Location = New Point(8, 23)
         lblHotKeyVidToggle.Name = "lblHotKeyVidToggle"
-        lblHotKeyVidToggle.Size = New Size(211, 23)
+        lblHotKeyVidToggle.Size = New Size(203, 23)
         lblHotKeyVidToggle.TabIndex = 44
         lblHotKeyVidToggle.Text = "VidToggle"
         TipInfoEX.SetText(lblHotKeyVidToggle, Nothing)
@@ -715,9 +714,9 @@ Inherits System.Windows.Forms.Form
         lblHotKeyVidToggleFullScreen.BackColor = Color.Transparent
         lblHotKeyVidToggleFullScreen.ForeColor = SystemColors.ControlText
         TipInfoEX.SetImage(lblHotKeyVidToggleFullScreen, Nothing)
-        lblHotKeyVidToggleFullScreen.Location = New Point(-21, 60)
+        lblHotKeyVidToggleFullScreen.Location = New Point(8, 72)
         lblHotKeyVidToggleFullScreen.Name = "lblHotKeyVidToggleFullScreen"
-        lblHotKeyVidToggleFullScreen.Size = New Size(211, 23)
+        lblHotKeyVidToggleFullScreen.Size = New Size(203, 23)
         lblHotKeyVidToggleFullScreen.TabIndex = 41
         lblHotKeyVidToggleFullScreen.Text = "VidToggleFullScreen"
         TipInfoEX.SetText(lblHotKeyVidToggleFullScreen, Nothing)
@@ -729,9 +728,9 @@ Inherits System.Windows.Forms.Form
         lblHotKeyVidShowFileInfo.BackColor = Color.Transparent
         lblHotKeyVidShowFileInfo.ForeColor = SystemColors.ControlText
         TipInfoEX.SetImage(lblHotKeyVidShowFileInfo, Nothing)
-        lblHotKeyVidShowFileInfo.Location = New Point(-21, 103)
+        lblHotKeyVidShowFileInfo.Location = New Point(8, 122)
         lblHotKeyVidShowFileInfo.Name = "lblHotKeyVidShowFileInfo"
-        lblHotKeyVidShowFileInfo.Size = New Size(211, 23)
+        lblHotKeyVidShowFileInfo.Size = New Size(203, 23)
         lblHotKeyVidShowFileInfo.TabIndex = 0
         lblHotKeyVidShowFileInfo.Text = "VidShowFileInfo"
         TipInfoEX.SetText(lblHotKeyVidShowFileInfo, Nothing)
@@ -742,7 +741,7 @@ Inherits System.Windows.Forms.Form
         cobxVidTimeDisplayMode.DropDownStyle = ComboBoxStyle.DropDownList
         cobxVidTimeDisplayMode.FormattingEnabled = True
         TipInfoEX.SetImage(cobxVidTimeDisplayMode, Nothing)
-        cobxVidTimeDisplayMode.Location = New Point(261, 281)
+        cobxVidTimeDisplayMode.Location = New Point(302, 344)
         cobxVidTimeDisplayMode.Name = "cobxVidTimeDisplayMode"
         cobxVidTimeDisplayMode.Size = New Size(156, 29)
         cobxVidTimeDisplayMode.TabIndex = 105
@@ -753,9 +752,9 @@ Inherits System.Windows.Forms.Form
         chbxVidLockFullScreen.BackColor = Color.Transparent
         chbxVidLockFullScreen.CheckAlign = ContentAlignment.MiddleRight
         TipInfoEX.SetImage(chbxVidLockFullScreen, Nothing)
-        chbxVidLockFullScreen.Location = New Point(554, 151)
+        chbxVidLockFullScreen.Location = New Point(659, 205)
         chbxVidLockFullScreen.Name = "chbxVidLockFullScreen"
-        chbxVidLockFullScreen.Size = New Size(120, 22)
+        chbxVidLockFullScreen.Size = New Size(155, 22)
         chbxVidLockFullScreen.TabIndex = 75
         TipInfoEX.SetText(chbxVidLockFullScreen, Nothing)
         chbxVidLockFullScreen.Text = "Lock Full Screen"
@@ -767,9 +766,9 @@ Inherits System.Windows.Forms.Form
         chbxVidAutoView.BackColor = Color.Transparent
         chbxVidAutoView.CheckAlign = ContentAlignment.MiddleRight
         TipInfoEX.SetImage(chbxVidAutoView, Nothing)
-        chbxVidAutoView.Location = New Point(590, 133)
+        chbxVidAutoView.Location = New Point(695, 179)
         chbxVidAutoView.Name = "chbxVidAutoView"
-        chbxVidAutoView.Size = New Size(84, 22)
+        chbxVidAutoView.Size = New Size(119, 22)
         chbxVidAutoView.TabIndex = 70
         TipInfoEX.SetText(chbxVidAutoView, Nothing)
         chbxVidAutoView.Text = "AutoView"
@@ -788,9 +787,9 @@ Inherits System.Windows.Forms.Form
         gpbxVidScale.Controls.Add(radbtnVideoScale66)
         gpbxVidScale.Controls.Add(radbtnVideoScale75)
         TipInfoEX.SetImage(gpbxVidScale, Nothing)
-        gpbxVidScale.Location = New Point(261, 137)
+        gpbxVidScale.Location = New Point(302, 159)
         gpbxVidScale.Name = "gpbxVidScale"
-        gpbxVidScale.Size = New Size(270, 65)
+        gpbxVidScale.Size = New Size(270, 85)
         gpbxVidScale.TabIndex = 60
         gpbxVidScale.TabStop = False
         gpbxVidScale.Text = "Video Scale"
@@ -799,9 +798,9 @@ Inherits System.Windows.Forms.Form
         ' radbtnVideoScale100
         ' 
         TipInfoEX.SetImage(radbtnVideoScale100, Nothing)
-        radbtnVideoScale100.Location = New Point(211, 19)
+        radbtnVideoScale100.Location = New Point(211, 25)
         radbtnVideoScale100.Name = "radbtnVideoScale100"
-        radbtnVideoScale100.Size = New Size(58, 24)
+        radbtnVideoScale100.Size = New Size(58, 28)
         radbtnVideoScale100.TabIndex = 7
         TipInfoEX.SetText(radbtnVideoScale100, Nothing)
         radbtnVideoScale100.Text = "100%"
@@ -810,9 +809,9 @@ Inherits System.Windows.Forms.Form
         ' radbtnVideoScaleFit
         ' 
         TipInfoEX.SetImage(radbtnVideoScaleFit, Nothing)
-        radbtnVideoScaleFit.Location = New Point(109, 19)
+        radbtnVideoScaleFit.Location = New Point(109, 25)
         radbtnVideoScaleFit.Name = "radbtnVideoScaleFit"
-        radbtnVideoScaleFit.Size = New Size(42, 24)
+        radbtnVideoScaleFit.Size = New Size(51, 28)
         radbtnVideoScaleFit.TabIndex = 0
         TipInfoEX.SetText(radbtnVideoScaleFit, Nothing)
         radbtnVideoScaleFit.Text = "FIT"
@@ -821,9 +820,9 @@ Inherits System.Windows.Forms.Form
         ' radbtnVideoScale10
         ' 
         TipInfoEX.SetImage(radbtnVideoScale10, Nothing)
-        radbtnVideoScale10.Location = New Point(7, 19)
+        radbtnVideoScale10.Location = New Point(7, 25)
         radbtnVideoScale10.Name = "radbtnVideoScale10"
-        radbtnVideoScale10.Size = New Size(51, 24)
+        radbtnVideoScale10.Size = New Size(51, 28)
         radbtnVideoScale10.TabIndex = 1
         TipInfoEX.SetText(radbtnVideoScale10, Nothing)
         radbtnVideoScale10.Text = "10%"
@@ -832,9 +831,9 @@ Inherits System.Windows.Forms.Form
         ' radbtnVideoScale25
         ' 
         TipInfoEX.SetImage(radbtnVideoScale25, Nothing)
-        radbtnVideoScale25.Location = New Point(7, 37)
+        radbtnVideoScale25.Location = New Point(7, 52)
         radbtnVideoScale25.Name = "radbtnVideoScale25"
-        radbtnVideoScale25.Size = New Size(51, 24)
+        radbtnVideoScale25.Size = New Size(51, 28)
         radbtnVideoScale25.TabIndex = 2
         TipInfoEX.SetText(radbtnVideoScale25, Nothing)
         radbtnVideoScale25.Text = "25%"
@@ -843,9 +842,9 @@ Inherits System.Windows.Forms.Form
         ' radbtnVideoScale33
         ' 
         TipInfoEX.SetImage(radbtnVideoScale33, Nothing)
-        radbtnVideoScale33.Location = New Point(58, 37)
+        radbtnVideoScale33.Location = New Point(58, 52)
         radbtnVideoScale33.Name = "radbtnVideoScale33"
-        radbtnVideoScale33.Size = New Size(51, 24)
+        radbtnVideoScale33.Size = New Size(51, 28)
         radbtnVideoScale33.TabIndex = 3
         TipInfoEX.SetText(radbtnVideoScale33, Nothing)
         radbtnVideoScale33.Text = "33%"
@@ -854,9 +853,9 @@ Inherits System.Windows.Forms.Form
         ' radbtnVideoScale50
         ' 
         TipInfoEX.SetImage(radbtnVideoScale50, Nothing)
-        radbtnVideoScale50.Location = New Point(109, 37)
+        radbtnVideoScale50.Location = New Point(109, 52)
         radbtnVideoScale50.Name = "radbtnVideoScale50"
-        radbtnVideoScale50.Size = New Size(51, 24)
+        radbtnVideoScale50.Size = New Size(51, 28)
         radbtnVideoScale50.TabIndex = 4
         TipInfoEX.SetText(radbtnVideoScale50, Nothing)
         radbtnVideoScale50.Text = "50%"
@@ -865,9 +864,9 @@ Inherits System.Windows.Forms.Form
         ' radbtnVideoScale66
         ' 
         TipInfoEX.SetImage(radbtnVideoScale66, Nothing)
-        radbtnVideoScale66.Location = New Point(160, 37)
+        radbtnVideoScale66.Location = New Point(160, 52)
         radbtnVideoScale66.Name = "radbtnVideoScale66"
-        radbtnVideoScale66.Size = New Size(51, 24)
+        radbtnVideoScale66.Size = New Size(51, 28)
         radbtnVideoScale66.TabIndex = 5
         TipInfoEX.SetText(radbtnVideoScale66, Nothing)
         radbtnVideoScale66.Text = "66%"
@@ -876,9 +875,9 @@ Inherits System.Windows.Forms.Form
         ' radbtnVideoScale75
         ' 
         TipInfoEX.SetImage(radbtnVideoScale75, Nothing)
-        radbtnVideoScale75.Location = New Point(211, 37)
+        radbtnVideoScale75.Location = New Point(211, 52)
         radbtnVideoScale75.Name = "radbtnVideoScale75"
-        radbtnVideoScale75.Size = New Size(51, 24)
+        radbtnVideoScale75.Size = New Size(51, 28)
         radbtnVideoScale75.TabIndex = 6
         TipInfoEX.SetText(radbtnVideoScale75, Nothing)
         radbtnVideoScale75.Text = "75%"
@@ -921,9 +920,9 @@ Inherits System.Windows.Forms.Form
         gpbxVidLocationMode.Controls.Add(radbtnVidLocationModeTopLeft)
         gpbxVidLocationMode.Controls.Add(radbtnVidLocationModeManual)
         TipInfoEX.SetImage(gpbxVidLocationMode, Nothing)
-        gpbxVidLocationMode.Location = New Point(7, 239)
+        gpbxVidLocationMode.Location = New Point(12, 302)
         gpbxVidLocationMode.Name = "gpbxVidLocationMode"
-        gpbxVidLocationMode.Size = New Size(195, 210)
+        gpbxVidLocationMode.Size = New Size(199, 221)
         gpbxVidLocationMode.TabIndex = 90
         gpbxVidLocationMode.TabStop = False
         gpbxVidLocationMode.Text = "Video Location"
@@ -933,7 +932,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeTopLeftInside.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidLocationModeTopLeftInside, Nothing)
-        radbtnVidLocationModeTopLeftInside.Location = New Point(34, 48)
+        radbtnVidLocationModeTopLeftInside.Location = New Point(36, 58)
         radbtnVidLocationModeTopLeftInside.Name = "radbtnVidLocationModeTopLeftInside"
         radbtnVidLocationModeTopLeftInside.Size = New Size(16, 16)
         radbtnVidLocationModeTopLeftInside.TabIndex = 107
@@ -945,7 +944,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeBottomLeftInside.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidLocationModeBottomLeftInside, Nothing)
-        radbtnVidLocationModeBottomLeftInside.Location = New Point(34, 160)
+        radbtnVidLocationModeBottomLeftInside.Location = New Point(36, 170)
         radbtnVidLocationModeBottomLeftInside.Name = "radbtnVidLocationModeBottomLeftInside"
         radbtnVidLocationModeBottomLeftInside.Size = New Size(16, 16)
         radbtnVidLocationModeBottomLeftInside.TabIndex = 108
@@ -957,7 +956,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeBottomRightInside.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidLocationModeBottomRightInside, Nothing)
-        radbtnVidLocationModeBottomRightInside.Location = New Point(146, 160)
+        radbtnVidLocationModeBottomRightInside.Location = New Point(148, 170)
         radbtnVidLocationModeBottomRightInside.Name = "radbtnVidLocationModeBottomRightInside"
         radbtnVidLocationModeBottomRightInside.Size = New Size(16, 16)
         radbtnVidLocationModeBottomRightInside.TabIndex = 109
@@ -969,7 +968,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeTopRightInside.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidLocationModeTopRightInside, Nothing)
-        radbtnVidLocationModeTopRightInside.Location = New Point(146, 48)
+        radbtnVidLocationModeTopRightInside.Location = New Point(148, 58)
         radbtnVidLocationModeTopRightInside.Name = "radbtnVidLocationModeTopRightInside"
         radbtnVidLocationModeTopRightInside.Size = New Size(16, 16)
         radbtnVidLocationModeTopRightInside.TabIndex = 112
@@ -981,7 +980,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeLeftCenterBottomInside.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidLocationModeLeftCenterBottomInside, Nothing)
-        radbtnVidLocationModeLeftCenterBottomInside.Location = New Point(34, 132)
+        radbtnVidLocationModeLeftCenterBottomInside.Location = New Point(36, 142)
         radbtnVidLocationModeLeftCenterBottomInside.Name = "radbtnVidLocationModeLeftCenterBottomInside"
         radbtnVidLocationModeLeftCenterBottomInside.Size = New Size(16, 16)
         radbtnVidLocationModeLeftCenterBottomInside.TabIndex = 106
@@ -993,7 +992,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeLeftCenterInside.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidLocationModeLeftCenterInside, Nothing)
-        radbtnVidLocationModeLeftCenterInside.Location = New Point(34, 104)
+        radbtnVidLocationModeLeftCenterInside.Location = New Point(36, 114)
         radbtnVidLocationModeLeftCenterInside.Name = "radbtnVidLocationModeLeftCenterInside"
         radbtnVidLocationModeLeftCenterInside.Size = New Size(16, 16)
         radbtnVidLocationModeLeftCenterInside.TabIndex = 110
@@ -1005,7 +1004,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeLeftCenterTopInside.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidLocationModeLeftCenterTopInside, Nothing)
-        radbtnVidLocationModeLeftCenterTopInside.Location = New Point(34, 76)
+        radbtnVidLocationModeLeftCenterTopInside.Location = New Point(36, 86)
         radbtnVidLocationModeLeftCenterTopInside.Name = "radbtnVidLocationModeLeftCenterTopInside"
         radbtnVidLocationModeLeftCenterTopInside.Size = New Size(16, 16)
         radbtnVidLocationModeLeftCenterTopInside.TabIndex = 111
@@ -1017,7 +1016,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeBottomCenterInside.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidLocationModeBottomCenterInside, Nothing)
-        radbtnVidLocationModeBottomCenterInside.Location = New Point(90, 160)
+        radbtnVidLocationModeBottomCenterInside.Location = New Point(92, 170)
         radbtnVidLocationModeBottomCenterInside.Name = "radbtnVidLocationModeBottomCenterInside"
         radbtnVidLocationModeBottomCenterInside.Size = New Size(16, 16)
         radbtnVidLocationModeBottomCenterInside.TabIndex = 104
@@ -1029,7 +1028,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeRightCenterInside.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidLocationModeRightCenterInside, Nothing)
-        radbtnVidLocationModeRightCenterInside.Location = New Point(146, 104)
+        radbtnVidLocationModeRightCenterInside.Location = New Point(148, 114)
         radbtnVidLocationModeRightCenterInside.Name = "radbtnVidLocationModeRightCenterInside"
         radbtnVidLocationModeRightCenterInside.Size = New Size(16, 16)
         radbtnVidLocationModeRightCenterInside.TabIndex = 102
@@ -1041,7 +1040,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeBottomCenterLeftInside.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidLocationModeBottomCenterLeftInside, Nothing)
-        radbtnVidLocationModeBottomCenterLeftInside.Location = New Point(62, 160)
+        radbtnVidLocationModeBottomCenterLeftInside.Location = New Point(64, 170)
         radbtnVidLocationModeBottomCenterLeftInside.Name = "radbtnVidLocationModeBottomCenterLeftInside"
         radbtnVidLocationModeBottomCenterLeftInside.Size = New Size(16, 16)
         radbtnVidLocationModeBottomCenterLeftInside.TabIndex = 105
@@ -1053,7 +1052,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeBottomCenterRightInside.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidLocationModeBottomCenterRightInside, Nothing)
-        radbtnVidLocationModeBottomCenterRightInside.Location = New Point(118, 160)
+        radbtnVidLocationModeBottomCenterRightInside.Location = New Point(120, 170)
         radbtnVidLocationModeBottomCenterRightInside.Name = "radbtnVidLocationModeBottomCenterRightInside"
         radbtnVidLocationModeBottomCenterRightInside.Size = New Size(16, 16)
         radbtnVidLocationModeBottomCenterRightInside.TabIndex = 101
@@ -1065,7 +1064,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeRightCenterBottomInside.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidLocationModeRightCenterBottomInside, Nothing)
-        radbtnVidLocationModeRightCenterBottomInside.Location = New Point(146, 132)
+        radbtnVidLocationModeRightCenterBottomInside.Location = New Point(148, 142)
         radbtnVidLocationModeRightCenterBottomInside.Name = "radbtnVidLocationModeRightCenterBottomInside"
         radbtnVidLocationModeRightCenterBottomInside.Size = New Size(16, 16)
         radbtnVidLocationModeRightCenterBottomInside.TabIndex = 103
@@ -1077,7 +1076,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeTopCenterRightInside.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidLocationModeTopCenterRightInside, Nothing)
-        radbtnVidLocationModeTopCenterRightInside.Location = New Point(118, 48)
+        radbtnVidLocationModeTopCenterRightInside.Location = New Point(120, 58)
         radbtnVidLocationModeTopCenterRightInside.Name = "radbtnVidLocationModeTopCenterRightInside"
         radbtnVidLocationModeTopCenterRightInside.Size = New Size(16, 16)
         radbtnVidLocationModeTopCenterRightInside.TabIndex = 99
@@ -1089,7 +1088,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeRightCenterTopInside.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidLocationModeRightCenterTopInside, Nothing)
-        radbtnVidLocationModeRightCenterTopInside.Location = New Point(146, 76)
+        radbtnVidLocationModeRightCenterTopInside.Location = New Point(148, 86)
         radbtnVidLocationModeRightCenterTopInside.Name = "radbtnVidLocationModeRightCenterTopInside"
         radbtnVidLocationModeRightCenterTopInside.Size = New Size(16, 16)
         radbtnVidLocationModeRightCenterTopInside.TabIndex = 100
@@ -1101,7 +1100,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeTopCenterInside.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidLocationModeTopCenterInside, Nothing)
-        radbtnVidLocationModeTopCenterInside.Location = New Point(90, 48)
+        radbtnVidLocationModeTopCenterInside.Location = New Point(92, 58)
         radbtnVidLocationModeTopCenterInside.Name = "radbtnVidLocationModeTopCenterInside"
         radbtnVidLocationModeTopCenterInside.Size = New Size(16, 16)
         radbtnVidLocationModeTopCenterInside.TabIndex = 98
@@ -1113,7 +1112,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeTopCenterLeftInside.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidLocationModeTopCenterLeftInside, Nothing)
-        radbtnVidLocationModeTopCenterLeftInside.Location = New Point(62, 48)
+        radbtnVidLocationModeTopCenterLeftInside.Location = New Point(64, 58)
         radbtnVidLocationModeTopCenterLeftInside.Name = "radbtnVidLocationModeTopCenterLeftInside"
         radbtnVidLocationModeTopCenterLeftInside.Size = New Size(16, 16)
         radbtnVidLocationModeTopCenterLeftInside.TabIndex = 97
@@ -1125,7 +1124,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeLeftCenterTop.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidLocationModeLeftCenterTop, Nothing)
-        radbtnVidLocationModeLeftCenterTop.Location = New Point(6, 62)
+        radbtnVidLocationModeLeftCenterTop.Location = New Point(8, 72)
         radbtnVidLocationModeLeftCenterTop.Name = "radbtnVidLocationModeLeftCenterTop"
         radbtnVidLocationModeLeftCenterTop.Size = New Size(16, 16)
         radbtnVidLocationModeLeftCenterTop.TabIndex = 33
@@ -1138,7 +1137,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeBottomLeft.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidLocationModeBottomLeft, Nothing)
-        radbtnVidLocationModeBottomLeft.Location = New Point(6, 188)
+        radbtnVidLocationModeBottomLeft.Location = New Point(8, 198)
         radbtnVidLocationModeBottomLeft.Name = "radbtnVidLocationModeBottomLeft"
         radbtnVidLocationModeBottomLeft.Size = New Size(16, 16)
         radbtnVidLocationModeBottomLeft.TabIndex = 30
@@ -1151,7 +1150,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeRightCenterTop.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidLocationModeRightCenterTop, Nothing)
-        radbtnVidLocationModeRightCenterTop.Location = New Point(174, 62)
+        radbtnVidLocationModeRightCenterTop.Location = New Point(176, 72)
         radbtnVidLocationModeRightCenterTop.Name = "radbtnVidLocationModeRightCenterTop"
         radbtnVidLocationModeRightCenterTop.Size = New Size(16, 16)
         radbtnVidLocationModeRightCenterTop.TabIndex = 23
@@ -1164,7 +1163,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeRightCenterBottom.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidLocationModeRightCenterBottom, Nothing)
-        radbtnVidLocationModeRightCenterBottom.Location = New Point(174, 146)
+        radbtnVidLocationModeRightCenterBottom.Location = New Point(176, 156)
         radbtnVidLocationModeRightCenterBottom.Name = "radbtnVidLocationModeRightCenterBottom"
         radbtnVidLocationModeRightCenterBottom.Size = New Size(16, 16)
         radbtnVidLocationModeRightCenterBottom.TabIndex = 25
@@ -1177,7 +1176,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeBottomCenterRight.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidLocationModeBottomCenterRight, Nothing)
-        radbtnVidLocationModeBottomCenterRight.Location = New Point(132, 188)
+        radbtnVidLocationModeBottomCenterRight.Location = New Point(134, 198)
         radbtnVidLocationModeBottomCenterRight.Name = "radbtnVidLocationModeBottomCenterRight"
         radbtnVidLocationModeBottomCenterRight.Size = New Size(16, 16)
         radbtnVidLocationModeBottomCenterRight.TabIndex = 27
@@ -1190,7 +1189,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeBottomCenterLeft.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidLocationModeBottomCenterLeft, Nothing)
-        radbtnVidLocationModeBottomCenterLeft.Location = New Point(48, 188)
+        radbtnVidLocationModeBottomCenterLeft.Location = New Point(50, 198)
         radbtnVidLocationModeBottomCenterLeft.Name = "radbtnVidLocationModeBottomCenterLeft"
         radbtnVidLocationModeBottomCenterLeft.Size = New Size(16, 16)
         radbtnVidLocationModeBottomCenterLeft.TabIndex = 29
@@ -1203,7 +1202,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeBottomRight.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidLocationModeBottomRight, Nothing)
-        radbtnVidLocationModeBottomRight.Location = New Point(174, 188)
+        radbtnVidLocationModeBottomRight.Location = New Point(176, 198)
         radbtnVidLocationModeBottomRight.Name = "radbtnVidLocationModeBottomRight"
         radbtnVidLocationModeBottomRight.Size = New Size(16, 16)
         radbtnVidLocationModeBottomRight.TabIndex = 26
@@ -1216,7 +1215,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeLeftCenterBottom.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidLocationModeLeftCenterBottom, Nothing)
-        radbtnVidLocationModeLeftCenterBottom.Location = New Point(6, 146)
+        radbtnVidLocationModeLeftCenterBottom.Location = New Point(8, 156)
         radbtnVidLocationModeLeftCenterBottom.Name = "radbtnVidLocationModeLeftCenterBottom"
         radbtnVidLocationModeLeftCenterBottom.Size = New Size(16, 16)
         radbtnVidLocationModeLeftCenterBottom.TabIndex = 31
@@ -1229,7 +1228,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeBottomCenter.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidLocationModeBottomCenter, Nothing)
-        radbtnVidLocationModeBottomCenter.Location = New Point(90, 188)
+        radbtnVidLocationModeBottomCenter.Location = New Point(92, 198)
         radbtnVidLocationModeBottomCenter.Name = "radbtnVidLocationModeBottomCenter"
         radbtnVidLocationModeBottomCenter.Size = New Size(16, 16)
         radbtnVidLocationModeBottomCenter.TabIndex = 28
@@ -1242,7 +1241,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeLeftCenter.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidLocationModeLeftCenter, Nothing)
-        radbtnVidLocationModeLeftCenter.Location = New Point(6, 104)
+        radbtnVidLocationModeLeftCenter.Location = New Point(8, 114)
         radbtnVidLocationModeLeftCenter.Name = "radbtnVidLocationModeLeftCenter"
         radbtnVidLocationModeLeftCenter.Size = New Size(16, 16)
         radbtnVidLocationModeLeftCenter.TabIndex = 32
@@ -1255,7 +1254,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeTopCenterLeft.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidLocationModeTopCenterLeft, Nothing)
-        radbtnVidLocationModeTopCenterLeft.Location = New Point(48, 20)
+        radbtnVidLocationModeTopCenterLeft.Location = New Point(50, 30)
         radbtnVidLocationModeTopCenterLeft.Name = "radbtnVidLocationModeTopCenterLeft"
         radbtnVidLocationModeTopCenterLeft.Size = New Size(16, 16)
         radbtnVidLocationModeTopCenterLeft.TabIndex = 19
@@ -1268,7 +1267,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeTopCenter.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidLocationModeTopCenter, Nothing)
-        radbtnVidLocationModeTopCenter.Location = New Point(90, 20)
+        radbtnVidLocationModeTopCenter.Location = New Point(92, 30)
         radbtnVidLocationModeTopCenter.Name = "radbtnVidLocationModeTopCenter"
         radbtnVidLocationModeTopCenter.Size = New Size(16, 16)
         radbtnVidLocationModeTopCenter.TabIndex = 20
@@ -1281,7 +1280,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeTopRight.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidLocationModeTopRight, Nothing)
-        radbtnVidLocationModeTopRight.Location = New Point(174, 20)
+        radbtnVidLocationModeTopRight.Location = New Point(176, 30)
         radbtnVidLocationModeTopRight.Name = "radbtnVidLocationModeTopRight"
         radbtnVidLocationModeTopRight.Size = New Size(16, 16)
         radbtnVidLocationModeTopRight.TabIndex = 22
@@ -1294,7 +1293,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeTopCenterRight.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidLocationModeTopCenterRight, Nothing)
-        radbtnVidLocationModeTopCenterRight.Location = New Point(132, 20)
+        radbtnVidLocationModeTopCenterRight.Location = New Point(134, 30)
         radbtnVidLocationModeTopCenterRight.Name = "radbtnVidLocationModeTopCenterRight"
         radbtnVidLocationModeTopCenterRight.Size = New Size(16, 16)
         radbtnVidLocationModeTopCenterRight.TabIndex = 21
@@ -1307,7 +1306,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeRightCenter.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidLocationModeRightCenter, Nothing)
-        radbtnVidLocationModeRightCenter.Location = New Point(174, 104)
+        radbtnVidLocationModeRightCenter.Location = New Point(176, 114)
         radbtnVidLocationModeRightCenter.Name = "radbtnVidLocationModeRightCenter"
         radbtnVidLocationModeRightCenter.Size = New Size(16, 16)
         radbtnVidLocationModeRightCenter.TabIndex = 24
@@ -1320,7 +1319,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeTopLeft.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidLocationModeTopLeft, Nothing)
-        radbtnVidLocationModeTopLeft.Location = New Point(6, 20)
+        radbtnVidLocationModeTopLeft.Location = New Point(8, 30)
         radbtnVidLocationModeTopLeft.Name = "radbtnVidLocationModeTopLeft"
         radbtnVidLocationModeTopLeft.Size = New Size(16, 16)
         radbtnVidLocationModeTopLeft.TabIndex = 18
@@ -1333,9 +1332,9 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidLocationModeManual.CheckAlign = ContentAlignment.BottomCenter
         TipInfoEX.SetImage(radbtnVidLocationModeManual, Nothing)
-        radbtnVidLocationModeManual.Location = New Point(69, 78)
+        radbtnVidLocationModeManual.Location = New Point(64, 88)
         radbtnVidLocationModeManual.Name = "radbtnVidLocationModeManual"
-        radbtnVidLocationModeManual.Size = New Size(57, 40)
+        radbtnVidLocationModeManual.Size = New Size(71, 40)
         radbtnVidLocationModeManual.TabIndex = 17
         TipInfoEX.SetText(radbtnVidLocationModeManual, Nothing)
         radbtnVidLocationModeManual.Text = "Manual"
@@ -1349,9 +1348,9 @@ Inherits System.Windows.Forms.Form
         gpbxVidPlayMode.Controls.Add(radbtnVidPlayModeRandom)
         gpbxVidPlayMode.Controls.Add(radbtnVidPlayModeLinear)
         TipInfoEX.SetImage(gpbxVidPlayMode, Nothing)
-        gpbxVidPlayMode.Location = New Point(7, 137)
+        gpbxVidPlayMode.Location = New Point(12, 159)
         gpbxVidPlayMode.Name = "gpbxVidPlayMode"
-        gpbxVidPlayMode.Size = New Size(248, 47)
+        gpbxVidPlayMode.Size = New Size(270, 58)
         gpbxVidPlayMode.TabIndex = 50
         gpbxVidPlayMode.TabStop = False
         gpbxVidPlayMode.Text = "Video Play Mode"
@@ -1360,9 +1359,9 @@ Inherits System.Windows.Forms.Form
         ' radbtnVidPlayModeLinearWithRandomStart
         ' 
         TipInfoEX.SetImage(radbtnVidPlayModeLinearWithRandomStart, Nothing)
-        radbtnVidPlayModeLinearWithRandomStart.Location = New Point(84, 19)
+        radbtnVidPlayModeLinearWithRandomStart.Location = New Point(88, 23)
         radbtnVidPlayModeLinearWithRandomStart.Name = "radbtnVidPlayModeLinearWithRandomStart"
-        radbtnVidPlayModeLinearWithRandomStart.Size = New Size(74, 24)
+        radbtnVidPlayModeLinearWithRandomStart.Size = New Size(92, 28)
         radbtnVidPlayModeLinearWithRandomStart.TabIndex = 2
         TipInfoEX.SetText(radbtnVidPlayModeLinearWithRandomStart, "Linear With Random Start")
         radbtnVidPlayModeLinearWithRandomStart.Text = "Linear +"
@@ -1371,9 +1370,9 @@ Inherits System.Windows.Forms.Form
         ' radbtnVidPlayModeRandom
         ' 
         TipInfoEX.SetImage(radbtnVidPlayModeRandom, Nothing)
-        radbtnVidPlayModeRandom.Location = New Point(172, 19)
+        radbtnVidPlayModeRandom.Location = New Point(180, 23)
         radbtnVidPlayModeRandom.Name = "radbtnVidPlayModeRandom"
-        radbtnVidPlayModeRandom.Size = New Size(75, 24)
+        radbtnVidPlayModeRandom.Size = New Size(87, 28)
         radbtnVidPlayModeRandom.TabIndex = 1
         TipInfoEX.SetText(radbtnVidPlayModeRandom, Nothing)
         radbtnVidPlayModeRandom.Text = "Random"
@@ -1382,9 +1381,9 @@ Inherits System.Windows.Forms.Form
         ' radbtnVidPlayModeLinear
         ' 
         TipInfoEX.SetImage(radbtnVidPlayModeLinear, Nothing)
-        radbtnVidPlayModeLinear.Location = New Point(7, 19)
+        radbtnVidPlayModeLinear.Location = New Point(9, 23)
         radbtnVidPlayModeLinear.Name = "radbtnVidPlayModeLinear"
-        radbtnVidPlayModeLinear.Size = New Size(61, 24)
+        radbtnVidPlayModeLinear.Size = New Size(73, 28)
         radbtnVidPlayModeLinear.TabIndex = 0
         TipInfoEX.SetText(radbtnVidPlayModeLinear, Nothing)
         radbtnVidPlayModeLinear.Text = "Linear"
@@ -1394,9 +1393,9 @@ Inherits System.Windows.Forms.Form
         ' 
         chbxVidTime.BackColor = Color.Transparent
         TipInfoEX.SetImage(chbxVidTime, Nothing)
-        chbxVidTime.Location = New Point(261, 261)
+        chbxVidTime.Location = New Point(302, 324)
         chbxVidTime.Name = "chbxVidTime"
-        chbxVidTime.Size = New Size(133, 22)
+        chbxVidTime.Size = New Size(156, 22)
         chbxVidTime.TabIndex = 100
         TipInfoEX.SetText(chbxVidTime, Nothing)
         chbxVidTime.Text = "Show Video Time"
@@ -1419,9 +1418,9 @@ Inherits System.Windows.Forms.Form
         btnlvVidFolders.Image = My.Resources.Resources.imageFolder
         TipInfoEX.SetImage(btnlvVidFolders, My.Resources.Resources.imageFolder)
         btnlvVidFolders.ImageAlign = ContentAlignment.MiddleLeft
-        btnlvVidFolders.Location = New Point(469, 95)
+        btnlvVidFolders.Location = New Point(507, 98)
         btnlvVidFolders.Name = "btnlvVidFolders"
-        btnlvVidFolders.Size = New Size(175, 32)
+        btnlvVidFolders.Size = New Size(202, 32)
         btnlvVidFolders.TabIndex = 22
         btnlvVidFolders.TabStop = False
         TipInfoEX.SetText(btnlvVidFolders, "Folder List View Mode")
@@ -1437,7 +1436,7 @@ Inherits System.Windows.Forms.Form
         btnRefreshVidList.Image = My.Resources.Resources.imageRefresh
         TipInfoEX.SetImage(btnRefreshVidList, My.Resources.Resources.imageRefresh)
         btnRefreshVidList.ImageAlign = ContentAlignment.MiddleLeft
-        btnRefreshVidList.Location = New Point(650, 95)
+        btnRefreshVidList.Location = New Point(714, 98)
         btnRefreshVidList.Name = "btnRefreshVidList"
         btnRefreshVidList.Size = New Size(100, 32)
         btnRefreshVidList.TabIndex = 24
@@ -1467,9 +1466,9 @@ Inherits System.Windows.Forms.Form
         grbxVidTimeLocationMode.Controls.Add(radbtnVidTimeLocationModeRightCenter)
         grbxVidTimeLocationMode.Controls.Add(radbtnVidTimeLocationModeTopLeft)
         TipInfoEX.SetImage(grbxVidTimeLocationMode, Nothing)
-        grbxVidTimeLocationMode.Location = New Point(261, 305)
+        grbxVidTimeLocationMode.Location = New Point(302, 373)
         grbxVidTimeLocationMode.Name = "grbxVidTimeLocationMode"
-        grbxVidTimeLocationMode.Size = New Size(133, 144)
+        grbxVidTimeLocationMode.Size = New Size(133, 151)
         grbxVidTimeLocationMode.TabIndex = 110
         grbxVidTimeLocationMode.TabStop = False
         grbxVidTimeLocationMode.Text = "Time Location"
@@ -1479,7 +1478,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidTimeLocationModeLeftCenterTop.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidTimeLocationModeLeftCenterTop, Nothing)
-        radbtnVidTimeLocationModeLeftCenterTop.Location = New Point(5, 45)
+        radbtnVidTimeLocationModeLeftCenterTop.Location = New Point(5, 52)
         radbtnVidTimeLocationModeLeftCenterTop.Name = "radbtnVidTimeLocationModeLeftCenterTop"
         radbtnVidTimeLocationModeLeftCenterTop.Size = New Size(16, 16)
         radbtnVidTimeLocationModeLeftCenterTop.TabIndex = 16
@@ -1491,7 +1490,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidTimeLocationModeBottomLeft.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidTimeLocationModeBottomLeft, Nothing)
-        radbtnVidTimeLocationModeBottomLeft.Location = New Point(5, 123)
+        radbtnVidTimeLocationModeBottomLeft.Location = New Point(5, 130)
         radbtnVidTimeLocationModeBottomLeft.Name = "radbtnVidTimeLocationModeBottomLeft"
         radbtnVidTimeLocationModeBottomLeft.Size = New Size(16, 16)
         radbtnVidTimeLocationModeBottomLeft.TabIndex = 13
@@ -1503,7 +1502,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidTimeLocationModeRightCenterTop.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidTimeLocationModeRightCenterTop, Nothing)
-        radbtnVidTimeLocationModeRightCenterTop.Location = New Point(113, 45)
+        radbtnVidTimeLocationModeRightCenterTop.Location = New Point(113, 52)
         radbtnVidTimeLocationModeRightCenterTop.Name = "radbtnVidTimeLocationModeRightCenterTop"
         radbtnVidTimeLocationModeRightCenterTop.Size = New Size(16, 16)
         radbtnVidTimeLocationModeRightCenterTop.TabIndex = 6
@@ -1515,7 +1514,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidTimeLocationModeRightCenterBottom.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidTimeLocationModeRightCenterBottom, Nothing)
-        radbtnVidTimeLocationModeRightCenterBottom.Location = New Point(113, 97)
+        radbtnVidTimeLocationModeRightCenterBottom.Location = New Point(113, 104)
         radbtnVidTimeLocationModeRightCenterBottom.Name = "radbtnVidTimeLocationModeRightCenterBottom"
         radbtnVidTimeLocationModeRightCenterBottom.Size = New Size(16, 16)
         radbtnVidTimeLocationModeRightCenterBottom.TabIndex = 8
@@ -1527,7 +1526,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidTimeLocationModeBottomCenterRight.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidTimeLocationModeBottomCenterRight, Nothing)
-        radbtnVidTimeLocationModeBottomCenterRight.Location = New Point(86, 123)
+        radbtnVidTimeLocationModeBottomCenterRight.Location = New Point(86, 130)
         radbtnVidTimeLocationModeBottomCenterRight.Name = "radbtnVidTimeLocationModeBottomCenterRight"
         radbtnVidTimeLocationModeBottomCenterRight.Size = New Size(16, 16)
         radbtnVidTimeLocationModeBottomCenterRight.TabIndex = 10
@@ -1539,7 +1538,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidTimeLocationModeBottomCenterLeft.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidTimeLocationModeBottomCenterLeft, Nothing)
-        radbtnVidTimeLocationModeBottomCenterLeft.Location = New Point(32, 123)
+        radbtnVidTimeLocationModeBottomCenterLeft.Location = New Point(32, 130)
         radbtnVidTimeLocationModeBottomCenterLeft.Name = "radbtnVidTimeLocationModeBottomCenterLeft"
         radbtnVidTimeLocationModeBottomCenterLeft.Size = New Size(16, 16)
         radbtnVidTimeLocationModeBottomCenterLeft.TabIndex = 12
@@ -1551,7 +1550,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidTimeLocationModeBottomRight.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidTimeLocationModeBottomRight, Nothing)
-        radbtnVidTimeLocationModeBottomRight.Location = New Point(113, 123)
+        radbtnVidTimeLocationModeBottomRight.Location = New Point(113, 130)
         radbtnVidTimeLocationModeBottomRight.Name = "radbtnVidTimeLocationModeBottomRight"
         radbtnVidTimeLocationModeBottomRight.Size = New Size(16, 16)
         radbtnVidTimeLocationModeBottomRight.TabIndex = 9
@@ -1563,7 +1562,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidTimeLocationModeLeftCenterBottom.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidTimeLocationModeLeftCenterBottom, Nothing)
-        radbtnVidTimeLocationModeLeftCenterBottom.Location = New Point(5, 97)
+        radbtnVidTimeLocationModeLeftCenterBottom.Location = New Point(5, 104)
         radbtnVidTimeLocationModeLeftCenterBottom.Name = "radbtnVidTimeLocationModeLeftCenterBottom"
         radbtnVidTimeLocationModeLeftCenterBottom.Size = New Size(16, 16)
         radbtnVidTimeLocationModeLeftCenterBottom.TabIndex = 14
@@ -1575,7 +1574,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidTimeLocationModeBottomCenter.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidTimeLocationModeBottomCenter, Nothing)
-        radbtnVidTimeLocationModeBottomCenter.Location = New Point(59, 123)
+        radbtnVidTimeLocationModeBottomCenter.Location = New Point(59, 130)
         radbtnVidTimeLocationModeBottomCenter.Name = "radbtnVidTimeLocationModeBottomCenter"
         radbtnVidTimeLocationModeBottomCenter.Size = New Size(16, 16)
         radbtnVidTimeLocationModeBottomCenter.TabIndex = 11
@@ -1587,7 +1586,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidTimeLocationModeLeftCenter.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidTimeLocationModeLeftCenter, Nothing)
-        radbtnVidTimeLocationModeLeftCenter.Location = New Point(5, 71)
+        radbtnVidTimeLocationModeLeftCenter.Location = New Point(5, 78)
         radbtnVidTimeLocationModeLeftCenter.Name = "radbtnVidTimeLocationModeLeftCenter"
         radbtnVidTimeLocationModeLeftCenter.Size = New Size(16, 16)
         radbtnVidTimeLocationModeLeftCenter.TabIndex = 15
@@ -1599,7 +1598,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidTimeLocationModeTopCenterLeft.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidTimeLocationModeTopCenterLeft, Nothing)
-        radbtnVidTimeLocationModeTopCenterLeft.Location = New Point(32, 19)
+        radbtnVidTimeLocationModeTopCenterLeft.Location = New Point(32, 26)
         radbtnVidTimeLocationModeTopCenterLeft.Name = "radbtnVidTimeLocationModeTopCenterLeft"
         radbtnVidTimeLocationModeTopCenterLeft.Size = New Size(16, 16)
         radbtnVidTimeLocationModeTopCenterLeft.TabIndex = 2
@@ -1611,7 +1610,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidTimeLocationModeTopCenter.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidTimeLocationModeTopCenter, Nothing)
-        radbtnVidTimeLocationModeTopCenter.Location = New Point(59, 19)
+        radbtnVidTimeLocationModeTopCenter.Location = New Point(59, 26)
         radbtnVidTimeLocationModeTopCenter.Name = "radbtnVidTimeLocationModeTopCenter"
         radbtnVidTimeLocationModeTopCenter.Size = New Size(16, 16)
         radbtnVidTimeLocationModeTopCenter.TabIndex = 3
@@ -1623,7 +1622,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidTimeLocationModeTopRight.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidTimeLocationModeTopRight, Nothing)
-        radbtnVidTimeLocationModeTopRight.Location = New Point(113, 19)
+        radbtnVidTimeLocationModeTopRight.Location = New Point(113, 26)
         radbtnVidTimeLocationModeTopRight.Name = "radbtnVidTimeLocationModeTopRight"
         radbtnVidTimeLocationModeTopRight.Size = New Size(16, 16)
         radbtnVidTimeLocationModeTopRight.TabIndex = 5
@@ -1635,7 +1634,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidTimeLocationModeTopCenterRight.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidTimeLocationModeTopCenterRight, Nothing)
-        radbtnVidTimeLocationModeTopCenterRight.Location = New Point(86, 19)
+        radbtnVidTimeLocationModeTopCenterRight.Location = New Point(86, 26)
         radbtnVidTimeLocationModeTopCenterRight.Name = "radbtnVidTimeLocationModeTopCenterRight"
         radbtnVidTimeLocationModeTopCenterRight.Size = New Size(16, 16)
         radbtnVidTimeLocationModeTopCenterRight.TabIndex = 4
@@ -1647,7 +1646,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidTimeLocationModeRightCenter.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidTimeLocationModeRightCenter, Nothing)
-        radbtnVidTimeLocationModeRightCenter.Location = New Point(113, 71)
+        radbtnVidTimeLocationModeRightCenter.Location = New Point(113, 78)
         radbtnVidTimeLocationModeRightCenter.Name = "radbtnVidTimeLocationModeRightCenter"
         radbtnVidTimeLocationModeRightCenter.Size = New Size(16, 16)
         radbtnVidTimeLocationModeRightCenter.TabIndex = 7
@@ -1659,7 +1658,7 @@ Inherits System.Windows.Forms.Form
         ' 
         radbtnVidTimeLocationModeTopLeft.CheckAlign = ContentAlignment.MiddleCenter
         TipInfoEX.SetImage(radbtnVidTimeLocationModeTopLeft, Nothing)
-        radbtnVidTimeLocationModeTopLeft.Location = New Point(5, 19)
+        radbtnVidTimeLocationModeTopLeft.Location = New Point(5, 26)
         radbtnVidTimeLocationModeTopLeft.Name = "radbtnVidTimeLocationModeTopLeft"
         radbtnVidTimeLocationModeTopLeft.Size = New Size(16, 16)
         radbtnVidTimeLocationModeTopLeft.TabIndex = 1
@@ -2465,7 +2464,7 @@ Inherits System.Windows.Forms.Form
         gpbxPicJustify.Controls.Add(radbtnPicJustifyLeft)
         gpbxPicJustify.Controls.Add(radbtnPicJustifyRight)
         TipInfoEX.SetImage(gpbxPicJustify, Nothing)
-        gpbxPicJustify.Location = New Point(285, 158)
+        gpbxPicJustify.Location = New Point(293, 159)
         gpbxPicJustify.Name = "gpbxPicJustify"
         gpbxPicJustify.Size = New Size(242, 65)
         gpbxPicJustify.TabIndex = 20
@@ -2514,7 +2513,7 @@ Inherits System.Windows.Forms.Form
         ' 
         chbxPicLockFullScreen.CheckAlign = ContentAlignment.MiddleRight
         TipInfoEX.SetImage(chbxPicLockFullScreen, Nothing)
-        chbxPicLockFullScreen.Location = New Point(532, 184)
+        chbxPicLockFullScreen.Location = New Point(539, 185)
         chbxPicLockFullScreen.Name = "chbxPicLockFullScreen"
         chbxPicLockFullScreen.RightToLeft = RightToLeft.Yes
         chbxPicLockFullScreen.Size = New Size(135, 26)
@@ -2994,7 +2993,7 @@ Inherits System.Windows.Forms.Form
         gpbxPicPlayMode.Controls.Add(radbtnPicPlayModeRandom)
         gpbxPicPlayMode.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         TipInfoEX.SetImage(gpbxPicPlayMode, Nothing)
-        gpbxPicPlayMode.Location = New Point(7, 158)
+        gpbxPicPlayMode.Location = New Point(12, 159)
         gpbxPicPlayMode.Name = "gpbxPicPlayMode"
         gpbxPicPlayMode.Size = New Size(275, 65)
         gpbxPicPlayMode.TabIndex = 10
@@ -3108,7 +3107,6 @@ Inherits System.Windows.Forms.Form
         LVPageSelector.EditableColumns = CType(resources.GetObject("LVPageSelector.EditableColumns"), List(Of Boolean))
         LVPageSelector.FullRowSelect = True
         LVPageSelector.HeaderStyle = ColumnHeaderStyle.None
-        LVPageSelector.HideSelection = True
         TipInfoEX.SetImage(LVPageSelector, Nothing)
         LVPageSelector.InsertionLineColor = Color.Teal
         LVPageSelector.LargeImageList = ILPageSelector
@@ -3141,8 +3139,8 @@ Inherits System.Windows.Forms.Form
         AutoSizeMode = AutoSizeMode.GrowAndShrink
         AutoValidate = AutoValidate.EnableAllowFocusChange
         ClientSize = New Size(917, 630)
-        Controls.Add(PanelPics)
         Controls.Add(PanelVids)
+        Controls.Add(PanelPics)
         Controls.Add(PanelApp)
         Controls.Add(PanelPageSelector)
         Controls.Add(PanelActions)

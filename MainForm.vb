@@ -737,8 +737,9 @@ Partial Friend Class MainForm
         ShowSettings()
     End Sub
     Private Sub ChbkVidMuteClick(sender As Object, e As EventArgs) Handles chbkVidMute.Click
-        My.App.VidVolumeMute = Me.chbkVidMute.Checked
-        If My.App.FrmVids IsNot Nothing Then My.FrmVids.SetVolume()
+        App.VidVolumeMute = chbkVidMute.Checked
+        UpdateSettingsVideos()
+        If App.FrmVids IsNot Nothing Then App.FrmVids.SetVolume()
     End Sub
     Private Sub RadbtnActionOnScreenSaveNoActionClick(sender As Object, e As EventArgs) Handles radbtnActionOnScreenSaveNoAction.Click
         My.App.ActionOnScreenSave = My.App.ScreenSaveActions.NoAction
@@ -952,17 +953,17 @@ Partial Friend Class MainForm
         End Select
     End Sub
     Friend Sub ShowSettings()
-        ShowSettingsSkyeShow()
+        ShowSettingsApp()
         ShowSettingsImages()
         ShowSettingsVideos()
         UpdateSettings()
     End Sub
     Friend Sub UpdateSettings() 'Settings that can change on other forms
-        UpdateSettingsSkyeShow()
+        UpdateSettingsApp()
         UpdateSettingsImages()
         UpdateSettingsVideos()
     End Sub
-    Friend Sub UpdateSettingsSkyeShow() 'Settings that can change on other forms
+    Friend Sub UpdateSettingsApp() 'Settings that can change on other forms
 
     End Sub
     Friend Sub UpdateSettingsImages() 'Settings that can change on other forms
@@ -1081,7 +1082,13 @@ Partial Friend Class MainForm
             Case My.App.LocationMode.LeftCenterTopInside : Me.radbtnVidLocationModeLeftCenterTopInside.Checked = True
         End Select
         Me.cobxVidTimeDisplayMode.SelectedIndex = My.App.VidTimeDisplayMode
-        Me.chbkVidMute.Checked = My.App.VidVolumeMute
+        chbkVidMute.Checked = App.VidVolumeMute
+        Select Case App.VidVolumeMute
+            Case True
+                chbkVidMute.Image = My.Resources.Resources.imageSoundMute
+            Case False
+                chbkVidMute.Image = My.Resources.Resources.imageSound
+        End Select
     End Sub
     Friend Sub RestoreSettings()
         My.App.GetSettings()
@@ -1099,7 +1106,7 @@ Partial Friend Class MainForm
         End If
         AppNotify()
     End Sub
-    Private Sub ShowSettingsSkyeShow()
+    Private Sub ShowSettingsApp()
         Me.chbxSaveFileLists.Checked = My.App.SaveFileLists
         Me.chbxLoadFileListsInBackground.Checked = My.App.LoadFileListsInBackground
         Me.chbxRefreshFileListsOnStartUp.Checked = My.App.RefreshFileListsOnStartUp
@@ -1111,7 +1118,7 @@ Partial Friend Class MainForm
             Case My.App.ScreenSaveActions.Suspend : Me.radbtnActionOnScreenSaveSuspend.Checked = True
             Case My.App.ScreenSaveActions.Close : Me.radbtnActionOnScreenSaveClose.Checked = True
         End Select
-        UpdateSettingsSkyeShow()
+        UpdateSettingsApp()
         Me.btnClose.Focus()
     End Sub
     Private Sub ShowSettingsImages()

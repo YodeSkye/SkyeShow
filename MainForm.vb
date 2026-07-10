@@ -537,6 +537,7 @@ Partial Friend Class MainForm
                 'Me.listviewVideoFolders.EnsureVisible(index)
             End If
             'Finalize
+            App.SetSave()
         End If
     End Sub
     Private Sub CMISettingListAddItemMouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles cmiSettingListAddItem.MouseUp
@@ -582,7 +583,9 @@ Partial Friend Class MainForm
                         removelist = Nothing
                 End Select
             Catch
-            Finally : ShowSettings()
+            Finally
+                ShowSettings()
+                App.SetSave()
             End Try
         End If
     End Sub
@@ -594,6 +597,7 @@ Partial Friend Class MainForm
                     My.App.VidFolders.RemoveAt(Me.lvVidFolders.SelectedIndices(0))
             End Select
             ShowSettings()
+            App.SetSave()
         End If
     End Sub
     Private Sub CMISettingListRemoveAllMouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles cmiSettingListRemoveAll.MouseUp
@@ -604,6 +608,7 @@ Partial Friend Class MainForm
                     My.App.VidFolders.Clear()
             End Select
             ShowSettings()
+            App.SetSave()
         End If
     End Sub
     Private Sub CMIViewImagesMouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles cmiViewPics.MouseUp
@@ -720,6 +725,7 @@ Partial Friend Class MainForm
             If My.App.FrmPicsVisible Then My.App.frmPics.DrawImage()
             Me.txbxInsideLocationOffset.Focus()
             Me.txbxInsideLocationOffset.SelectAll()
+            App.SetSave()
         End If
     End Sub
     Private Sub CoBxTheme_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CoBoxTheme.SelectedIndexChanged
@@ -730,7 +736,7 @@ Partial Friend Class MainForm
             Skye.UI.ThemeManager.SetTheme(selected)
             ShowSettings()
         End If
-        'App.SaveSettings()
+        App.SetSave()
     End Sub
     Private Sub ChkBoxThemeAuto_Click(sender As Object, e As EventArgs) Handles ChkBoxThemeAuto.Click
         App.ThemeAuto = ChkBoxThemeAuto.Checked
@@ -740,19 +746,23 @@ Partial Friend Class MainForm
         Else
             Skye.UI.ThemeManager.SetTheme(App.Theme)
         End If
-        'App.SaveSettings()
+        App.SetSave()
     End Sub
     Private Sub ChbxSaveFileListsClick(sender As Object, e As EventArgs) Handles chbxSaveFileLists.Click
         My.App.SaveFileLists = Me.chbxSaveFileLists.Checked
+        App.SetSave()
     End Sub
     Private Sub ChbxLoadFileListsInBackgroundClick(sender As Object, e As EventArgs) Handles chbxLoadFileListsInBackground.Click
         My.App.LoadFileListsInBackground = Me.chbxLoadFileListsInBackground.Checked
+        App.SetSave()
     End Sub
     Private Sub ChbxRefreshFileListsOnStartUpClick(sender As Object, e As EventArgs) Handles chbxRefreshFileListsOnStartUp.Click
         My.App.RefreshFileListsOnStartUp = Me.chbxRefreshFileListsOnStartUp.Checked
+        App.SetSave()
     End Sub
     Private Sub ChbxHideCursorWhenFullscreenClick(sender As Object, e As EventArgs) Handles chbxHideCursorWhenFullscreen.Click
         My.App.HideCursorWhenFullscreen = Me.chbxHideCursorWhenFullscreen.Checked
+        App.SetSave()
     End Sub
     Private Sub ChbxHotKeysClick(sender As Object, e As EventArgs) Handles chbxHotKeys.Click
         If My.App.HKEnabled Then
@@ -763,20 +773,25 @@ Partial Friend Class MainForm
             My.App.RegisterHotKeys(True)
         End If
         ShowSettings()
+        App.SetSave()
     End Sub
     Private Sub ChbkVidMuteClick(sender As Object, e As EventArgs) Handles chbkVidMute.Click
         App.VidVolumeMute = chbkVidMute.Checked
         UpdateSettingsVideos()
         If App.FrmVids IsNot Nothing Then App.FrmVids.SetVolume()
+        App.SetSave()
     End Sub
     Private Sub RadbtnActionOnScreenSaveNoActionClick(sender As Object, e As EventArgs) Handles radbtnActionOnScreenSaveNoAction.Click
         My.App.ActionOnScreenSave = My.App.ScreenSaveActions.NoAction
+        App.SetSave()
     End Sub
     Private Sub RadbtnActionOnScreenSaveSuspendClick(sender As Object, e As EventArgs) Handles radbtnActionOnScreenSaveSuspend.Click
         My.App.ActionOnScreenSave = My.App.ScreenSaveActions.Suspend
+        App.SetSave()
     End Sub
     Private Sub RadbtnActionOnScreenSaveCloseClick(sender As Object, e As EventArgs) Handles radbtnActionOnScreenSaveClose.Click
         My.App.ActionOnScreenSave = My.App.ScreenSaveActions.Close
+        App.SetSave()
     End Sub
     Private Sub BtnEnter(ByVal sender As Object, ByVal e As EventArgs) Handles btnSaveSettings.Enter, btnRestoreSettings.Enter, btnRefreshVidList.Enter, btnRefreshPicList.Enter, btnPicTimerEnabled.Enter, btnlvVidFolders.Enter, btnlvPicFolders.Enter, btnHotKeyVidToggleFullScreenDisable.Enter, btnHotKeyVidToggleDisable.Enter, btnHotKeyVidShowFileInfoDisable.Enter, btnHotKeysVidsUndo.Enter, btnHotKeysVidsSet.Enter, btnHotKeysPicsUndo.Enter, btnHotKeysPicsSet.Enter, btnHotKeyPicToggleFullScreenDisable.Enter, btnHotKeyPicToggleDisable.Enter, btnHotKeyPicShowFileInfoDisable.Enter, btnErrorTest.Enter
         btnClose.Focus()
@@ -867,6 +882,7 @@ Partial Friend Class MainForm
             ElseIf sender Is Me.btnHotKeysVidsSet Then : ShowSettingsVideos()
             End If
         End If
+        App.SetSave()
     End Sub
     Private Sub BtnInfoMouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles btnInfo.MouseUp
         If e.X >= 0 And e.X <= CType(sender, Button).Width And e.Y >= 0 And e.Y <= CType(sender, Button).Height Then
@@ -937,6 +953,8 @@ Partial Friend Class MainForm
     End Sub
     Private Sub BtnSaveSettingsClick(ByVal sender As Object, ByVal e As EventArgs) Handles btnSaveSettings.Click
         My.App.SaveSettings()
+        App.NeedsSaved = False
+        ShowSave()
         HideForm()
     End Sub
     Private Sub BtnRestoreSettingsClick(ByVal sender As Object, ByVal e As EventArgs) Handles btnRestoreSettings.Click
@@ -962,6 +980,15 @@ Partial Friend Class MainForm
                 notifyiconSkyeShow.Text += Chr(13) + "One Or More Windows Are Hidden. Click To Restore."
             End If
             btnLog.ResetBackColor()
+        End If
+    End Sub
+    Friend Sub ShowSave()
+        If App.NeedsSaved Then
+            btnSaveSettings.BackColor = Color.Red
+            TipInfoEX.SetText(btnSaveSettings, "Settings Need Saved")
+        Else
+            btnSaveSettings.BackColor = Skye.UI.ThemeManager.CurrentTheme.ButtonBack
+            TipInfoEX.SetText(btnSaveSettings, "Save All Settings")
         End If
     End Sub
     Private Sub SetPage(page As String)
@@ -1129,6 +1156,8 @@ Partial Friend Class MainForm
         End If
         If My.App.FrmPicsVisible Then My.App.frmPics.DrawImage()
         If My.App.FrmVidsVisible Then My.App.FrmVids.SetSize()
+        App.NeedsSaved = False
+        ShowSave()
     End Sub
     Friend Sub ToggleContextMenu()
         If My.App.FrmPicsVisible Then : Me.cmiViewPics.Checked = True

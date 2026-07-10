@@ -547,6 +547,7 @@ Namespace My
 		Friend ReadOnly AdjustScreenBoundsNormalWindow As Byte = 8 'AdjustScreenBoundsNormalWindow is the number of pixels to adjust the screen bounds for normal windows.
 		Friend ReadOnly AdjustScreenBoundsDialogWindow As Byte = 10 'AdjustScreenBoundsDialogWindow is the number of pixels to adjust the screen bounds for dialog windows.
 		Friend ReadOnly MenuFont As New Font("Segoe UI", 12, FontStyle.Regular) ' MenuFont is the font used for context menus.
+		Friend NeedsSaved As Boolean = False
 		Friend ErrorAlert As Boolean = False
 		Friend IsGeneratingFileList As Boolean
 		Friend CommandLinePath As String = String.Empty
@@ -562,7 +563,7 @@ Namespace My
 		Private ScreenSaverRunning As Boolean = False
 		Private WorkStationLocked As Boolean = False
 		Private ReadOnly RandomFileIndex As New Random
-		Private frmBalloonParent As String = String.Empty
+        Private frmBalloonParent As String = String.Empty
 
 		' Saved Settings
 		Friend SaveFileLists As Boolean 'Default = False
@@ -696,8 +697,8 @@ Namespace My
 			ActionOnScreenSave = CType(Skye.Common.RegistryHelper.GetInt("AppActionOnScreenSave", CInt(ScreenSaveActions.Close)), ScreenSaveActions)
 			InsideLocationOffset = CUShort(Skye.Common.RegistryHelper.GetInt("AppInsideLocationOffset", 40))
 
-            ' Theme
-            Dim themeName As String = Skye.Common.RegistryHelper.GetString("Theme", "Light")
+			' Theme
+			Dim themeName As String = Skye.Common.RegistryHelper.GetString("Theme", "Light")
 			Theme = Skye.UI.SkyeThemes.GetTheme(themeName)
 			ThemeAuto = Skye.Common.RegistryHelper.GetBool("ThemeAuto", True)
 
@@ -917,6 +918,10 @@ Namespace My
 			Next
 			Skye.Common.RegistryHelper.SetStringArray("VideoFolders", vidFolderStrings.ToArray())
 
+		End Sub
+		Friend Sub SetSave()
+			NeedsSaved = True
+			FrmMain?.ShowSave()
 		End Sub
 		Friend Sub RegisterHotKeys(Optional mode As Boolean = True)
 			If HKEnabled Then

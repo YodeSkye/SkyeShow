@@ -1,9 +1,5 @@
 
-Imports System.Diagnostics
 Imports System.Reflection
-Imports System.Runtime
-Imports LibVLCSharp.[Shared]
-Imports Skye.Common
 
 Namespace My
 
@@ -559,12 +555,12 @@ Namespace My
 		Friend FrmMain As MainForm
 		Friend FrmHelp As Help
 		Friend FrmLog As Log
+		Private ReadOnly FrmBalloon As New Balloon
 		Private WithEvents FrmBalloonTimer As New Timer
 		Private WithEvents ScreenSaverWatcher As New Timer
 		Private ScreenSaverRunning As Boolean = False
 		Private WorkStationLocked As Boolean = False
 		Private ReadOnly RandomFileIndex As New Random
-		Private ReadOnly frmBalloon As New Balloon
 		Private frmBalloonParent As String = String.Empty
 
 		' Saved Settings
@@ -970,38 +966,41 @@ Namespace My
 			HotKeys.Add(HKVidShowFileInfo)
 		End Sub
 		Friend Sub ShowBalloon(ByRef sender As Form, image As Image, title As String, text As String)
-			If frmBalloon.Visible And frmBalloonParent = sender.Name Then : HideBalloon() 'This allows for toggle of balloon
+			If FrmBalloon.Visible And frmBalloonParent = sender.Name Then : HideBalloon() 'This allows for toggle of balloon
 			Else
 				HideBalloon()
 				frmBalloonParent = sender.Name
-				If image Is Nothing Then : frmBalloon.picbxIcon.Image = My.Resources.Resources.imageInfo32
-				Else : frmBalloon.picbxIcon.Image = image
+				If image Is Nothing Then : FrmBalloon.picbxIcon.Image = My.Resources.Resources.ImageInfo32
+				Else : FrmBalloon.picbxIcon.Image = image
 				End If
-				frmBalloon.lblTitle.Text = title
-				frmBalloon.lblText.Text = text
-				frmBalloon.Location = sender.Location
-				If frmBalloon.Right > My.Computer.Screen.WorkingArea.Right Then frmBalloon.Left -= frmBalloon.Right - My.Computer.Screen.WorkingArea.Right
-				If frmBalloon.Bottom > My.Computer.Screen.WorkingArea.Bottom Then frmBalloon.Top -= frmBalloon.Bottom - My.Computer.Screen.WorkingArea.Bottom
+				FrmBalloon.lblTitle.Text = title
+				FrmBalloon.lblText.Text = text
+				FrmBalloon.Location = sender.Location
+				If FrmBalloon.Right > My.Computer.Screen.WorkingArea.Right Then FrmBalloon.Left -= FrmBalloon.Right - My.Computer.Screen.WorkingArea.Right
+				If FrmBalloon.Bottom > My.Computer.Screen.WorkingArea.Bottom Then FrmBalloon.Top -= FrmBalloon.Bottom - My.Computer.Screen.WorkingArea.Bottom
 				BalloonLoading = True
-				frmBalloon.Show()
+				FrmBalloon.Show()
 				BalloonLoading = False
 				FrmBalloonTimer.Start()
 			End If
 		End Sub
 		Friend Sub HideBalloon()
-			If frmBalloon.Visible Then
+			If FrmBalloon.Visible Then
 				FrmBalloonTimer.Stop()
-
-				If frmPics IsNot Nothing AndAlso frmPics.Name = frmBalloonParent Then : frmPics.BringToFront()
-				ElseIf FrmVids IsNot Nothing AndAlso FrmVids.Name = frmBalloonParent Then : FrmVids.BringToFront()
+				If frmPics IsNot Nothing AndAlso frmPics.Name = frmBalloonParent Then
+					frmPics.BringToFront()
+				ElseIf FrmVids IsNot Nothing AndAlso FrmVids.Name = frmBalloonParent Then
+					FrmVids.BringToFront()
 				End If
 				frmBalloonParent = String.Empty
-				frmBalloon.Hide()
+				FrmBalloon.Hide()
 			End If
 		End Sub
 		Friend Sub BalloonPreviewKeyDown(ByVal sender As Object, ByVal e As PreviewKeyDownEventArgs)
-			If frmPics IsNot Nothing AndAlso frmPics.Name = frmBalloonParent Then : frmPics.FrmPreviewKeyDown(sender, e)
-			ElseIf FrmVids IsNot Nothing AndAlso FrmVids.Name = frmBalloonParent Then : FrmVids.FrmPreviewKeyDown(sender, e)
+			If frmPics IsNot Nothing AndAlso frmPics.Name = frmBalloonParent Then
+				frmPics.FrmPreviewKeyDown(sender, e)
+			ElseIf FrmVids IsNot Nothing AndAlso FrmVids.Name = frmBalloonParent Then
+				FrmVids.FrmPreviewKeyDown(sender, e)
 			End If
 			HideBalloon()
 		End Sub
@@ -1102,7 +1101,7 @@ Namespace My
 			Next
 		End Function
 		Friend Function BalloonVisible() As Boolean
-			Return frmBalloon.Visible
+			Return FrmBalloon.Visible
 		End Function
 		Friend Function CheckFileType(file As String, type As FileType) As Boolean
 			Select Case type

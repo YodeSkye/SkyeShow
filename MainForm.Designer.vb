@@ -14,7 +14,7 @@ Inherits System.Windows.Forms.Form
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainForm))
         btnClose = New Button()
         notifyiconSkyeShow = New NotifyIcon(components)
-        cmSkyeShow = New ContextMenuStrip(components)
+        cmApp = New ContextMenuStrip(components)
         cmiViewPics = New ToolStripMenuItem()
         cmiPlayVids = New ToolStripMenuItem()
         toolStripSeparator1 = New ToolStripSeparator()
@@ -152,6 +152,9 @@ Inherits System.Windows.Forms.Form
         radbtnPicPlayModeLinearWithRandomStart = New RadioButton()
         btnLog = New Button()
         PanelApp = New Panel()
+        CoBoxTheme = New Skye.UI.ComboBox()
+        ChkBoxThemeAuto = New CheckBox()
+        LblTheme = New Skye.UI.Label()
         PanelPics = New Panel()
         grbxHotKeysPics = New GroupBox()
         txbxHotKeyPicToggle = New TextBox()
@@ -238,7 +241,7 @@ Inherits System.Windows.Forms.Form
         LVPageSelector = New Skye.UI.ListViewEX()
         ILPageSelector = New ImageList(components)
         TipInfoEX = New Skye.UI.ToolTipEX(components)
-        cmSkyeShow.SuspendLayout()
+        cmApp.SuspendLayout()
         cmList.SuspendLayout()
         grbxActionOnScreenSave.SuspendLayout()
         grbxHotKeysVids.SuspendLayout()
@@ -274,18 +277,18 @@ Inherits System.Windows.Forms.Form
         ' 
         ' notifyiconSkyeShow
         ' 
-        notifyiconSkyeShow.ContextMenuStrip = cmSkyeShow
+        notifyiconSkyeShow.ContextMenuStrip = cmApp
         notifyiconSkyeShow.Visible = True
         ' 
-        ' cmSkyeShow
+        ' cmApp
         ' 
-        cmSkyeShow.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        TipInfoEX.SetImage(cmSkyeShow, Nothing)
-        cmSkyeShow.Items.AddRange(New ToolStripItem() {cmiViewPics, cmiPlayVids, toolStripSeparator1, cmiHelp, cmiLog, cmiSettings, toolStripSeparator2, cmiExit})
-        cmSkyeShow.Name = "cmenuYMShow"
-        cmSkyeShow.RenderMode = ToolStripRenderMode.Professional
-        cmSkyeShow.Size = New Size(185, 172)
-        TipInfoEX.SetText(cmSkyeShow, Nothing)
+        cmApp.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        TipInfoEX.SetImage(cmApp, Nothing)
+        cmApp.Items.AddRange(New ToolStripItem() {cmiViewPics, cmiPlayVids, toolStripSeparator1, cmiHelp, cmiLog, cmiSettings, toolStripSeparator2, cmiExit})
+        cmApp.Name = "cmenuYMShow"
+        cmApp.RenderMode = ToolStripRenderMode.Professional
+        cmApp.Size = New Size(185, 194)
+        TipInfoEX.SetText(cmApp, Nothing)
         ' 
         ' cmiViewPics
         ' 
@@ -1973,6 +1976,9 @@ Inherits System.Windows.Forms.Form
         ' 
         ' PanelApp
         ' 
+        PanelApp.Controls.Add(CoBoxTheme)
+        PanelApp.Controls.Add(ChkBoxThemeAuto)
+        PanelApp.Controls.Add(LblTheme)
         PanelApp.Controls.Add(chbxHotKeys)
         PanelApp.Controls.Add(chbxSaveFileLists)
         PanelApp.Controls.Add(txbxInsideLocationOffset)
@@ -1988,6 +1994,40 @@ Inherits System.Windows.Forms.Form
         PanelApp.Size = New Size(826, 534)
         PanelApp.TabIndex = 107
         TipInfoEX.SetText(PanelApp, Nothing)
+        ' 
+        ' CoBoxTheme
+        ' 
+        CoBoxTheme.DropDownStyle = ComboBoxStyle.DropDownList
+        CoBoxTheme.FormattingEnabled = True
+        TipInfoEX.SetImage(CoBoxTheme, Nothing)
+        CoBoxTheme.Location = New Point(492, 307)
+        CoBoxTheme.Name = "CoBoxTheme"
+        CoBoxTheme.Size = New Size(192, 30)
+        CoBoxTheme.TabIndex = 103
+        TipInfoEX.SetText(CoBoxTheme, Nothing)
+        ' 
+        ' ChkBoxThemeAuto
+        ' 
+        ChkBoxThemeAuto.AutoSize = True
+        TipInfoEX.SetImage(ChkBoxThemeAuto, Nothing)
+        ChkBoxThemeAuto.Location = New Point(492, 284)
+        ChkBoxThemeAuto.Name = "ChkBoxThemeAuto"
+        ChkBoxThemeAuto.Size = New Size(161, 25)
+        ChkBoxThemeAuto.TabIndex = 102
+        TipInfoEX.SetText(ChkBoxThemeAuto, Nothing)
+        ChkBoxThemeAuto.Text = "Use System Theme"
+        ChkBoxThemeAuto.UseVisualStyleBackColor = True
+        ' 
+        ' LblTheme
+        ' 
+        LblTheme.Font = New Font("Segoe UI", 12F, FontStyle.Underline, GraphicsUnit.Point, CByte(0))
+        TipInfoEX.SetImage(LblTheme, Nothing)
+        LblTheme.Location = New Point(488, 264)
+        LblTheme.Name = "LblTheme"
+        LblTheme.Size = New Size(100, 23)
+        LblTheme.TabIndex = 101
+        LblTheme.Text = "Theme"
+        TipInfoEX.SetText(LblTheme, Nothing)
         ' 
         ' PanelPics
         ' 
@@ -3139,9 +3179,9 @@ Inherits System.Windows.Forms.Form
         AutoSizeMode = AutoSizeMode.GrowAndShrink
         AutoValidate = AutoValidate.EnableAllowFocusChange
         ClientSize = New Size(917, 630)
+        Controls.Add(PanelApp)
         Controls.Add(PanelVids)
         Controls.Add(PanelPics)
-        Controls.Add(PanelApp)
         Controls.Add(PanelPageSelector)
         Controls.Add(PanelActions)
         DoubleBuffered = True
@@ -3155,7 +3195,7 @@ Inherits System.Windows.Forms.Form
         SizeGripStyle = SizeGripStyle.Hide
         StartPosition = FormStartPosition.CenterScreen
         TipInfoEX.SetText(Me, Nothing)
-        cmSkyeShow.ResumeLayout(False)
+        cmApp.ResumeLayout(False)
         cmList.ResumeLayout(False)
         grbxActionOnScreenSave.ResumeLayout(False)
         grbxHotKeysVids.ResumeLayout(False)
@@ -3268,7 +3308,7 @@ Inherits System.Windows.Forms.Form
     Friend WithEvents cmiPlayVids As System.Windows.Forms.ToolStripMenuItem
     Private tsSeparatorEnabled As System.Windows.Forms.ToolStripSeparator
     Private WithEvents cmList As System.Windows.Forms.ContextMenuStrip
-    Private WithEvents cmSkyeShow As System.Windows.Forms.ContextMenuStrip
+    Private WithEvents cmApp As System.Windows.Forms.ContextMenuStrip
     Private toolStripSeparator4 As System.Windows.Forms.ToolStripSeparator
     Private WithEvents btnClose As System.Windows.Forms.Button
     Private WithEvents chbxRefreshFileListsOnStartUp As System.Windows.Forms.CheckBox
@@ -3406,4 +3446,7 @@ Inherits System.Windows.Forms.Form
     Friend WithEvents LVPageSelector As Skye.UI.ListViewEX
     Friend WithEvents ILPageSelector As ImageList
     Friend WithEvents TipInfoEX As Skye.UI.ToolTipEX
+    Friend WithEvents CoBoxTheme As Skye.UI.ComboBox
+    Friend WithEvents ChkBoxThemeAuto As CheckBox
+    Friend WithEvents LblTheme As Skye.UI.Label
 End Class

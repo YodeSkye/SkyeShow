@@ -1,5 +1,7 @@
 
 Imports System.ComponentModel
+Imports System.ComponentModel.Design.ObjectSelectorEditor
+Imports Skye.UI
 Imports SkyeShow.My
 
 Partial Friend Class MainForm
@@ -307,6 +309,9 @@ Partial Friend Class MainForm
         lvVidFolders.Columns.Add(Nothing, 0, HorizontalAlignment.Center)
         lvVidFolders.Columns.Add(Nothing, 0, HorizontalAlignment.Center)
         lvVidFolders.Columns.Add(Nothing, 0, HorizontalAlignment.Center)
+        For Each thm As Skye.UI.SkyeTheme In SkyeThemes.AllThemes
+            CoBoxTheme.Items.Add(thm.Name)
+        Next
         For Each mode As App.VideoPositionMode In [Enum].GetValues(Of App.VideoPositionMode)()
             cobxVidTimeDisplayMode.Items.Add(App.VideoPositionModeToString(mode))
         Next
@@ -340,6 +345,9 @@ Partial Friend Class MainForm
             ToggleContextMenu()
         End If
         LVPageSelector.Focus()
+        Skye.UI.ThemeManager.RegisterComponent(TipInfoEX)
+        Skye.UI.ThemeManager.ApplyTheme(Me)
+        cmApp.Renderer = New Skye.UI.SkyeMenuRenderer
     End Sub
     Private Sub MainForm_Closing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         My.App.Finalize()
@@ -443,7 +451,7 @@ Partial Friend Class MainForm
         Dim selectedSource As String = LVPageSelector.SelectedItems(0).Text
         SetPage(LVPageSelector.SelectedItems(0).Text)
     End Sub
-    Private Sub CMSkyeShowOpening(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmSkyeShow.Opening
+    Private Sub CMSkyeShowOpening(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmApp.Opening
         If My.App.ErrorAlert Then e.Cancel = True
     End Sub
     Private Sub CMListOpening(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmList.Opening
@@ -713,6 +721,26 @@ Partial Friend Class MainForm
             Me.txbxInsideLocationOffset.Focus()
             Me.txbxInsideLocationOffset.SelectAll()
         End If
+    End Sub
+    Private Sub CoBxTheme_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CoBoxTheme.SelectedIndexChanged
+        Dim selectedName As String = CoBoxTheme.SelectedItem.ToString()
+        Dim selected As Skye.UI.SkyeTheme = Skye.UI.SkyeThemes.GetTheme(selectedName)
+        App.Theme = selected
+        If Not App.ThemeAuto Then
+            Skye.UI.ThemeManager.SetTheme(selected)
+            ShowSettings()
+        End If
+        'App.SaveSettings()
+    End Sub
+    Private Sub ChkBoxThemeAuto_Click(sender As Object, e As EventArgs) Handles ChkBoxThemeAuto.Click
+        App.ThemeAuto = ChkBoxThemeAuto.Checked
+        SetThemesList()
+        If App.ThemeAuto Then
+            Skye.UI.ThemeManager.SetTheme(Skye.UI.ThemeManager.DetectWindowsTheme())
+        Else
+            Skye.UI.ThemeManager.SetTheme(App.Theme)
+        End If
+        'App.SaveSettings()
     End Sub
     Private Sub ChbxSaveFileListsClick(sender As Object, e As EventArgs) Handles chbxSaveFileLists.Click
         My.App.SaveFileLists = Me.chbxSaveFileLists.Checked
@@ -1087,13 +1115,18 @@ Partial Friend Class MainForm
             Case True
                 chbkVidMute.Image = My.Resources.Resources.imageSoundMute
             Case False
-                chbkVidMute.Image = My.Resources.Resources.imageSound
+                chbkVidMute.Image = My.Resources.Resources.ImageSound
         End Select
     End Sub
     Friend Sub RestoreSettings()
         My.App.GetSettings()
         My.App.VideoFilesResetEnabled()
         ShowSettings()
+        If App.ThemeAuto Then
+            Skye.UI.ThemeManager.SetTheme(Skye.UI.ThemeManager.DetectWindowsTheme())
+        Else
+            Skye.UI.ThemeManager.SetTheme(App.Theme)
+        End If
         If My.App.FrmPicsVisible Then My.App.frmPics.DrawImage()
         If My.App.FrmVidsVisible Then My.App.FrmVids.SetSize()
     End Sub
@@ -1113,6 +1146,9 @@ Partial Friend Class MainForm
         Me.chbxHideCursorWhenFullscreen.Checked = My.App.HideCursorWhenFullscreen
         Me.chbxHotKeys.Checked = My.App.HKEnabled
         Me.txbxInsideLocationOffset.Text = My.App.InsideLocationOffset.ToString
+        CoBoxTheme.SelectedItem = App.Theme.Name
+        ChkBoxThemeAuto.Checked = App.ThemeAuto
+        SetThemesList()
         Select Case My.App.ActionOnScreenSave
             Case My.App.ScreenSaveActions.NoAction : Me.radbtnActionOnScreenSaveNoAction.Checked = True
             Case My.App.ScreenSaveActions.Suspend : Me.radbtnActionOnScreenSaveSuspend.Checked = True
@@ -1442,6 +1478,13 @@ Partial Friend Class MainForm
         If Me.Visible Then
             Me.Hide()
             Me.cmiSettings.Checked = False
+        End If
+    End Sub
+    Private Sub SetThemesList()
+        If App.ThemeAuto Then
+            CoBoxTheme.Enabled = False
+        Else
+            CoBoxTheme.Enabled = True
         End If
     End Sub
     Private Sub ToggleFolderList(mode As My.App.GetFilesType, Optional reset As Boolean = False)

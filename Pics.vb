@@ -35,6 +35,32 @@ Partial Friend Class Pics
 		AddHandler Me.LostFocus, AddressOf frmLostFocus
 		Me.Text = My.Application.Info.Title + " Image"
 		UpdateDeleteImageConfirm()
+		cmPics.Renderer = New Skye.UI.SkyeMenuRenderer
+	End Sub
+	Private Sub FrmLoad(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
+		SetTimerAutoStart()
+		If My.App.PicPlayMode = My.App.PlayMode.LinearWithRandomStart Then My.App.ImageIndex = Skye.Common.GetRandom(0, My.App.ImageFiles.Count - 1, My.App.ImageIndex)
+		NextImage(My.App.PlayOption.ByPlayMode)
+	End Sub
+	Private Sub FrmClosing(ByVal sender As Object, ByVal e As FormClosingEventArgs) Handles MyBase.FormClosing
+		My.App.HideBalloon()
+		ShowCursor()
+		RemoveHandler Me.LostFocus, AddressOf frmLostFocus
+		TimerImageAdvance.Stop()
+		TimerHideMouse.Stop()
+		TimerQuickHide.Stop()
+		DisposeGraphics()
+		My.App.ImageIsOnTop = True
+		If My.App.FrmMain.BackgroundworkerGetFiles.IsBusy Then My.App.FrmMain.cmiViewPics.Enabled = False
+		If My.App.FrmMain.Visible Then My.App.FrmMain.Focus()
+	End Sub
+	Private Sub FrmDisposed(ByVal sender As Object, ByVal e As EventArgs)
+		My.App.FrmMain.ToggleContextMenu()
+		'		My.SkyeShow.SetScreenSaverWatcher
+		My.App.frmPics = Nothing
+	End Sub
+	Private Sub FrmLostFocus(ByVal sender As Object, ByVal e As EventArgs)
+		If FullScreen And Not My.App.PicLockFullScreen And Not My.App.BalloonLoading And Not My.App.IgnoreFocusChange Then ToggleFullScreen()
 	End Sub
 	Friend Sub FrmPreviewKeyDown(ByVal sender As Object, ByVal e As PreviewKeyDownEventArgs) Handles MyBase.PreviewKeyDown
 		My.App.HideBalloon()
@@ -73,31 +99,6 @@ Partial Friend Class Pics
 				Case Keys.Insert : QuickShift()
 			End Select
 		End If
-	End Sub
-	Private Sub FrmLoad(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
-		SetTimerAutoStart()
-		If My.App.PicPlayMode = My.App.PlayMode.LinearWithRandomStart Then My.App.ImageIndex = Skye.Common.GetRandom(0, My.App.ImageFiles.Count - 1, My.App.ImageIndex)
-		NextImage(My.App.PlayOption.ByPlayMode)
-	End Sub
-	Private Sub FrmClosing(ByVal sender As Object, ByVal e As FormClosingEventArgs) Handles MyBase.FormClosing
-		My.App.HideBalloon()
-		ShowCursor()
-		RemoveHandler Me.LostFocus, AddressOf frmLostFocus
-		TimerImageAdvance.Stop()
-		TimerHideMouse.Stop()
-		TimerQuickHide.Stop()
-		DisposeGraphics()
-		My.App.ImageIsOnTop = True
-		If My.App.FrmMain.BackgroundworkerGetFiles.IsBusy Then My.App.FrmMain.cmiViewPics.Enabled = False
-		If My.App.FrmMain.Visible Then My.App.FrmMain.Focus()
-	End Sub
-	Private Sub FrmDisposed(ByVal sender As Object, ByVal e As EventArgs)
-		My.App.FrmMain.ToggleContextMenu()
-		'		My.SkyeShow.SetScreenSaverWatcher
-		My.App.frmPics = Nothing
-	End Sub
-	Private Sub FrmLostFocus(ByVal sender As Object, ByVal e As EventArgs)
-		If FullScreen And Not My.App.PicLockFullScreen And Not My.App.BalloonLoading And Not My.App.IgnoreFocusChange Then ToggleFullScreen()
 	End Sub
 	Private Sub FrmKeyDown(ByVal sender As Object, ByVal e As KeyEventArgs) Handles MyBase.KeyDown
 		If e.Control Then : mMoveMode = 1

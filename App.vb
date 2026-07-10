@@ -1,5 +1,6 @@
 
 Imports System.Reflection
+Imports Skye.UI
 
 Namespace My
 
@@ -570,6 +571,8 @@ Namespace My
 		Friend HideCursorWhenFullscreen As Boolean 'Default = True
 		Friend ActionOnScreenSave As ScreenSaveActions 'Default = Close
 		Friend InsideLocationOffset As UInt16 'Default = 40 'Inside Offset for Pic & Vid Location Mode
+		Friend Theme As Skye.UI.SkyeTheme
+		Friend ThemeAuto As Boolean
 		Friend HKEnabled As Boolean
 		Friend HKPicToggle As New HotKey
 		Friend HKPicToggleFullScreen As New HotKey
@@ -579,6 +582,11 @@ Namespace My
 		Friend HKVidShowFileInfo As New HotKey
 
 		' HANDLERS
+		Private Sub OnThemeChanged(sender As Object, e As EventArgs)
+			For Each f As Form In Application.OpenForms
+				ThemeManager.ApplyTheme(f)
+			Next
+		End Sub
 		Private Sub FrmBalloonTimerTick(ByVal sender As Object, ByVal e As EventArgs) Handles FrmBalloonTimer.Tick
 			HideBalloon()
 		End Sub
@@ -645,6 +653,12 @@ Namespace My
 #If DEBUG Then
 			'GetDebugSettings()
 #End If
+			If ThemeAuto Then
+				Skye.UI.ThemeManager.SetTheme(Skye.UI.ThemeManager.DetectWindowsTheme())
+			Else
+				Skye.UI.ThemeManager.CurrentTheme = Theme
+			End If
+			AddHandler Skye.UI.ThemeManager.ThemeChanged, AddressOf OnThemeChanged
 			LoadImageFileList()
 			LoadImageRepeatList()
 			LoadVideoFileList()
@@ -681,6 +695,11 @@ Namespace My
 			HideCursorWhenFullscreen = Skye.Common.RegistryHelper.GetBool("AppHideCursorWhenFullscreen", True)
 			ActionOnScreenSave = CType(Skye.Common.RegistryHelper.GetInt("AppActionOnScreenSave", CInt(ScreenSaveActions.Close)), ScreenSaveActions)
 			InsideLocationOffset = CUShort(Skye.Common.RegistryHelper.GetInt("AppInsideLocationOffset", 40))
+
+            ' Theme
+            Dim themeName As String = Skye.Common.RegistryHelper.GetString("Theme", "Light")
+			Theme = Skye.UI.SkyeThemes.GetTheme(themeName)
+			ThemeAuto = Skye.Common.RegistryHelper.GetBool("ThemeAuto", True)
 
 			' HotKeys
 			HKEnabled = Skye.Common.RegistryHelper.GetBool("HKEnabled", True)
@@ -831,6 +850,10 @@ Namespace My
 			Skye.Common.RegistryHelper.SetBool("AppHideCursorWhenFullscreen", HideCursorWhenFullscreen)
 			Skye.Common.RegistryHelper.SetInt("AppActionOnScreenSave", CInt(ActionOnScreenSave))
 			Skye.Common.RegistryHelper.SetInt("AppInsideLocationOffset", InsideLocationOffset)
+
+			' Theme
+			Skye.Common.RegistryHelper.SetString("Theme", Theme.Name)
+			Skye.Common.RegistryHelper.SetBool("ThemeAuto", ThemeAuto)
 
 			' HotKeys
 			Skye.Common.RegistryHelper.SetBool("HKEnabled", HKEnabled)

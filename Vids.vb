@@ -204,6 +204,7 @@ Partial Friend Class Vids
         AddHandler Me.LostFocus, AddressOf frmLostFocus
         Me.Text = My.Application.Info.Title + " Video"
         UpdateDeleteVideoConfirm()
+        cmVids.Renderer = New Skye.UI.SkyeMenuRenderer
 
         _player = New VLCPlayer(Me)
         VLCViewer.MediaPlayer = CType(_player, VLCPlayer).MediaPlayer

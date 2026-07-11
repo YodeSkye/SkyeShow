@@ -475,7 +475,8 @@ Partial Friend Class Vids
     Private Sub CMIMuteVideoMouseUp(sender As Object, e As MouseEventArgs) Handles cmiMuteVideo.MouseUp
         My.App.VidVolumeMute = Not My.App.VidVolumeMute
         SetVolume()
-        My.FrmMain.UpdateSettingsVideos()
+        My.FrmMain.UpdateSettingsVids()
+        App.SetSave()
     End Sub
     Private Sub CMIDeleteVideoMouseUp(sender As Object, e As MouseEventArgs) Handles cmiDeleteVideo.MouseUp
         If e.Button = MouseButtons.Left Then

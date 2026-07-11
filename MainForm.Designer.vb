@@ -287,7 +287,7 @@ Inherits System.Windows.Forms.Form
         cmApp.Items.AddRange(New ToolStripItem() {cmiViewPics, cmiPlayVids, toolStripSeparator1, cmiHelp, cmiLog, cmiSettings, toolStripSeparator2, cmiExit})
         cmApp.Name = "cmenuYMShow"
         cmApp.RenderMode = ToolStripRenderMode.Professional
-        cmApp.Size = New Size(185, 194)
+        cmApp.Size = New Size(185, 172)
         TipInfoEX.SetText(cmApp, Nothing)
         ' 
         ' cmiViewPics
@@ -548,7 +548,7 @@ Inherits System.Windows.Forms.Form
         chbkVidMute.Image = CType(resources.GetObject("chbkVidMute.Image"), Image)
         TipInfoEX.SetImage(chbkVidMute, Nothing)
         chbkVidMute.ImageAlign = ContentAlignment.BottomLeft
-        chbkVidMute.Location = New Point(302, 262)
+        chbkVidMute.Location = New Point(302, 261)
         chbkVidMute.Name = "chbkVidMute"
         chbkVidMute.Size = New Size(144, 48)
         chbkVidMute.TabIndex = 99
@@ -573,7 +573,7 @@ Inherits System.Windows.Forms.Form
         grbxHotKeysVids.Controls.Add(lblHotKeyVidShowFileInfo)
         grbxHotKeysVids.ForeColor = SystemColors.ControlText
         TipInfoEX.SetImage(grbxHotKeysVids, Nothing)
-        grbxHotKeysVids.Location = New Point(564, 309)
+        grbxHotKeysVids.Location = New Point(564, 308)
         grbxHotKeysVids.Name = "grbxHotKeysVids"
         grbxHotKeysVids.Size = New Size(250, 215)
         grbxHotKeysVids.TabIndex = 130
@@ -601,7 +601,7 @@ Inherits System.Windows.Forms.Form
         btnHotKeyVidToggleDisable.FlatAppearance.BorderSize = 0
         btnHotKeyVidToggleDisable.Image = My.Resources.Resources.imageRemove
         TipInfoEX.SetImage(btnHotKeyVidToggleDisable, Nothing)
-        btnHotKeyVidToggleDisable.Location = New Point(217, 52)
+        btnHotKeyVidToggleDisable.Location = New Point(211, 45)
         btnHotKeyVidToggleDisable.Name = "btnHotKeyVidToggleDisable"
         btnHotKeyVidToggleDisable.Size = New Size(31, 31)
         btnHotKeyVidToggleDisable.TabIndex = 46
@@ -629,7 +629,7 @@ Inherits System.Windows.Forms.Form
         btnHotKeyVidToggleFullScreenDisable.FlatAppearance.BorderSize = 0
         btnHotKeyVidToggleFullScreenDisable.Image = My.Resources.Resources.imageRemove
         TipInfoEX.SetImage(btnHotKeyVidToggleFullScreenDisable, Nothing)
-        btnHotKeyVidToggleFullScreenDisable.Location = New Point(217, 95)
+        btnHotKeyVidToggleFullScreenDisable.Location = New Point(211, 94)
         btnHotKeyVidToggleFullScreenDisable.Name = "btnHotKeyVidToggleFullScreenDisable"
         btnHotKeyVidToggleFullScreenDisable.Size = New Size(31, 31)
         btnHotKeyVidToggleFullScreenDisable.TabIndex = 43
@@ -689,7 +689,7 @@ Inherits System.Windows.Forms.Form
         btnHotKeyVidShowFileInfoDisable.FlatAppearance.BorderSize = 0
         btnHotKeyVidShowFileInfoDisable.Image = My.Resources.Resources.imageRemove
         TipInfoEX.SetImage(btnHotKeyVidShowFileInfoDisable, Nothing)
-        btnHotKeyVidShowFileInfoDisable.Location = New Point(217, 138)
+        btnHotKeyVidShowFileInfoDisable.Location = New Point(211, 143)
         btnHotKeyVidShowFileInfoDisable.Name = "btnHotKeyVidShowFileInfoDisable"
         btnHotKeyVidShowFileInfoDisable.Size = New Size(31, 31)
         btnHotKeyVidShowFileInfoDisable.TabIndex = 20
@@ -744,7 +744,7 @@ Inherits System.Windows.Forms.Form
         cobxVidTimeDisplayMode.DropDownStyle = ComboBoxStyle.DropDownList
         cobxVidTimeDisplayMode.FormattingEnabled = True
         TipInfoEX.SetImage(cobxVidTimeDisplayMode, Nothing)
-        cobxVidTimeDisplayMode.Location = New Point(302, 344)
+        cobxVidTimeDisplayMode.Location = New Point(302, 343)
         cobxVidTimeDisplayMode.Name = "cobxVidTimeDisplayMode"
         cobxVidTimeDisplayMode.Size = New Size(156, 29)
         cobxVidTimeDisplayMode.TabIndex = 105
@@ -1396,7 +1396,7 @@ Inherits System.Windows.Forms.Form
         ' 
         chbxVidTime.BackColor = Color.Transparent
         TipInfoEX.SetImage(chbxVidTime, Nothing)
-        chbxVidTime.Location = New Point(302, 324)
+        chbxVidTime.Location = New Point(302, 323)
         chbxVidTime.Name = "chbxVidTime"
         chbxVidTime.Size = New Size(156, 22)
         chbxVidTime.TabIndex = 100
@@ -1469,7 +1469,7 @@ Inherits System.Windows.Forms.Form
         grbxVidTimeLocationMode.Controls.Add(radbtnVidTimeLocationModeRightCenter)
         grbxVidTimeLocationMode.Controls.Add(radbtnVidTimeLocationModeTopLeft)
         TipInfoEX.SetImage(grbxVidTimeLocationMode, Nothing)
-        grbxVidTimeLocationMode.Location = New Point(302, 373)
+        grbxVidTimeLocationMode.Location = New Point(302, 372)
         grbxVidTimeLocationMode.Name = "grbxVidTimeLocationMode"
         grbxVidTimeLocationMode.Size = New Size(133, 151)
         grbxVidTimeLocationMode.TabIndex = 110
@@ -2070,7 +2070,7 @@ Inherits System.Windows.Forms.Form
         grbxHotKeysPics.Controls.Add(lblHotKeyPicShowFileInfo)
         grbxHotKeysPics.ForeColor = SystemColors.ControlText
         TipInfoEX.SetImage(grbxHotKeysPics, Nothing)
-        grbxHotKeysPics.Location = New Point(564, 307)
+        grbxHotKeysPics.Location = New Point(564, 308)
         grbxHotKeysPics.Name = "grbxHotKeysPics"
         grbxHotKeysPics.Size = New Size(250, 215)
         grbxHotKeysPics.TabIndex = 50
@@ -2264,7 +2264,7 @@ Inherits System.Windows.Forms.Form
         gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeRightCenter)
         gpbxPicTimerCountdownLocationMode.Controls.Add(radbtnPicTimerCountdownLocationModeTopLeft)
         TipInfoEX.SetImage(gpbxPicTimerCountdownLocationMode, Nothing)
-        gpbxPicTimerCountdownLocationMode.Location = New Point(285, 373)
+        gpbxPicTimerCountdownLocationMode.Location = New Point(285, 374)
         gpbxPicTimerCountdownLocationMode.Name = "gpbxPicTimerCountdownLocationMode"
         gpbxPicTimerCountdownLocationMode.Size = New Size(133, 150)
         gpbxPicTimerCountdownLocationMode.TabIndex = 80
@@ -2467,7 +2467,7 @@ Inherits System.Windows.Forms.Form
         ' chbxPicTimerCountdown
         ' 
         TipInfoEX.SetImage(chbxPicTimerCountdown, Nothing)
-        chbxPicTimerCountdown.Location = New Point(285, 345)
+        chbxPicTimerCountdown.Location = New Point(285, 346)
         chbxPicTimerCountdown.Name = "chbxPicTimerCountdown"
         chbxPicTimerCountdown.Size = New Size(204, 30)
         chbxPicTimerCountdown.TabIndex = 75
@@ -2478,7 +2478,7 @@ Inherits System.Windows.Forms.Form
         ' txbxPicTimerInterval
         ' 
         TipInfoEX.SetImage(txbxPicTimerInterval, Nothing)
-        txbxPicTimerInterval.Location = New Point(285, 314)
+        txbxPicTimerInterval.Location = New Point(285, 315)
         txbxPicTimerInterval.MaxLength = 5
         txbxPicTimerInterval.Name = "txbxPicTimerInterval"
         txbxPicTimerInterval.Size = New Size(80, 29)
@@ -2598,7 +2598,7 @@ Inherits System.Windows.Forms.Form
         gpbxPicLocationMode.Controls.Add(radbtnPicLocationModeTopCenterLeftInside)
         gpbxPicLocationMode.Controls.Add(radbtnPicLocationModeTopLeft)
         TipInfoEX.SetImage(gpbxPicLocationMode, Nothing)
-        gpbxPicLocationMode.Location = New Point(12, 299)
+        gpbxPicLocationMode.Location = New Point(12, 300)
         gpbxPicLocationMode.Name = "gpbxPicLocationMode"
         gpbxPicLocationMode.Size = New Size(214, 224)
         gpbxPicLocationMode.TabIndex = 40
@@ -3016,7 +3016,7 @@ Inherits System.Windows.Forms.Form
         ' 
         btnPicTimerEnabled.FlatStyle = FlatStyle.Flat
         TipInfoEX.SetImage(btnPicTimerEnabled, Nothing)
-        btnPicTimerEnabled.Location = New Point(285, 263)
+        btnPicTimerEnabled.Location = New Point(285, 264)
         btnPicTimerEnabled.Margin = New Padding(3, 4, 3, 4)
         btnPicTimerEnabled.Name = "btnPicTimerEnabled"
         btnPicTimerEnabled.Size = New Size(80, 31)
@@ -3066,7 +3066,7 @@ Inherits System.Windows.Forms.Form
         ' label4
         ' 
         TipInfoEX.SetImage(label4, Nothing)
-        label4.Location = New Point(285, 295)
+        label4.Location = New Point(285, 296)
         label4.Name = "label4"
         label4.Size = New Size(80, 22)
         label4.TabIndex = 21
@@ -3077,7 +3077,7 @@ Inherits System.Windows.Forms.Form
         ' chbxPicTimerAutoStart
         ' 
         TipInfoEX.SetImage(chbxPicTimerAutoStart, Nothing)
-        chbxPicTimerAutoStart.Location = New Point(370, 260)
+        chbxPicTimerAutoStart.Location = New Point(370, 261)
         chbxPicTimerAutoStart.Margin = New Padding(3, 4, 3, 4)
         chbxPicTimerAutoStart.Name = "chbxPicTimerAutoStart"
         chbxPicTimerAutoStart.Size = New Size(141, 38)
@@ -3179,9 +3179,9 @@ Inherits System.Windows.Forms.Form
         AutoSizeMode = AutoSizeMode.GrowAndShrink
         AutoValidate = AutoValidate.EnableAllowFocusChange
         ClientSize = New Size(917, 630)
-        Controls.Add(PanelApp)
         Controls.Add(PanelVids)
         Controls.Add(PanelPics)
+        Controls.Add(PanelApp)
         Controls.Add(PanelPageSelector)
         Controls.Add(PanelActions)
         DoubleBuffered = True

@@ -440,13 +440,13 @@ Partial Friend Class Pics
 		End If
 	End Sub
 	Friend Sub ToggleTimer()
-		My.App.PicTimerEnabled = Not My.App.PicTimerEnabled
+		App.PicTimerEnabled = Not App.PicTimerEnabled
 		If My.App.PicTimerEnabled Then SetImageTimerCountdown()
-
 		If Me.cmiQuickHide.Checked Then : QuickShow()
 		Else : SetTimer()
 		End If
 		If My.App.FrmMain.Visible Then My.App.FrmMain.UpdateSettings()
+		App.SetSave()
 	End Sub
 	Friend Sub ToggleFullScreen()
 		FullScreen = Not FullScreen

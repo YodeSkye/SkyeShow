@@ -1,6 +1,5 @@
 
 Imports System.ComponentModel
-Imports System.ComponentModel.Design.ObjectSelectorEditor
 Imports Skye.UI
 Imports SkyeShow.My
 
@@ -13,19 +12,25 @@ Partial Friend Class MainForm
         If e.Button = MouseButtons.Left Then ToggleFolderList(My.App.GetFilesType.Pics)
     End Sub
     Private Sub BtnPicTimerEnabledClick(ByVal sender As Object, ByVal e As EventArgs) Handles btnPicTimerEnabled.Click
-        If My.App.FrmPicsVisible Then : My.App.frmPics.ToggleTimer()
-        Else : My.App.PicTimerEnabled = Not My.App.PicTimerEnabled
+        If App.FrmPicsVisible Then
+            App.frmPics.ToggleTimer()
+        Else
+            App.PicTimerEnabled = Not App.PicTimerEnabled
         End If
         ShowSettings()
+        App.SetSave()
     End Sub
     Private Sub RadbtnPicPlayModeLinearClick(ByVal sender As Object, ByVal e As EventArgs) Handles radbtnPicPlayModeLinear.Click
         My.App.PicPlayMode = My.App.PlayMode.Linear
+        App.SetSave()
     End Sub
     Private Sub RadbtnPicPlayModeLinearWithRandomStartClick(ByVal sender As Object, ByVal e As EventArgs) Handles radbtnPicPlayModeLinearWithRandomStart.Click
         My.App.PicPlayMode = My.App.PlayMode.LinearWithRandomStart
+        App.SetSave()
     End Sub
     Private Sub RadbtnPicPlayModeRandomClick(ByVal sender As Object, ByVal e As EventArgs) Handles radbtnPicPlayModeRandom.Click
         My.App.PicPlayMode = My.App.PlayMode.Random
+        App.SetSave()
     End Sub
     Private Sub RadbtnPicJustifyClick(ByVal sender As Object, ByVal e As EventArgs) Handles radbtnPicJustifyRight.Click, radbtnPicJustifyLeft.Click, radbtnPicJustifyCenter.Click
         Select Case CType(sender, RadioButton).Name
@@ -33,6 +38,7 @@ Partial Friend Class MainForm
             Case Me.radbtnPicJustifyCenter.Name : My.App.PicJustify = My.App.LocationJustify.Center
             Case Me.radbtnPicJustifyRight.Name : My.App.PicJustify = My.App.LocationJustify.Right
         End Select
+        App.SetSave()
     End Sub
     Private Sub RadbtnPicLocationModeClick(ByVal sender As Object, ByVal e As EventArgs) Handles radbtnPicLocationModeTopRightInside.Click, radbtnPicLocationModeTopRight.Click, radbtnPicLocationModeTopLeftInside.Click, radbtnPicLocationModeTopLeft.Click, radbtnPicLocationModeTopCenterRightInside.Click, radbtnPicLocationModeTopCenterRight.Click, radbtnPicLocationModeTopCenterLeftInside.Click, radbtnPicLocationModeTopCenterLeft.Click, radbtnPicLocationModeTopCenterInside.Click, radbtnPicLocationModeTopCenter.Click, radbtnPicLocationModeRightCenterTopInside.Click, radbtnPicLocationModeRightCenterTop.Click, radbtnPicLocationModeRightCenterInside.Click, radbtnPicLocationModeRightCenterBottomInside.Click, radbtnPicLocationModeRightCenterBottom.Click, radbtnPicLocationModeRightCenter.Click, radbtnPicLocationModeManual.Click, radbtnPicLocationModeLeftCenterTopInside.Click, radbtnPicLocationModeLeftCenterTop.Click, radbtnPicLocationModeLeftCenterInside.Click, radbtnPicLocationModeLeftCenterBottomInside.Click, radbtnPicLocationModeLeftCenterBottom.Click, radbtnPicLocationModeLeftCenter.Click, radbtnPicLocationModeBottomRightInside.Click, radbtnPicLocationModeBottomRight.Click, radbtnPicLocationModeBottomLeftInside.Click, radbtnPicLocationModeBottomLeft.Click, radbtnPicLocationModeBottomCenterRightInside.Click, radbtnPicLocationModeBottomCenterRight.Click, radbtnPicLocationModeBottomCenterLeftInside.Click, radbtnPicLocationModeBottomCenterLeft.Click, radbtnPicLocationModeBottomCenterInside.Click, radbtnPicLocationModeBottomCenter.Click
         For Each c As Control In Me.gpbxPicLocationMode.Controls
@@ -73,6 +79,7 @@ Partial Friend Class MainForm
                     Case "radbtnPicLocationModeLeftCenterTopInside" : My.App.PicLocationMode = My.App.LocationMode.LeftCenterTopInside
                 End Select
                 If My.App.FrmPicsVisible Then My.App.frmPics.DrawImage()
+                App.SetSave()
             End If
         Next
     End Sub
@@ -98,6 +105,7 @@ Partial Friend Class MainForm
                     Case "radbtnPicTimerCountdownLocationModeLeftCenterTop" : My.App.PicTimerCountdownLocationMode = My.App.LocationMode.LeftCenterTop
                 End Select
                 If My.App.FrmPicsVisible Then My.App.frmPics.ShowImageTimerCountdown()
+                App.SetSave()
             End If
         Next
     End Sub
@@ -105,15 +113,19 @@ Partial Friend Class MainForm
         My.App.PicTimerCountdown = Not My.App.PicTimerCountdown
         ShowSettingsImages()
         If My.App.FrmPicsVisible Then My.App.frmPics.SetImageTimerCountdown()
+        App.SetSave()
     End Sub
     Private Sub ChbxPicAutoViewClick(ByVal sender As Object, ByVal e As EventArgs) Handles chbxPicAutoView.Click
         My.App.PicAutoView = Not My.App.PicAutoView
+        App.SetSave()
     End Sub
     Private Sub ChbxPicLockFullScreenClick(ByVal sender As Object, ByVal e As EventArgs) Handles chbxPicLockFullScreen.Click
         My.App.PicLockFullScreen = Not My.App.PicLockFullScreen
+        App.SetSave()
     End Sub
     Private Sub ChbxPicTimerAutoStartClick(ByVal sender As Object, ByVal e As EventArgs) Handles chbxPicTimerAutoStart.Click
         My.App.PicTimerAutoStart = Not My.App.PicTimerAutoStart
+        App.SetSave()
     End Sub
     Private Sub TxbxPicTimerIntervalValidating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txbxPicTimerInterval.Validating
         If Int(Val(Me.txbxPicTimerInterval.Text)) < 1 Then Me.txbxPicTimerInterval.Text = "1"
@@ -123,6 +135,7 @@ Partial Friend Class MainForm
         My.App.PicTimerInterval = CType(Int(Val(Me.txbxPicTimerInterval.Text)), Integer)
         If My.App.FrmPicsVisible Then My.App.frmPics.SetTimer()
         Me.txbxPicTimerInterval.SelectAll()
+        App.SetSave()
     End Sub
 
 #End Region
@@ -136,15 +149,19 @@ Partial Friend Class MainForm
     Private Sub BtnVidMuteClick(ByVal sender As Object, ByVal e As EventArgs)
         My.App.VidVolumeMute = Not My.App.VidVolumeMute
         ShowSettings()
+        App.SetSave()
     End Sub
     Private Sub RadbtnVidPlayModeLinearClick(ByVal sender As Object, ByVal e As EventArgs) Handles radbtnVidPlayModeLinear.Click
         My.App.VidPlayMode = My.App.PlayMode.Linear
+        App.SetSave()
     End Sub
     Private Sub RadbtnVidPlayModeLinearWithRandomStartClick(ByVal sender As Object, ByVal e As EventArgs) Handles radbtnVidPlayModeLinearWithRandomStart.Click
         My.App.VidPlayMode = My.App.PlayMode.LinearWithRandomStart
+        App.SetSave()
     End Sub
     Private Sub RadbtnVidPlayModeRandomClick(ByVal sender As Object, ByVal e As EventArgs) Handles radbtnVidPlayModeRandom.Click
         My.App.VidPlayMode = My.App.PlayMode.Random
+        App.SetSave()
     End Sub
     Private Sub RadbtnVidScaleClick(ByVal sender As Object, ByVal e As EventArgs) Handles radbtnVideoScaleFit.Click, radbtnVideoScale75.Click, radbtnVideoScale66.Click, radbtnVideoScale50.Click, radbtnVideoScale33.Click, radbtnVideoScale25.Click, radbtnVideoScale100.Click, radbtnVideoScale10.Click
         If Me.radbtnVideoScale10.Checked Then : My.App.VidScale = 0.1
@@ -157,6 +174,7 @@ Partial Friend Class MainForm
         ElseIf Me.radbtnVideoScaleFit.Checked Then : My.App.VidScale = 0
         End If
         If My.App.FrmVidsVisible Then My.App.FrmVids.SetSize()
+        App.SetSave()
     End Sub
     Private Sub RadbtnVidLocationModeClick(ByVal sender As Object, ByVal e As EventArgs) Handles radbtnVidLocationModeTopRightInside.Click, radbtnVidLocationModeTopRight.Click, radbtnVidLocationModeTopLeftInside.Click, radbtnVidLocationModeTopLeft.Click, radbtnVidLocationModeTopCenterRightInside.Click, radbtnVidLocationModeTopCenterRight.Click, radbtnVidLocationModeTopCenterLeftInside.Click, radbtnVidLocationModeTopCenterLeft.Click, radbtnVidLocationModeTopCenterInside.Click, radbtnVidLocationModeTopCenter.Click, radbtnVidLocationModeRightCenterTopInside.Click, radbtnVidLocationModeRightCenterTop.Click, radbtnVidLocationModeRightCenterInside.Click, radbtnVidLocationModeRightCenterBottomInside.Click, radbtnVidLocationModeRightCenterBottom.Click, radbtnVidLocationModeRightCenter.Click, radbtnVidLocationModeManual.Click, radbtnVidLocationModeLeftCenterTopInside.Click, radbtnVidLocationModeLeftCenterTop.Click, radbtnVidLocationModeLeftCenterInside.Click, radbtnVidLocationModeLeftCenterBottomInside.Click, radbtnVidLocationModeLeftCenterBottom.Click, radbtnVidLocationModeLeftCenter.Click, radbtnVidLocationModeBottomRightInside.Click, radbtnVidLocationModeBottomRight.Click, radbtnVidLocationModeBottomLeftInside.Click, radbtnVidLocationModeBottomLeft.Click, radbtnVidLocationModeBottomCenterRightInside.Click, radbtnVidLocationModeBottomCenterRight.Click, radbtnVidLocationModeBottomCenterLeftInside.Click, radbtnVidLocationModeBottomCenterLeft.Click, radbtnVidLocationModeBottomCenterInside.Click, radbtnVidLocationModeBottomCenter.Click
         For Each c As Control In Me.gpbxVidLocationMode.Controls
@@ -197,6 +215,7 @@ Partial Friend Class MainForm
                     Case "radbtnVidLocationModeLeftCenterTopInside" : My.App.VidLocationMode = My.App.LocationMode.LeftCenterTopInside
                 End Select
                 If My.App.FrmVidsVisible Then My.App.FrmVids.SetSize()
+                App.SetSave()
             End If
         Next
     End Sub
@@ -222,23 +241,34 @@ Partial Friend Class MainForm
                     Case "radbtnVidTimeLocationModeLeftCenterTop" : My.App.VidTimeLocationMode = My.App.LocationMode.LeftCenterTop
                 End Select
                 If My.App.FrmVidsVisible Then My.App.FrmVids.ShowVideoTime()
+                App.SetSave()
             End If
         Next
     End Sub
     Private Sub ChbxVidAutoViewClick(ByVal sender As Object, ByVal e As EventArgs) Handles chbxVidAutoView.Click
         My.App.VidAutoView = Not My.App.VidAutoView
+        App.SetSave()
     End Sub
     Private Sub ChbxVidLockFullScreenClick(ByVal sender As Object, ByVal e As EventArgs) Handles chbxVidLockFullScreen.Click
         My.App.VidLockFullScreen = Not My.App.VidLockFullScreen
+        App.SetSave()
+    End Sub
+    Private Sub ChbkVidMuteClick(sender As Object, e As EventArgs) Handles chbkVidMute.Click
+        App.VidVolumeMute = chbkVidMute.Checked
+        UpdateSettingsVids()
+        If App.FrmVids IsNot Nothing Then App.FrmVids.SetVolume()
+        App.SetSave()
     End Sub
     Private Sub ChbxVidTimeClick(sender As Object, e As EventArgs) Handles chbxVidTime.Click
         My.App.VidTime = Me.chbxVidTime.Checked
         ShowSettingsVideos()
         If My.App.FrmVidsVisible Then My.App.FrmVids.SetVideoTime()
+        App.SetSave()
     End Sub
     Private Sub CobxVidTimeDisplayModeSelectionChangeCommitted(sender As Object, e As EventArgs) Handles cobxVidTimeDisplayMode.SelectionChangeCommitted
         My.App.VidTimeDisplayMode = CType(Me.cobxVidTimeDisplayMode.SelectedIndex, My.App.VideoPositionMode)
         If My.App.FrmVidsVisible Then My.App.FrmVids.ShowVideoTime()
+        App.SetSave()
     End Sub
 
 #End Region
@@ -775,12 +805,6 @@ Partial Friend Class MainForm
         ShowSettings()
         App.SetSave()
     End Sub
-    Private Sub ChbkVidMuteClick(sender As Object, e As EventArgs) Handles chbkVidMute.Click
-        App.VidVolumeMute = chbkVidMute.Checked
-        UpdateSettingsVideos()
-        If App.FrmVids IsNot Nothing Then App.FrmVids.SetVolume()
-        App.SetSave()
-    End Sub
     Private Sub RadbtnActionOnScreenSaveNoActionClick(sender As Object, e As EventArgs) Handles radbtnActionOnScreenSaveNoAction.Click
         My.App.ActionOnScreenSave = My.App.ScreenSaveActions.NoAction
         App.SetSave()
@@ -979,7 +1003,7 @@ Partial Friend Class MainForm
                 notifyiconSkyeShow.Icon = My.Resources.Resources.IconAppHidden
                 notifyiconSkyeShow.Text += Chr(13) + "One Or More Windows Are Hidden. Click To Restore."
             End If
-            btnLog.ResetBackColor()
+            btnLog.BackColor = Skye.UI.ThemeManager.CurrentTheme.ButtonBack
         End If
     End Sub
     Friend Sub ShowSave()
@@ -1015,13 +1039,13 @@ Partial Friend Class MainForm
     End Sub
     Friend Sub UpdateSettings() 'Settings that can change on other forms
         UpdateSettingsApp()
-        UpdateSettingsImages()
-        UpdateSettingsVideos()
+        UpdateSettingsPics()
+        UpdateSettingsVids()
     End Sub
     Friend Sub UpdateSettingsApp() 'Settings that can change on other forms
 
     End Sub
-    Friend Sub UpdateSettingsImages() 'Settings that can change on other forms
+    Friend Sub UpdateSettingsPics() 'Settings that can change on other forms
         If Not Me.BackgroundworkerGetFiles.IsBusy Then
             Me.lblPicFileCount.Text = (My.App.ImageFiles.Count - My.App.ImageRepeatList.Count).ToString
             Me.lblPicFileCount.Text += " / " + My.App.ImageRepeatList.Count.ToString
@@ -1081,7 +1105,7 @@ Partial Friend Class MainForm
             Me.btnPicTimerEnabled.ForeColor = Color.Maroon
         End If
     End Sub
-    Friend Sub UpdateSettingsVideos() 'Settings that can change on other forms
+    Friend Sub UpdateSettingsVids() 'Settings that can change on other forms
         If Not Me.BackgroundworkerGetFiles.IsBusy Then
             Me.lblVidFileCount.Text = My.App.VideoFilesCount(My.App.VideoFilesCountMode.UnViewed).ToString
             Me.lblVidFileCount.Text += " / " + My.App.VideoFilesCount(My.App.VideoFilesCountMode.Enabled).ToString
@@ -1154,8 +1178,11 @@ Partial Friend Class MainForm
         Else
             Skye.UI.ThemeManager.SetTheme(App.Theme)
         End If
-        If My.App.FrmPicsVisible Then My.App.frmPics.DrawImage()
-        If My.App.FrmVidsVisible Then My.App.FrmVids.SetSize()
+        If App.FrmPicsVisible Then App.frmPics.DrawImage()
+        If App.FrmVidsVisible Then
+            App.FrmVids.SetSize()
+            App.FrmVids.SetVolume()
+        End If
         App.NeedsSaved = False
         ShowSave()
     End Sub
@@ -1267,7 +1294,7 @@ Partial Friend Class MainForm
         Me.txbxHotKeyPicShowFileInfo.ForeColor = Color.Teal
         Me.btnHotKeysPicsUndo.Enabled = False
         Me.btnHotKeysPicsSet.Enabled = False
-        UpdateSettingsImages()
+        UpdateSettingsPics()
         Me.btnClose.Focus()
     End Sub
     Private Sub ShowSettingsVideos()
@@ -1365,7 +1392,7 @@ Partial Friend Class MainForm
         Me.txbxHotKeyVidShowFileInfo.ForeColor = Color.Teal
         Me.btnHotKeysVidsUndo.Enabled = False
         Me.btnHotKeysVidsSet.Enabled = False
-        UpdateSettingsVideos()
+        UpdateSettingsVids()
         Me.btnClose.Focus()
     End Sub
     Private Sub GetFiles(mode As My.App.GetFilesType)

@@ -287,7 +287,8 @@ Inherits System.Windows.Forms.Form
         cmApp.Items.AddRange(New ToolStripItem() {cmiViewPics, cmiPlayVids, toolStripSeparator1, cmiHelp, cmiLog, cmiSettings, toolStripSeparator2, cmiExit})
         cmApp.Name = "cmenuYMShow"
         cmApp.RenderMode = ToolStripRenderMode.Professional
-        cmApp.Size = New Size(185, 172)
+        cmApp.ShowItemToolTips = False
+        cmApp.Size = New Size(185, 194)
         TipInfoEX.SetText(cmApp, Nothing)
         ' 
         ' cmiViewPics
@@ -297,6 +298,7 @@ Inherits System.Windows.Forms.Form
         cmiViewPics.Name = "cmiViewPics"
         cmiViewPics.Size = New Size(184, 26)
         cmiViewPics.Text = "Pictures"
+        cmiViewPics.ToolTipText = "RightClick = Show Maximized"
         ' 
         ' cmiPlayVids
         ' 
@@ -305,6 +307,7 @@ Inherits System.Windows.Forms.Form
         cmiPlayVids.Name = "cmiPlayVids"
         cmiPlayVids.Size = New Size(184, 26)
         cmiPlayVids.Text = "Videos"
+        cmiPlayVids.ToolTipText = "RightClick = Show Maximized"
         ' 
         ' toolStripSeparator1
         ' 

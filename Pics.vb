@@ -21,6 +21,7 @@ Partial Friend Class Pics
 	Private imageRaw As Image
 	Private imageDrawn As Bitmap
 	Private imageProcessor As Graphics
+	Private TipCM As Skye.UI.ToolTipEX
 
 	'Form Events
 	Friend Sub New()
@@ -36,6 +37,18 @@ Partial Friend Class Pics
 		Me.Text = My.Application.Info.Title + " Image"
 		UpdateDeleteImageConfirm()
 		cmPics.Renderer = New Skye.UI.SkyeMenuRenderer
+		TipCM = New Skye.UI.ToolTipEX() With {
+			.Font = App.MenuFont,
+			.ShadowAlpha = 0,
+			.ShadowThickness = 0,
+			.FadeInRate = 25,
+			.FadeOutRate = 25,
+			.HideDelay = 5000,
+			.ShowDelay = 250
+		}
+		App.HookTSItemsForCMTooltip(cmPics, TipCM)
+		Skye.UI.ThemeManager.RegisterComponent(TipCM)
+		Skye.UI.ThemeManager.ApplyTheme(Me)
 	End Sub
 	Private Sub FrmLoad(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
 		SetTimerAutoStart()

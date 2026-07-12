@@ -39,6 +39,7 @@ Inherits System.Windows.Forms.Form
         cmVids.Items.AddRange(New ToolStripItem() {cmiFullScreen, cmiSeparator1, cmiQuickHide, cmiQuickShift, cmiQuickRestore, cmiSeparator2, cmiPlay, cmiAdvance, cmiShowFileInfo, cmiViewVideo, cmiMuteVideo, cmiSeparator3, cmiDeleteVideo, cmiSeparator4, cmiClose})
         cmVids.Name = "contextmenuVideo"
         cmVids.RenderMode = ToolStripRenderMode.Professional
+        cmVids.ShowItemToolTips = False
         cmVids.Size = New Size(233, 336)
         ' 
         ' cmiFullScreen

@@ -291,6 +291,7 @@ Partial Friend Class MainForm
     Private GenerateVideoListStartTime As TimeSpan
     Private GenerateVideoListEndTime As TimeSpan
     Private ImageActiveOnRefresh, VideoActiveOnRefresh As Boolean
+    Private TipCM As Skye.UI.ToolTipEX
 
     ' Form Events
     Protected Overrides Sub WndProc(ByRef m As System.Windows.Forms.Message)
@@ -379,7 +380,18 @@ Partial Friend Class MainForm
             ToggleContextMenu()
         End If
         LVPageSelector.Focus()
+        TipCM = New Skye.UI.ToolTipEX() With {
+            .Font = App.MenuFont,
+            .ShadowAlpha = 0,
+            .ShadowThickness = 0,
+            .FadeInRate = 25,
+            .FadeOutRate = 25,
+            .HideDelay = 5000,
+            .ShowDelay = 250
+        }
+        App.HookTSItemsForCMTooltip(cmApp, TipCM)
         Skye.UI.ThemeManager.RegisterComponent(TipInfoEX)
+        Skye.UI.ThemeManager.RegisterComponent(TipCM)
         Skye.UI.ThemeManager.ApplyTheme(Me)
         cmApp.Renderer = New Skye.UI.SkyeMenuRenderer
     End Sub

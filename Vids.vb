@@ -21,6 +21,7 @@ Partial Friend Class Vids
     Private DeleteVideoConfirm As Boolean = False
     Private FullScreen As Boolean = False
     Private PlayState As Boolean = False
+    Private TipCM As Skye.UI.ToolTipEX
 
     'Interface
     Private _player As Skye.Contracts.IMediaPlayer
@@ -205,6 +206,18 @@ Partial Friend Class Vids
         Me.Text = My.Application.Info.Title + " Video"
         UpdateDeleteVideoConfirm()
         cmVids.Renderer = New Skye.UI.SkyeMenuRenderer
+        TipCM = New Skye.UI.ToolTipEX() With {
+            .Font = App.MenuFont,
+            .ShadowAlpha = 0,
+            .ShadowThickness = 0,
+            .FadeInRate = 25,
+            .FadeOutRate = 25,
+            .HideDelay = 5000,
+            .ShowDelay = 250
+        }
+        App.HookTSItemsForCMTooltip(cmVids, TipCM)
+        Skye.UI.ThemeManager.RegisterComponent(TipCM)
+        Skye.UI.ThemeManager.ApplyTheme(Me)
 
         _player = New VLCPlayer(Me)
         VLCViewer.MediaPlayer = CType(_player, VLCPlayer).MediaPlayer

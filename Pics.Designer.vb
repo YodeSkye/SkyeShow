@@ -50,6 +50,7 @@ Inherits System.Windows.Forms.Form
         cmPics.Items.AddRange(New ToolStripItem() {cmiFullScreen, cmiSeparator1, cmiQuickHide, cmiQuickShift, cmiQuickRestore, cmiSeparator2, cmiTimer, cmiAdvance, cmiShowFileInfo, cmiViewImage, cmiSeparator3, cmiDeleteImage, cmiSeparator4, cmiClose})
         cmPics.Name = "contextmenuImageForm"
         cmPics.RenderMode = ToolStripRenderMode.Professional
+        cmPics.ShowItemToolTips = False
         cmPics.Size = New Size(233, 310)
         ' 
         ' cmiFullScreen

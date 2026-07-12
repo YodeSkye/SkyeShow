@@ -772,11 +772,8 @@ Partial Friend Class MainForm
     Private Sub ChkBoxThemeAuto_Click(sender As Object, e As EventArgs) Handles ChkBoxThemeAuto.Click
         App.ThemeAuto = ChkBoxThemeAuto.Checked
         SetThemesList()
-        If App.ThemeAuto Then
-            Skye.UI.ThemeManager.SetTheme(Skye.UI.ThemeManager.DetectWindowsTheme())
-        Else
-            Skye.UI.ThemeManager.SetTheme(App.Theme)
-        End If
+        Dim selectedTheme As Skye.UI.SkyeTheme = If(App.ThemeAuto, Skye.UI.ThemeManager.DetectWindowsTheme(), App.Theme)
+        Skye.UI.ThemeManager.SetTheme(selectedTheme)
         App.SetSave()
     End Sub
     Private Sub ChbxSaveFileListsClick(sender As Object, e As EventArgs) Handles chbxSaveFileLists.Click
@@ -1174,11 +1171,8 @@ Partial Friend Class MainForm
         My.App.GetSettings()
         My.App.VideoFilesResetEnabled()
         ShowSettings()
-        If App.ThemeAuto Then
-            Skye.UI.ThemeManager.SetTheme(Skye.UI.ThemeManager.DetectWindowsTheme())
-        Else
-            Skye.UI.ThemeManager.SetTheme(App.Theme)
-        End If
+        Dim selectedTheme As Skye.UI.SkyeTheme = If(App.ThemeAuto, Skye.UI.ThemeManager.DetectWindowsTheme(), App.Theme)
+        Skye.UI.ThemeManager.SetTheme(selectedTheme)
         If App.FrmPicsVisible Then App.frmPics.DrawImage()
         If App.FrmVidsVisible Then
             App.FrmVids.SetSize()

@@ -269,7 +269,10 @@ Namespace My
 		Friend Sub ShowVideos(Optional showBySelection As Boolean = False)
 			If FrmVidsVisible() Then FrmVids.Close()
 			FrmVids = New Vids(showBySelection)
-			Try : FrmVids.Show() : Catch : End Try
+			Try
+				FrmVids.Show()
+			Catch
+			End Try
 		End Sub
 		Friend Sub ShowVideoFromCommandLine()
 			Debug.Print("ShowVideoFromCommandLine " + CommandLinePath.ToUpper)
@@ -321,8 +324,9 @@ Namespace My
 			'My.Debug.ShowMessage(Mode.Videos, "VideoFilesSetViewed", "Index = " + index.ToString)
 			Dim file As VideoFileType = VideoFiles(index)
 			file.Viewed = True
-			VideoFiles.RemoveAt(index)
-			VideoFiles.Insert(index, file)
+			'VideoFiles.RemoveAt(index)
+			'VideoFiles.Insert(index, file)
+			VideoFiles(index) = file
 			If VideoFilesCount() = 0 Then VideoFilesResetViewed()
 			FrmMain.UpdateSettings()
 		End Sub
@@ -331,8 +335,9 @@ Namespace My
 				If VideoFiles(index).Enabled Then
 					Dim file As VideoFileType = VideoFiles(index)
 					file.Viewed = False
-					VideoFiles.RemoveAt(index)
-					VideoFiles.Insert(index, file)
+					'VideoFiles.RemoveAt(index)
+					'VideoFiles.Insert(index, file)
+					VideoFiles(index) = file
 				End If
 			Next
 		End Sub
@@ -341,8 +346,9 @@ Namespace My
 				If VideoFiles(index).Path.StartsWith(VidFolders(folderindex).SearchPath) AndAlso VideoFiles(index).State = VideoFileState.Valid Then
 					Dim file As VideoFileType = VideoFiles(index)
 					file.Enabled = enabled
-					VideoFiles.RemoveAt(index)
-					VideoFiles.Insert(index, file)
+					'VideoFiles.RemoveAt(index)
+					'VideoFiles.Insert(index, file)
+					VideoFiles(index) = file
 				End If
 			Next
 			If VideoFilesCount() = 0 Then VideoFilesResetViewed()
@@ -354,8 +360,9 @@ Namespace My
 					If VideoFiles(fileindex).Path.StartsWith(VidFolders(folderindex).SearchPath) AndAlso VideoFiles(fileindex).State = VideoFileState.Valid Then
 						file = VideoFiles(fileindex)
 						file.Enabled = VidFolders(folderindex).Enabled
-						VideoFiles.RemoveAt(fileindex)
-						VideoFiles.Insert(fileindex, file)
+						'VideoFiles.RemoveAt(fileindex)
+						'VideoFiles.Insert(fileindex, file)
+						VideoFiles(fileindex) = file
 					End If
 				Next
 			Next
@@ -374,8 +381,9 @@ Namespace My
 					file.Enabled = False
 					file.State = state
 			End Select
-			VideoFiles.RemoveAt(index)
-			VideoFiles.Insert(index, file)
+			'VideoFiles.RemoveAt(index)
+			'VideoFiles.Insert(index, file)
+			VideoFiles(index) = file
 			If Not state = VideoFileState.Valid AndAlso VideoFilesCount() = 0 Then VideoFilesResetViewed()
 			FrmMain.UpdateSettings()
 		End Sub
@@ -435,22 +443,15 @@ Namespace My
 		' DECLARATIONS
 		Friend Const LocationModeManualAnchorThreshold As Byte = 50 'Percent of screen width/height that determines when the manual mode anchor should be right/bottom of form.
 		Friend Const GeneratingFileListAlertText As String = "Generating File List ... Please Wait"
-		Friend ReadOnly UserPath As String = My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\Skye\" 'UserPath is the base path for user-specific files.
-		Public ReadOnly Property AppTitle As String
-			Get
-				Dim asm As Assembly = Assembly.GetExecutingAssembly()
-				Dim titleAttr As AssemblyTitleAttribute = asm.GetCustomAttribute(Of AssemblyTitleAttribute)()
-				Return titleAttr.Title
-			End Get
-		End Property
+		Friend ReadOnly UserPath As String = My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\Skye\" 'UserPath is the base path for user-specific files.
 #If DEBUG Then
-		Friend ReadOnly ImageFilesPath As String = UserPath + My.Application.Info.ProductName + "ImagesDEV.xml"
-		Friend ReadOnly ImageRepeatListPath As String = UserPath + My.Application.Info.ProductName + "ImagesViewedDEV.xml"
-		Friend ReadOnly VideoFilesPath As String = UserPath + My.Application.Info.ProductName + "VideosDEV.xml"
+		Friend ReadOnly ImageFilesPath As String = UserPath & My.Application.Info.ProductName & "ImagesDEV.xml"
+		Friend ReadOnly ImageRepeatListPath As String = UserPath & My.Application.Info.ProductName & "ImagesViewedDEV.xml"
+		Friend ReadOnly VideoFilesPath As String = UserPath & My.Application.Info.ProductName & "VideosDEV.xml"
 #Else
-		Friend ReadOnly ImageFilesPath As String = UserPath + My.Application.Info.ProductName + "Images.xml"
-		Friend ReadOnly ImageRepeatListPath As String = UserPath + My.Application.Info.ProductName + "ImagesViewed.xml"
-		Friend ReadOnly VideoFilesPath As String = UserPath + My.Application.Info.ProductName + "Videos.xml"
+		Friend ReadOnly ImageFilesPath As String = UserPath & My.Application.Info.ProductName & "Images.xml"
+		Friend ReadOnly ImageRepeatListPath As String = UserPath & My.Application.Info.ProductName & "ImagesViewed.xml"
+		Friend ReadOnly VideoFilesPath As String = UserPath & My.Application.Info.ProductName & "Videos.xml"
 #End If
 		Friend Enum GetFilesMode
 			Generated
@@ -623,13 +624,16 @@ Namespace My
 		' METHODS
 		Friend Sub Initialize()
 #If DEBUG Then
-			Skye.Common.Log.Initialize(My.Application.Info.ProductName + "DEV") ' Use separate log file for debug builds to prevent debug logs from being mixed with release logs
-			Skye.Common.RegistryHelper.BaseKey = "Software\" + My.Application.Info.ProductName + "DEV" ' Use separate registry key for debug builds
+			Dim baseName As String = My.Application.Info.ProductName & "DEV"
+			Skye.Common.Log.Initialize(baseName)
+			Skye.Common.RegistryHelper.BaseKey = System.IO.Path.Combine("Software", baseName)
 #Else
-            Skye.Common.Log.Initialize(My.Application.Info.ProductName) ' Use standard log file for release builds
-            Skye.Common.RegistryHelper.BaseKey = "Software\" + My.Application.Info.ProductName ' Use standard registry key for release builds
+			Dim baseName As String = My.Application.Info.ProductName
+			Skye.Common.Log.Initialize(baseName)
+			Skye.Common.RegistryHelper.BaseKey = System.IO.Path.Combine("Software", baseName)
 #End If
-			WriteToLog(My.Application.Info.ProductName + " Started")
+
+			WriteToLog(My.Application.Info.ProductName & " Started")
 			FrmBalloonTimer.Interval = 6000
 			ScreenSaverWatcher.Interval = 1000
 			ImageExtensions = New List(Of String) From {".jpg", ".jpeg", ".bmp", ".gif", ".png", ".tif", ".tiff", ".exif"}
@@ -648,14 +652,11 @@ Namespace My
 			VideoExtensionDictionary.Add(".m2v", "MPEG")
 			VideoExtensionDictionary.Add(".flv", "Flash Video")
 			GetSettings()
-#If DEBUG Then
-			'GetDebugSettings()
-#End If
-			If ThemeAuto Then
-				Skye.UI.ThemeManager.SetTheme(Skye.UI.ThemeManager.DetectWindowsTheme())
-			Else
-				Skye.UI.ThemeManager.CurrentTheme = Theme
-			End If
+			'#If DEBUG Then
+			'			GetDebugSettings()
+			'#End If
+			Dim selectedTheme As Skye.UI.SkyeTheme = If(ThemeAuto, Skye.UI.ThemeManager.DetectWindowsTheme(), Theme)
+			Skye.UI.ThemeManager.CurrentTheme = selectedTheme
 			AddHandler Skye.UI.ThemeManager.ThemeChanged, AddressOf OnThemeChanged
 			LoadImageFileList()
 			LoadImageRepeatList()
@@ -666,9 +667,9 @@ Namespace My
 		End Sub
 		Private Sub Finalize()
 			If HKEnabled Then RegisterHotKeys(False)
-			My.App.SaveImageFileList()
-			My.App.SaveImageRepeatList()
-			My.App.SaveVideoFileList()
+			App.SaveImageFileList()
+			App.SaveImageRepeatList()
+			App.SaveVideoFileList()
 		End Sub
 		Friend Sub CloseApp(Optional restart As Boolean = False)
 			Finalize()

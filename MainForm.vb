@@ -1435,7 +1435,8 @@ Partial Friend Class MainForm
             For Each folder As String In My.App.PicFolders
                 Try
                     filelist.AddRange(IO.Directory.GetFiles(folder, "*", IO.SearchOption.AllDirectories))
-                    For Each s As String In filelist : If My.App.CheckFileType(s, My.App.FileType.Pic) Then My.App.ImageFiles.Add(s)
+                    For Each s As String In filelist
+                        If App.IsPicFile(s) Then App.ImageFiles.Add(s)
                     Next
                 Catch : removelist.Add(folder)
                 Finally : filelist.Clear()
@@ -1471,7 +1472,12 @@ Partial Friend Class MainForm
                 Dim folder As My.App.VideoFolderType = My.App.VidFolders(index)
                 Try
                     filelist.AddRange(IO.Directory.GetFiles(folder.Path, "*", IO.SearchOption.AllDirectories))
-                    For Each s As String In filelist : If My.App.CheckFileType(s, My.App.FileType.Vid) Then If GenerateVideoListType = My.App.GetFilesMode.Generated OrElse (GenerateVideoListType = My.App.GetFilesMode.Refreshed And Not My.App.VideoFilesContains(s)) Then My.App.VideoFiles.Add(New My.App.VideoFileType(s, folder.Enabled))
+                    For Each s As String In filelist
+                        If App.IsVidFile(s) Then
+                            If GenerateVideoListType = App.GetFilesMode.Generated OrElse (GenerateVideoListType = App.GetFilesMode.Refreshed And Not App.VideoFilesContains(s)) Then
+                                App.VideoFiles.Add(New App.VideoFileType(s, folder.Enabled))
+                            End If
+                        End If
                     Next
                 Catch : removelist.Add(index)
                 Finally : filelist.Clear()

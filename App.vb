@@ -461,10 +461,6 @@ Namespace My
 			Vids
 			All
 		End Enum
-		Friend Enum FileType
-			Pic
-			Vid
-		End Enum
 		Friend Enum PlayMode
 			Linear
 			LinearWithRandomStart
@@ -1133,16 +1129,11 @@ Namespace My
 		Friend Function BalloonVisible() As Boolean
 			Return FrmBalloon.Visible
 		End Function
-		Friend Function CheckFileType(file As String, type As FileType) As Boolean
-			Select Case type
-				Case FileType.Pic
-					Return ImageExtensions.Any(Function(ext) file.EndsWith(ext, StringComparison.CurrentCultureIgnoreCase))
-				Case FileType.Vid
-					Return VideoExtensionDictionary.Keys.Any(Function(ext) file.EndsWith(ext, StringComparison.CurrentCultureIgnoreCase))
-				Case Else
-					Return False
-			End Select
-			Return False
+		Friend Function IsPicFile(file As String) As Boolean
+			Return ImageExtensions.Any(Function(ext) file.EndsWith(ext, StringComparison.CurrentCultureIgnoreCase))
+		End Function
+		Friend Function IsVidFile(file As String) As Boolean
+			Return VideoExtensionDictionary.Keys.Any(Function(ext) file.EndsWith(ext, StringComparison.CurrentCultureIgnoreCase))
 		End Function
 		Friend Function ViewFile(path As String) As Boolean
 			Try

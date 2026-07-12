@@ -32,8 +32,8 @@ Partial Friend Class Pics
 		TimerDeleteImage.Interval = 5000
 		'Initialize Form
 		InitializeComponent()
-		AddHandler Me.Disposed, AddressOf frmDisposed
-		AddHandler Me.LostFocus, AddressOf frmLostFocus
+		AddHandler Me.Disposed, AddressOf FrmDisposed
+		AddHandler Me.LostFocus, AddressOf FrmLostFocus
 		Me.Text = My.Application.Info.Title + " Image"
 		UpdateDeleteImageConfirm()
 		cmPics.Renderer = New Skye.UI.SkyeMenuRenderer
@@ -49,6 +49,8 @@ Partial Friend Class Pics
 		App.HookTSItemsForCMTooltip(cmPics, TipCM)
 		Skye.UI.ThemeManager.RegisterComponent(TipCM)
 		Skye.UI.ThemeManager.ApplyTheme(Me)
+		lblCountdown.BackColor = Skye.UI.ThemeManager.CurrentTheme.TextBack
+		AddHandler Skye.UI.ThemeManager.ThemeChanged, AddressOf OnThemeChanged
 	End Sub
 	Private Sub FrmLoad(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
 		SetTimerAutoStart()
@@ -298,6 +300,9 @@ Partial Friend Class Pics
 	End Sub
 
 	'Handlers
+	Private Sub OnThemeChanged(sender As Object, e As EventArgs)
+		lblCountdown.BackColor = Skye.UI.ThemeManager.CurrentTheme.TextBack
+	End Sub
 	Private Sub TimerImageAdvanceTick(ByVal sender As Object, ByVal e As EventArgs) Handles TimerImageAdvance.Tick
 		Me.timerImageAdvanceCount += 1
 		If Me.timerImageAdvanceCount = My.App.PicTimerInterval Then
@@ -442,7 +447,6 @@ Partial Friend Class Pics
 		Me.TimerImageAdvance.Stop()
 		If Me.timerImageAdvanceCount > 0 Then Me.timerImageAdvanceCount = 0
 		ShowImageTimerCountdown()
-
 		If My.App.PicTimerEnabled Then
 			Me.TimerImageAdvance.Start()
 			Me.cmiTimer.Checked = True
@@ -484,7 +488,6 @@ Partial Friend Class Pics
 	End Sub
 	Friend Sub ShowImageTimerCountdown()
 		Me.lblCountdown.SuspendLayout()
-
 		If My.App.PicTimerEnabled Then : Me.lblCountdown.Text = (My.App.PicTimerInterval - Me.timerImageAdvanceCount).ToString
 		Else : Me.lblCountdown.Text = " - "
 		End If

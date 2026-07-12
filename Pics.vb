@@ -550,7 +550,12 @@ Partial Friend Class Pics
 								If My.App.ImageIndex < 0 Then : My.App.ImageIndex = 0
 								ElseIf My.App.ImageIndex > My.App.ImageFiles.Count - 1 Then : My.App.ImageIndex = My.App.ImageFiles.Count - 1
 								End If
-							Case My.App.PlayOption.Previous : If Not (My.App.ImageIndexPrevious < 0 OrElse My.App.ImageIndexPrevious > My.App.ImageFiles.Count - 1) Then My.App.SwapValues(My.App.ImageIndex, My.App.ImageIndexPrevious)
+							Case My.App.PlayOption.Previous
+								If Not (My.App.ImageIndexPrevious < 0 OrElse My.App.ImageIndexPrevious > My.App.ImageFiles.Count - 1) Then
+									Dim temp As Integer = App.ImageIndex
+									App.ImageIndex = App.ImageIndexPrevious
+									App.ImageIndexPrevious = temp
+								End If
 						End Select
 						If Microsoft.VisualBasic.FileIO.FileSystem.FileExists(My.App.ImageFiles.Item(My.App.ImageIndex)) Then : Exit Do
 						Else

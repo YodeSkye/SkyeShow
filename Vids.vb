@@ -557,7 +557,12 @@ Partial Friend Class Vids
                                 If My.App.VideoIndex < 0 Then : My.App.VideoIndex = 0
                                 ElseIf My.App.VideoIndex > My.App.VideoFiles.Count - 1 Then : My.App.VideoIndex = My.App.VideoFiles.Count - 1
                                 End If
-                            Case My.App.PlayOption.Previous : If Not (My.App.VideoIndexPrevious < 0 OrElse My.App.VideoIndexPrevious > My.App.VideoFiles.Count - 1 OrElse Not My.App.VideoFiles(My.App.VideoIndexPrevious).Enabled) Then My.App.SwapValues(My.App.VideoIndex, My.App.VideoIndexPrevious)
+                            Case My.App.PlayOption.Previous
+                                If Not (My.App.VideoIndexPrevious < 0 OrElse My.App.VideoIndexPrevious > My.App.VideoFiles.Count - 1 OrElse Not My.App.VideoFiles(My.App.VideoIndexPrevious).Enabled) Then
+                                    Dim temp As Integer = App.VideoIndex
+                                    App.VideoIndex = App.VideoIndexPrevious
+                                    App.VideoIndexPrevious = temp
+                                End If
                         End Select
                     Loop Until (My.App.VideoFiles(My.App.VideoIndex).Enabled OrElse opt = My.App.PlayOption.BySelection) AndAlso (Not My.App.VideoFiles(My.App.VideoIndex).Viewed OrElse opt = My.App.PlayOption.Backward OrElse opt = My.App.PlayOption.Forward OrElse opt = My.App.PlayOption.BySelection OrElse opt = My.App.PlayOption.Previous)
                     If Microsoft.VisualBasic.FileIO.FileSystem.FileExists(My.App.VideoFiles(My.App.VideoIndex).Path) Then : Exit Do

@@ -1110,11 +1110,6 @@ Namespace My
 			End If
 			Debug.Print("SSActive @ " & Now)
 		End Sub
-		Friend Sub SwapValues(ByRef x As Integer, ByRef y As Integer)
-			x = x Xor y
-			y = y Xor x
-			x = x Xor y
-		End Sub
 		Friend Function GenerateUsedKeyList() As Collections.Generic.List(Of Keys)
 			GenerateUsedKeyList = New Collections.Generic.List(Of Keys) From {
 				CType(131137, Keys), ' A, Control ' Select All

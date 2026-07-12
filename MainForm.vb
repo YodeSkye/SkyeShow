@@ -352,6 +352,10 @@ Partial Friend Class MainForm
     Private Sub MainForm_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         ShowSettings()
         ToggleFolderList(My.App.GetFilesType.All, True)
+        If App.FrmSplash IsNot Nothing Then
+            App.FrmSplash.Close()
+            App.FrmSplash = Nothing
+        End If
     End Sub
     Private Sub MainForm_Shown(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Shown
         HideForm()
@@ -378,9 +382,6 @@ Partial Friend Class MainForm
         Skye.UI.ThemeManager.RegisterComponent(TipInfoEX)
         Skye.UI.ThemeManager.ApplyTheme(Me)
         cmApp.Renderer = New Skye.UI.SkyeMenuRenderer
-    End Sub
-    Private Sub MainForm_Closing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        My.App.Finalize()
     End Sub
     Private Sub MainForm_MouseDown(sender As Object, e As MouseEventArgs) Handles MyBase.MouseDown, PanelApp.MouseDown, PanelPics.MouseDown, PanelVids.MouseDown, PanelActions.MouseDown
         If e.Button = MouseButtons.Left AndAlso WindowState = FormWindowState.Normal Then

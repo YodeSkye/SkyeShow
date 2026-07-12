@@ -20,21 +20,17 @@ Namespace My
 		Protected Overrides Function OnStartup(e As ApplicationServices.StartupEventArgs) As Boolean
 			If e.Cancel Then Return False
 
-			' Show splash
-			Dim splash As New Splash()
-			splash.Show()
-			splash.Refresh()
+			App.FrmSplash = New Splash()
+			App.FrmSplash.Show()
+			App.FrmSplash.Refresh()
 
 			LibVLCSharp.Shared.Core.Initialize()
 			Try
 				Using vlcwarmup As New LibVLC()
-					'Do Nothing - Just Warm Up LibVLC
+					'Do Nothing, Just Warm Up Media Player
 				End Using
 			Catch
 			End Try
-
-			splash.Close()
-			splash.Dispose()
 
 			Return True
 		End Function

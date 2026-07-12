@@ -553,8 +553,9 @@ Namespace My
 		Friend CommandLinePath As String = String.Empty
 		Friend BalloonLoading As Boolean = False
 		Friend IgnoreFocusChange As Boolean = False
-		Friend HotKeys As New Collections.Generic.List(Of HotKey)
-		Friend FrmMain As MainForm
+        Friend HotKeys As New Collections.Generic.List(Of HotKey)
+        Friend FrmSplash As Splash
+        Friend FrmMain As MainForm
 		Friend FrmHelp As Help
 		Friend FrmLog As Log
 		Private ReadOnly FrmBalloon As New Balloon
@@ -667,19 +668,20 @@ Namespace My
 			AddHandler Microsoft.Win32.SystemEvents.SessionSwitch, AddressOf WorkStationLockedHandler
 			If HKEnabled Then RegisterHotKeys(True)
 		End Sub
-		Friend Sub Finalize()
+		Private Sub Finalize()
 			If HKEnabled Then RegisterHotKeys(False)
 			My.App.SaveImageFileList()
 			My.App.SaveImageRepeatList()
 			My.App.SaveVideoFileList()
-			My.App.WriteToLog(My.Application.Info.ProductName + " Closed")
 		End Sub
 		Friend Sub CloseApp(Optional restart As Boolean = False)
+			Finalize()
 			If FrmVidsVisible() Then FrmVids.Close()
 			If FrmPicsVisible() Then frmPics.Close()
 			If FrmHelp?.Visible Then FrmHelp.Close()
 			If FrmLog?.Visible Then FrmLog.Close()
 			FrmMain.Close()
+			My.App.WriteToLog(My.Application.Info.ProductName + " Closed")
 			If restart Then System.Windows.Forms.Application.Restart()
 		End Sub
 		Friend Sub WriteToLog(logentry As String)

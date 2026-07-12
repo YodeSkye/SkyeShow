@@ -655,7 +655,6 @@ Partial Friend Class MainForm
         End If
     End Sub
     Private Sub CMIViewImagesMouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles cmiViewPics.MouseUp
-        On Error Resume Next
         If My.App.FrmPicsVisible Then
             Select Case e.Button
                 Case MouseButtons.Left : My.App.frmPics.Close()
@@ -668,7 +667,6 @@ Partial Friend Class MainForm
         ToggleContextMenu()
     End Sub
     Private Sub CMIPlayVideosMouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles cmiPlayVids.MouseUp
-        On Error Resume Next
         If My.App.FrmVidsVisible Then
             Select Case e.Button
                 Case MouseButtons.Left : My.App.FrmVids.Close()

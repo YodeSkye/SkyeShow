@@ -609,6 +609,7 @@ Partial Friend Class Vids
         End If
     End Sub
     Friend Sub SetSize()
+        If _player.VideoWidth <= 0 OrElse _player.VideoHeight <= 0 Then Exit Sub 'VLC hasn't reported size yet — avoid overflow
         My.App.IgnoreFocusChange = True
         Me.SuspendLayout()
         Try
@@ -724,7 +725,6 @@ Partial Friend Class Vids
         Me.cmiFullScreen.Checked = Not Me.cmiFullScreen.Checked
         If Not FullScreen Then ShowCursor()
         SetSize()
-        'If FullScreen And Not video.Playing Then TogglePlayState
     End Sub
     Friend Sub QuickShow()
         SetSize()

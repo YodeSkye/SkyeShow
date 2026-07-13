@@ -1124,7 +1124,6 @@ Namespace My
 				GenerateUsedKeyList.Add(hk.Key)
 			Next
 		End Function
-
 		Friend Function BalloonVisible() As Boolean
 			Return FrmBalloon.Visible
 		End Function
@@ -1190,10 +1189,6 @@ Namespace My
 			If mouseposition.X >= 0 AndAlso mouseposition.X <= control.Width AndAlso mouseposition.Y >= 0 AndAlso mouseposition.Y <= control.Height Then Return True
 			Return False
 		End Function
-		''' <summary>
-		''' Determines if WorkSpace is in a suspended state.
-		''' </summary>
-		''' <returns>True if ScreenSaver is running or WorkStation is locked, otherwise false.</returns>
 		Friend Function WorkSpaceSuspended() As Boolean
 			If ScreenSaverRunning OrElse WorkStationLocked Then : Return True
 			Else : Return False

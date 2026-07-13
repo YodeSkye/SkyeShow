@@ -113,6 +113,7 @@ Partial Friend Class Vids
             End Try
         End Sub
         Public Sub Play() Implements IMediaPlayer.Play
+            If _currentMedia Is Nothing Then Exit Sub
             _mediaPlayer.Play()
         End Sub
         Public Sub Pause() Implements IMediaPlayer.Pause

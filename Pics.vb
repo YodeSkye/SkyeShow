@@ -1,5 +1,6 @@
 
 Imports System.Diagnostics
+Imports System.IO
 Imports SkyeShow.My
 
 Partial Friend Class Pics
@@ -308,7 +309,7 @@ Partial Friend Class Pics
 		If Me.timerImageAdvanceCount = My.App.PicTimerInterval Then
 			Me.timerImageAdvanceCount = 0
 			SetDeleteImageConfirm(True)
-			If Not Me.cmPics.Visible AndAlso Not My.App.BalloonVisible Then NextImage(My.App.PlayOption.ByPlayMode)
+			If Not cmPics.Visible AndAlso Not App.BalloonVisible Then NextImage(My.App.PlayOption.ByPlayMode)
 		End If
 		ShowImageTimerCountdown()
 	End Sub
@@ -581,7 +582,10 @@ Partial Friend Class Pics
 						End If
 					Loop
 					App.WriteToLog(App.ImageIndexLogText)
-					imageRaw = Image.FromFile(My.App.ImageFiles.Item(My.App.ImageIndex))
+					Dim path As String = App.ImageFiles(App.ImageIndex)
+					Using fs As New FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite)
+						imageRaw = Image.FromStream(fs)
+					End Using
 					DrawImage()
 					SetTimer()
 					If Not My.App.ImageRepeatList.Contains(My.App.ImageFiles(My.App.ImageIndex)) Then

@@ -312,7 +312,7 @@ Partial Friend Class MainForm
                     MyBase.WndProc(m)
                 Case Else : MyBase.WndProc(m)
             End Select
-        Catch ex As Exception : My.App.WriteToLog("MainForm WndProc Handler Error" + Chr(13) + ex.ToString)
+        Catch ex As Exception : My.App.WriteToLog("MainForm WndProc Handler Error" + Environment.NewLine + ex.ToString)
         End Try
     End Sub
     Friend Sub New()
@@ -590,7 +590,7 @@ Partial Friend Class MainForm
                     Case Me.lvPicFolders.Name
                         Dim addSelectedPath As Boolean = True
                         Dim removelist As New Collections.Generic.List(Of String)
-                        folderbrowser.Description = "Select a Folder where Images are stored." + Microsoft.VisualBasic.Chr(13) + "All files and sub-directories will be searched starting with your selection:"
+                        folderbrowser.Description = "Select a Folder where Images are stored." + Environment.NewLine + "All files and sub-directories will be searched starting with your selection:"
                         Dim r As DialogResult = folderbrowser.ShowDialog(Me)
                         If r = System.Windows.Forms.DialogResult.OK And Not My.App.PicFolders.Contains(folderbrowser.SelectedPath) And Not folderbrowser.SelectedPath.Length <= 3 Then
                             For Each s As String In My.App.PicFolders
@@ -608,7 +608,7 @@ Partial Friend Class MainForm
                     Case Me.lvVidFolders.Name
                         Dim addSelectedPath As Boolean = True
                         Dim removelist As New Collections.Generic.List(Of Integer)
-                        folderbrowser.Description = "Select a Folder where Videos are stored." + Microsoft.VisualBasic.Chr(13) + "All files and sub-directories will be searched starting with your selection:"
+                        folderbrowser.Description = "Select a Folder where Videos are stored." + Environment.NewLine + "All files and sub-directories will be searched starting with your selection:"
                         Dim r As DialogResult = folderbrowser.ShowDialog(Me)
                         If r = System.Windows.Forms.DialogResult.OK And Not My.App.VideoFoldersContains(folderbrowser.SelectedPath) And Not folderbrowser.SelectedPath.Length <= 3 Then
                             For index As Integer = My.App.VidFolders.Count - 1 To 0 Step -1
@@ -999,17 +999,17 @@ Partial Friend Class MainForm
         TipInfoEX.SetText(btnLog, "Show Log")
         If App.IsGeneratingFileList Then
             notifyiconSkyeShow.Icon = My.Resources.Resources.IconAppLoading
-            notifyiconSkyeShow.Text += Chr(13) + App.GeneratingFileListAlertText
+            notifyiconSkyeShow.Text += Environment.NewLine + App.GeneratingFileListAlertText
         ElseIf App.ErrorAlert Then
             notifyiconSkyeShow.Icon = My.Resources.Resources.IconAppError
-            notifyiconSkyeShow.Text += Chr(13) + "** ERROR **" + Chr(13) + "LeftClick = Clear" + Chr(13) + "RightClick = View Log"
+            notifyiconSkyeShow.Text += Environment.NewLine + "** ERROR **" + Environment.NewLine + "LeftClick = Clear" + Environment.NewLine + "RightClick = View Log"
             btnLog.BackColor = Color.Red
-            TipInfoEX.SetText(btnLog, TipInfoEX.GetText(btnLog) + vbCr + "An Error Has Occurred")
+            TipInfoEX.SetText(btnLog, TipInfoEX.GetText(btnLog) + Environment.NewLine + "An Error Has Occurred")
         Else
             If App.ImageIsOnTop And App.VideoIsOnTop Then : notifyiconSkyeShow.Icon = My.Resources.Resources.IconApp
             Else
                 notifyiconSkyeShow.Icon = My.Resources.Resources.IconAppHidden
-                notifyiconSkyeShow.Text += Chr(13) + "One Or More Windows Are Hidden. Click To Restore."
+                notifyiconSkyeShow.Text += Environment.NewLine + "One Or More Windows Are Hidden. Click To Restore."
             End If
             btnLog.BackColor = Skye.UI.ThemeManager.CurrentTheme.ButtonBack
         End If
@@ -1059,7 +1059,7 @@ Partial Friend Class MainForm
             Me.lblPicFileCount.Text += " / " + My.App.ImageRepeatList.Count.ToString
             Me.lblPicFileCount.Text += " / " + My.App.ImageFiles.Count.ToString
             Dim s As String
-            s = "Image Counts" + Chr(13)
+            s = "Image Counts" + Environment.NewLine
             s += (My.App.ImageFiles.Count - My.App.ImageRepeatList.Count).ToString + " " + My.App.VideoFilesCountMode.UnViewed.ToString
             s += ", " + My.App.ImageRepeatList.Count.ToString + " " + My.App.VideoFilesCountMode.Viewed.ToString
             s += ", " + My.App.ImageFiles.Count.ToString + " " + My.App.VideoFilesCountMode.Total.ToString
@@ -1120,10 +1120,10 @@ Partial Friend Class MainForm
             Me.lblVidFileCount.Text += " / " + My.App.VideoFilesCount(My.App.VideoFilesCountMode.Valid).ToString
             Dim s As String
             s = "Video Counts (" + My.App.VideoFilesCount(My.App.VideoFilesCountMode.Total).ToString + " " + My.App.VideoFilesCountMode.Total.ToString + ")"
-            s += Chr(13) + My.App.VideoFilesCount(My.App.VideoFilesCountMode.UnViewed).ToString + " " + My.App.VideoFilesCountMode.UnViewed.ToString
+            s += Environment.NewLine + My.App.VideoFilesCount(My.App.VideoFilesCountMode.UnViewed).ToString + " " + My.App.VideoFilesCountMode.UnViewed.ToString
             s += ", " + My.App.VideoFilesCount(My.App.VideoFilesCountMode.Enabled).ToString + " " + My.App.VideoFilesCountMode.Enabled.ToString
             s += ", " + My.App.VideoFilesCount(My.App.VideoFilesCountMode.Valid).ToString + " " + My.App.VideoFilesCountMode.Valid.ToString
-            s += Chr(13) + My.App.VideoFilesCount(My.App.VideoFilesCountMode.Viewed).ToString + " " + My.App.VideoFilesCountMode.Viewed.ToString
+            s += Environment.NewLine + My.App.VideoFilesCount(My.App.VideoFilesCountMode.Viewed).ToString + " " + My.App.VideoFilesCountMode.Viewed.ToString
             s += ", " + My.App.VideoFilesCount(My.App.VideoFilesCountMode.Disabled).ToString + " " + My.App.VideoFilesCountMode.Disabled.ToString
             s += ", " + My.App.VideoFilesCount(My.App.VideoFilesCountMode.InValid).ToString + " " + My.App.VideoFilesCountMode.InValid.ToString
             Me.TipInfoEX.SetText(Me.lblVidFileCount, s)

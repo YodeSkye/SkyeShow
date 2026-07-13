@@ -590,7 +590,7 @@ Partial Friend Class Pics
 					End If
 					'My.Debug.ShowMessage(My.SkyeShow.Tools.Images, "NextImage", "Repeat Count : " + My.SkyeShow.ImageRepeatList.Count.ToString)
 				Catch ex As Exception
-					My.App.WriteToLog("Image Load Error" + Chr(13) + ex.ToString)
+					My.App.WriteToLog("Image Load Error" + Environment.NewLine + ex.ToString)
 					My.App.SetErrorAlert()
 					My.App.ImageFiles.RemoveAt(My.App.ImageIndex)
 					My.App.FrmMain.UpdateSettings()

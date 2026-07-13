@@ -443,6 +443,7 @@ Namespace My
 		' DECLARATIONS
 		Friend Const LocationModeManualAnchorThreshold As Byte = 50 'Percent of screen width/height that determines when the manual mode anchor should be right/bottom of form.
 		Friend Const GeneratingFileListAlertText As String = "Generating File List ... Please Wait"
+		Private Const DisabledPrefix As String = "DISABLED:"
 		Friend ReadOnly UserPath As String = My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\Skye\" 'UserPath is the base path for user-specific files.
 #If DEBUG Then
 		Friend ReadOnly ImageFilesPath As String = UserPath & My.Application.Info.ProductName & "ImagesDEV.xml"
@@ -550,9 +551,9 @@ Namespace My
 		Friend CommandLinePath As String = String.Empty
 		Friend BalloonLoading As Boolean = False
 		Friend IgnoreFocusChange As Boolean = False
-        Friend HotKeys As New Collections.Generic.List(Of HotKey)
-        Friend FrmSplash As Splash
-        Friend FrmMain As MainForm
+		Friend HotKeys As New Collections.Generic.List(Of HotKey)
+		Friend FrmSplash As Splash
+		Friend FrmMain As MainForm
 		Friend FrmHelp As Help
 		Friend FrmLog As Log
 		Private ReadOnly FrmBalloon As New Balloon
@@ -561,7 +562,7 @@ Namespace My
 		Private ScreenSaverRunning As Boolean = False
 		Private WorkStationLocked As Boolean = False
 		Private ReadOnly RandomFileIndex As New Random
-        Private frmBalloonParent As String = String.Empty
+		Private frmBalloonParent As String = String.Empty
 
 		' Saved Settings
 		Friend SaveFileLists As Boolean 'Default = False
@@ -792,8 +793,8 @@ Namespace My
 			VidFolders.Clear()
 			Dim rawVidFolders As String() = Skye.Common.RegistryHelper.GetStringArray("VideoFolders", Array.Empty(Of String))
 			For Each entry As String In rawVidFolders
-				If entry.StartsWith("-"c) Then
-					VidFolders.Add(New VideoFolderType(entry.Substring(1), False))
+				If entry.StartsWith(DisabledPrefix, StringComparison.OrdinalIgnoreCase) Then
+					VidFolders.Add(New VideoFolderType(entry.Substring(DisabledPrefix.Length), False))
 				Else
 					VidFolders.Add(New VideoFolderType(entry, True))
 				End If
@@ -912,7 +913,7 @@ Namespace My
 				If vf.Enabled Then
 					vidFolderStrings.Add(vf.Path)
 				Else
-					vidFolderStrings.Add("-" & vf.Path)
+					vidFolderStrings.Add(DisabledPrefix & vf.Path)
 				End If
 			Next
 			Skye.Common.RegistryHelper.SetStringArray("VideoFolders", vidFolderStrings.ToArray())
@@ -930,14 +931,14 @@ Namespace My
 						For Each key As HotKey In HotKeys
 							If Not key.Key = Keys.None Then
 								status = Skye.WinAPI.RegisterHotKey(FrmMain.Handle, key.WinID, key.KeyMod, key.KeyCode)
-								WriteToLog("HotKey '" + key.Description + " (" + key.WinID.ToString + ") (" + key.Key.ToString + ") (" + key.KeyCode.ToString + " mod " + key.KeyMod.ToString + ")' " + IIf(status, "Successfully Registered", "Failed To Register").ToString)
+								WriteToLog("HotKey '" + key.Description + " (" + key.WinID.ToString + ") (" + key.Key.ToString + ") (" + key.KeyCode.ToString + " mod " + key.KeyMod.ToString + ")' " + If(status, "Successfully Registered", "Failed To Register").ToString)
 							End If
 						Next
 					Case False 'UnRegister HotKeys
 						For Each key As HotKey In HotKeys
 							If Not key.Key = Keys.None Then
 								status = Skye.WinAPI.UnregisterHotKey(FrmMain.Handle, key.WinID)
-								WriteToLog("HotKey '" + key.Description + " (" + key.WinID.ToString + ")' " + IIf(status, "Successfully UNRegistered", "Failed To UNRegister").ToString)
+								WriteToLog("HotKey '" + key.Description + " (" + key.WinID.ToString + ")' " + If(status, "Successfully UNRegistered", "Failed To UNRegister").ToString)
 							End If
 						Next
 				End Select
@@ -1034,15 +1035,15 @@ Namespace My
 		Friend Sub ShowHelp(Optional showmaximized As Boolean = False)
 			Dim logtext As String = String.Empty
 			logtext += "Pictures -- When using QuickHide, the next picture will be displayed after the interval has expired. If the user intervenes during the interval, the current picture will remain."
-			logtext += Chr(13) + Chr(13) + "Pictures -- When using QuickHide, manually starting the Timer will restore the window."
-			logtext += Chr(13) + Chr(13) + "Pictures -- The Picture List is a simple list of file names stored in memory. When an error occurs trying to open a picture, that file name is simply removed from the Picture List and another is selected. A picture can only be viewed once until all pictures have been viewed, or the Picture List is manually refreshed."
-			logtext += Chr(13) + Chr(13) + "Pictures & Videos -- Quick Hide will hide the window by sending it to the Desktop. The window will remain hidden for the Picture Interval setting(unless Perma Hide is selected) or until the user LeftClicks either the Tray Icon, the Quick Hide menu item, or the window itself."
-			logtext += Chr(13) + Chr(13) + "Pictures & Videos -- Refresh File List means the file system will be scanned and new files will be added to the list, preserving your view history. Reset File List means all files and their history will be cleared from the list and the file system scanned for files."
-			logtext += Chr(13) + Chr(13) + "Pictures & Videos -- When moving a Picture or Video around the screen, the upper left corner is used as the anchor in Manual Mode, until the anchor moves past " + LocationModeManualAnchorThreshold.ToString + "% of the screen. The anchor will then become the right and/or bottom of the window."
-			logtext += Chr(13) + Chr(13) + "Videos -- Video File Counts -- Viewed/UnViewed count is only from Enabled and Valid Videos, Enabled/Disabled count is only from Valid Videos."
-			logtext += Chr(13) + Chr(13) + "App -- If Save File Lists is checked, all lists and view history will be saved on exit and loaded on startup."
-			logtext += Chr(13) + Chr(13) + "App -- Action On ScreenSave means that when the screen saver is activated or the workstation is locked, Pictures & Videos will either be suspended or closed. For Pictures, the suspend option will hold the countdown timer. For Videos, the suspend option will pause playback."
-			logtext += Chr(13) + Chr(13) + "Settings Window -- DoubleLeftClick on Pictures Tab will open and close Pictures. DoubleLeftClick on Videos Tab will open and close Videos."
+			logtext += Environment.NewLine + Environment.NewLine + "Pictures -- When using QuickHide, manually starting the Timer will restore the window."
+			logtext += Environment.NewLine + Environment.NewLine + "Pictures -- The Picture List is a simple list of file names stored in memory. When an error occurs trying to open a picture, that file name is simply removed from the Picture List and another is selected. A picture can only be viewed once until all pictures have been viewed, or the Picture List is manually refreshed."
+			logtext += Environment.NewLine + Environment.NewLine + "Pictures & Videos -- Quick Hide will hide the window by sending it to the Desktop. The window will remain hidden for the Picture Interval setting(unless Perma Hide is selected) or until the user LeftClicks either the Tray Icon, the Quick Hide menu item, or the window itself."
+			logtext += Environment.NewLine + Environment.NewLine + "Pictures & Videos -- Refresh File List means the file system will be scanned and new files will be added to the list, preserving your view history. Reset File List means all files and their history will be cleared from the list and the file system scanned for files."
+			logtext += Environment.NewLine + Environment.NewLine + "Pictures & Videos -- When moving a Picture or Video around the screen, the upper left corner is used as the anchor in Manual Mode, until the anchor moves past " + LocationModeManualAnchorThreshold.ToString + "% of the screen. The anchor will then become the right and/or bottom of the window."
+			logtext += Environment.NewLine + Environment.NewLine + "Videos -- Video File Counts -- Viewed/UnViewed count is only from Enabled and Valid Videos, Enabled/Disabled count is only from Valid Videos."
+			logtext += Environment.NewLine + Environment.NewLine + "App -- If Save File Lists is checked, all lists and view history will be saved on exit and loaded on startup."
+			logtext += Environment.NewLine + Environment.NewLine + "App -- Action On ScreenSave means that when the screen saver is activated or the workstation is locked, Pictures & Videos will either be suspended or closed. For Pictures, the suspend option will hold the countdown timer. For Videos, the suspend option will pause playback."
+			logtext += Environment.NewLine + Environment.NewLine + "Settings Window -- DoubleLeftClick on Pictures Tab will open and close Pictures. DoubleLeftClick on Videos Tab will open and close Videos."
 			If FrmHelp Is Nothing Then
 				FrmHelp = New Help With {
 					.Text = My.Application.Info.Title + " Help & About",
@@ -1111,17 +1112,19 @@ Namespace My
 			End If
 			Debug.Print("SSActive @ " & Now)
 		End Sub
-		Friend Function GenerateUsedKeyList() As Collections.Generic.List(Of Keys)
-			GenerateUsedKeyList = New Collections.Generic.List(Of Keys) From {
-				CType(131137, Keys), ' A, Control ' Select All
-				CType(131139, Keys), ' C, Control ' Copy
-				CType(131160, Keys), ' X, Control ' Cut / Clear
-				CType(131158, Keys), ' V, Control ' Paste
-				CType(131155, Keys)} ' S, Control ' Save As
+		Friend Function GenerateUsedKeyList() As List(Of Keys)
+			GenerateUsedKeyList = New List(Of Keys) From {
+				Keys.Control Or Keys.A, ' Select All
+				Keys.Control Or Keys.C, ' Copy
+				Keys.Control Or Keys.X, ' Cut / Clear
+				Keys.Control Or Keys.V, ' Paste
+				Keys.Control Or Keys.S  ' Save As
+			}
 			For Each hk As HotKey In HotKeys
 				GenerateUsedKeyList.Add(hk.Key)
 			Next
 		End Function
+
 		Friend Function BalloonVisible() As Boolean
 			Return FrmBalloon.Visible
 		End Function

@@ -602,7 +602,7 @@ Partial Friend Class Vids
                     TogglePlayState()
                     My.App.VideoFilesSetViewed(My.App.VideoIndex)
                 Catch ex As Exception
-                    My.App.WriteToLog("Video Load Error" + Chr(13) + ex.ToString)
+                    My.App.WriteToLog("Video Load Error" + Environment.NewLine + ex.ToString)
                     My.App.SetErrorAlert()
                     My.App.VideoFilesSetState(My.App.VideoIndex, My.App.VideoFileState.DisplayError)
                     If My.App.VideoFilesCount = 0 Then : My.App.FrmVids.Close()

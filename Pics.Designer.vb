@@ -12,7 +12,7 @@ Inherits System.Windows.Forms.Form
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
         picbx = New PictureBox()
-        cmPics = New ContextMenuStrip(components)
+        CMPics = New ContextMenuStrip(components)
         cmiFullScreen = New ToolStripMenuItem()
         cmiSeparator1 = New ToolStripSeparator()
         cmiQuickHide = New ToolStripMenuItem()
@@ -20,7 +20,12 @@ Inherits System.Windows.Forms.Form
         cmiQuickRestore = New ToolStripMenuItem()
         cmiSeparator2 = New ToolStripSeparator()
         cmiTimer = New ToolStripMenuItem()
-        cmiAdvance = New ToolStripMenuItem()
+        cmiNavigation = New ToolStripMenuItem()
+        CMNavigation = New ContextMenuStrip(components)
+        CMIForward = New ToolStripMenuItem()
+        CMIRandom = New ToolStripMenuItem()
+        CMIBackward = New ToolStripMenuItem()
+        CMIPrevious = New ToolStripMenuItem()
         cmiShowFileInfo = New ToolStripMenuItem()
         cmiViewImage = New ToolStripMenuItem()
         cmiSeparator3 = New ToolStripSeparator()
@@ -29,13 +34,14 @@ Inherits System.Windows.Forms.Form
         cmiClose = New ToolStripMenuItem()
         lblCountdown = New Label()
         CType(picbx, ComponentModel.ISupportInitialize).BeginInit()
-        cmPics.SuspendLayout()
+        CMPics.SuspendLayout()
+        CMNavigation.SuspendLayout()
         SuspendLayout()
         ' 
         ' picbx
         ' 
         picbx.BackColor = Color.Black
-        picbx.ContextMenuStrip = cmPics
+        picbx.ContextMenuStrip = CMPics
         picbx.Dock = DockStyle.Fill
         picbx.Location = New Point(0, 0)
         picbx.Margin = New Padding(3, 4, 3, 4)
@@ -44,14 +50,14 @@ Inherits System.Windows.Forms.Form
         picbx.TabIndex = 0
         picbx.TabStop = False
         ' 
-        ' cmPics
+        ' CMPics
         ' 
-        cmPics.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        cmPics.Items.AddRange(New ToolStripItem() {cmiFullScreen, cmiSeparator1, cmiQuickHide, cmiQuickShift, cmiQuickRestore, cmiSeparator2, cmiTimer, cmiAdvance, cmiShowFileInfo, cmiViewImage, cmiSeparator3, cmiDeleteImage, cmiSeparator4, cmiClose})
-        cmPics.Name = "contextmenuImageForm"
-        cmPics.RenderMode = ToolStripRenderMode.Professional
-        cmPics.ShowItemToolTips = False
-        cmPics.Size = New Size(233, 310)
+        CMPics.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        CMPics.Items.AddRange(New ToolStripItem() {cmiFullScreen, cmiSeparator1, cmiQuickHide, cmiQuickShift, cmiQuickRestore, cmiSeparator2, cmiTimer, cmiNavigation, cmiShowFileInfo, cmiViewImage, cmiSeparator3, cmiDeleteImage, cmiSeparator4, cmiClose})
+        CMPics.Name = "contextmenuImageForm"
+        CMPics.RenderMode = ToolStripRenderMode.Professional
+        CMPics.ShowItemToolTips = False
+        CMPics.Size = New Size(233, 288)
         ' 
         ' cmiFullScreen
         ' 
@@ -100,18 +106,61 @@ Inherits System.Windows.Forms.Form
         ' 
         cmiTimer.Image = My.Resources.Resources.ImageTimer
         cmiTimer.Name = "cmiTimer"
-        cmiTimer.ShortcutKeyDisplayString = "UPARROW"
+        cmiTimer.ShortcutKeyDisplayString = "↑"
         cmiTimer.Size = New Size(232, 26)
         cmiTimer.Text = "Timer"
         ' 
-        ' cmiAdvance
+        ' cmiNavigation
         ' 
-        cmiAdvance.Image = My.Resources.Resources.ImageAdvance
-        cmiAdvance.Name = "cmiAdvance"
-        cmiAdvance.ShortcutKeyDisplayString = "-->, -V-, <--"
-        cmiAdvance.Size = New Size(232, 26)
-        cmiAdvance.Text = "Advance"
-        cmiAdvance.ToolTipText = "LeftClick |RightArrow| = Forward" & vbCrLf & "CtrlLeftClick |DownArrow| = Random" & vbCrLf & "RightClick |LeftArrow| = Backward" & vbCrLf & "CtrlRightClick = Previous Image"
+        cmiNavigation.DropDown = CMNavigation
+        cmiNavigation.Image = My.Resources.Resources.ImageAdvance
+        cmiNavigation.Name = "cmiNavigation"
+        cmiNavigation.ShortcutKeyDisplayString = ""
+        cmiNavigation.Size = New Size(232, 26)
+        cmiNavigation.Text = "Navigation"
+        ' 
+        ' CMNavigation
+        ' 
+        CMNavigation.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        CMNavigation.Items.AddRange(New ToolStripItem() {CMIForward, CMIRandom, CMIBackward, CMIPrevious})
+        CMNavigation.Name = "CMNavigation"
+        CMNavigation.ShowItemToolTips = False
+        CMNavigation.Size = New Size(181, 130)
+        ' 
+        ' CMIForward
+        ' 
+        CMIForward.Image = My.Resources.Resources.ImageForward16
+        CMIForward.Name = "CMIForward"
+        CMIForward.ShortcutKeyDisplayString = "→"
+        CMIForward.Size = New Size(180, 26)
+        CMIForward.Text = "Forward"
+        CMIForward.ToolTipText = "Go Forward One Pic"
+        ' 
+        ' CMIRandom
+        ' 
+        CMIRandom.Image = My.Resources.Resources.ImageRandom16
+        CMIRandom.Name = "CMIRandom"
+        CMIRandom.ShortcutKeyDisplayString = "↓"
+        CMIRandom.Size = New Size(180, 26)
+        CMIRandom.Text = "Random"
+        CMIRandom.ToolTipText = "Go To A Random Pic"
+        ' 
+        ' CMIBackward
+        ' 
+        CMIBackward.Image = My.Resources.Resources.ImageBack16
+        CMIBackward.Name = "CMIBackward"
+        CMIBackward.ShortcutKeyDisplayString = "←"
+        CMIBackward.Size = New Size(180, 26)
+        CMIBackward.Text = "Backward"
+        CMIBackward.ToolTipText = "Go Back One Pic"
+        ' 
+        ' CMIPrevious
+        ' 
+        CMIPrevious.Image = My.Resources.Resources.ImagePrevious16
+        CMIPrevious.Name = "CMIPrevious"
+        CMIPrevious.Size = New Size(180, 26)
+        CMIPrevious.Text = "Previous"
+        CMIPrevious.ToolTipText = "Go To The Last Pic Viewed"
         ' 
         ' cmiShowFileInfo
         ' 
@@ -159,7 +208,7 @@ Inherits System.Windows.Forms.Form
         lblCountdown.AutoSize = True
         lblCountdown.BackColor = SystemColors.Control
         lblCountdown.CausesValidation = False
-        lblCountdown.ContextMenuStrip = cmPics
+        lblCountdown.ContextMenuStrip = CMPics
         lblCountdown.Font = New Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         lblCountdown.Location = New Point(86, 206)
         lblCountdown.Name = "lblCountdown"
@@ -191,18 +240,19 @@ Inherits System.Windows.Forms.Form
         StartPosition = FormStartPosition.Manual
         TopMost = True
         CType(picbx, ComponentModel.ISupportInitialize).EndInit()
-        cmPics.ResumeLayout(False)
+        CMPics.ResumeLayout(False)
+        CMNavigation.ResumeLayout(False)
         ResumeLayout(False)
         PerformLayout()
     End Sub
-    Private WithEvents cmPics As System.Windows.Forms.ContextMenuStrip
+    Private WithEvents CMPics As System.Windows.Forms.ContextMenuStrip
     Private cmiSeparator1 As System.Windows.Forms.ToolStripSeparator
 	Private cmiSeparator2 As System.Windows.Forms.ToolStripSeparator
 	Private cmiSeparator4 As System.Windows.Forms.ToolStripSeparator
 	Private cmiSeparator3 As System.Windows.Forms.ToolStripSeparator
 	Private WithEvents lblCountdown As System.Windows.Forms.Label
 	Private WithEvents picbx As System.Windows.Forms.PictureBox
-	Private WithEvents cmiAdvance As System.Windows.Forms.ToolStripMenuItem
+	Private WithEvents cmiNavigation As System.Windows.Forms.ToolStripMenuItem
 	Private WithEvents cmiDeleteImage As System.Windows.Forms.ToolStripMenuItem
 	Private WithEvents cmiQuickHide As System.Windows.Forms.ToolStripMenuItem
 	Private WithEvents cmiQuickRestore As System.Windows.Forms.ToolStripMenuItem
@@ -212,4 +262,9 @@ Inherits System.Windows.Forms.Form
 	Private WithEvents cmiShowFileInfo As System.Windows.Forms.ToolStripMenuItem
 	Private WithEvents cmiFullScreen As System.Windows.Forms.ToolStripMenuItem
 	Private WithEvents cmiClose As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents CMNavigation As ContextMenuStrip
+    Friend WithEvents CMIBackward As ToolStripMenuItem
+    Friend WithEvents CMIForward As ToolStripMenuItem
+    Friend WithEvents CMIRandom As ToolStripMenuItem
+    Friend WithEvents CMIPrevious As ToolStripMenuItem
 End Class

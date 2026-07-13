@@ -218,6 +218,8 @@ Partial Friend Class Vids
         App.HookTSItemsForCMTooltip(cmVids, TipCM)
         Skye.UI.ThemeManager.RegisterComponent(TipCM)
         Skye.UI.ThemeManager.ApplyTheme(Me)
+        lblTime.BackColor = Skye.UI.ThemeManager.CurrentTheme.TextBack
+        AddHandler Skye.UI.ThemeManager.ThemeChanged, AddressOf OnThemeChanged
 
         _player = New VLCPlayer(Me)
         VLCViewer.MediaPlayer = CType(_player, VLCPlayer).MediaPlayer
@@ -511,6 +513,9 @@ Partial Friend Class Vids
     End Sub
 
     'Handlers
+    Private Sub OnThemeChanged(sender As Object, e As EventArgs)
+        lblTime.BackColor = Skye.UI.ThemeManager.CurrentTheme.TextBack
+    End Sub
     Private Async Sub OnPlaybackStarted()
         Debug.Print("PlaybackStarted")
         SetVolume()

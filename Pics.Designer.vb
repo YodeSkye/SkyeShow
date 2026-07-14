@@ -57,7 +57,7 @@ Inherits System.Windows.Forms.Form
         CMPics.Name = "contextmenuImageForm"
         CMPics.RenderMode = ToolStripRenderMode.Professional
         CMPics.ShowItemToolTips = False
-        CMPics.Size = New Size(233, 288)
+        CMPics.Size = New Size(233, 310)
         ' 
         ' cmiFullScreen
         ' 
@@ -113,7 +113,7 @@ Inherits System.Windows.Forms.Form
         ' cmiNavigation
         ' 
         cmiNavigation.DropDown = CMNavigation
-        cmiNavigation.Image = My.Resources.Resources.ImageAdvance
+        cmiNavigation.Image = My.Resources.Resources.ImageForward16
         cmiNavigation.Name = "cmiNavigation"
         cmiNavigation.ShortcutKeyDisplayString = ""
         cmiNavigation.Size = New Size(232, 26)
@@ -124,6 +124,7 @@ Inherits System.Windows.Forms.Form
         CMNavigation.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         CMNavigation.Items.AddRange(New ToolStripItem() {CMIForward, CMIRandom, CMIBackward, CMIPrevious})
         CMNavigation.Name = "CMNavigation"
+        CMNavigation.OwnerItem = cmiNavigation
         CMNavigation.ShowItemToolTips = False
         CMNavigation.Size = New Size(181, 130)
         ' 

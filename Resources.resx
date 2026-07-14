@@ -214,9 +214,6 @@
   <data name="ImageDeleteLog32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\ImageDeleteLog32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ImageAdvance" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>My Project\ImageAdvance.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="ImageTimer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>My Project\ImageTimer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

@@ -5,12 +5,11 @@ Imports SkyeShow.My
 
 Partial Friend Class Vids
 
-    'Declarations
+    ' DECLARATIONS
     Private WithEvents TimerCheckPlayState As New System.Windows.Forms.Timer
     Private WithEvents TimerHideMouse As New Timer
     Private WithEvents TimerQuickHide As New Timer
     Private WithEvents TimerDeleteVideo As New Timer
-    Private _VLCHook As App.VLCViewerHook
     Private mMove As Boolean = False
     Private mMoveMode As Byte = 0 '0=Select, 1=Move, 2=ReSize
     Private mResize As Boolean = False
@@ -23,8 +22,9 @@ Partial Friend Class Vids
     Private PlayState As Boolean = False
     Private TipCM As Skye.UI.ToolTipEX
 
-    'Interface
+    ' VLC Interface
     Private _player As Skye.Contracts.IMediaPlayer
+    Private _VLCHook As App.VLCViewerHook
     Public Class VLCPlayer
         Implements IMediaPlayer, IDisposable
 
@@ -190,7 +190,7 @@ Partial Friend Class Vids
 
     End Class
 
-    'Form Events
+    ' FORM EVENTS
     Friend Sub New(showBySelection As Boolean)
 
         'Initialize Locals
@@ -206,7 +206,8 @@ Partial Friend Class Vids
         AddHandler Me.LostFocus, AddressOf frmLostFocus
         Me.Text = My.Application.Info.Title + " Video"
         UpdateDeleteVideoConfirm()
-        cmVids.Renderer = New Skye.UI.SkyeMenuRenderer
+        CMVids.Renderer = New Skye.UI.SkyeMenuRenderer
+        CMNavigation.Renderer = New Skye.UI.SkyeMenuRenderer
         TipCM = New Skye.UI.ToolTipEX() With {
             .Font = App.MenuFont,
             .ShadowAlpha = 0,
@@ -216,7 +217,8 @@ Partial Friend Class Vids
             .HideDelay = 5000,
             .ShowDelay = 250
         }
-        App.HookTSItemsForCMTooltip(cmVids, TipCM)
+        App.HookTSItemsForCMTooltip(CMVids, TipCM)
+        App.HookTSItemsForCMTooltip(CMNavigation, TipCM)
         Skye.UI.ThemeManager.RegisterComponent(TipCM)
         Skye.UI.ThemeManager.ApplyTheme(Me)
         lblTime.BackColor = Skye.UI.ThemeManager.CurrentTheme.TextBack
@@ -240,7 +242,7 @@ Partial Friend Class Vids
     Private Sub FrmClosing(ByVal sender As Object, ByVal e As FormClosingEventArgs) Handles MyBase.FormClosing
         My.App.HideBalloon()
         ShowCursor()
-        RemoveHandler Me.LostFocus, AddressOf frmLostFocus
+        RemoveHandler Me.LostFocus, AddressOf FrmLostFocus
         TimerCheckPlayState.Stop()
         TimerHideMouse.Stop()
         TimerQuickHide.Stop()
@@ -396,7 +398,7 @@ Partial Friend Class Vids
                     My.App.VidLocationMode = My.App.LocationMode.Manual
                     My.App.FrmMain.UpdateSettings()
                 End If
-            ElseIf mMoveMode = 2 Then : If mResize Then Me.cmVids.Close()
+            ElseIf mMoveMode = 2 Then : If mResize Then Me.CMVids.Close()
             End If
             Me.ResetCursor()
         ElseIf mHide Then : ShowCursor()
@@ -411,7 +413,7 @@ Partial Friend Class Vids
         End If
     End Sub
 
-    'Control Events
+    ' CONTROL EVENTS
     Private Sub VLCViewer_HandleCreated(sender As Object, e As EventArgs)
         If _VLCHook Is Nothing Then
             _VLCHook = New App.VLCViewerHook()
@@ -427,10 +429,10 @@ Partial Friend Class Vids
         End If
     End Sub
     Private Sub VLCViewer_RightClick(clientPoint As Point)
-        cmVids.Show(VLCViewer, clientPoint)
+        CMVids.Show(VLCViewer, clientPoint)
     End Sub
-    Private Sub CMVidsClosing(sender As Object, e As ToolStripDropDownClosingEventArgs) Handles cmVids.Closing
-        If Me.cmVids.Items(Me.cmVids.Items.IndexOfKey(Me.cmiDeleteVideo.Name)).Selected Then : If Not Me.DeleteVideoConfirm Then e.Cancel = True
+    Private Sub CMVidsClosing(sender As Object, e As ToolStripDropDownClosingEventArgs) Handles CMVids.Closing
+        If Me.CMVids.Items(Me.CMVids.Items.IndexOfKey(Me.cmiDeleteVideo.Name)).Selected Then : If Not Me.DeleteVideoConfirm Then e.Cancel = True
         Else : SetDeleteVideoConfirm(True)
         End If
     End Sub
@@ -462,17 +464,17 @@ Partial Friend Class Vids
             End If
         End If
     End Sub
-    Private Sub CMIAdvanceMouseUp(sender As Object, e As MouseEventArgs) Handles cmiAdvance.MouseUp
-        Select Case e.Button
-            Case MouseButtons.Left
-                If My.Computer.Keyboard.CtrlKeyDown Then : NextVideo(My.App.PlayOption.Random)
-                Else : NextVideo(My.App.PlayOption.Forward)
-                End If
-            Case MouseButtons.Right
-                If My.Computer.Keyboard.CtrlKeyDown Then : NextVideo(My.App.PlayOption.Previous)
-                Else : NextVideo(My.App.PlayOption.Backward)
-                End If
-        End Select
+    Private Sub CMIForward_MouseUp(sender As Object, e As MouseEventArgs) Handles CMIForward.MouseUp
+        NextVideo(My.App.PlayOption.Forward)
+    End Sub
+    Private Sub CMIRandom_MouseUp(sender As Object, e As MouseEventArgs) Handles CMIRandom.MouseUp
+        NextVideo(My.App.PlayOption.Random)
+    End Sub
+    Private Sub CMIBackward_MouseUp(sender As Object, e As MouseEventArgs) Handles CMIBackward.MouseUp
+        NextVideo(My.App.PlayOption.Backward)
+    End Sub
+    Private Sub CMIPrevious_MouseUp(sender As Object, e As MouseEventArgs) Handles CMIPrevious.MouseUp
+        NextVideo(My.App.PlayOption.Previous)
     End Sub
     Private Sub CMIShowFileInfoMouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles cmiShowFileInfo.MouseUp
         If e.Button = MouseButtons.Left Then ShowFileInfo()
@@ -513,7 +515,7 @@ Partial Friend Class Vids
         If e.Button = MouseButtons.Left Then My.App.FrmVids.Close()
     End Sub
 
-    'Handlers
+    ' HANDLERS
     Private Sub OnThemeChanged(sender As Object, e As EventArgs)
         lblTime.BackColor = Skye.UI.ThemeManager.CurrentTheme.TextBack
     End Sub
@@ -539,7 +541,7 @@ Partial Friend Class Vids
         Debug.Print("timerHideMouseTick")
         Me.TimerHideMouse.Stop()
 
-        If Not (Cursor.Position.X < Me.Left Or Cursor.Position.Y < Me.Top Or Cursor.Position.X >= Me.Left + Me.Width Or Cursor.Position.Y >= Me.Top + Me.Height Or Me.cmVids.Visible) Then
+        If Not (Cursor.Position.X < Me.Left Or Cursor.Position.Y < Me.Top Or Cursor.Position.X >= Me.Left + Me.Width Or Cursor.Position.Y >= Me.Top + Me.Height Or Me.CMVids.Visible) Then
             HideCursor()
         End If
     End Sub
@@ -550,7 +552,7 @@ Partial Friend Class Vids
         SetDeleteVideoConfirm()
     End Sub
 
-    'Procedures
+    ' METHODS
     Friend Sub NextVideo(opt As My.App.PlayOption)
         If Not (opt = My.App.PlayOption.Previous AndAlso My.App.VideoIndexPrevious = -1) Then
             If My.App.VideoFilesCount > 0 Then

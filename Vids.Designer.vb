@@ -11,7 +11,7 @@ Inherits System.Windows.Forms.Form
 	End Sub
     Private Sub InitializeComponent
         components = New ComponentModel.Container()
-        cmVids = New ContextMenuStrip(components)
+        CMVids = New ContextMenuStrip(components)
         cmiFullScreen = New ToolStripMenuItem()
         cmiSeparator1 = New ToolStripSeparator()
         cmiQuickHide = New ToolStripMenuItem()
@@ -19,7 +19,12 @@ Inherits System.Windows.Forms.Form
         cmiQuickRestore = New ToolStripMenuItem()
         cmiSeparator2 = New ToolStripSeparator()
         cmiPlay = New ToolStripMenuItem()
-        cmiAdvance = New ToolStripMenuItem()
+        CMINavigation = New ToolStripMenuItem()
+        CMNavigation = New ContextMenuStrip(components)
+        CMIForward = New ToolStripMenuItem()
+        CMIRandom = New ToolStripMenuItem()
+        CMIBackward = New ToolStripMenuItem()
+        CMIPrevious = New ToolStripMenuItem()
         cmiShowFileInfo = New ToolStripMenuItem()
         cmiViewVideo = New ToolStripMenuItem()
         cmiMuteVideo = New ToolStripMenuItem()
@@ -29,18 +34,19 @@ Inherits System.Windows.Forms.Form
         cmiClose = New ToolStripMenuItem()
         lblTime = New Label()
         VLCViewer = New LibVLCSharp.WinForms.VideoView()
-        cmVids.SuspendLayout()
+        CMVids.SuspendLayout()
+        CMNavigation.SuspendLayout()
         CType(VLCViewer, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
-        ' cmVids
+        ' CMVids
         ' 
-        cmVids.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        cmVids.Items.AddRange(New ToolStripItem() {cmiFullScreen, cmiSeparator1, cmiQuickHide, cmiQuickShift, cmiQuickRestore, cmiSeparator2, cmiPlay, cmiAdvance, cmiShowFileInfo, cmiViewVideo, cmiMuteVideo, cmiSeparator3, cmiDeleteVideo, cmiSeparator4, cmiClose})
-        cmVids.Name = "contextmenuVideo"
-        cmVids.RenderMode = ToolStripRenderMode.Professional
-        cmVids.ShowItemToolTips = False
-        cmVids.Size = New Size(233, 336)
+        CMVids.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        CMVids.Items.AddRange(New ToolStripItem() {cmiFullScreen, cmiSeparator1, cmiQuickHide, cmiQuickShift, cmiQuickRestore, cmiSeparator2, cmiPlay, CMINavigation, cmiShowFileInfo, cmiViewVideo, cmiMuteVideo, cmiSeparator3, cmiDeleteVideo, cmiSeparator4, cmiClose})
+        CMVids.Name = "contextmenuVideo"
+        CMVids.RenderMode = ToolStripRenderMode.Professional
+        CMVids.ShowItemToolTips = False
+        CMVids.Size = New Size(233, 314)
         ' 
         ' cmiFullScreen
         ' 
@@ -88,18 +94,61 @@ Inherits System.Windows.Forms.Form
         ' cmiPlay
         ' 
         cmiPlay.Name = "cmiPlay"
-        cmiPlay.ShortcutKeyDisplayString = "UPARROW"
+        cmiPlay.ShortcutKeyDisplayString = "↑"
         cmiPlay.Size = New Size(232, 26)
         cmiPlay.Text = "Play"
         ' 
-        ' cmiAdvance
+        ' CMINavigation
         ' 
-        cmiAdvance.Image = My.Resources.Resources.ImageAdvance
-        cmiAdvance.Name = "cmiAdvance"
-        cmiAdvance.ShortcutKeyDisplayString = "-->, -V-, <--"
-        cmiAdvance.Size = New Size(232, 26)
-        cmiAdvance.Text = "Advance"
-        cmiAdvance.ToolTipText = "LeftClick |CtrlRightArrow| = Forward" & vbCrLf & "CtrlLeftClick |CtrlDownArrow| = Random" & vbCrLf & "RightClick |CtrlLeftArrow| = Backward" & vbCrLf & "CtrlRightClick = Previous Video"
+        CMINavigation.DropDown = CMNavigation
+        CMINavigation.Image = My.Resources.Resources.ImageForward16
+        CMINavigation.Name = "CMINavigation"
+        CMINavigation.ShortcutKeyDisplayString = ""
+        CMINavigation.Size = New Size(232, 26)
+        CMINavigation.Text = "Navigation"
+        ' 
+        ' CMNavigation
+        ' 
+        CMNavigation.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        CMNavigation.Items.AddRange(New ToolStripItem() {CMIForward, CMIRandom, CMIBackward, CMIPrevious})
+        CMNavigation.Name = "CMNavigation"
+        CMNavigation.ShowItemToolTips = False
+        CMNavigation.Size = New Size(181, 130)
+        ' 
+        ' CMIForward
+        ' 
+        CMIForward.Image = My.Resources.Resources.ImageForward16
+        CMIForward.Name = "CMIForward"
+        CMIForward.ShortcutKeyDisplayString = "→"
+        CMIForward.Size = New Size(180, 26)
+        CMIForward.Text = "Forward"
+        CMIForward.ToolTipText = "Go Forward One Vid"
+        ' 
+        ' CMIRandom
+        ' 
+        CMIRandom.Image = My.Resources.Resources.ImageRandom16
+        CMIRandom.Name = "CMIRandom"
+        CMIRandom.ShortcutKeyDisplayString = "↓"
+        CMIRandom.Size = New Size(180, 26)
+        CMIRandom.Text = "Random"
+        CMIRandom.ToolTipText = "Go To A Random Vid"
+        ' 
+        ' CMIBackward
+        ' 
+        CMIBackward.Image = My.Resources.Resources.ImageBack16
+        CMIBackward.Name = "CMIBackward"
+        CMIBackward.ShortcutKeyDisplayString = "←"
+        CMIBackward.Size = New Size(180, 26)
+        CMIBackward.Text = "Backward"
+        CMIBackward.ToolTipText = "Go Back One Vid"
+        ' 
+        ' CMIPrevious
+        ' 
+        CMIPrevious.Image = My.Resources.Resources.ImagePrevious16
+        CMIPrevious.Name = "CMIPrevious"
+        CMIPrevious.Size = New Size(180, 26)
+        CMIPrevious.Text = "Previous"
+        CMIPrevious.ToolTipText = "Go To The Last Vid Viewed"
         ' 
         ' cmiShowFileInfo
         ' 
@@ -154,7 +203,7 @@ Inherits System.Windows.Forms.Form
         lblTime.AutoSize = True
         lblTime.BackColor = SystemColors.Control
         lblTime.CausesValidation = False
-        lblTime.ContextMenuStrip = cmVids
+        lblTime.ContextMenuStrip = CMVids
         lblTime.Font = New Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         lblTime.Location = New Point(135, 142)
         lblTime.Name = "lblTime"
@@ -168,7 +217,7 @@ Inherits System.Windows.Forms.Form
         ' VLCViewer
         ' 
         VLCViewer.BackColor = Color.Black
-        VLCViewer.ContextMenuStrip = cmVids
+        VLCViewer.ContextMenuStrip = CMVids
         VLCViewer.Dock = DockStyle.Fill
         VLCViewer.Enabled = False
         VLCViewer.Location = New Point(0, 0)
@@ -185,7 +234,7 @@ Inherits System.Windows.Forms.Form
         BackColor = SystemColors.Desktop
         CausesValidation = False
         ClientSize = New Size(300, 300)
-        ContextMenuStrip = cmVids
+        ContextMenuStrip = CMVids
         ControlBox = False
         Controls.Add(VLCViewer)
         Controls.Add(lblTime)
@@ -200,19 +249,20 @@ Inherits System.Windows.Forms.Form
         SizeGripStyle = SizeGripStyle.Hide
         StartPosition = FormStartPosition.Manual
         TopMost = True
-        cmVids.ResumeLayout(False)
+        CMVids.ResumeLayout(False)
+        CMNavigation.ResumeLayout(False)
         CType(VLCViewer, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
 
     End Sub
-    Private WithEvents cmVids As System.Windows.Forms.ContextMenuStrip
+    Private WithEvents CMVids As System.Windows.Forms.ContextMenuStrip
     Private cmiSeparator2 As System.Windows.Forms.ToolStripSeparator
 	Private cmiSeparator1 As System.Windows.Forms.ToolStripSeparator
     Private WithEvents lblTime As System.Windows.Forms.Label
     Private cmiSeparator4 As System.Windows.Forms.ToolStripSeparator
 	Private cmiSeparator3 As System.Windows.Forms.ToolStripSeparator
-    Private WithEvents cmiAdvance As System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents CMINavigation As System.Windows.Forms.ToolStripMenuItem
     Private WithEvents cmiDeleteVideo As System.Windows.Forms.ToolStripMenuItem
     Private WithEvents cmiQuickHide As System.Windows.Forms.ToolStripMenuItem
     Private WithEvents cmiQuickRestore As System.Windows.Forms.ToolStripMenuItem
@@ -224,4 +274,9 @@ Inherits System.Windows.Forms.Form
     Private WithEvents cmiClose As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents cmiMuteVideo As ToolStripMenuItem
     Friend WithEvents VLCViewer As LibVLCSharp.WinForms.VideoView
+    Friend WithEvents CMNavigation As ContextMenuStrip
+    Friend WithEvents CMIForward As ToolStripMenuItem
+    Friend WithEvents CMIRandom As ToolStripMenuItem
+    Friend WithEvents CMIBackward As ToolStripMenuItem
+    Friend WithEvents CMIPrevious As ToolStripMenuItem
 End Class

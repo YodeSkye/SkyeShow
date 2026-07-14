@@ -31,7 +31,8 @@ Namespace My
 		Friend PicTimerAutoStart As Boolean
 		Friend PicTimerCountdown As Boolean
 		Friend PicTimerCountdownLocationMode As LocationMode
-		Friend PicTimerInterval As Integer
+        Friend PicTimerInterval As Integer
+		Friend PicCrossfadeEnabled As Boolean
 
 		' METHODS
 		Friend Sub ShowImages()
@@ -767,6 +768,7 @@ Namespace My
 			If PicTimerInterval < 1 Or PicTimerInterval > 86400 Then PicTimerInterval = 30
 			PicFolders = Skye.Common.RegistryHelper.GetStringArray("ImageFolders", Array.Empty(Of String)).ToList()
 			PicFolders.Sort()
+			PicCrossfadeEnabled = Skye.Common.RegistryHelper.GetBool("PicCrossfadeEnabled", True)
 
 			' Vids
 			VidLocation = New Point(Skye.Common.RegistryHelper.GetInt("VideoLocationX", 0), Skye.Common.RegistryHelper.GetInt("VideoLocationY", 0))
@@ -892,7 +894,8 @@ Namespace My
 			Skye.Common.RegistryHelper.SetBool("ImageTimerEnabled", PicTimerEnabled)
 			Skye.Common.RegistryHelper.SetBool("ImageTimerAutoStart", PicTimerAutoStart)
 			Skye.Common.RegistryHelper.SetInt("ImageTimerInterval", PicTimerInterval)
-			Skye.Common.RegistryHelper.SetStringArray("ImageFolders", PicFolders.ToArray())
+            Skye.Common.RegistryHelper.SetStringArray("ImageFolders", PicFolders.ToArray())
+			Skye.Common.RegistryHelper.SetBool("PicCrossfadeEnabled", PicCrossfadeEnabled)
 
 			' Vids
 			Skye.Common.RegistryHelper.SetInt("VideoLocationX", VidLocation.X)

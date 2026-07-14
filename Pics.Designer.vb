@@ -11,7 +11,7 @@ Inherits System.Windows.Forms.Form
 	End Sub
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
-        picbx = New PictureBox()
+        PicMain = New PictureBox()
         CMPics = New ContextMenuStrip(components)
         cmiFullScreen = New ToolStripMenuItem()
         cmiSeparator1 = New ToolStripSeparator()
@@ -33,22 +33,23 @@ Inherits System.Windows.Forms.Form
         cmiSeparator4 = New ToolStripSeparator()
         cmiClose = New ToolStripMenuItem()
         lblCountdown = New Label()
-        CType(picbx, ComponentModel.ISupportInitialize).BeginInit()
+        PicFade = New PictureBox()
+        CType(PicMain, ComponentModel.ISupportInitialize).BeginInit()
         CMPics.SuspendLayout()
         CMNavigation.SuspendLayout()
+        CType(PicFade, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
-        ' picbx
+        ' PicMain
         ' 
-        picbx.BackColor = Color.Black
-        picbx.ContextMenuStrip = CMPics
-        picbx.Dock = DockStyle.Fill
-        picbx.Location = New Point(0, 0)
-        picbx.Margin = New Padding(3, 4, 3, 4)
-        picbx.Name = "picbx"
-        picbx.Size = New Size(300, 300)
-        picbx.TabIndex = 0
-        picbx.TabStop = False
+        PicMain.BackColor = Color.Black
+        PicMain.ContextMenuStrip = CMPics
+        PicMain.Dock = DockStyle.Fill
+        PicMain.Location = New Point(0, 0)
+        PicMain.Name = "PicMain"
+        PicMain.Size = New Size(300, 300)
+        PicMain.TabIndex = 0
+        PicMain.TabStop = False
         ' 
         ' CMPics
         ' 
@@ -57,7 +58,7 @@ Inherits System.Windows.Forms.Form
         CMPics.Name = "contextmenuImageForm"
         CMPics.RenderMode = ToolStripRenderMode.Professional
         CMPics.ShowItemToolTips = False
-        CMPics.Size = New Size(233, 310)
+        CMPics.Size = New Size(233, 288)
         ' 
         ' cmiFullScreen
         ' 
@@ -126,14 +127,14 @@ Inherits System.Windows.Forms.Form
         CMNavigation.Name = "CMNavigation"
         CMNavigation.OwnerItem = cmiNavigation
         CMNavigation.ShowItemToolTips = False
-        CMNavigation.Size = New Size(181, 130)
+        CMNavigation.Size = New Size(172, 108)
         ' 
         ' CMIForward
         ' 
         CMIForward.Image = My.Resources.Resources.ImageForward16
         CMIForward.Name = "CMIForward"
         CMIForward.ShortcutKeyDisplayString = "→"
-        CMIForward.Size = New Size(180, 26)
+        CMIForward.Size = New Size(171, 26)
         CMIForward.Text = "Forward"
         CMIForward.ToolTipText = "Go Forward One Pic"
         ' 
@@ -142,7 +143,7 @@ Inherits System.Windows.Forms.Form
         CMIRandom.Image = My.Resources.Resources.ImageRandom16
         CMIRandom.Name = "CMIRandom"
         CMIRandom.ShortcutKeyDisplayString = "↓"
-        CMIRandom.Size = New Size(180, 26)
+        CMIRandom.Size = New Size(171, 26)
         CMIRandom.Text = "Random"
         CMIRandom.ToolTipText = "Go To A Random Pic"
         ' 
@@ -151,7 +152,7 @@ Inherits System.Windows.Forms.Form
         CMIBackward.Image = My.Resources.Resources.ImageBack16
         CMIBackward.Name = "CMIBackward"
         CMIBackward.ShortcutKeyDisplayString = "←"
-        CMIBackward.Size = New Size(180, 26)
+        CMIBackward.Size = New Size(171, 26)
         CMIBackward.Text = "Backward"
         CMIBackward.ToolTipText = "Go Back One Pic"
         ' 
@@ -159,7 +160,7 @@ Inherits System.Windows.Forms.Form
         ' 
         CMIPrevious.Image = My.Resources.Resources.ImagePrevious16
         CMIPrevious.Name = "CMIPrevious"
-        CMIPrevious.Size = New Size(180, 26)
+        CMIPrevious.Size = New Size(171, 26)
         CMIPrevious.Text = "Previous"
         CMIPrevious.ToolTipText = "Go To The Last Pic Viewed"
         ' 
@@ -219,6 +220,15 @@ Inherits System.Windows.Forms.Form
         lblCountdown.TextAlign = ContentAlignment.MiddleCenter
         lblCountdown.UseMnemonic = False
         ' 
+        ' PicFade
+        ' 
+        PicFade.Dock = DockStyle.Fill
+        PicFade.Location = New Point(0, 0)
+        PicFade.Name = "PicFade"
+        PicFade.Size = New Size(300, 300)
+        PicFade.TabIndex = 2
+        PicFade.TabStop = False
+        ' 
         ' Pics
         ' 
         AutoScaleMode = AutoScaleMode.None
@@ -228,7 +238,8 @@ Inherits System.Windows.Forms.Form
         ClientSize = New Size(300, 300)
         ControlBox = False
         Controls.Add(lblCountdown)
-        Controls.Add(picbx)
+        Controls.Add(PicMain)
+        Controls.Add(PicFade)
         Font = New Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         FormBorderStyle = FormBorderStyle.None
         Icon = My.Resources.Resources.IconImage
@@ -240,9 +251,10 @@ Inherits System.Windows.Forms.Form
         SizeGripStyle = SizeGripStyle.Hide
         StartPosition = FormStartPosition.Manual
         TopMost = True
-        CType(picbx, ComponentModel.ISupportInitialize).EndInit()
+        CType(PicMain, ComponentModel.ISupportInitialize).EndInit()
         CMPics.ResumeLayout(False)
         CMNavigation.ResumeLayout(False)
+        CType(PicFade, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -252,7 +264,7 @@ Inherits System.Windows.Forms.Form
 	Private cmiSeparator4 As System.Windows.Forms.ToolStripSeparator
 	Private cmiSeparator3 As System.Windows.Forms.ToolStripSeparator
 	Private WithEvents lblCountdown As System.Windows.Forms.Label
-	Private WithEvents picbx As System.Windows.Forms.PictureBox
+	Private WithEvents PicMain As System.Windows.Forms.PictureBox
 	Private WithEvents cmiNavigation As System.Windows.Forms.ToolStripMenuItem
 	Private WithEvents cmiDeleteImage As System.Windows.Forms.ToolStripMenuItem
 	Private WithEvents cmiQuickHide As System.Windows.Forms.ToolStripMenuItem
@@ -268,4 +280,5 @@ Inherits System.Windows.Forms.Form
     Friend WithEvents CMIForward As ToolStripMenuItem
     Friend WithEvents CMIRandom As ToolStripMenuItem
     Friend WithEvents CMIPrevious As ToolStripMenuItem
+    Private WithEvents PicFade As PictureBox
 End Class

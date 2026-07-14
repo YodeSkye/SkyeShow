@@ -5,11 +5,14 @@ Imports SkyeShow.My
 
 Partial Friend Class Pics
 
-    'Declarations
+    ' Declarations
     Private WithEvents TimerImageAdvance As New Timer
     Private WithEvents TimerHideMouse As New Timer
     Private WithEvents TimerQuickHide As New Timer
     Private WithEvents TimerDeleteImage As New Timer
+    Private WithEvents TimerCrossfade As New Timer
+    Private IsCrossfading As Boolean = False
+    Private Const CrossfadeInterval As Integer = 400
     Private mMove As Boolean = False
     Private mMoveMode As Byte = 0 '0=Select, 1=Move, 2=ReSize
     Private mResize As Boolean = False
@@ -24,7 +27,7 @@ Partial Friend Class Pics
     Private imageProcessor As Graphics
     Private TipCM As Skye.UI.ToolTipEX
 
-    'Form Events
+    ' Form Events
     Friend Sub New()
         'Initialize Globals
         'Initialize Locals
@@ -131,7 +134,7 @@ Partial Friend Class Pics
             mResize = False
         End If
     End Sub
-    Private Sub FrmMouseDown(ByVal sender As Object, ByVal e As MouseEventArgs) Handles picbx.MouseDown, lblCountdown.MouseDown
+    Private Sub FrmMouseDown(ByVal sender As Object, ByVal e As MouseEventArgs) Handles PicMain.MouseDown, lblCountdown.MouseDown
         If e.Button = MouseButtons.Left Then
             If Not My.ImageIsOnTop Then QuickShow()
 
@@ -162,7 +165,7 @@ Partial Friend Class Pics
             End If
         End If
     End Sub
-    Private Sub FrmMouseMove(ByVal sender As Object, ByVal e As MouseEventArgs) Handles picbx.MouseMove, lblCountdown.MouseMove
+    Private Sub FrmMouseMove(ByVal sender As Object, ByVal e As MouseEventArgs) Handles PicMain.MouseMove, lblCountdown.MouseMove
         Debug.Print("frmMouseMove")
         If mMove Then
             If mMoveMode = 1 Then
@@ -204,7 +207,7 @@ Partial Friend Class Pics
             End If
         End If
     End Sub
-    Private Sub FrmMouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles picbx.MouseUp, lblCountdown.MouseUp
+    Private Sub FrmMouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles PicMain.MouseUp, lblCountdown.MouseUp
         Debug.Print("frmMouseUp")
         My.App.HideBalloon()
         If mMove Then
@@ -228,7 +231,17 @@ Partial Friend Class Pics
         End If
     End Sub
 
-    'Control Events
+    ' Control Events
+    Private Sub PicBox_MouseEnter(sender As Object, e As EventArgs) Handles PicMain.MouseEnter
+        If Not FullScreen Then TimerImageAdvance.Stop()
+    End Sub
+    Private Sub PicBox_MouseLeave(sender As Object, e As EventArgs) Handles PicMain.MouseLeave
+        If App.PicTimerAutoStart Then SetTimerAutoStart()
+        If App.PicTimerEnabled Then
+            TimerImageAdvance.Start()
+            ShowImageTimerCountdown()
+        End If
+    End Sub
     Private Sub CMPicsClosing(sender As Object, e As ToolStripDropDownClosingEventArgs) Handles CMPics.Closing
         If CMPics.Items(CMPics.Items.IndexOfKey(cmiDeleteImage.Name)).Selected Then : If Not DeleteImageConfirm Then e.Cancel = True
         Else : SetDeleteImageConfirm(True)
@@ -318,7 +331,7 @@ Partial Friend Class Pics
         If e.Button = MouseButtons.Left Then Me.Close()
     End Sub
 
-    'Handlers
+    ' Handlers
     Private Sub OnThemeChanged(sender As Object, e As EventArgs)
         lblCountdown.BackColor = Skye.UI.ThemeManager.CurrentTheme.TextBack
     End Sub
@@ -347,7 +360,7 @@ Partial Friend Class Pics
         SetDeleteImageConfirm()
     End Sub
 
-    'Procedures
+    ' Methods
     Friend Sub DrawImage()
         My.App.IgnoreFocusChange = True
         Me.Hide()
@@ -440,17 +453,17 @@ Partial Friend Class Pics
         End If
         If My.App.ImageFiles(My.App.ImageIndex).EndsWith(".gif", True, Globalization.CultureInfo.CurrentCulture) Then
             'GIF Images
-            Me.picbx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-            Me.picbx.Image = imageRaw
+            Me.PicMain.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+            Me.PicMain.Image = imageRaw
         Else
             'All Other Image Types
-            Me.picbx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Normal
+            Me.PicMain.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Normal
             imageDrawn = New Bitmap(imageRaw, Me.Size)
             imageProcessor = Graphics.FromImage(imageDrawn)
             imageProcessor.SmoothingMode = Drawing.Drawing2D.SmoothingMode.HighQuality
             imageProcessor.InterpolationMode = Drawing.Drawing2D.InterpolationMode.HighQualityBicubic
             imageProcessor.DrawImage(imageRaw, 0, 0, Me.Width, Me.Height)
-            Me.picbx.Image = imageDrawn
+            Me.PicMain.Image = imageDrawn
         End If
         SetImageTimerCountdown()
         If Me.cmiQuickHide.Checked Then

@@ -10,9 +10,6 @@ Partial Friend Class Pics
     Private WithEvents TimerHideMouse As New Timer
     Private WithEvents TimerQuickHide As New Timer
     Private WithEvents TimerDeleteImage As New Timer
-    Private WithEvents TimerCrossfade As New Timer
-    Private IsCrossfading As Boolean = False
-    Private Const CrossfadeInterval As Integer = 400
     Private mMove As Boolean = False
     Private mMoveMode As Byte = 0 '0=Select, 1=Move, 2=ReSize
     Private mResize As Boolean = False

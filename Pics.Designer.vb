@@ -33,11 +33,9 @@ Inherits System.Windows.Forms.Form
         cmiSeparator4 = New ToolStripSeparator()
         cmiClose = New ToolStripMenuItem()
         lblCountdown = New Label()
-        PicFade = New PictureBox()
         CType(PicMain, ComponentModel.ISupportInitialize).BeginInit()
         CMPics.SuspendLayout()
         CMNavigation.SuspendLayout()
-        CType(PicFade, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' PicMain
@@ -220,15 +218,6 @@ Inherits System.Windows.Forms.Form
         lblCountdown.TextAlign = ContentAlignment.MiddleCenter
         lblCountdown.UseMnemonic = False
         ' 
-        ' PicFade
-        ' 
-        PicFade.Dock = DockStyle.Fill
-        PicFade.Location = New Point(0, 0)
-        PicFade.Name = "PicFade"
-        PicFade.Size = New Size(300, 300)
-        PicFade.TabIndex = 2
-        PicFade.TabStop = False
-        ' 
         ' Pics
         ' 
         AutoScaleMode = AutoScaleMode.None
@@ -239,7 +228,6 @@ Inherits System.Windows.Forms.Form
         ControlBox = False
         Controls.Add(lblCountdown)
         Controls.Add(PicMain)
-        Controls.Add(PicFade)
         Font = New Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         FormBorderStyle = FormBorderStyle.None
         Icon = My.Resources.Resources.IconImage
@@ -254,7 +242,6 @@ Inherits System.Windows.Forms.Form
         CType(PicMain, ComponentModel.ISupportInitialize).EndInit()
         CMPics.ResumeLayout(False)
         CMNavigation.ResumeLayout(False)
-        CType(PicFade, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -280,5 +267,4 @@ Inherits System.Windows.Forms.Form
     Friend WithEvents CMIForward As ToolStripMenuItem
     Friend WithEvents CMIRandom As ToolStripMenuItem
     Friend WithEvents CMIPrevious As ToolStripMenuItem
-    Private WithEvents PicFade As PictureBox
 End Class

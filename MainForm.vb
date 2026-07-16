@@ -1,5 +1,6 @@
 
 Imports System.ComponentModel
+Imports System.IO
 Imports Skye.UI
 Imports SkyeShow.My
 
@@ -1440,7 +1441,17 @@ Partial Friend Class MainForm
                 Try
                     filelist.AddRange(IO.Directory.GetFiles(folder, "*", IO.SearchOption.AllDirectories))
                     For Each s As String In filelist
-                        If App.IsPicFile(s) Then App.ImageFiles.Add(s)
+                        If App.IsPicFile(s) Then
+                            ' Skip hidden/system files
+                            Dim attrs As FileAttributes = File.GetAttributes(s)
+                            If (attrs And FileAttributes.Hidden) = FileAttributes.Hidden Then Continue For
+                            If (attrs And FileAttributes.System) = FileAttributes.System Then Continue For
+                            ' Skip Windows metadata album art
+                            Dim name As String = Path.GetFileName(s).ToLower()
+                            If name = "folder.jpg" Then Continue For
+                            If name.Contains("albumart") Then Continue For
+                            App.ImageFiles.Add(s)
+                        End If
                     Next
                 Catch : removelist.Add(folder)
                 Finally : filelist.Clear()

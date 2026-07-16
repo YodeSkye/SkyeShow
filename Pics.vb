@@ -229,10 +229,10 @@ Partial Friend Class Pics
     End Sub
 
     ' Control Events
-    Private Sub PicBox_MouseEnter(sender As Object, e As EventArgs) Handles PicMain.MouseEnter
+    Private Sub PicMain_MouseEnter(sender As Object, e As EventArgs) Handles PicMain.MouseEnter
         If Not FullScreen Then TimerImageAdvance.Stop()
     End Sub
-    Private Sub PicBox_MouseLeave(sender As Object, e As EventArgs) Handles PicMain.MouseLeave
+    Private Sub PicMain_MouseLeave(sender As Object, e As EventArgs) Handles PicMain.MouseLeave
         If App.PicTimerAutoStart Then SetTimerAutoStart()
         If App.PicTimerEnabled Then
             TimerImageAdvance.Start()

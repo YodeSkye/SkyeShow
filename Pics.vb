@@ -9,8 +9,8 @@ Partial Friend Class Pics
     Private WithEvents TimerHideMouse As New Timer With {.Interval = 5000}
     Private WithEvents TimerQuickHide As New Timer
     Private WithEvents TimerDeleteImage As New Timer With {.Interval = 5000}
-    Private WithEvents TimerFadeOut As New Timer With {.Interval = 15}
-    Private WithEvents TimerFadeIn As New Timer With {.Interval = 15}
+    Private WithEvents TimerFadeOut As New Timer With {.Interval = App.ImageFadeTimerInterval}
+    Private WithEvents TimerFadeIn As New Timer With {.Interval = App.ImageFadeTimerInterval}
     Private mMove As Boolean = False
     Private mMoveMode As Byte = 0 '0=Select, 1=Move, 2=ReSize
     Private mResize As Boolean = False
@@ -378,7 +378,7 @@ Partial Friend Class Pics
         SetDeleteImageConfirm()
     End Sub
     Private Sub TimerFadeOut_Tick(sender As Object, e As EventArgs) Handles TimerFadeOut.Tick
-        FadeProgress -= 0.05F
+        FadeProgress -= App.ImageFadeStep
         If FadeProgress <= 0.0F Then
             FadeProgress = 0.0F
             TimerFadeOut.Stop()
@@ -386,7 +386,7 @@ Partial Friend Class Pics
         PicMain.Invalidate()
     End Sub
     Private Sub TimerFadeIn_Tick(sender As Object, e As EventArgs) Handles TimerFadeIn.Tick
-        FadeProgress += 0.05F
+        FadeProgress += App.ImageFadeStep
         If FadeProgress >= 1.0F Then
             FadeProgress = 1.0F
             TimerFadeIn.Stop()
@@ -397,7 +397,7 @@ Partial Friend Class Pics
     ' Methods
     Friend Sub DrawImage()
         My.App.IgnoreFocusChange = True
-        'Me.Hide()
+        'Hide()
         If FullScreen Then
             If imageRaw.Width <= My.Computer.Screen.Bounds.Width And imageRaw.Height <= My.Computer.Screen.Bounds.Height Then
                 'Smaller than or equal to Screen Size
@@ -506,7 +506,7 @@ Partial Friend Class Pics
             'GIF Images
             PicMain.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
             PicMain.Image = imageRaw
-            imageCurrent = Nothing        ' ← IMPORTANT
+            imageCurrent = Nothing ' ← IMPORTANT
             PicMain.Invalidate()
         Else
             'All Other Image Types
@@ -526,7 +526,7 @@ Partial Friend Class Pics
             Me.cmiQuickHide.ResetForeColor()
             SetTimerAutoStart()
         End If
-        'Me.Show()
+        'Show()
         OnTop(True)
         My.App.IgnoreFocusChange = False
     End Sub
@@ -674,7 +674,7 @@ Partial Friend Class Pics
                     'End Using
                     imageRaw = Image.FromFile(path)
                     Dim isGif As Boolean = (My.App.ImageIndex >= 0 AndAlso My.App.ImageIndex < My.App.ImageFiles.Count AndAlso My.App.ImageFiles(My.App.ImageIndex).EndsWith(".gif", StringComparison.OrdinalIgnoreCase))
-                    Dim doFade As Boolean = (callingopt = My.App.PlayOption.ByPlayMode) AndAlso firstImageDone AndAlso Not isGif
+                    Dim doFade As Boolean = My.App.PicFadeEnabled AndAlso (callingopt = My.App.PlayOption.ByPlayMode) AndAlso firstImageDone AndAlso Not isGif
                     Debug.Print("isGif : " + isGif.ToString + " | doFade : " + doFade.ToString)
                     If Not firstImageDone Then FadeProgress = 1.0F
                     If doFade Then Await FadeOutAsync()
@@ -767,15 +767,22 @@ Partial Friend Class Pics
         End If
     End Sub
     Private Sub DisposeGraphics()
-        On Error Resume Next
-        imageProcessor.Dispose()
+        DisposeSafe(imageProcessor)
         imageProcessor = Nothing
-        imageDrawn.Dispose()
+        DisposeSafe(imageDrawn)
         imageDrawn = Nothing
-        imageCurrent.Dispose()
+        DisposeSafe(imageCurrent)
         imageCurrent = Nothing
-        imageRaw.Dispose()
+        DisposeSafe(imageRaw)
         imageRaw = Nothing
+    End Sub
+    Private Sub DisposeSafe(obj As IDisposable)
+        If obj Is Nothing Then Exit Sub
+        Try
+            obj.Dispose()
+        Catch
+            ' Ignore disposal errors — object may already be disposed or corrupted
+        End Try
     End Sub
     Private Sub HideCursor()
         If Not mHide AndAlso My.App.HideCursorWhenFullscreen Then

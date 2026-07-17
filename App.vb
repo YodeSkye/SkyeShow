@@ -16,6 +16,8 @@ Namespace My
 		Friend ImageIndexPrevious As Integer = -1
 		Friend ImageRepeatList As New Collections.Generic.List(Of String)
 		Friend ImageIsOnTop As Boolean = True
+		Friend Const ImageFadeTimerInterval As Integer = 15
+		Friend ImageFadeStep As Single
 		Friend frmPics As Pics
 
 		' Saved Settings
@@ -32,7 +34,8 @@ Namespace My
 		Friend PicTimerCountdown As Boolean
 		Friend PicTimerCountdownLocationMode As LocationMode
         Friend PicTimerInterval As Integer
-		Friend PicCrossfadeEnabled As Boolean
+		Friend PicFadeEnabled As Boolean ' PicFadeEnabled is a boolean that determines whether the fade effect is enabled when auto-transitioning between images.
+		Friend PicFadeInterval As Integer ' PicFadeInterval is the interval in milliseconds for the fade effect when auto-transitioning between images.
 
 		' METHODS
 		Friend Sub ShowImages()
@@ -118,6 +121,10 @@ Namespace My
 		Friend Function ImageIndexLogText() As String
 			ImageIndexLogText = "Showing Image Index " + ImageIndex.ToString
 			If ImageIndex >= 0 Then ImageIndexLogText += " (" + ImageFiles(ImageIndex) + ")"
+		End Function
+		Friend Function ComputeFadeStep(fadeDurationMs As Integer) As Single
+			If fadeDurationMs <= 0 Then Return 1.0F
+			Return CSng(ImageFadeTimerInterval / fadeDurationMs)
 		End Function
 
 #End Region
@@ -766,7 +773,10 @@ Namespace My
 			If PicTimerAutoStart AndAlso Not PicTimerEnabled Then PicTimerEnabled = True
 			PicTimerInterval = Skye.Common.RegistryHelper.GetInt("ImageTimerInterval", 30)
 			If PicTimerInterval < 1 Or PicTimerInterval > 86400 Then PicTimerInterval = 30
-			PicCrossfadeEnabled = Skye.Common.RegistryHelper.GetBool("ImageCrossfadeEnabled", True)
+			PicFadeEnabled = Skye.Common.RegistryHelper.GetBool("ImageFadeEnabled", True)
+            PicFadeInterval = Skye.Common.RegistryHelper.GetInt("ImageFadeInterval", 500)
+			If PicFadeInterval < 0 Or PicFadeInterval > 2000 Then PicFadeInterval = 500
+			ImageFadeStep = ComputeFadeStep(PicFadeInterval)
 			PicFolders = Skye.Common.RegistryHelper.GetStringArray("ImageFolders", Array.Empty(Of String)).ToList()
 			PicFolders.Sort()
 
@@ -894,7 +904,8 @@ Namespace My
 			Skye.Common.RegistryHelper.SetBool("ImageTimerEnabled", PicTimerEnabled)
 			Skye.Common.RegistryHelper.SetBool("ImageTimerAutoStart", PicTimerAutoStart)
 			Skye.Common.RegistryHelper.SetInt("ImageTimerInterval", PicTimerInterval)
-			Skye.Common.RegistryHelper.SetBool("ImageCrossfadeEnabled", PicCrossfadeEnabled)
+			Skye.Common.RegistryHelper.SetBool("ImageFadeEnabled", PicFadeEnabled)
+			Skye.Common.RegistryHelper.SetInt("ImageFadeInterval", PicFadeInterval)
 			Skye.Common.RegistryHelper.SetStringArray("ImageFolders", PicFolders.ToArray())
 
 			' Vids

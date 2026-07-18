@@ -35,7 +35,7 @@ Namespace My
 		Friend PicTimerCountdownLocationMode As LocationMode
         Friend PicTimerInterval As Integer
 		Friend PicFadeEnabled As Boolean ' PicFadeEnabled is a boolean that determines whether the fade effect is enabled when auto-transitioning between images.
-		Friend PicFadeInterval As Integer ' PicFadeInterval is the interval in milliseconds for the fade effect when auto-transitioning between images.
+		Friend PicFadeDuration As Integer ' PicFadeInterval is the interval in milliseconds for the fade effect when auto-transitioning between images.
 
 		' METHODS
 		Friend Sub ShowImages()
@@ -271,7 +271,9 @@ Namespace My
 		Friend VidVolumeMute As Boolean
 		Friend VidTime As Boolean
 		Friend VidTimeDisplayMode As VideoPositionMode
-		Friend VidTimeLocationMode As LocationMode
+        Friend VidTimeLocationMode As LocationMode
+        Friend VidFadeEnabled As Boolean ' VidFadeEnabled is a boolean that determines whether the fade effect is enabled when auto-transitioning between videos.
+		Friend VidFadeDuration As Integer ' VidFadeInterval is the interval in milliseconds for the fade effect when auto-transitioning between videos.
 
 		' METHODS
 		Friend Sub ShowVideos(Optional showBySelection As Boolean = False)
@@ -775,9 +777,9 @@ Namespace My
 			PicTimerInterval = Skye.Common.RegistryHelper.GetInt("ImageTimerInterval", 30)
 			If PicTimerInterval < 1 Or PicTimerInterval > 86400 Then PicTimerInterval = 30
 			PicFadeEnabled = Skye.Common.RegistryHelper.GetBool("ImageFadeEnabled", True)
-            PicFadeInterval = Skye.Common.RegistryHelper.GetInt("ImageFadeInterval", 500)
-			If PicFadeInterval < 0 Or PicFadeInterval > 2000 Then PicFadeInterval = 500
-			ImageFadeStep = ComputeFadeStep(PicFadeInterval)
+			PicFadeDuration = Skye.Common.RegistryHelper.GetInt("ImageFadeDuration", 500)
+			If PicFadeDuration < 0 Or PicFadeDuration > 2000 Then PicFadeDuration = 500
+			ImageFadeStep = ComputeFadeStep(PicFadeDuration)
 			PicFolders = Skye.Common.RegistryHelper.GetStringArray("ImageFolders", Array.Empty(Of String)).ToList()
 			PicFolders.Sort()
 
@@ -803,6 +805,9 @@ Namespace My
 			VidTime = Skye.Common.RegistryHelper.GetBool("VideoTime", False)
 			VidTimeDisplayMode = CType(Skye.Common.RegistryHelper.GetInt("VideoTimeDisplayMode", CInt(VideoPositionMode.CurrentPosition)), VideoPositionMode)
 			VidTimeLocationMode = CType(Skye.Common.RegistryHelper.GetInt("VideoTimeLocationMode", CInt(LocationMode.Manual)), LocationMode)
+			VidFadeEnabled = Skye.Common.RegistryHelper.GetBool("VideoFadeEnabled", True)
+			VidFadeDuration = Skye.Common.RegistryHelper.GetInt("VideoFadeDuration", 500)
+			If VidFadeDuration < 0 Or VidFadeDuration > 2000 Then VidFadeDuration = 500
 			VidFolders.Clear()
 			Dim rawVidFolders As String() = Skye.Common.RegistryHelper.GetStringArray("VideoFolders", Array.Empty(Of String))
 			For Each entry As String In rawVidFolders
@@ -908,7 +913,7 @@ Namespace My
 			Skye.Common.RegistryHelper.SetBool("ImageTimerAutoStart", PicTimerAutoStart)
 			Skye.Common.RegistryHelper.SetInt("ImageTimerInterval", PicTimerInterval)
 			Skye.Common.RegistryHelper.SetBool("ImageFadeEnabled", PicFadeEnabled)
-			Skye.Common.RegistryHelper.SetInt("ImageFadeInterval", PicFadeInterval)
+			Skye.Common.RegistryHelper.SetInt("ImageFadeDuration", PicFadeDuration)
 			Skye.Common.RegistryHelper.SetStringArray("ImageFolders", PicFolders.ToArray())
 
 			' Vids
@@ -925,6 +930,8 @@ Namespace My
 			Skye.Common.RegistryHelper.SetBool("VideoTime", VidTime)
 			Skye.Common.RegistryHelper.SetInt("VideoTimeDisplayMode", CInt(VidTimeDisplayMode))
 			Skye.Common.RegistryHelper.SetInt("VideoTimeLocationMode", CInt(VidTimeLocationMode))
+			Skye.Common.RegistryHelper.SetBool("VideoFadeEnabled", VidFadeEnabled)
+			Skye.Common.RegistryHelper.SetInt("VideoFadeDuration", VidFadeDuration)
 			Dim vidFolderStrings As New List(Of String)
 			For Each vf As App.VideoFolderType In VidFolders
 				If vf.Enabled Then

@@ -144,8 +144,8 @@ Partial Friend Class MainForm
         App.SetSave()
     End Sub
     Private Sub TBarPicFadeInterval_ValueChanged(sender As Object, e As EventArgs) Handles TBarPicFadeInterval.ValueChanged
-        App.PicFadeInterval = TBarPicFadeInterval.Value
-        App.ImageFadeStep = App.ComputeFadeStep(App.PicFadeInterval)
+        App.PicFadeDuration = TBarPicFadeInterval.Value
+        App.ImageFadeStep = App.ComputeFadeStep(App.PicFadeDuration)
         ShowSettingsImages()
         App.SetSave()
     End Sub
@@ -1315,8 +1315,8 @@ Partial Friend Class MainForm
         Me.btnHotKeysPicsUndo.Enabled = False
         Me.btnHotKeysPicsSet.Enabled = False
         ChkBoxPicFadeEnabled.Checked = App.PicFadeEnabled
-        LblPicFadeInterval.Text = App.PicFadeInterval.ToString & "ms"
-        TBarPicFadeInterval.Value = App.PicFadeInterval
+        LblPicFadeInterval.Text = App.PicFadeDuration.ToString & "ms"
+        TBarPicFadeInterval.Value = App.PicFadeDuration
         Select Case App.PicFadeEnabled
             Case True
                 LblPicFadeInterval.Enabled = True

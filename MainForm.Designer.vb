@@ -288,7 +288,7 @@ Inherits System.Windows.Forms.Form
         cmApp.Name = "cmenuYMShow"
         cmApp.RenderMode = ToolStripRenderMode.Professional
         cmApp.ShowItemToolTips = False
-        cmApp.Size = New Size(185, 194)
+        cmApp.Size = New Size(185, 172)
         TipInfoEX.SetText(cmApp, Nothing)
         ' 
         ' cmiViewPics
@@ -704,7 +704,6 @@ Inherits System.Windows.Forms.Form
         ' 
         lblHotKeyVidToggle.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         lblHotKeyVidToggle.BackColor = Color.Transparent
-        lblHotKeyVidToggle.ForeColor = SystemColors.ControlText
         TipInfoEX.SetImage(lblHotKeyVidToggle, Nothing)
         lblHotKeyVidToggle.Location = New Point(8, 23)
         lblHotKeyVidToggle.Name = "lblHotKeyVidToggle"
@@ -718,7 +717,6 @@ Inherits System.Windows.Forms.Form
         ' 
         lblHotKeyVidToggleFullScreen.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         lblHotKeyVidToggleFullScreen.BackColor = Color.Transparent
-        lblHotKeyVidToggleFullScreen.ForeColor = SystemColors.ControlText
         TipInfoEX.SetImage(lblHotKeyVidToggleFullScreen, Nothing)
         lblHotKeyVidToggleFullScreen.Location = New Point(8, 72)
         lblHotKeyVidToggleFullScreen.Name = "lblHotKeyVidToggleFullScreen"
@@ -732,7 +730,6 @@ Inherits System.Windows.Forms.Form
         ' 
         lblHotKeyVidShowFileInfo.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         lblHotKeyVidShowFileInfo.BackColor = Color.Transparent
-        lblHotKeyVidShowFileInfo.ForeColor = SystemColors.ControlText
         TipInfoEX.SetImage(lblHotKeyVidShowFileInfo, Nothing)
         lblHotKeyVidShowFileInfo.Location = New Point(8, 122)
         lblHotKeyVidShowFileInfo.Name = "lblHotKeyVidShowFileInfo"
@@ -2192,7 +2189,6 @@ Inherits System.Windows.Forms.Form
         ' lblHotKeyPicToggle
         ' 
         lblHotKeyPicToggle.BackColor = Color.Transparent
-        lblHotKeyPicToggle.ForeColor = SystemColors.ControlText
         TipInfoEX.SetImage(lblHotKeyPicToggle, Nothing)
         lblHotKeyPicToggle.Location = New Point(8, 18)
         lblHotKeyPicToggle.Name = "lblHotKeyPicToggle"
@@ -2205,7 +2201,6 @@ Inherits System.Windows.Forms.Form
         ' lblHotKeyPicToggleFullScreen
         ' 
         lblHotKeyPicToggleFullScreen.BackColor = Color.Transparent
-        lblHotKeyPicToggleFullScreen.ForeColor = SystemColors.ControlText
         TipInfoEX.SetImage(lblHotKeyPicToggleFullScreen, Nothing)
         lblHotKeyPicToggleFullScreen.Location = New Point(8, 69)
         lblHotKeyPicToggleFullScreen.Name = "lblHotKeyPicToggleFullScreen"
@@ -2218,7 +2213,6 @@ Inherits System.Windows.Forms.Form
         ' lblHotKeyPicShowFileInfo
         ' 
         lblHotKeyPicShowFileInfo.BackColor = Color.Transparent
-        lblHotKeyPicShowFileInfo.ForeColor = SystemColors.ControlText
         TipInfoEX.SetImage(lblHotKeyPicShowFileInfo, Nothing)
         lblHotKeyPicShowFileInfo.Location = New Point(8, 119)
         lblHotKeyPicShowFileInfo.Name = "lblHotKeyPicShowFileInfo"
@@ -3182,8 +3176,8 @@ Inherits System.Windows.Forms.Form
         AutoSizeMode = AutoSizeMode.GrowAndShrink
         AutoValidate = AutoValidate.EnableAllowFocusChange
         ClientSize = New Size(917, 630)
-        Controls.Add(PanelVids)
         Controls.Add(PanelPics)
+        Controls.Add(PanelVids)
         Controls.Add(PanelApp)
         Controls.Add(PanelPageSelector)
         Controls.Add(PanelActions)

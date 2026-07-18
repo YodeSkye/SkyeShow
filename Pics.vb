@@ -26,6 +26,7 @@ Partial Friend Class Pics
     Private imageProcessor As Graphics
     Private firstImageDone As Boolean = False
     Private FadeProgress As Single
+    Private NextImageRunning As Boolean = False
     Private TipCM As Skye.UI.ToolTipEX
 
     ' Form Events
@@ -164,7 +165,7 @@ Partial Friend Class Pics
         End If
     End Sub
     Private Sub FrmMouseMove(ByVal sender As Object, ByVal e As MouseEventArgs) Handles PicMain.MouseMove, lblCountdown.MouseMove
-        Debug.Print("frmMouseMove")
+        'Debug.Print("frmMouseMove")
         If mMove Then
             If mMoveMode = 1 Then
                 mPosition = Control.MousePosition
@@ -557,6 +558,11 @@ Partial Friend Class Pics
         Me.cmiFullScreen.Checked = Not Me.cmiFullScreen.Checked
         If Not FullScreen Then ShowCursor()
         DrawImage()
+        If App.PicTimerAutoStart Then SetTimerAutoStart()
+        If App.PicTimerEnabled Then
+            TimerImageAdvance.Start()
+            ShowImageTimerCountdown()
+        End If
     End Sub
     Friend Sub QuickShow()
         DrawImage()
@@ -621,86 +627,92 @@ Partial Friend Class Pics
         Return TimerImageAdvance.Enabled
     End Function
     Private Async Function NextImage(opt As App.PlayOption) As Task
-        Dim callingopt As App.PlayOption = opt
-        If Not (opt = My.App.PlayOption.Previous AndAlso My.App.ImageIndexPrevious = -1) Then
-            'DisposeGraphics()
-            If My.App.ImageFiles.Count > 0 Then
-                Try
-                    Me.TimerImageAdvance.Stop()
-                    If opt = My.App.PlayOption.ByPlayMode Then
-                        Select Case My.App.PicPlayMode
-                            Case My.App.PlayMode.Linear, My.App.PlayMode.LinearWithRandomStart : opt = My.App.PlayOption.Forward
-                            Case My.App.PlayMode.Random : opt = My.App.PlayOption.Random
-                        End Select
-                    End If
-                    If My.App.ImageRepeatList.Count >= My.App.ImageFiles.Count Then My.App.ImageRepeatList.Clear()
-                    Do
-                        Select Case opt
-                            Case My.App.PlayOption.Forward
-                                My.App.ImageIndexPrevious = My.App.ImageIndex
-                                My.App.ImageIndex += 1
-                                If My.App.ImageIndex > My.App.ImageFiles.Count - 1 Then My.App.ImageIndex = 0
-                            Case My.App.PlayOption.Backward
-                                My.App.ImageIndexPrevious = My.App.ImageIndex
-                                My.App.ImageIndex -= 1
-                                If My.App.ImageIndex < 0 Then My.App.ImageIndex = My.App.ImageFiles.Count - 1
-                            Case My.App.PlayOption.Random
-                                My.App.ImageIndexPrevious = My.App.ImageIndex
-                                Do : My.App.ImageIndex = Skye.Common.GetRandom(0, My.App.ImageFiles.Count - 1, My.App.ImageIndex)
-                                Loop Until Not My.App.ImageRepeatList.Contains(My.App.ImageFiles(My.App.ImageIndex))
-                            Case My.App.PlayOption.BySelection
-                                My.App.ImageIndexPrevious = My.App.ImageIndex
-                                If My.App.ImageIndex < 0 Then : My.App.ImageIndex = 0
-                                ElseIf My.App.ImageIndex > My.App.ImageFiles.Count - 1 Then : My.App.ImageIndex = My.App.ImageFiles.Count - 1
-                                End If
-                            Case My.App.PlayOption.Previous
-                                If Not (My.App.ImageIndexPrevious < 0 OrElse My.App.ImageIndexPrevious > My.App.ImageFiles.Count - 1) Then
-                                    Dim temp As Integer = App.ImageIndex
-                                    App.ImageIndex = App.ImageIndexPrevious
-                                    App.ImageIndexPrevious = temp
-                                End If
-                        End Select
-                        If Microsoft.VisualBasic.FileIO.FileSystem.FileExists(My.App.ImageFiles.Item(My.App.ImageIndex)) Then : Exit Do
-                        Else
-                            My.App.ImageFiles.RemoveAt(My.App.ImageIndex)
-                            If opt = My.App.PlayOption.Forward Then My.App.ImageIndex -= 1
-                            If My.App.FrmMain.Visible Then My.App.FrmMain.UpdateSettings()
+        If NextImageRunning Then Return
+        NextImageRunning = True
+        Try
+            Dim callingopt As App.PlayOption = opt
+            If Not (opt = My.App.PlayOption.Previous AndAlso My.App.ImageIndexPrevious = -1) Then
+                'DisposeGraphics()
+                If My.App.ImageFiles.Count > 0 Then
+                    Try
+                        Me.TimerImageAdvance.Stop()
+                        If opt = My.App.PlayOption.ByPlayMode Then
+                            Select Case My.App.PicPlayMode
+                                Case My.App.PlayMode.Linear, My.App.PlayMode.LinearWithRandomStart : opt = My.App.PlayOption.Forward
+                                Case My.App.PlayMode.Random : opt = My.App.PlayOption.Random
+                            End Select
                         End If
-                    Loop
-                    App.WriteToLog(App.ImageIndexLogText)
-                    Dim path As String = App.ImageFiles(App.ImageIndex)
-                    'Using fs As New FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite)
-                    '    imageRaw = Image.FromStream(fs)
-                    'End Using
-                    imageRaw = Image.FromFile(path)
-                    Dim isGif As Boolean = (My.App.ImageIndex >= 0 AndAlso My.App.ImageIndex < My.App.ImageFiles.Count AndAlso My.App.ImageFiles(My.App.ImageIndex).EndsWith(".gif", StringComparison.OrdinalIgnoreCase))
-                    Dim doFade As Boolean = My.App.PicFadeEnabled AndAlso (callingopt = My.App.PlayOption.ByPlayMode) AndAlso firstImageDone AndAlso Not isGif
-                    Debug.Print("isGif : " + isGif.ToString + " | doFade : " + doFade.ToString)
-                    If Not firstImageDone Then FadeProgress = 1.0F
-                    If doFade Then Await FadeOutAsync()
-                    DrawImage()
-                    If doFade Then Await FadeInAsync()
-                    If Not firstImageDone Then firstImageDone = True
-                    SetTimer()
-                    If Not My.App.ImageRepeatList.Contains(My.App.ImageFiles(My.App.ImageIndex)) Then
-                        My.App.ImageRepeatList.Add(My.App.ImageFiles(My.App.ImageIndex))
+                        If My.App.ImageRepeatList.Count >= My.App.ImageFiles.Count Then My.App.ImageRepeatList.Clear()
+                        Do
+                            Select Case opt
+                                Case My.App.PlayOption.Forward
+                                    My.App.ImageIndexPrevious = My.App.ImageIndex
+                                    My.App.ImageIndex += 1
+                                    If My.App.ImageIndex > My.App.ImageFiles.Count - 1 Then My.App.ImageIndex = 0
+                                Case My.App.PlayOption.Backward
+                                    My.App.ImageIndexPrevious = My.App.ImageIndex
+                                    My.App.ImageIndex -= 1
+                                    If My.App.ImageIndex < 0 Then My.App.ImageIndex = My.App.ImageFiles.Count - 1
+                                Case My.App.PlayOption.Random
+                                    My.App.ImageIndexPrevious = My.App.ImageIndex
+                                    Do : My.App.ImageIndex = Skye.Common.GetRandom(0, My.App.ImageFiles.Count - 1, My.App.ImageIndex)
+                                    Loop Until Not My.App.ImageRepeatList.Contains(My.App.ImageFiles(My.App.ImageIndex))
+                                Case My.App.PlayOption.BySelection
+                                    My.App.ImageIndexPrevious = My.App.ImageIndex
+                                    If My.App.ImageIndex < 0 Then : My.App.ImageIndex = 0
+                                    ElseIf My.App.ImageIndex > My.App.ImageFiles.Count - 1 Then : My.App.ImageIndex = My.App.ImageFiles.Count - 1
+                                    End If
+                                Case My.App.PlayOption.Previous
+                                    If Not (My.App.ImageIndexPrevious < 0 OrElse My.App.ImageIndexPrevious > My.App.ImageFiles.Count - 1) Then
+                                        Dim temp As Integer = App.ImageIndex
+                                        App.ImageIndex = App.ImageIndexPrevious
+                                        App.ImageIndexPrevious = temp
+                                    End If
+                            End Select
+                            If Microsoft.VisualBasic.FileIO.FileSystem.FileExists(My.App.ImageFiles.Item(My.App.ImageIndex)) Then : Exit Do
+                            Else
+                                My.App.ImageFiles.RemoveAt(My.App.ImageIndex)
+                                If opt = My.App.PlayOption.Forward Then My.App.ImageIndex -= 1
+                                If My.App.FrmMain.Visible Then My.App.FrmMain.UpdateSettings()
+                            End If
+                        Loop
+                        App.WriteToLog(App.ImageIndexLogText)
+                        Dim path As String = App.ImageFiles(App.ImageIndex)
+                        'Using fs As New FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite)
+                        '    imageRaw = Image.FromStream(fs)
+                        'End Using
+                        imageRaw = Image.FromFile(path)
+                        Dim isGif As Boolean = (My.App.ImageIndex >= 0 AndAlso My.App.ImageIndex < My.App.ImageFiles.Count AndAlso My.App.ImageFiles(My.App.ImageIndex).EndsWith(".gif", StringComparison.OrdinalIgnoreCase))
+                        Dim doFade As Boolean = My.App.PicFadeEnabled AndAlso (callingopt = My.App.PlayOption.ByPlayMode) AndAlso firstImageDone AndAlso Not isGif
+                        Debug.Print("isGif : " + isGif.ToString + " | doFade : " + doFade.ToString)
+                        If Not firstImageDone Then FadeProgress = 1.0F
+                        If doFade Then Await FadeOutAsync()
+                        DrawImage()
+                        If doFade Then Await FadeInAsync()
+                        If Not firstImageDone Then firstImageDone = True
+                        SetTimer()
+                        If Not My.App.ImageRepeatList.Contains(My.App.ImageFiles(My.App.ImageIndex)) Then
+                            My.App.ImageRepeatList.Add(My.App.ImageFiles(My.App.ImageIndex))
+                            My.App.FrmMain.UpdateSettings()
+                        End If
+                        'My.Debug.ShowMessage(My.SkyeShow.Tools.Images, "NextImage", "Repeat Count : " + My.SkyeShow.ImageRepeatList.Count.ToString)
+                    Catch ex As Exception
+                        My.App.WriteToLog("Image Load Error" + Environment.NewLine + ex.ToString)
+                        My.App.SetErrorAlert()
+                        My.App.ImageFiles.RemoveAt(My.App.ImageIndex)
                         My.App.FrmMain.UpdateSettings()
-                    End If
-                    'My.Debug.ShowMessage(My.SkyeShow.Tools.Images, "NextImage", "Repeat Count : " + My.SkyeShow.ImageRepeatList.Count.ToString)
-                Catch ex As Exception
-                    My.App.WriteToLog("Image Load Error" + Environment.NewLine + ex.ToString)
-                    My.App.SetErrorAlert()
-                    My.App.ImageFiles.RemoveAt(My.App.ImageIndex)
-                    My.App.FrmMain.UpdateSettings()
-                    If My.App.ImageFiles.Count = 0 Then
-                        Me.Close()
-                    Else
-                        Dim ignore As Task = NextImage(My.App.PlayOption.ByPlayMode)
-                    End If
-                End Try
-            Else : Me.Close()
+                        If My.App.ImageFiles.Count = 0 Then
+                            Me.Close()
+                        Else
+                            Dim ignore As Task = NextImage(My.App.PlayOption.ByPlayMode)
+                        End If
+                    End Try
+                Else : Me.Close()
+                End If
             End If
-        End If
+        Finally
+            NextImageRunning = False
+        End Try
     End Function
     Private Async Function FadeOutAsync() As Task
         FadeProgress = 1.0F
@@ -742,8 +754,7 @@ Partial Friend Class Pics
     Private Sub QuickRestore()
         ShowCursor()
         If FullScreen Then ToggleFullScreen()
-        Me.Hide()
-        My.App.FrmMain.RestoreSettings()
+        App.FrmMain.RestoreSettings()
         DrawImage()
     End Sub
     Private Sub OnTop(mode As Boolean)

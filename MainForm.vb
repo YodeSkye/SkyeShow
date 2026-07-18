@@ -1195,7 +1195,10 @@ Partial Friend Class MainForm
         ShowSettings()
         Dim selectedTheme As Skye.UI.SkyeTheme = If(App.ThemeAuto, Skye.UI.ThemeManager.DetectWindowsTheme(), App.Theme)
         Skye.UI.ThemeManager.SetTheme(selectedTheme)
-        If App.FrmPicsVisible Then App.frmPics.DrawImage()
+        If App.FrmPicsVisible Then
+            App.frmPics.DrawImage()
+            App.frmPics.EnableImageTimer()
+        End If
         If App.FrmVidsVisible Then
             App.FrmVids.SetSize()
             App.FrmVids.SetVolume()

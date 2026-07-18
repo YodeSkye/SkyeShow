@@ -1,5 +1,4 @@
-﻿Imports System.Diagnostics
-Imports System.IO
+﻿
 Imports SkyeShow.My
 
 Partial Friend Class Pics
@@ -173,6 +172,7 @@ Partial Friend Class Pics
                 CheckMove(mPosition)
                 Location = mPosition
                 SetImageTimerCountdown()
+                SetSave()
             ElseIf mMoveMode = 2 Then
                 If sender Is Me.lblCountdown Then : My.App.PicMaxSize += CType(Me.Left + (Me.lblCountdown.Left + e.X) - mLastLocation.X, Short)
                 Else : My.App.PicMaxSize += CType(Me.Left + e.X - mLastLocation.X, Short)
@@ -186,7 +186,8 @@ Partial Friend Class Pics
                 Else : mLastLocation.Offset(e.Location)
                 End If
                 DrawImage()
-                Me.Refresh()
+                Refresh()
+                SetSave()
             End If
         Else
             If mHide Then : If Not mHidePosition = Control.MousePosition Then ShowCursor()
@@ -235,11 +236,8 @@ Partial Friend Class Pics
         If Not FullScreen Then TimerImageAdvance.Stop()
     End Sub
     Private Sub PicMain_MouseLeave(sender As Object, e As EventArgs) Handles PicMain.MouseLeave
-        If App.PicTimerAutoStart Then SetTimerAutoStart()
-        If App.PicTimerEnabled Then
-            TimerImageAdvance.Start()
-            ShowImageTimerCountdown()
-        End If
+        'If App.PicTimerAutoStart Then SetTimerAutoStart()
+        EnableImageTimer()
     End Sub
     Private Sub PicMain_Paint(sender As Object, e As PaintEventArgs) Handles PicMain.Paint
         If PicMain.Image IsNot Nothing Then Return
@@ -558,11 +556,7 @@ Partial Friend Class Pics
         Me.cmiFullScreen.Checked = Not Me.cmiFullScreen.Checked
         If Not FullScreen Then ShowCursor()
         DrawImage()
-        If App.PicTimerAutoStart Then SetTimerAutoStart()
-        If App.PicTimerEnabled Then
-            TimerImageAdvance.Start()
-            ShowImageTimerCountdown()
-        End If
+        EnableImageTimer()
     End Sub
     Friend Sub QuickShow()
         DrawImage()
@@ -570,6 +564,12 @@ Partial Friend Class Pics
         SetTimer()
         Me.cmiQuickHide.ResetForeColor()
         Me.cmiQuickHide.Checked = False
+    End Sub
+    Friend Sub EnableImageTimer()
+        If App.PicTimerEnabled Then
+            TimerImageAdvance.Start()
+            ShowImageTimerCountdown()
+        End If
     End Sub
     Friend Sub SetImageTimerCountdown()
         If My.App.PicTimerCountdown Then

@@ -354,6 +354,7 @@ Partial Friend Class Vids
                 mPosition.Offset(mOffset.X, mOffset.Y)
                 CheckMove(mPosition)
                 Location = mPosition
+                SetSave()
             ElseIf mMoveMode = 2 Then
                 If sender Is Me.lblTime Then : My.App.VidMaxSize += CType(Me.Left + (Me.lblTime.Left + e.X) - mLastLocation.X, Short)
                 Else : My.App.VidMaxSize += CShort(Int(Me.Left + e.X - mLastLocation.X))
@@ -365,6 +366,7 @@ Partial Friend Class Vids
                 End If
                 SetSize()
                 If Me.PlayState = False Then ShowVideoTime()
+                SetSave()
             End If
         Else
             If mHide Then : If Not mHidePosition = Control.MousePosition Then ShowCursor()
@@ -409,6 +411,7 @@ Partial Friend Class Vids
             End Select
             SetVideoTime()
             ShowVideoTime()
+            SetSave()
             If My.App.FrmMain.Visible Then My.App.FrmMain.UpdateSettings()
         End If
     End Sub

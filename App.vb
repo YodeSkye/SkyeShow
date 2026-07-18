@@ -696,6 +696,7 @@ Namespace My
 			Debug.Print("WriteToLog --> " + logentry)
 		End Sub
 		Friend Sub GetSettings()
+			Dim starttime As TimeSpan = DateTime.Now.TimeOfDay
 
 			' App
 			SaveFileLists = Skye.Common.RegistryHelper.GetBool("AppSaveFileLists", False)
@@ -813,6 +814,7 @@ Namespace My
 			Next
 			VidFolders.Sort(New VideoFolderType.Comparer)
 
+			Skye.Common.Log.Write("Settings Loaded (" & Skye.Common.GenerateLogTime(starttime, DateTime.Now.TimeOfDay, True) & ")")
 		End Sub
 		<Diagnostics.ConditionalAttribute("DEBUG")> Private Sub GetDebugSettings()
 			'Initialize
@@ -855,6 +857,7 @@ Namespace My
 			'Finalize
 		End Sub
 		Friend Sub SaveSettings()
+			Dim starttime As TimeSpan = DateTime.Now.TimeOfDay
 
 			' App
 			Skye.Common.RegistryHelper.SetBool("AppSaveFileLists", SaveFileLists)
@@ -932,6 +935,7 @@ Namespace My
 			Next
 			Skye.Common.RegistryHelper.SetStringArray("VideoFolders", vidFolderStrings.ToArray())
 
+			Skye.Common.Log.Write("Settings Saved (" & Skye.Common.GenerateLogTime(starttime, DateTime.Now.TimeOfDay, True) & ")")
 		End Sub
 		Friend Sub SetSave()
 			NeedsSaved = True

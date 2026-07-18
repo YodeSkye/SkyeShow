@@ -128,6 +128,11 @@ Partial Friend Class MainForm
         My.App.PicTimerAutoStart = Not My.App.PicTimerAutoStart
         App.SetSave()
     End Sub
+    Private Sub ChkBoxPicFadeEnabled_Click(sender As Object, e As EventArgs) Handles ChkBoxPicFadeEnabled.Click
+        App.PicFadeEnabled = ChkBoxPicFadeEnabled.Checked
+        ShowSettingsImages()
+        App.SetSave()
+    End Sub
     Private Sub TxbxPicTimerIntervalValidating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txbxPicTimerInterval.Validating
         If Int(Val(Me.txbxPicTimerInterval.Text)) < 1 Then Me.txbxPicTimerInterval.Text = "1"
         If Int(Val(Me.txbxPicTimerInterval.Text)) > 86400 Then Me.txbxPicTimerInterval.Text = "86400"
@@ -136,6 +141,12 @@ Partial Friend Class MainForm
         My.App.PicTimerInterval = CType(Int(Val(Me.txbxPicTimerInterval.Text)), Integer)
         If My.App.FrmPicsVisible Then My.App.frmPics.SetTimer()
         Me.txbxPicTimerInterval.SelectAll()
+        App.SetSave()
+    End Sub
+    Private Sub TBarPicFadeInterval_ValueChanged(sender As Object, e As EventArgs) Handles TBarPicFadeInterval.ValueChanged
+        App.PicFadeInterval = TBarPicFadeInterval.Value
+        App.ImageFadeStep = App.ComputeFadeStep(App.PicFadeInterval)
+        ShowSettingsImages()
         App.SetSave()
     End Sub
 
@@ -1300,6 +1311,17 @@ Partial Friend Class MainForm
         Me.txbxHotKeyPicShowFileInfo.ForeColor = Color.Teal
         Me.btnHotKeysPicsUndo.Enabled = False
         Me.btnHotKeysPicsSet.Enabled = False
+        ChkBoxPicFadeEnabled.Checked = App.PicFadeEnabled
+        LblPicFadeInterval.Text = App.PicFadeInterval.ToString & "ms"
+        TBarPicFadeInterval.Value = App.PicFadeInterval
+        Select Case App.PicFadeEnabled
+            Case True
+                LblPicFadeInterval.Enabled = True
+                TBarPicFadeInterval.Enabled = True
+            Case False
+                LblPicFadeInterval.Enabled = False
+                TBarPicFadeInterval.Enabled = False
+        End Select
         UpdateSettingsPics()
         Me.btnClose.Focus()
     End Sub

@@ -156,8 +156,6 @@ Inherits System.Windows.Forms.Form
         ChkBoxThemeAuto = New CheckBox()
         LblTheme = New Skye.UI.Label()
         PanelPics = New Panel()
-        TBarPicFadeInterval = New TrackBar()
-        ChkBoxPicFadeEnabled = New CheckBox()
         grbxHotKeysPics = New GroupBox()
         txbxHotKeyPicToggle = New TextBox()
         btnHotKeyPicToggleDisable = New Button()
@@ -237,7 +235,9 @@ Inherits System.Windows.Forms.Form
         radbtnPicPlayModeRandom = New RadioButton()
         label4 = New Label()
         chbxPicTimerAutoStart = New CheckBox()
-        LblPicFadeInterval = New Skye.UI.Label()
+        TBarPicFadeDuration = New TrackBar()
+        ChkBoxPicFadeEnabled = New CheckBox()
+        LblPicFadeDuration = New Skye.UI.Label()
         PanelVids = New Panel()
         PanelActions = New Panel()
         PanelPageSelector = New Panel()
@@ -254,12 +254,12 @@ Inherits System.Windows.Forms.Form
         grbxVidTimeLocationMode.SuspendLayout()
         PanelApp.SuspendLayout()
         PanelPics.SuspendLayout()
-        CType(TBarPicFadeInterval, ComponentModel.ISupportInitialize).BeginInit()
         grbxHotKeysPics.SuspendLayout()
         gpbxPicTimerCountdownLocationMode.SuspendLayout()
         gpbxPicJustify.SuspendLayout()
         gpbxPicLocationMode.SuspendLayout()
         gpbxPicPlayMode.SuspendLayout()
+        CType(TBarPicFadeDuration, ComponentModel.ISupportInitialize).BeginInit()
         PanelVids.SuspendLayout()
         PanelActions.SuspendLayout()
         PanelPageSelector.SuspendLayout()
@@ -2051,9 +2051,9 @@ Inherits System.Windows.Forms.Form
         PanelPics.Controls.Add(btnRefreshPicList)
         PanelPics.Controls.Add(label4)
         PanelPics.Controls.Add(chbxPicTimerAutoStart)
-        PanelPics.Controls.Add(TBarPicFadeInterval)
+        PanelPics.Controls.Add(TBarPicFadeDuration)
         PanelPics.Controls.Add(ChkBoxPicFadeEnabled)
-        PanelPics.Controls.Add(LblPicFadeInterval)
+        PanelPics.Controls.Add(LblPicFadeDuration)
         PanelPics.Dock = DockStyle.Fill
         TipInfoEX.SetImage(PanelPics, Nothing)
         PanelPics.Location = New Point(91, 0)
@@ -2061,32 +2061,6 @@ Inherits System.Windows.Forms.Form
         PanelPics.Size = New Size(826, 534)
         PanelPics.TabIndex = 108
         TipInfoEX.SetText(PanelPics, Nothing)
-        ' 
-        ' TBarPicFadeInterval
-        ' 
-        TipInfoEX.SetImage(TBarPicFadeInterval, Nothing)
-        TBarPicFadeInterval.LargeChange = 250
-        TBarPicFadeInterval.Location = New Point(5, 264)
-        TBarPicFadeInterval.Maximum = 2000
-        TBarPicFadeInterval.Name = "TBarPicFadeInterval"
-        TBarPicFadeInterval.Size = New Size(228, 45)
-        TBarPicFadeInterval.SmallChange = 50
-        TBarPicFadeInterval.TabIndex = 35
-        TBarPicFadeInterval.TabStop = False
-        TipInfoEX.SetText(TBarPicFadeInterval, "Fade Interval Slider")
-        TBarPicFadeInterval.TickFrequency = 100
-        TBarPicFadeInterval.TickStyle = TickStyle.None
-        ' 
-        ' ChkBoxPicFadeEnabled
-        ' 
-        TipInfoEX.SetImage(ChkBoxPicFadeEnabled, Nothing)
-        ChkBoxPicFadeEnabled.Location = New Point(12, 242)
-        ChkBoxPicFadeEnabled.Name = "ChkBoxPicFadeEnabled"
-        ChkBoxPicFadeEnabled.Size = New Size(130, 33)
-        ChkBoxPicFadeEnabled.TabIndex = 35
-        TipInfoEX.SetText(ChkBoxPicFadeEnabled, "Enable Fade In & Fade Out when auto-advancing images.")
-        ChkBoxPicFadeEnabled.Text = "Fade Enabled"
-        ChkBoxPicFadeEnabled.UseVisualStyleBackColor = True
         ' 
         ' grbxHotKeysPics
         ' 
@@ -3117,16 +3091,42 @@ Inherits System.Windows.Forms.Form
         chbxPicTimerAutoStart.TextAlign = ContentAlignment.MiddleCenter
         chbxPicTimerAutoStart.UseVisualStyleBackColor = True
         ' 
-        ' LblPicFadeInterval
+        ' TBarPicFadeDuration
         ' 
-        TipInfoEX.SetImage(LblPicFadeInterval, Nothing)
-        LblPicFadeInterval.Location = New Point(152, 246)
-        LblPicFadeInterval.Name = "LblPicFadeInterval"
-        LblPicFadeInterval.Size = New Size(79, 23)
-        LblPicFadeInterval.TabIndex = 35
-        LblPicFadeInterval.Text = "500ms"
-        TipInfoEX.SetText(LblPicFadeInterval, "Fade Interval")
-        LblPicFadeInterval.TextAlign = ContentAlignment.MiddleRight
+        TipInfoEX.SetImage(TBarPicFadeDuration, Nothing)
+        TBarPicFadeDuration.LargeChange = 250
+        TBarPicFadeDuration.Location = New Point(5, 264)
+        TBarPicFadeDuration.Maximum = 2000
+        TBarPicFadeDuration.Name = "TBarPicFadeDuration"
+        TBarPicFadeDuration.Size = New Size(228, 45)
+        TBarPicFadeDuration.SmallChange = 50
+        TBarPicFadeDuration.TabIndex = 35
+        TBarPicFadeDuration.TabStop = False
+        TipInfoEX.SetText(TBarPicFadeDuration, "Fade Duration Slider")
+        TBarPicFadeDuration.TickFrequency = 100
+        TBarPicFadeDuration.TickStyle = TickStyle.None
+        ' 
+        ' ChkBoxPicFadeEnabled
+        ' 
+        TipInfoEX.SetImage(ChkBoxPicFadeEnabled, Nothing)
+        ChkBoxPicFadeEnabled.Location = New Point(12, 242)
+        ChkBoxPicFadeEnabled.Name = "ChkBoxPicFadeEnabled"
+        ChkBoxPicFadeEnabled.Size = New Size(130, 33)
+        ChkBoxPicFadeEnabled.TabIndex = 35
+        TipInfoEX.SetText(ChkBoxPicFadeEnabled, "Enable Fade In & Fade Out when auto-advancing images.")
+        ChkBoxPicFadeEnabled.Text = "Fade Enabled"
+        ChkBoxPicFadeEnabled.UseVisualStyleBackColor = True
+        ' 
+        ' LblPicFadeDuration
+        ' 
+        TipInfoEX.SetImage(LblPicFadeDuration, Nothing)
+        LblPicFadeDuration.Location = New Point(152, 246)
+        LblPicFadeDuration.Name = "LblPicFadeDuration"
+        LblPicFadeDuration.Size = New Size(79, 23)
+        LblPicFadeDuration.TabIndex = 35
+        LblPicFadeDuration.Text = "500ms"
+        TipInfoEX.SetText(LblPicFadeDuration, "Fade Duration")
+        LblPicFadeDuration.TextAlign = ContentAlignment.MiddleRight
         ' 
         ' PanelVids
         ' 
@@ -3249,13 +3249,13 @@ Inherits System.Windows.Forms.Form
         PanelApp.PerformLayout()
         PanelPics.ResumeLayout(False)
         PanelPics.PerformLayout()
-        CType(TBarPicFadeInterval, ComponentModel.ISupportInitialize).EndInit()
         grbxHotKeysPics.ResumeLayout(False)
         grbxHotKeysPics.PerformLayout()
         gpbxPicTimerCountdownLocationMode.ResumeLayout(False)
         gpbxPicJustify.ResumeLayout(False)
         gpbxPicLocationMode.ResumeLayout(False)
         gpbxPicPlayMode.ResumeLayout(False)
+        CType(TBarPicFadeDuration, ComponentModel.ISupportInitialize).EndInit()
         PanelVids.ResumeLayout(False)
         PanelActions.ResumeLayout(False)
         PanelPageSelector.ResumeLayout(False)
@@ -3492,6 +3492,6 @@ Inherits System.Windows.Forms.Form
     Friend WithEvents ChkBoxThemeAuto As CheckBox
     Friend WithEvents LblTheme As Skye.UI.Label
     Friend WithEvents ChkBoxPicFadeEnabled As CheckBox
-    Friend WithEvents TBarPicFadeInterval As TrackBar
-    Friend WithEvents LblPicFadeInterval As Skye.UI.Label
+    Friend WithEvents TBarPicFadeDuration As TrackBar
+    Friend WithEvents LblPicFadeDuration As Skye.UI.Label
 End Class

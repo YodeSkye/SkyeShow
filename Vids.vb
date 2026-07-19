@@ -16,7 +16,9 @@ Partial Friend Class Vids
     Private mStartSize As Int16
     Private mHide As Boolean = False
     Private mOffset, mPosition, mHidePosition, mStartLocation, mLastLocation, mHoverLocation As Point
-    Private StartUpPlayOption As My.App.PlayOption = My.App.PlayOption.ByPlayMode
+    Private FadeOutStarted As Boolean = False
+    Private FadeCancelled As Boolean = False
+    Private StartUpPlayOption As App.PlayOption = App.PlayOption.ByPlayMode
     Private DeleteVideoConfirm As Boolean = False
     Private FullScreen As Boolean = False
     Private PlayState As Boolean = False
@@ -240,15 +242,16 @@ Partial Friend Class Vids
         NextVideo(StartUpPlayOption)
     End Sub
     Private Sub FrmClosing(ByVal sender As Object, ByVal e As FormClosingEventArgs) Handles MyBase.FormClosing
-        My.App.HideBalloon()
+        FadeCancelled = True
+        App.HideBalloon()
         ShowCursor()
-        RemoveHandler Me.LostFocus, AddressOf FrmLostFocus
+        RemoveHandler LostFocus, AddressOf FrmLostFocus
         TimerCheckPlayState.Stop()
         TimerHideMouse.Stop()
         TimerQuickHide.Stop()
-        My.App.VideoIsOnTop = True
-        If My.App.FrmMain.BackgroundworkerGetFiles.IsBusy Then My.App.FrmMain.cmiPlayVids.Enabled = False
-        If My.App.FrmMain.Visible Then My.App.FrmMain.Focus()
+        App.VideoIsOnTop = True
+        If App.FrmMain.BackgroundworkerGetFiles.IsBusy Then App.FrmMain.cmiPlayVids.Enabled = False
+        If App.FrmMain.Visible Then App.FrmMain.Focus()
         _player?.Stop()
         TryCast(_player, VLCPlayer)?.Dispose()
     End Sub
@@ -532,11 +535,12 @@ Partial Friend Class Vids
     Private Sub OnPlaybackEnded()
         Debug.Print("PlaybackEnded")
         SetDeleteVideoConfirm(True)
-        My.App.HideBalloon()
-        NextVideo(My.App.PlayOption.ByPlayMode)
+        App.HideBalloon()
+        If Not FadeOutStarted Then NextVideo(App.PlayOption.ByPlayMode)
     End Sub
     Private Sub TimerCheckPlayStateTick(ByVal sender As Object, ByVal e As EventArgs) Handles TimerCheckPlayState.Tick
         If _player.HasMedia Then
+            CheckFadeOut
             ShowVideoTime()
         End If
     End Sub
@@ -556,7 +560,8 @@ Partial Friend Class Vids
     End Sub
 
     ' METHODS
-    Friend Sub NextVideo(opt As My.App.PlayOption)
+    Friend Async Sub NextVideo(opt As App.PlayOption)
+        Dim CallingOpt As App.PlayOption = opt
         If Not (opt = My.App.PlayOption.Previous AndAlso My.App.VideoIndexPrevious = -1) Then
             If My.App.VideoFilesCount > 0 Then
                 Me.TimerCheckPlayState.Stop()
@@ -602,22 +607,74 @@ Partial Friend Class Vids
                 App.WriteToLog(VideoIndexLogText)
                 Try
                     _player.Stop()
-                    _player.Play(My.App.VideoFiles(My.App.VideoIndex).Path)
+                    FadeOutStarted = False
+                    FadeCancelled = False
+                    If App.VidFadeEnabled AndAlso CallingOpt = App.PlayOption.ByPlayMode Then
+                        Me.Opacity = 0
+                        _player.Play(App.VideoFiles(App.VideoIndex).Path)
+                        Await Task.Delay(200)
+                        StartFadeIn()
+                    Else
+                        Me.Opacity = 1
+                        _player.Play(App.VideoFiles(App.VideoIndex).Path)
+                    End If
                     Debug.Print("NextVideo--> " + Location.ToString)
                     PlayState = False
                     TogglePlayState()
-                    My.App.VideoFilesSetViewed(My.App.VideoIndex)
+                    App.VideoFilesSetViewed(App.VideoIndex)
                 Catch ex As Exception
-                    My.App.WriteToLog("Video Load Error" + Environment.NewLine + ex.ToString)
-                    My.App.SetErrorAlert()
-                    My.App.VideoFilesSetState(My.App.VideoIndex, My.App.VideoFileState.DisplayError)
-                    If My.App.VideoFilesCount = 0 Then : My.App.FrmVids.Close()
-                    Else : NextVideo(My.App.PlayOption.ByPlayMode)
+                    App.WriteToLog("Video Load Error" + Environment.NewLine + ex.ToString)
+                    App.SetErrorAlert()
+                    App.VideoFilesSetState(App.VideoIndex, App.VideoFileState.DisplayError)
+                    If App.VideoFilesCount = 0 Then : App.FrmVids.Close()
+                    Else : NextVideo(App.PlayOption.ByPlayMode)
                     End If
                 End Try
-            Else : My.App.FrmVids.Close()
+            Else : App.FrmVids.Close()
             End If
         End If
+    End Sub
+    Private Async Sub StartFadeIn()
+        Dim duration As Integer = App.VidFadeDuration
+        Dim steps As Integer = 40
+        Dim stepDelay As Integer = duration \ steps
+
+        ' Start slightly visible to avoid first-frame pop
+        If Me.Opacity < 0.01 Then Me.Opacity = 0.01
+
+        For i As Integer = 1 To steps
+            If FadeCancelled OrElse IsDisposed Then Exit Sub
+            Me.Opacity = i / steps
+            Await Task.Delay(stepDelay)
+        Next
+    End Sub
+    Private Sub CheckFadeOut()
+        If FadeOutStarted OrElse FadeCancelled Then Exit Sub
+        If Not App.VidFadeEnabled Then Exit Sub
+
+        Dim dur As Double = _player.Duration
+        If dur <= 0 Then Exit Sub
+
+        Dim cur As Double = _player.Position
+        Dim fadeSec As Double = App.VidFadeDuration / 1000.0
+
+        If cur >= dur - fadeSec Then
+            FadeOutStarted = True
+            StartFadeOut()
+        End If
+    End Sub
+    Private Async Sub StartFadeOut()
+        Dim duration As Integer = App.VidFadeDuration
+        Dim steps As Integer = 40
+        Dim stepDelay As Integer = duration \ steps
+
+        For i As Integer = steps To 0 Step -1
+            If FadeCancelled OrElse IsDisposed Then Exit Sub
+            Me.Opacity = i / steps
+            Await Task.Delay(stepDelay)
+        Next
+
+        NextVideo(App.PlayOption.ByPlayMode)
     End Sub
     Friend Sub SetSize()
         If _player.VideoWidth <= 0 OrElse _player.VideoHeight <= 0 Then Exit Sub 'VLC hasn't reported size yet — avoid overflow

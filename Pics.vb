@@ -8,8 +8,6 @@ Partial Friend Class Pics
     Private WithEvents TimerHideMouse As New Timer With {.Interval = 5000}
     Private WithEvents TimerQuickHide As New Timer
     Private WithEvents TimerDeleteImage As New Timer With {.Interval = 5000}
-    Private WithEvents TimerFadeOut As New Timer With {.Interval = App.ImageFadeTimerInterval}
-    Private WithEvents TimerFadeIn As New Timer With {.Interval = App.ImageFadeTimerInterval}
     Private mMove As Boolean = False
     Private mMoveMode As Byte = 0 '0=Select, 1=Move, 2=ReSize
     Private mResize As Boolean = False
@@ -20,11 +18,9 @@ Partial Friend Class Pics
     Private DeleteImageConfirm As Boolean = False
     Private FullScreen As Boolean = False
     Private imageRaw As Image
-    Private imageCurrent As Image
     Private imageDrawn As Bitmap
     Private imageProcessor As Graphics
     Private firstImageDone As Boolean = False
-    Private FadeProgress As Single
     Private NextImageRunning As Boolean = False
     Private TipCM As Skye.UI.ToolTipEX
 
@@ -56,10 +52,10 @@ Partial Friend Class Pics
         lblCountdown.BackColor = Skye.UI.ThemeManager.CurrentTheme.TextBack
         AddHandler Skye.UI.ThemeManager.ThemeChanged, AddressOf OnThemeChanged
     End Sub
-    Private Async Sub FrmLoad(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
+    Private Sub FrmLoad(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         SetTimerAutoStart()
         If My.App.PicPlayMode = My.App.PlayMode.LinearWithRandomStart Then My.App.ImageIndex = Skye.Common.GetRandom(0, My.App.ImageFiles.Count - 1, My.App.ImageIndex)
-        Await NextImage(My.App.PlayOption.ByPlayMode)
+        NextImage(My.App.PlayOption.ByPlayMode)
     End Sub
     Private Sub FrmClosing(ByVal sender As Object, ByVal e As FormClosingEventArgs) Handles MyBase.FormClosing
         My.App.HideBalloon()
@@ -94,10 +90,10 @@ Partial Friend Class Pics
                 Case Keys.Escape : ToggleFullScreen()
                 Case Keys.End : Me.Close()
                 Case Keys.Up : ToggleTimer()
-                Case Keys.Left : Dim ignore As Task = NextImage(My.App.PlayOption.Backward)
-                Case Keys.Right : Dim ignore As Task = NextImage(My.App.PlayOption.Forward)
-                Case Keys.Down : Dim ignore As Task = NextImage(My.App.PlayOption.Random)
-                Case Keys.Space : Dim ignore As Task = NextImage(My.App.PlayOption.Forward)
+                Case Keys.Left : NextImage(My.App.PlayOption.Backward)
+                Case Keys.Right : NextImage(My.App.PlayOption.Forward)
+                Case Keys.Down : NextImage(My.App.PlayOption.Random)
+                Case Keys.Space : NextImage(My.App.PlayOption.Forward)
                 Case Keys.OemQuestion : ShowFileInfo()
                 Case Keys.PageUp
                     If Not FullScreen Then
@@ -239,26 +235,6 @@ Partial Friend Class Pics
         'If App.PicTimerAutoStart Then SetTimerAutoStart()
         EnableImageTimer()
     End Sub
-    Private Sub PicMain_Paint(sender As Object, e As PaintEventArgs) Handles PicMain.Paint
-        If PicMain.Image IsNot Nothing Then Return
-        If imageCurrent Is Nothing Then Return
-        Using ia As New Imaging.ImageAttributes()
-            Dim cm As New Imaging.ColorMatrix With {
-                .Matrix33 = FadeProgress
-            }
-            ia.SetColorMatrix(cm)
-
-            e.Graphics.DrawImage(
-            imageCurrent,
-            PicMain.ClientRectangle,
-            0, 0,
-            imageCurrent.Width,
-            imageCurrent.Height,
-            GraphicsUnit.Pixel,
-            ia
-        )
-        End Using
-    End Sub
     Private Sub CMPicsClosing(sender As Object, e As ToolStripDropDownClosingEventArgs) Handles CMPics.Closing
         If CMPics.Items(CMPics.Items.IndexOfKey(cmiDeleteImage.Name)).Selected Then : If Not DeleteImageConfirm Then e.Cancel = True
         Else : SetDeleteImageConfirm(True)
@@ -291,28 +267,28 @@ Partial Friend Class Pics
     Private Sub CMIForward_MouseUp(sender As Object, e As MouseEventArgs) Handles CMIForward.MouseUp
         Select Case e.Button
             Case MouseButtons.Left
-                Dim ignore As Task = NextImage(My.App.PlayOption.Forward)
+                NextImage(My.App.PlayOption.Forward)
             Case MouseButtons.Right
         End Select
     End Sub
     Private Sub CMIRandom_MouseUp(sender As Object, e As MouseEventArgs) Handles CMIRandom.MouseUp
         Select Case e.Button
             Case MouseButtons.Left
-                Dim ignore As Task = NextImage(My.App.PlayOption.Random)
+                NextImage(My.App.PlayOption.Random)
             Case MouseButtons.Right
         End Select
     End Sub
     Private Sub CMIBackward_MouseUp(sender As Object, e As MouseEventArgs) Handles CMIBackward.MouseUp
         Select Case e.Button
             Case MouseButtons.Left
-                Dim ignore As Task = NextImage(My.App.PlayOption.Backward)
+                NextImage(My.App.PlayOption.Backward)
             Case MouseButtons.Right
         End Select
     End Sub
     Private Sub CMIPrevious_MouseUp(sender As Object, e As MouseEventArgs) Handles CMIPrevious.MouseUp
         Select Case e.Button
             Case MouseButtons.Left
-                Dim ignore As Task = NextImage(My.App.PlayOption.Previous)
+                NextImage(My.App.PlayOption.Previous)
             Case MouseButtons.Right
         End Select
     End Sub
@@ -323,7 +299,7 @@ Partial Friend Class Pics
         Select Case e.Button
             Case MouseButtons.Left
                 If App.ViewFile(App.ImageFiles(App.ImageIndex)) And FullScreen Then ToggleFullScreen()
-                Dim ignore As Task = NextImage(App.PlayOption.ByPlayMode)
+                NextImage(App.PlayOption.ByPlayMode)
             Case MouseButtons.Right
                 If App.OpenFileLocation(App.ImageFiles(App.ImageIndex)) And FullScreen Then ToggleFullScreen()
         End Select
@@ -334,7 +310,7 @@ Partial Friend Class Pics
                 Dim file As String = My.App.ImageFiles.Item(My.App.ImageIndex)
                 My.App.ImageFiles.RemoveAt(My.App.ImageIndex)
                 My.App.ImageRepeatList.Remove(file)
-                Dim ignore As Task = NextImage(My.App.PlayOption.BySelection)
+                NextImage(My.App.PlayOption.BySelection)
                 My.App.ImageIndexPrevious = -1
                 My.App.DeleteFile(file)
                 My.App.FrmMain.UpdateSettings()
@@ -352,12 +328,12 @@ Partial Friend Class Pics
     Private Sub OnThemeChanged(sender As Object, e As EventArgs)
         lblCountdown.BackColor = Skye.UI.ThemeManager.CurrentTheme.TextBack
     End Sub
-    Private Async Sub TimerImageAdvanceTick(ByVal sender As Object, ByVal e As EventArgs) Handles TimerImageAdvance.Tick
+    Private Sub TimerImageAdvanceTick(ByVal sender As Object, ByVal e As EventArgs) Handles TimerImageAdvance.Tick
         Me.timerImageAdvanceCount += 1
         If Me.timerImageAdvanceCount = My.App.PicTimerInterval Then
             Me.timerImageAdvanceCount = 0
             SetDeleteImageConfirm(True)
-            If Not CMPics.Visible AndAlso Not App.BalloonVisible Then Await NextImage(My.App.PlayOption.ByPlayMode)
+            If Not CMPics.Visible AndAlso Not App.BalloonVisible Then NextImage(My.App.PlayOption.ByPlayMode)
         End If
         ShowImageTimerCountdown()
     End Sub
@@ -369,34 +345,18 @@ Partial Friend Class Pics
             HideCursor()
         End If
     End Sub
-    Private Async Sub TimerQuickHideTick(ByVal sender As Object, ByVal e As EventArgs) Handles TimerQuickHide.Tick
-        Await NextImage(My.App.PlayOption.ByPlayMode)
+    Private Sub TimerQuickHideTick(ByVal sender As Object, ByVal e As EventArgs) Handles TimerQuickHide.Tick
+        firstImageDone = False
+        NextImage(My.App.PlayOption.ByPlayMode)
         QuickShow()
     End Sub
     Private Sub TimerDeleteImageTick(ByVal sender As Object, ByVal e As EventArgs) Handles TimerDeleteImage.Tick
         SetDeleteImageConfirm()
     End Sub
-    Private Sub TimerFadeOut_Tick(sender As Object, e As EventArgs) Handles TimerFadeOut.Tick
-        FadeProgress -= App.ImageFadeStep
-        If FadeProgress <= 0.0F Then
-            FadeProgress = 0.0F
-            TimerFadeOut.Stop()
-        End If
-        PicMain.Invalidate()
-    End Sub
-    Private Sub TimerFadeIn_Tick(sender As Object, e As EventArgs) Handles TimerFadeIn.Tick
-        FadeProgress += App.ImageFadeStep
-        If FadeProgress >= 1.0F Then
-            FadeProgress = 1.0F
-            TimerFadeIn.Stop()
-        End If
-        PicMain.Invalidate()
-    End Sub
 
     ' Methods
     Friend Sub DrawImage()
         My.App.IgnoreFocusChange = True
-        'Hide()
         If FullScreen Then
             If imageRaw.Width <= My.Computer.Screen.Bounds.Width And imageRaw.Height <= My.Computer.Screen.Bounds.Height Then
                 'Smaller than or equal to Screen Size
@@ -505,8 +465,6 @@ Partial Friend Class Pics
             'GIF Images
             PicMain.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
             PicMain.Image = imageRaw
-            imageCurrent = Nothing ' ← IMPORTANT
-            PicMain.Invalidate()
         Else
             'All Other Image Types
             Me.PicMain.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Normal
@@ -515,9 +473,7 @@ Partial Friend Class Pics
             imageProcessor.SmoothingMode = Drawing.Drawing2D.SmoothingMode.HighQuality
             imageProcessor.InterpolationMode = Drawing.Drawing2D.InterpolationMode.HighQualityBicubic
             imageProcessor.DrawImage(imageRaw, 0, 0, Me.Width, Me.Height)
-            PicMain.Image = Nothing
-            imageCurrent = imageDrawn
-            PicMain.Invalidate()
+            PicMain.Image = imageDrawn
         End If
         SetImageTimerCountdown()
         If Me.cmiQuickHide.Checked Then
@@ -525,7 +481,6 @@ Partial Friend Class Pics
             Me.cmiQuickHide.ResetForeColor()
             SetTimerAutoStart()
         End If
-        'Show()
         OnTop(True)
         My.App.IgnoreFocusChange = False
     End Sub
@@ -626,13 +581,12 @@ Partial Friend Class Pics
     Friend Function IsImageAdvanceActive() As Boolean '
         Return TimerImageAdvance.Enabled
     End Function
-    Private Async Function NextImage(opt As App.PlayOption) As Task
+    Private Async Sub NextImage(opt As App.PlayOption)
         If NextImageRunning Then Return
         NextImageRunning = True
         Try
             Dim callingopt As App.PlayOption = opt
             If Not (opt = My.App.PlayOption.Previous AndAlso My.App.ImageIndexPrevious = -1) Then
-                'DisposeGraphics()
                 If My.App.ImageFiles.Count > 0 Then
                     Try
                         Me.TimerImageAdvance.Stop()
@@ -678,14 +632,8 @@ Partial Friend Class Pics
                         Loop
                         App.WriteToLog(App.ImageIndexLogText)
                         Dim path As String = App.ImageFiles(App.ImageIndex)
-                        'Using fs As New FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite)
-                        '    imageRaw = Image.FromStream(fs)
-                        'End Using
                         imageRaw = Image.FromFile(path)
-                        Dim isGif As Boolean = (My.App.ImageIndex >= 0 AndAlso My.App.ImageIndex < My.App.ImageFiles.Count AndAlso My.App.ImageFiles(My.App.ImageIndex).EndsWith(".gif", StringComparison.OrdinalIgnoreCase))
-                        Dim doFade As Boolean = My.App.PicFadeEnabled AndAlso (callingopt = My.App.PlayOption.ByPlayMode) AndAlso firstImageDone AndAlso Not isGif
-                        Debug.Print("isGif : " + isGif.ToString + " | doFade : " + doFade.ToString)
-                        If Not firstImageDone Then FadeProgress = 1.0F
+                        Dim doFade As Boolean = My.App.PicFadeEnabled AndAlso (callingopt = My.App.PlayOption.ByPlayMode) AndAlso firstImageDone
                         If doFade Then Await FadeOutAsync()
                         DrawImage()
                         If doFade Then Await FadeInAsync()
@@ -695,38 +643,44 @@ Partial Friend Class Pics
                             My.App.ImageRepeatList.Add(My.App.ImageFiles(My.App.ImageIndex))
                             My.App.FrmMain.UpdateSettings()
                         End If
-                        'My.Debug.ShowMessage(My.SkyeShow.Tools.Images, "NextImage", "Repeat Count : " + My.SkyeShow.ImageRepeatList.Count.ToString)
                     Catch ex As Exception
                         My.App.WriteToLog("Image Load Error" + Environment.NewLine + ex.ToString)
                         My.App.SetErrorAlert()
                         My.App.ImageFiles.RemoveAt(My.App.ImageIndex)
                         My.App.FrmMain.UpdateSettings()
                         If My.App.ImageFiles.Count = 0 Then
-                            Me.Close()
+                            Close()
                         Else
-                            Dim ignore As Task = NextImage(My.App.PlayOption.ByPlayMode)
+                            NextImage(My.App.PlayOption.ByPlayMode)
                         End If
                     End Try
-                Else : Me.Close()
+                Else
+                    Close()
                 End If
             End If
         Finally
             NextImageRunning = False
         End Try
+    End Sub
+    Private Async Function FadeInAsync() As Task
+        Dim duration As Integer = App.PicFadeDuration
+        Dim steps As Integer = 40
+        Dim stepDelay As Integer = duration \ steps
+
+        For i As Integer = 0 To steps
+            Me.Opacity = i / steps
+            Await Task.Delay(stepDelay)
+        Next
     End Function
     Private Async Function FadeOutAsync() As Task
-        FadeProgress = 1.0F
-        TimerFadeOut.Start()
-        While TimerFadeOut.Enabled
-            Await Task.Delay(1)
-        End While
-    End Function
-    Private Async Function FadeInAsync() As Task
-        FadeProgress = 0.0F
-        TimerFadeIn.Start()
-        While TimerFadeIn.Enabled
-            Await Task.Delay(1)
-        End While
+        Dim duration As Integer = App.PicFadeDuration
+        Dim steps As Integer = 40
+        Dim stepDelay As Integer = duration \ steps
+
+        For i As Integer = steps To 0 Step -1
+            Me.Opacity = i / steps
+            Await Task.Delay(stepDelay)
+        Next
     End Function
     Private Sub QuickHide(Optional autorestore As Boolean = True)
         ShowCursor()
@@ -782,8 +736,6 @@ Partial Friend Class Pics
         imageProcessor = Nothing
         DisposeSafe(imageDrawn)
         imageDrawn = Nothing
-        DisposeSafe(imageCurrent)
-        imageCurrent = Nothing
         DisposeSafe(imageRaw)
         imageRaw = Nothing
     End Sub

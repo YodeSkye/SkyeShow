@@ -798,6 +798,7 @@ Partial Friend Class Vids
     Friend Sub QuickShow()
         SetSize()
         TogglePlayState()
+        OnTop(True)
     End Sub
     Friend Sub SetVideoTime()
         If My.App.VidTime Then
@@ -925,20 +926,19 @@ Partial Friend Class Vids
         TogglePlayState()
     End Sub
     Private Sub OnTop(mode As Boolean)
-        On Error Resume Next
         If mode Then
-            Me.TimerQuickHide.Stop()
-            Me.cmiQuickHide.ResetForeColor()
-            Me.cmiQuickHide.Checked = False
-            Me.TopMost = True
-            My.App.VideoIsOnTop = True
-            My.App.FrmMain.AppNotify()
+            TimerQuickHide.Stop()
+            cmiQuickHide.ResetForeColor()
+            cmiQuickHide.Checked = False
+            TopMost = True
+            App.VideoIsOnTop = True
+            App.FrmMain.AppNotify()
         Else
             TogglePlayState(True)
-            Me.SendToBack()
-            Me.SendToBack()
-            My.App.VideoIsOnTop = False
-            My.App.FrmMain.AppNotify()
+            SendToBack()
+            SendToBack()
+            App.VideoIsOnTop = False
+            App.FrmMain.AppNotify()
         End If
     End Sub
     Private Sub HideCursor()

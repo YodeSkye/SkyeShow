@@ -18,7 +18,7 @@ Namespace My
 		Friend ImageRepeatList As New Collections.Generic.List(Of String)
 		Friend ImageIsOnTop As Boolean = True
 		Friend Const ImageFadeTimerInterval As Integer = 15
-		Friend frmPics As Pics
+		Friend FrmPics As Pics
 
 		' Saved Settings
 		Friend PicFolders As New Collections.Generic.List(Of String)
@@ -33,14 +33,14 @@ Namespace My
 		Friend PicTimerAutoStart As Boolean
 		Friend PicTimerCountdown As Boolean
 		Friend PicTimerCountdownLocationMode As LocationMode
-        Friend PicTimerInterval As Integer
+		Friend PicTimerInterval As Integer
 		Friend PicFadeEnabled As Boolean ' PicFadeEnabled is a boolean that determines whether the fade effect is enabled when auto-transitioning between images.
 		Friend PicFadeDuration As Integer ' PicFadeInterval is the interval in milliseconds for the fade effect when auto-transitioning between images.
 
 		' METHODS
 		Friend Sub ShowImages()
-			frmPics = New Pics
-			frmPics.Show()
+			FrmPics = New Pics
+			FrmPics.Show()
 		End Sub
 		Friend Sub SaveImageFileList()
 			Try
@@ -115,7 +115,7 @@ Namespace My
 			End Try
 		End Sub
 		Friend Function FrmPicsVisible() As Boolean
-			If frmPics IsNot Nothing AndAlso frmPics.Visible Then Return True
+			If FrmPics IsNot Nothing AndAlso FrmPics.Visible Then Return True
 			Return False
 		End Function
 		Friend Function ImageIndexLogText() As String
@@ -267,18 +267,18 @@ Namespace My
 		Friend VidVolumeMute As Boolean
 		Friend VidTime As Boolean
 		Friend VidTimeDisplayMode As VideoPositionMode
-        Friend VidTimeLocationMode As LocationMode
-        Friend VidFadeEnabled As Boolean ' VidFadeEnabled is a boolean that determines whether the fade effect is enabled when auto-transitioning between videos.
+		Friend VidTimeLocationMode As LocationMode
+		Friend VidFadeEnabled As Boolean ' VidFadeEnabled is a boolean that determines whether the fade effect is enabled when auto-transitioning between videos.
 		Friend VidFadeDuration As Integer ' VidFadeInterval is the interval in milliseconds for the fade effect when auto-transitioning between videos.
 
 		' METHODS
 		Friend Sub ShowVideos(Optional showBySelection As Boolean = False)
 			If FrmVidsVisible() Then FrmVids.Close()
 			FrmVids = New Vids(showBySelection)
-            Try
-                FrmVids.Show()
-            Catch
-            Finally
+			Try
+				FrmVids.Show()
+			Catch
+			Finally
 				' IMPORTANT:
 				' VLC forces the form handle to be created early, before WinForms applies designer properties.
 				' If borderless/toolwindow/taskbar flags are set BEFORE Show(), Windows classifies the form as a
@@ -679,7 +679,7 @@ Namespace My
 		Friend Sub CloseApp(Optional restart As Boolean = False)
 			Finalize()
 			If FrmVidsVisible() Then FrmVids.Close()
-			If FrmPicsVisible() Then frmPics.Close()
+			If FrmPicsVisible() Then FrmPics.Close()
 			If FrmHelp?.Visible Then FrmHelp.Close()
 			If FrmLog?.Visible Then FrmLog.Close()
 			FrmMain.Close()
@@ -966,21 +966,21 @@ Namespace My
 			If Not IsGeneratingFileList Then
 				Select Case hotkey
 					Case HKPicToggle.WinID
-						If FrmPicsVisible() Then : frmPics.Close()
+						If FrmPicsVisible() Then : FrmPics.Close()
 						Else : ShowImages()
 						End If
 						FrmMain.ToggleContextMenu()
 					Case HKPicToggleFullScreen.WinID
-						If FrmPicsVisible() Then : frmPics.ToggleFullScreen()
+						If FrmPicsVisible() Then : FrmPics.ToggleFullScreen()
 						Else
 							ShowImages()
-							frmPics.ToggleFullScreen()
+							FrmPics.ToggleFullScreen()
 							FrmMain.ToggleContextMenu()
 						End If
 					Case HKPicShowFileInfo.WinID
 						If FrmPicsVisible() Then
-							frmPics.BringToFront()
-							frmPics.ShowFileInfo()
+							FrmPics.BringToFront()
+							FrmPics.ShowFileInfo()
 						End If
 					Case HKVidToggle.WinID
 						If FrmVidsVisible() Then : FrmVids.Close()
@@ -1033,8 +1033,8 @@ Namespace My
 		Friend Sub HideBalloon()
 			If FrmBalloon.Visible Then
 				FrmBalloonTimer.Stop()
-				If frmPics IsNot Nothing AndAlso frmPics.Name = frmBalloonParent Then
-					frmPics.BringToFront()
+				If FrmPics IsNot Nothing AndAlso FrmPics.Name = frmBalloonParent Then
+					FrmPics.BringToFront()
 				ElseIf FrmVids IsNot Nothing AndAlso FrmVids.Name = frmBalloonParent Then
 					FrmVids.BringToFront()
 				End If
@@ -1043,8 +1043,8 @@ Namespace My
 			End If
 		End Sub
 		Friend Sub BalloonPreviewKeyDown(ByVal sender As Object, ByVal e As PreviewKeyDownEventArgs)
-			If frmPics IsNot Nothing AndAlso frmPics.Name = frmBalloonParent Then
-				frmPics.FrmPreviewKeyDown(sender, e)
+			If FrmPics IsNot Nothing AndAlso FrmPics.Name = frmBalloonParent Then
+				FrmPics.FrmPreviewKeyDown(sender, e)
 			ElseIf FrmVids IsNot Nothing AndAlso FrmVids.Name = frmBalloonParent Then
 				FrmVids.FrmPreviewKeyDown(sender, e)
 			End If
@@ -1123,9 +1123,9 @@ Namespace My
 				Select Case ActionOnScreenSave
 					Case ScreenSaveActions.Suspend
 						PicTimerEnabled = False
-						frmPics.SetTimer()
-						If frmPics.IsFullScreen Then frmPics.ToggleFullScreen()
-					Case ScreenSaveActions.Close : frmPics.Close()
+						FrmPics.SetTimer()
+						If FrmPics.IsFullScreen Then FrmPics.ToggleFullScreen()
+					Case ScreenSaveActions.Close : FrmPics.Close()
 				End Select
 			End If
 			Debug.Print("SSActive @ " & Now)

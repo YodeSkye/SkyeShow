@@ -446,18 +446,18 @@ Partial Friend Class MainForm
     Private Sub NotifyiconSkyeShowMouseClick(ByVal sender As Object, ByVal e As MouseEventArgs) Handles notifyiconSkyeShow.MouseClick
         Select Case e.Button
             Case MouseButtons.Left
-                If My.App.ErrorAlert Then
-                    My.App.ClearErrorAlert()
-                ElseIf (My.App.FrmPicsVisible And Not My.App.ImageIsOnTop) Or (My.App.FrmVidsVisible And Not My.App.VideoIsOnTop) Then
-                    If My.App.FrmPicsVisible And Not My.App.ImageIsOnTop Then My.App.frmPics.QuickShow()
-                    If My.App.FrmVidsVisible And Not My.App.VideoIsOnTop Then My.App.FrmVids.QuickShow()
+                If App.ErrorAlert Then
+                    App.ClearErrorAlert()
+                ElseIf (App.FrmPicsVisible And Not App.ImageIsOnTop) Or (App.FrmVidsVisible And Not App.VideoIsOnTop) Then
+                    If App.FrmPicsVisible And Not App.ImageIsOnTop Then App.FrmPics.QuickShow()
+                    If App.FrmVidsVisible And Not App.VideoIsOnTop Then App.FrmVids.QuickShow()
                     AppNotify()
                 Else : ShowForm()
                 End If
             Case MouseButtons.Right
-                If My.App.ErrorAlert Then
-                    My.App.ClearErrorAlert()
-                    My.App.ShowLog()
+                If App.ErrorAlert Then
+                    App.ClearErrorAlert()
+                    App.ShowLog()
                 End If
         End Select
     End Sub

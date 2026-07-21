@@ -517,8 +517,9 @@ Partial Friend Class Pics
         DrawImage()
         SetTimerAutoStart()
         SetTimer()
-        Me.cmiQuickHide.ResetForeColor()
-        Me.cmiQuickHide.Checked = False
+        cmiQuickHide.ResetForeColor()
+        cmiQuickHide.Checked = False
+        OnTop(True)
     End Sub
     Friend Sub EnableImageTimer()
         If App.PicTimerEnabled Then
@@ -712,17 +713,16 @@ Partial Friend Class Pics
         DrawImage()
     End Sub
     Private Sub OnTop(mode As Boolean)
-        On Error Resume Next
         If mode Then
-            Me.TimerQuickHide.Stop()
-            Me.TopMost = True
-            My.App.ImageIsOnTop = True
-            My.App.FrmMain.AppNotify()
+            TimerQuickHide.Stop()
+            TopMost = True
+            App.ImageIsOnTop = True
+            App.FrmMain.AppNotify()
         Else
-            Me.SendToBack()
-            Me.SendToBack()
-            My.App.ImageIsOnTop = False
-            My.App.FrmMain.AppNotify()
+            SendToBack()
+            SendToBack()
+            App.ImageIsOnTop = False
+            App.FrmMain.AppNotify()
         End If
     End Sub
     Private Sub SetTimerAutoStart()

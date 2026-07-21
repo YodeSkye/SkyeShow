@@ -19,6 +19,7 @@ Partial Friend Class Vids
     Private FadeOutStarted As Boolean = False
     Private FadeCancelled As Boolean = False
     Private StartUpPlayOption As App.PlayOption = App.PlayOption.ByPlayMode
+    Private FirstVideoDone As Boolean = False
     Private DeleteVideoConfirm As Boolean = False
     Private FullScreen As Boolean = False
     Private PlayState As Boolean = False
@@ -611,14 +612,19 @@ Partial Friend Class Vids
                     FadeOutStarted = False
                     FadeCancelled = False
                     If App.VidFadeEnabled AndAlso CallingOpt = App.PlayOption.ByPlayMode Then
-                        Me.Opacity = 0
+                        Opacity = 0
                         _player.Play(App.VideoFiles(App.VideoIndex).Path)
-                        Await Task.Delay(200)
-                        StartFadeIn()
+                        Await Task.Delay(300)
+                        If FirstVideoDone Then
+                            StartFadeIn()
+                        Else
+                            Opacity = 1
+                        End If
                     Else
                         Me.Opacity = 1
                         _player.Play(App.VideoFiles(App.VideoIndex).Path)
                     End If
+                    If Not FirstVideoDone Then FirstVideoDone = True
                     Debug.Print("NextVideo--> " + Location.ToString)
                     PlayState = False
                     TogglePlayState()

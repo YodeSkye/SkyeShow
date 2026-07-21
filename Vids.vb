@@ -796,6 +796,7 @@ Partial Friend Class Vids
         SetSize()
     End Sub
     Friend Sub QuickShow()
+        BringToFront()
         SetSize()
         TogglePlayState()
         OnTop(True)

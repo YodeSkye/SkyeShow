@@ -326,11 +326,8 @@ Namespace My
 			End Try
 		End Sub
 		Friend Sub VideoFilesSetViewed(index As Integer)
-			'My.Debug.ShowMessage(Mode.Videos, "VideoFilesSetViewed", "Index = " + index.ToString)
 			Dim file As VideoFileType = VideoFiles(index)
 			file.Viewed = True
-			'VideoFiles.RemoveAt(index)
-			'VideoFiles.Insert(index, file)
 			VideoFiles(index) = file
 			If VideoFilesCount() = 0 Then VideoFilesResetViewed()
 			FrmMain.UpdateSettings()
@@ -373,7 +370,6 @@ Namespace My
 			Next
 		End Sub
 		Friend Sub VideoFilesSetState(index As Integer, state As VideoFileState)
-			'My.Debug.ShowMessage(Mode.Videos, "VideoFilesSetState", "Index = " + index.ToString)
 			Dim file As VideoFileType = VideoFiles(index)
 			Select Case state
 				Case VideoFileState.Valid
@@ -386,8 +382,6 @@ Namespace My
 					file.Enabled = False
 					file.State = state
 			End Select
-			'VideoFiles.RemoveAt(index)
-			'VideoFiles.Insert(index, file)
 			VideoFiles(index) = file
 			If Not state = VideoFileState.Valid AndAlso VideoFilesCount() = 0 Then VideoFilesResetViewed()
 			FrmMain.UpdateSettings()
@@ -396,15 +390,7 @@ Namespace My
 			If FrmVids IsNot Nothing AndAlso FrmVids.Visible Then Return True
 			Return False
 		End Function
-		Friend Function VideoFileReEnable(index As Integer) As VideoFileType
-			Dim file As VideoFileType = VideoFiles(index)
-			file.State = VideoFileState.Valid
-			file.Viewed = False
-			file.Enabled = True
-			Return file
-		End Function
 		Friend Function VideoFilesCount(Optional countmode As VideoFilesCountMode = VideoFilesCountMode.UnViewed) As Integer
-			'My.Debug.ShowMessage(Mode.Videos, "VideoFilesCount", "StartTime " + My.Computer.Clock.LocalTiMe.TimeOfDay.ToString)
 			VideoFilesCount = 0
 			For Each file As VideoFileType In VideoFiles
 				Select Case countmode
@@ -417,14 +403,6 @@ Namespace My
 					Case VideoFilesCountMode.Total : VideoFilesCount += 1
 				End Select
 			Next
-			'My.Debug.ShowMessage(Mode.Videos, "VideoFilesCount", VideoFilesCount.ToString)
-			'My.Debug.ShowMessage(Mode.Videos, "VideoFilesCount", "EndTime " + My.Computer.Clock.LocalTiMe.TimeOfDay.ToString)
-		End Function
-		'''<returns>Returns zero-based index of first Enabled item in My.SkyeShow.VideoFiles. Returns -1 if no Enabled items are found.</returns>
-		Friend Function VideoFilesFindFirstEnabled() As Integer
-			For index As Integer = 0 To VideoFiles.Count - 1 : If VideoFiles(index).Enabled Then Return index
-			Next
-			Return -1
 		End Function
 		Friend Function VideoFilesContains(path As String) As Boolean
 			For Each file As VideoFileType In VideoFiles : If file.Path.Equals(path, StringComparison.CurrentCultureIgnoreCase) Then Return True

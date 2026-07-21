@@ -1,5 +1,6 @@
 
 Imports System.Reflection
+Imports System.Security.Policy
 Imports Skye.UI
 
 Namespace My
@@ -274,20 +275,19 @@ Namespace My
 		Friend Sub ShowVideos(Optional showBySelection As Boolean = False)
 			If FrmVidsVisible() Then FrmVids.Close()
 			FrmVids = New Vids(showBySelection)
-			Try
-				FrmVids.Show()
-			Catch
+            Try
+                FrmVids.Show()
+            Catch
+            Finally
+				' IMPORTANT:
+				' VLC forces the form handle to be created early, before WinForms applies designer properties.
+				' If borderless/toolwindow/taskbar flags are set BEFORE Show(), Windows classifies the form as a
+				' "utility overlay" and hides it from Alt+Tab. Setting these AFTER Show() ensures the form is
+				' treated as a normal top-level window and appears in the task switcher.
+				FrmVids.ShowInTaskbar = False
+				FrmVids.FormBorderStyle = FormBorderStyle.None
+				FrmVids.TopMost = True
 			End Try
-		End Sub
-		Friend Sub ShowVideoFromCommandLine()
-			Debug.Print("ShowVideoFromCommandLine " + CommandLinePath.ToUpper)
-			Dim video As New VideoFileType(CommandLinePath)
-			CommandLinePath = String.Empty
-			VideoFiles.Add(video)
-			FrmMain.UpdateSettings()
-			VideoIndex = VideoFiles.Count - 1
-			ShowVideos(True)
-			FrmMain.ToggleContextMenu()
 		End Sub
 		Friend Sub SaveVideoFileList()
 			Try
@@ -553,7 +553,6 @@ Namespace My
 		Friend NeedsSaved As Boolean = False
 		Friend ErrorAlert As Boolean = False
 		Friend IsGeneratingFileList As Boolean
-		Friend CommandLinePath As String = String.Empty
 		Friend BalloonLoading As Boolean = False
 		Friend IgnoreFocusChange As Boolean = False
 		Friend HotKeys As New Collections.Generic.List(Of HotKey)

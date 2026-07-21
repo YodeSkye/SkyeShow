@@ -26,9 +26,8 @@ Partial Friend Class Pics
 
     ' Form Events
     Friend Sub New()
-        'Initialize Globals
-        'Initialize Locals
-        'Initialize Form
+
+        ' Initialize Form
         InitializeComponent()
         AddHandler Me.Disposed, AddressOf FrmDisposed
         AddHandler Me.LostFocus, AddressOf FrmLostFocus
@@ -51,6 +50,7 @@ Partial Friend Class Pics
         Skye.UI.ThemeManager.ApplyTheme(Me)
         lblCountdown.BackColor = Skye.UI.ThemeManager.CurrentTheme.TextBack
         AddHandler Skye.UI.ThemeManager.ThemeChanged, AddressOf OnThemeChanged
+
     End Sub
     Private Sub FrmLoad(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         SetTimerAutoStart()

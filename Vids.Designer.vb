@@ -112,15 +112,16 @@ Inherits System.Windows.Forms.Form
         CMNavigation.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         CMNavigation.Items.AddRange(New ToolStripItem() {CMIForward, CMIRandom, CMIBackward, CMIPrevious})
         CMNavigation.Name = "CMNavigation"
+        CMNavigation.OwnerItem = CMINavigation
         CMNavigation.ShowItemToolTips = False
-        CMNavigation.Size = New Size(181, 130)
+        CMNavigation.Size = New Size(172, 108)
         ' 
         ' CMIForward
         ' 
         CMIForward.Image = My.Resources.Resources.ImageForward16
         CMIForward.Name = "CMIForward"
         CMIForward.ShortcutKeyDisplayString = "→"
-        CMIForward.Size = New Size(180, 26)
+        CMIForward.Size = New Size(171, 26)
         CMIForward.Text = "Forward"
         CMIForward.ToolTipText = "Go Forward One Vid"
         ' 
@@ -129,7 +130,7 @@ Inherits System.Windows.Forms.Form
         CMIRandom.Image = My.Resources.Resources.ImageRandom16
         CMIRandom.Name = "CMIRandom"
         CMIRandom.ShortcutKeyDisplayString = "↓"
-        CMIRandom.Size = New Size(180, 26)
+        CMIRandom.Size = New Size(171, 26)
         CMIRandom.Text = "Random"
         CMIRandom.ToolTipText = "Go To A Random Vid"
         ' 
@@ -138,7 +139,7 @@ Inherits System.Windows.Forms.Form
         CMIBackward.Image = My.Resources.Resources.ImageBack16
         CMIBackward.Name = "CMIBackward"
         CMIBackward.ShortcutKeyDisplayString = "←"
-        CMIBackward.Size = New Size(180, 26)
+        CMIBackward.Size = New Size(171, 26)
         CMIBackward.Text = "Backward"
         CMIBackward.ToolTipText = "Go Back One Vid"
         ' 
@@ -146,7 +147,7 @@ Inherits System.Windows.Forms.Form
         ' 
         CMIPrevious.Image = My.Resources.Resources.ImagePrevious16
         CMIPrevious.Name = "CMIPrevious"
-        CMIPrevious.Size = New Size(180, 26)
+        CMIPrevious.Size = New Size(171, 26)
         CMIPrevious.Text = "Previous"
         CMIPrevious.ToolTipText = "Go To The Last Vid Viewed"
         ' 
@@ -239,16 +240,13 @@ Inherits System.Windows.Forms.Form
         Controls.Add(VLCViewer)
         Controls.Add(lblTime)
         Font = New Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        FormBorderStyle = FormBorderStyle.None
         Icon = My.Resources.Resources.IconVideo
         Margin = New Padding(3, 4, 3, 4)
         MaximizeBox = False
         MinimizeBox = False
         Name = "Vids"
-        ShowInTaskbar = False
         SizeGripStyle = SizeGripStyle.Hide
         StartPosition = FormStartPosition.Manual
-        TopMost = True
         CMVids.ResumeLayout(False)
         CMNavigation.ResumeLayout(False)
         CType(VLCViewer, ComponentModel.ISupportInitialize).EndInit()

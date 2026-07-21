@@ -193,19 +193,26 @@ Partial Friend Class Vids
     End Class
 
     ' FORM EVENTS
+    Protected Overrides ReadOnly Property CreateParams As CreateParams
+        Get
+            Dim cp As CreateParams = MyBase.CreateParams
+            cp.Style = cp.Style Or &H80000 ' WS_SYSMENU
+            Return cp
+        End Get
+    End Property
     Friend Sub New(showBySelection As Boolean)
 
-        'Initialize Locals
+        ' Initialize Locals
         TimerCheckPlayState.Interval = 1000
         TimerHideMouse.Interval = 5000
         TimerDeleteVideo.Interval = 5000
         If showBySelection Then StartUpPlayOption = My.App.PlayOption.BySelection
 
-        'Initialize Form
+        ' Initialize Form
         InitializeComponent()
         Me.DoubleBuffered = True
-        AddHandler Me.Disposed, AddressOf frmDisposed
-        AddHandler Me.LostFocus, AddressOf frmLostFocus
+        AddHandler Me.Disposed, AddressOf FrmDisposed
+        AddHandler Me.LostFocus, AddressOf FrmLostFocus
         Me.Text = My.Application.Info.Title + " Video"
         UpdateDeleteVideoConfirm()
         CMVids.Renderer = New Skye.UI.SkyeMenuRenderer
@@ -226,6 +233,7 @@ Partial Friend Class Vids
         lblTime.BackColor = Skye.UI.ThemeManager.CurrentTheme.TextBack
         AddHandler Skye.UI.ThemeManager.ThemeChanged, AddressOf OnThemeChanged
 
+        ' Initialize VLC
         _player = New VLCPlayer(Me)
         VLCViewer.MediaPlayer = CType(_player, VLCPlayer).MediaPlayer
         AddHandler _player.PlaybackStarted, AddressOf OnPlaybackStarted
@@ -940,11 +948,6 @@ Partial Friend Class Vids
             My.App.FrmMain.AppNotify()
         End If
     End Sub
-    'Private Sub DisposeVideo()
-    '	On Error Resume Next
-    '	Me.AxWMP.Ctlcontrols.pause()
-    '	Me.URL = Nothing
-    'End Sub
     Private Sub HideCursor()
         If Not mHide AndAlso My.App.HideCursorWhenFullscreen Then
             mHide = True

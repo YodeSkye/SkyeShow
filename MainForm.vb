@@ -1571,10 +1571,7 @@ Partial Friend Class MainForm
         My.App.IsGeneratingFileList = False
         If Not My.App.WorkSpaceSuspended Then
             If ((My.App.PicAutoView And (mode = My.App.GetFilesType.Pics Or mode = My.App.GetFilesType.All)) Or ImageActiveOnRefresh) And Not My.App.FrmPicsVisible And My.App.ImageFiles.Count > 0 Then My.App.ShowImages()
-
-            If Not String.IsNullOrEmpty(My.App.CommandLinePath) Then : My.App.ShowVideoFromCommandLine()
-            Else : If ((My.App.VidAutoView And (mode = My.App.GetFilesType.Vids Or mode = My.App.GetFilesType.All)) Or VideoActiveOnRefresh) And My.App.VideoFilesCount > 0 Then My.App.ShowVideos()
-            End If
+            If ((My.App.VidAutoView And (mode = My.App.GetFilesType.Vids Or mode = My.App.GetFilesType.All)) Or VideoActiveOnRefresh) And My.App.VideoFilesCount > 0 Then My.App.ShowVideos()
         End If
         ToggleContextMenu()
     End Sub

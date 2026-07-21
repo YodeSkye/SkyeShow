@@ -293,10 +293,10 @@ Inherits System.Windows.Forms.Form
         cmApp.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         TipInfoEX.SetImage(cmApp, Nothing)
         cmApp.Items.AddRange(New ToolStripItem() {cmiViewPics, cmiPlayVids, toolStripSeparator1, cmiHelp, cmiLog, cmiSettings, toolStripSeparator2, cmiExit})
-        cmApp.Name = "cmenuYMShow"
+        cmApp.Name = "CMSkyeShow"
         cmApp.RenderMode = ToolStripRenderMode.Professional
         cmApp.ShowItemToolTips = False
-        cmApp.Size = New Size(185, 172)
+        cmApp.Size = New Size(185, 194)
         TipInfoEX.SetText(cmApp, Nothing)
         ' 
         ' cmiViewPics
@@ -356,7 +356,7 @@ Inherits System.Windows.Forms.Form
         cmiExit.Name = "cmiExit"
         cmiExit.Size = New Size(184, 26)
         cmiExit.Text = "Exit Skye Show"
-        cmiExit.ToolTipText = "RightClick = ReStart YMShow"
+        cmiExit.ToolTipText = "RightClick = ReStart Skye Show"
         ' 
         ' lvVidFolders
         ' 

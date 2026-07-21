@@ -112,7 +112,7 @@ Partial Friend Class MainForm
     End Sub
     Private Sub ChBxPicTimerCountdownClick(sender As Object, e As EventArgs) Handles chbxPicTimerCountdown.Click
         My.App.PicTimerCountdown = Not My.App.PicTimerCountdown
-        ShowSettingsImages()
+        ShowSettingsPics()
         If My.App.FrmPicsVisible Then My.App.frmPics.SetImageTimerCountdown()
         App.SetSave()
     End Sub
@@ -130,7 +130,7 @@ Partial Friend Class MainForm
     End Sub
     Private Sub ChkBoxPicFadeEnabled_Click(sender As Object, e As EventArgs) Handles ChkBoxPicFadeEnabled.Click
         App.PicFadeEnabled = ChkBoxPicFadeEnabled.Checked
-        ShowSettingsImages()
+        ShowSettingsPics()
         App.SetSave()
     End Sub
     Private Sub TxbxPicTimerIntervalValidating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txbxPicTimerInterval.Validating
@@ -144,9 +144,8 @@ Partial Friend Class MainForm
         App.SetSave()
     End Sub
     Private Sub TBarPicFadeInterval_ValueChanged(sender As Object, e As EventArgs) Handles TBarPicFadeDuration.ValueChanged
-        App.PicFadeDuration = TBarPicFadeDuration.Value
-        App.ImageFadeStep = App.ComputeFadeStep(App.PicFadeDuration)
-        ShowSettingsImages()
+        PicFadeDuration = TBarPicFadeDuration.Value
+        ShowSettingsPics()
         App.SetSave()
     End Sub
 
@@ -273,13 +272,23 @@ Partial Friend Class MainForm
     End Sub
     Private Sub ChbxVidTimeClick(sender As Object, e As EventArgs) Handles chbxVidTime.Click
         My.App.VidTime = Me.chbxVidTime.Checked
-        ShowSettingsVideos()
+        ShowSettingsVids()
         If My.App.FrmVidsVisible Then My.App.FrmVids.SetVideoTime()
+        App.SetSave()
+    End Sub
+    Private Sub ChkBoxVidFadeEnabled_Click(sender As Object, e As EventArgs) Handles ChkBoxVidFadeEnabled.Click
+        App.VidFadeEnabled = ChkBoxVidFadeEnabled.Checked
+        ShowSettingsVids()
         App.SetSave()
     End Sub
     Private Sub CobxVidTimeDisplayModeSelectionChangeCommitted(sender As Object, e As EventArgs) Handles cobxVidTimeDisplayMode.SelectionChangeCommitted
         My.App.VidTimeDisplayMode = CType(Me.cobxVidTimeDisplayMode.SelectedIndex, My.App.VideoPositionMode)
         If My.App.FrmVidsVisible Then My.App.FrmVids.ShowVideoTime()
+        App.SetSave()
+    End Sub
+    Private Sub TBarVidFadeDuration_ValueChanged(sender As Object, e As EventArgs) Handles TBarVidFadeDuration.ValueChanged
+        VidFadeDuration = TBarVidFadeDuration.Value
+        ShowSettingsVids()
         App.SetSave()
     End Sub
 
@@ -887,8 +896,8 @@ Partial Friend Class MainForm
         senderTextBox = Nothing
     End Sub
     Private Sub BtnHotKeysUndoClick(sender As Object, e As EventArgs) Handles btnHotKeysVidsUndo.Click, btnHotKeysPicsUndo.Click
-        If sender Is Me.btnHotKeysPicsUndo Then : ShowSettingsImages()
-        ElseIf sender Is Me.btnHotKeysVidsUndo Then : ShowSettingsVideos()
+        If sender Is Me.btnHotKeysPicsUndo Then : ShowSettingsPics()
+        ElseIf sender Is Me.btnHotKeysVidsUndo Then : ShowSettingsVids()
         End If
     End Sub
     Private Sub BtnHotKeysSetClick(sender As Object, e As EventArgs) Handles btnHotKeysVidsSet.Click, btnHotKeysPicsSet.Click
@@ -922,8 +931,8 @@ Partial Friend Class MainForm
             My.App.RegisterHotKeys(False)
             My.App.GenerateHotKeyList()
             My.App.RegisterHotKeys(True)
-            If sender Is Me.btnHotKeysPicsSet Then : ShowSettingsImages()
-            ElseIf sender Is Me.btnHotKeysVidsSet Then : ShowSettingsVideos()
+            If sender Is Me.btnHotKeysPicsSet Then : ShowSettingsPics()
+            ElseIf sender Is Me.btnHotKeysVidsSet Then : ShowSettingsVids()
             End If
         End If
         App.SetSave()
@@ -1053,8 +1062,8 @@ Partial Friend Class MainForm
     End Sub
     Friend Sub ShowSettings()
         ShowSettingsApp()
-        ShowSettingsImages()
-        ShowSettingsVideos()
+        ShowSettingsPics()
+        ShowSettingsVids()
         UpdateSettings()
     End Sub
     Friend Sub UpdateSettings() 'Settings that can change on other forms
@@ -1233,7 +1242,7 @@ Partial Friend Class MainForm
         UpdateSettingsApp()
         Me.btnClose.Focus()
     End Sub
-    Private Sub ShowSettingsImages()
+    Private Sub ShowSettingsPics()
         Static lvi As ListViewItem
         Static split As String()
         Me.lvPicFolders.Items.Clear()
@@ -1328,7 +1337,7 @@ Partial Friend Class MainForm
         UpdateSettingsPics()
         Me.btnClose.Focus()
     End Sub
-    Private Sub ShowSettingsVideos()
+    Private Sub ShowSettingsVids()
         Static lvi As ListViewItem
         Static split As String()
         Me.lvVidFolders.Items.Clear()
@@ -1423,6 +1432,9 @@ Partial Friend Class MainForm
         Me.txbxHotKeyVidShowFileInfo.ForeColor = Color.Teal
         Me.btnHotKeysVidsUndo.Enabled = False
         Me.btnHotKeysVidsSet.Enabled = False
+        ChkBoxVidFadeEnabled.Checked = App.VidFadeEnabled
+        LblVidFadeDuration.Text = App.VidFadeDuration.ToString & "ms"
+        TBarVidFadeDuration.Value = App.VidFadeDuration
         UpdateSettingsVids()
         Me.btnClose.Focus()
     End Sub

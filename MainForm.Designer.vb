@@ -239,6 +239,9 @@ Inherits System.Windows.Forms.Form
         ChkBoxPicFadeEnabled = New CheckBox()
         LblPicFadeDuration = New Skye.UI.Label()
         PanelVids = New Panel()
+        TBarVidFadeDuration = New TrackBar()
+        ChkBoxVidFadeEnabled = New CheckBox()
+        LblVidFadeDuration = New Skye.UI.Label()
         PanelActions = New Panel()
         PanelPageSelector = New Panel()
         LVPageSelector = New Skye.UI.ListViewEX()
@@ -261,6 +264,7 @@ Inherits System.Windows.Forms.Form
         gpbxPicPlayMode.SuspendLayout()
         CType(TBarPicFadeDuration, ComponentModel.ISupportInitialize).BeginInit()
         PanelVids.SuspendLayout()
+        CType(TBarVidFadeDuration, ComponentModel.ISupportInitialize).BeginInit()
         PanelActions.SuspendLayout()
         PanelPageSelector.SuspendLayout()
         SuspendLayout()
@@ -3102,7 +3106,7 @@ Inherits System.Windows.Forms.Form
         TBarPicFadeDuration.SmallChange = 50
         TBarPicFadeDuration.TabIndex = 35
         TBarPicFadeDuration.TabStop = False
-        TipInfoEX.SetText(TBarPicFadeDuration, "Fade Duration Slider")
+        TipInfoEX.SetText(TBarPicFadeDuration, "Image Fade Duration Slider")
         TBarPicFadeDuration.TickFrequency = 100
         TBarPicFadeDuration.TickStyle = TickStyle.None
         ' 
@@ -3125,11 +3129,14 @@ Inherits System.Windows.Forms.Form
         LblPicFadeDuration.Size = New Size(79, 23)
         LblPicFadeDuration.TabIndex = 35
         LblPicFadeDuration.Text = "500ms"
-        TipInfoEX.SetText(LblPicFadeDuration, "Fade Duration")
+        TipInfoEX.SetText(LblPicFadeDuration, "Image Fade Duration")
         LblPicFadeDuration.TextAlign = ContentAlignment.MiddleRight
         ' 
         ' PanelVids
         ' 
+        PanelVids.Controls.Add(TBarVidFadeDuration)
+        PanelVids.Controls.Add(ChkBoxVidFadeEnabled)
+        PanelVids.Controls.Add(LblVidFadeDuration)
         PanelVids.Controls.Add(chbkVidMute)
         PanelVids.Controls.Add(lvVidFolders)
         PanelVids.Controls.Add(grbxHotKeysVids)
@@ -3151,6 +3158,43 @@ Inherits System.Windows.Forms.Form
         PanelVids.Size = New Size(826, 534)
         PanelVids.TabIndex = 109
         TipInfoEX.SetText(PanelVids, Nothing)
+        ' 
+        ' TBarVidFadeDuration
+        ' 
+        TipInfoEX.SetImage(TBarVidFadeDuration, Nothing)
+        TBarVidFadeDuration.LargeChange = 250
+        TBarVidFadeDuration.Location = New Point(6, 259)
+        TBarVidFadeDuration.Maximum = 2000
+        TBarVidFadeDuration.Name = "TBarVidFadeDuration"
+        TBarVidFadeDuration.Size = New Size(228, 45)
+        TBarVidFadeDuration.SmallChange = 50
+        TBarVidFadeDuration.TabIndex = 131
+        TBarVidFadeDuration.TabStop = False
+        TipInfoEX.SetText(TBarVidFadeDuration, "Video Fade Duration Slider")
+        TBarVidFadeDuration.TickFrequency = 100
+        TBarVidFadeDuration.TickStyle = TickStyle.None
+        ' 
+        ' ChkBoxVidFadeEnabled
+        ' 
+        TipInfoEX.SetImage(ChkBoxVidFadeEnabled, Nothing)
+        ChkBoxVidFadeEnabled.Location = New Point(13, 237)
+        ChkBoxVidFadeEnabled.Name = "ChkBoxVidFadeEnabled"
+        ChkBoxVidFadeEnabled.Size = New Size(130, 33)
+        ChkBoxVidFadeEnabled.TabIndex = 132
+        TipInfoEX.SetText(ChkBoxVidFadeEnabled, "Enable Fade In & Fade Out when auto-advancing videos.")
+        ChkBoxVidFadeEnabled.Text = "Fade Enabled"
+        ChkBoxVidFadeEnabled.UseVisualStyleBackColor = True
+        ' 
+        ' LblVidFadeDuration
+        ' 
+        TipInfoEX.SetImage(LblVidFadeDuration, Nothing)
+        LblVidFadeDuration.Location = New Point(153, 241)
+        LblVidFadeDuration.Name = "LblVidFadeDuration"
+        LblVidFadeDuration.Size = New Size(79, 23)
+        LblVidFadeDuration.TabIndex = 133
+        LblVidFadeDuration.Text = "500ms"
+        TipInfoEX.SetText(LblVidFadeDuration, "Video Fade Duration")
+        LblVidFadeDuration.TextAlign = ContentAlignment.MiddleRight
         ' 
         ' PanelActions
         ' 
@@ -3220,8 +3264,8 @@ Inherits System.Windows.Forms.Form
         AutoSizeMode = AutoSizeMode.GrowAndShrink
         AutoValidate = AutoValidate.EnableAllowFocusChange
         ClientSize = New Size(917, 630)
-        Controls.Add(PanelPics)
         Controls.Add(PanelVids)
+        Controls.Add(PanelPics)
         Controls.Add(PanelApp)
         Controls.Add(PanelPageSelector)
         Controls.Add(PanelActions)
@@ -3257,6 +3301,8 @@ Inherits System.Windows.Forms.Form
         gpbxPicPlayMode.ResumeLayout(False)
         CType(TBarPicFadeDuration, ComponentModel.ISupportInitialize).EndInit()
         PanelVids.ResumeLayout(False)
+        PanelVids.PerformLayout()
+        CType(TBarVidFadeDuration, ComponentModel.ISupportInitialize).EndInit()
         PanelActions.ResumeLayout(False)
         PanelPageSelector.ResumeLayout(False)
         ResumeLayout(False)
@@ -3494,4 +3540,7 @@ Inherits System.Windows.Forms.Form
     Friend WithEvents ChkBoxPicFadeEnabled As CheckBox
     Friend WithEvents TBarPicFadeDuration As TrackBar
     Friend WithEvents LblPicFadeDuration As Skye.UI.Label
+    Friend WithEvents TBarVidFadeDuration As TrackBar
+    Friend WithEvents ChkBoxVidFadeEnabled As CheckBox
+    Friend WithEvents LblVidFadeDuration As Skye.UI.Label
 End Class

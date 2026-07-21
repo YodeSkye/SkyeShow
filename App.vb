@@ -17,7 +17,6 @@ Namespace My
 		Friend ImageRepeatList As New Collections.Generic.List(Of String)
 		Friend ImageIsOnTop As Boolean = True
 		Friend Const ImageFadeTimerInterval As Integer = 15
-		Friend ImageFadeStep As Single
 		Friend frmPics As Pics
 
 		' Saved Settings
@@ -121,10 +120,6 @@ Namespace My
 		Friend Function ImageIndexLogText() As String
 			ImageIndexLogText = "Showing Image Index " + ImageIndex.ToString
 			If ImageIndex >= 0 Then ImageIndexLogText += " (" + ImageFiles(ImageIndex) + ")"
-		End Function
-		Friend Function ComputeFadeStep(fadeDurationMs As Integer) As Single
-			If fadeDurationMs <= 0 Then Return 1.0F
-			Return CSng(ImageFadeTimerInterval / fadeDurationMs)
 		End Function
 
 #End Region
@@ -779,7 +774,6 @@ Namespace My
 			PicFadeEnabled = Skye.Common.RegistryHelper.GetBool("ImageFadeEnabled", True)
 			PicFadeDuration = Skye.Common.RegistryHelper.GetInt("ImageFadeDuration", 500)
 			If PicFadeDuration < 0 Or PicFadeDuration > 2000 Then PicFadeDuration = 500
-			ImageFadeStep = ComputeFadeStep(PicFadeDuration)
 			PicFolders = Skye.Common.RegistryHelper.GetStringArray("ImageFolders", Array.Empty(Of String)).ToList()
 			PicFolders.Sort()
 

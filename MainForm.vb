@@ -312,7 +312,7 @@ Partial Friend Class MainForm
     Private GenerateVideoListStartTime As TimeSpan
     Private GenerateVideoListEndTime As TimeSpan
     Private ImageActiveOnRefresh, VideoActiveOnRefresh As Boolean
-    Private TipCM As Skye.UI.ToolTipEX
+    Private TipCM As Skye.UI.ToolTipEX ' Tooltip for Context Menu Items
 
     ' Form Events
     Protected Overrides Sub WndProc(ByRef m As System.Windows.Forms.Message)

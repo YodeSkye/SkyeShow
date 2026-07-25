@@ -16,9 +16,6 @@ Friend Class Overlay
     Private Const PaddingSize As Integer = 12
     Private Const IconSize As Integer = 32
 
-    Private ReadOnly BackColor As Color = Skye.UI.ThemeManager.CurrentTheme.TextBack 'Color.FromArgb(32, 32, 32)
-    Private ReadOnly TextColor As Color = Skye.UI.ThemeManager.CurrentTheme.TextFore 'Color.White
-
     Friend Sub CreateWindow()
         If hWnd <> IntPtr.Zero Then Exit Sub
 
@@ -109,21 +106,16 @@ Friend Class Overlay
         End Using
     End Function
     Private Sub DrawContent()
-        Debug.WriteLine("DrawContent: hWnd=" & hWnd.ToString())
+
+        Dim BackColor As Color = Skye.UI.ThemeManager.CurrentTheme.TextBack
+        Dim TextColor As Color = Skye.UI.ThemeManager.CurrentTheme.TextFore
         Dim rc As RECT
-        If Not GetClientRect(hWnd, rc) Then
-            Debug.WriteLine("GetClientRect failed")
-            Return
-        End If
+        If Not GetClientRect(hWnd, rc) Then Exit Sub
 
         Dim w As Integer = rc.Right - rc.Left
         Dim h As Integer = rc.Bottom - rc.Top
 
         Dim hDC As IntPtr = GetDC(hWnd)
-        If hDC = IntPtr.Zero Then
-            Debug.WriteLine("GetDC returned zero")
-            Return
-        End If
         If hDC = IntPtr.Zero Then Exit Sub
 
         Using g As Graphics = Graphics.FromHdc(hDC)

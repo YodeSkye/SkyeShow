@@ -539,12 +539,15 @@ Namespace My
 		Friend FrmHelp As Help
 		Friend FrmLog As Log
 		Private ReadOnly FrmBalloon As New Balloon
+		Private frmBalloonParent As String = String.Empty
 		Private WithEvents FrmBalloonTimer As New Timer
+		Private ReadOnly Overlay As New Overlay()
+		Private overlayParent As String = String.Empty
+		Private WithEvents OverlayTimer As New Timer With {.Interval = 6000} ' or whatever you used
 		Private WithEvents ScreenSaverWatcher As New Timer
 		Private ScreenSaverRunning As Boolean = False
 		Private WorkStationLocked As Boolean = False
 		Private ReadOnly RandomFileIndex As New Random
-		Private frmBalloonParent As String = String.Empty
 
 		' Saved Settings
 		Friend SaveFileLists As Boolean 'Default = False
@@ -571,6 +574,9 @@ Namespace My
 		End Sub
 		Private Sub FrmBalloonTimerTick(ByVal sender As Object, ByVal e As EventArgs) Handles FrmBalloonTimer.Tick
 			HideBalloon()
+		End Sub
+		Private Sub OverlayTimer_Tick(sender As Object, e As EventArgs) Handles OverlayTimer.Tick
+			HideOverlay()
 		End Sub
 		Private Sub ScreenSaverWatcherTick(ByVal sender As Object, ByVal e As EventArgs) Handles ScreenSaverWatcher.Tick
 			Static ssStatus As Boolean
@@ -1027,6 +1033,46 @@ Namespace My
 				FrmVids.FrmPreviewKeyDown(sender, e)
 			End If
 			HideBalloon()
+		End Sub
+		Friend Sub ShowOverlay(ByRef sender As Form, image As Image, title As String, text As String)
+
+			' Toggle behavior
+			If overlayParent = sender.Name Then
+				HideOverlay()
+				Exit Sub
+			End If
+
+			HideOverlay()
+			overlayParent = sender.Name
+
+			' Default icon if nothing provided
+			Dim iconToUse As Image = If(image, My.Resources.Resources.ImageInfo32)
+
+			' Show native overlay
+			Overlay.ShowOverlay(sender, iconToUse, title, text)
+
+			' Start auto-hide timer
+			OverlayTimer.Start()
+
+		End Sub
+		Friend Sub HideOverlay()
+
+			OverlayTimer.Stop()
+
+			If overlayParent <> String.Empty Then
+
+				' Bring Pics/Vids back to front if needed
+				If FrmPics IsNot Nothing AndAlso FrmPics.Name = overlayParent Then
+					FrmPics.BringToFront()
+				ElseIf FrmVids IsNot Nothing AndAlso FrmVids.Name = overlayParent Then
+					FrmVids.BringToFront()
+				End If
+
+			End If
+
+			overlayParent = String.Empty
+			Overlay.HideOverlay()
+
 		End Sub
 		Friend Sub ShowHelp(Optional showmaximized As Boolean = False)
 			Dim logtext As String = String.Empty

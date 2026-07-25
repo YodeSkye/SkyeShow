@@ -561,20 +561,20 @@ Partial Friend Class Pics
         Me.lblCountdown.ResumeLayout()
     End Sub
     Friend Sub ShowFileInfo()
-        On Error Resume Next
         Dim s As String = String.Empty
         Dim i As IO.FileInfo
-        i = Microsoft.VisualBasic.FileIO.FileSystem.GetFileInfo(My.App.ImageFiles.Item(My.App.ImageIndex))
+        i = Microsoft.VisualBasic.FileIO.FileSystem.GetFileInfo(App.ImageFiles.Item(App.ImageIndex))
         s += Skye.Common.FormatFileSize(i.Length, Skye.Common.FormatFileSizeUnits.Auto, 1)
         s += vbCr
-        s += Me.imageRaw.Size.Width.ToString + "x" + Me.imageRaw.Size.Height.ToString
+        s += imageRaw.Size.Width.ToString + "x" + imageRaw.Size.Height.ToString
         s += " ("
-        s += My.App.FormatImageAspectRatio(Me.imageRaw.Size)
+        s += App.FormatImageAspectRatio(imageRaw.Size)
         s += ") "
-        s += Math.Round(Me.imageRaw.Size.Width * Me.imageRaw.Size.Height / 1000000, 2).ToString + "MP"
+        s += Math.Round(imageRaw.Size.Width * imageRaw.Size.Height / 1000000, 2).ToString + "MP"
         s += vbCr
         s += i.DirectoryName
-        My.App.ShowBalloon(Me, My.Resources.Resources.ImageImage32, i.Name, s)
+        'App.ShowBalloon(Me, My.Resources.Resources.ImageImage32, i.Name, s)
+        App.ShowOverlay(Me, My.Resources.Resources.ImageImage32, i.Name, s)
     End Sub
     Friend Function IsFullScreen() As Boolean '
         Return FullScreen

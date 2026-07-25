@@ -16,34 +16,43 @@ Friend Class Overlay
     Private Const PaddingSize As Integer = 12
     Private Const IconSize As Integer = 32
 
-    Private ReadOnly BackColor As Color = Skye.UI.ThemeManager.CurrentTheme.BackColor 'Color.FromArgb(32, 32, 32)
-    Private ReadOnly TextColor As Color = Skye.UI.ThemeManager.CurrentTheme.ForeColor 'Color.White
+    Private ReadOnly BackColor As Color = Skye.UI.ThemeManager.CurrentTheme.TextBack 'Color.FromArgb(32, 32, 32)
+    Private ReadOnly TextColor As Color = Skye.UI.ThemeManager.CurrentTheme.TextFore 'Color.White
 
     Friend Sub CreateWindow()
         If hWnd <> IntPtr.Zero Then Exit Sub
 
         Dim exStyle As Integer =
-            WS_EX_TOPMOST Or WS_EX_TOOLWINDOW Or WS_EX_NOACTIVATE Or WS_EX_LAYERED Or WS_EX_TRANSPARENT
+        WS_EX_TOPMOST Or WS_EX_TOOLWINDOW Or WS_EX_NOACTIVATE Or WS_EX_LAYERED
 
         Dim style As Integer = WS_POPUP
 
         hWnd = CreateWindowEx(
-            exStyle,
-            "STATIC",
-            String.Empty,
-            style,
-            0, 0, 200, 80,
-            IntPtr.Zero,
-            IntPtr.Zero,
-            IntPtr.Zero,
-            IntPtr.Zero)
+        exStyle,
+        "STATIC",
+        String.Empty,
+        style,
+        0, 0, 200, 80,
+        IntPtr.Zero,
+        IntPtr.Zero,
+        IntPtr.Zero,
+        IntPtr.Zero)
 
         If hWnd = IntPtr.Zero Then
             Throw New Exception("Overlay window creation failed.")
         End If
 
+        ' Remove STATIC border
+        Dim s As Integer = GetWindowLong(hWnd, GWL_STYLE)
+        Dim HResult As Integer = SetWindowLong(hWnd, GWL_STYLE, s And Not WS_BORDER)
+
+        ' Set opacity to fully visible
+        SetLayeredWindowAttributes(hWnd, 0, 255, LWA_ALPHA)
+
         ApplyDwmAttributes()
     End Sub
+
+
     Private Sub ApplyDwmAttributes()
         Const DWMWA_WINDOW_CORNER_PREFERENCE As Integer = 33
         Const DWMWCP_ROUND As Integer = 2
@@ -56,7 +65,7 @@ Friend Class Overlay
         Dim darkMode As Integer = 1
         HResult = DwmSetWindowAttribute(hWnd, DWMWA_USE_IMMERSIVE_DARK_MODE, darkMode, 4)
     End Sub
-    Friend Sub ShowOverlay(ByVal parent As Form, ByVal icon As Image, ByVal title As String, ByVal text As String)
+    Friend Sub ShowOverlay(parent As Form, icon As Image, title As String, text As String)
         If hWnd = IntPtr.Zero Then CreateWindow()
 
         _icon = icon
@@ -72,11 +81,16 @@ Friend Class Overlay
 
         MoveWindow(hWnd, x, y, size.Width, size.Height, True)
 
-        DrawContent()
-
         ShowWindow(hWnd, SW_SHOWNOACTIVATE)
+
+        ' Raise above FrmPics (which is also topmost)
+        SetWindowPos(hWnd, HWND_TOPMOST, 0, 0, 0, 0,
+                 SWP_NOMOVE Or SWP_NOSIZE Or SWP_NOACTIVATE Or SWP_SHOWWINDOW)
+
         UpdateWindow(hWnd)
+        DrawContent()
     End Sub
+
     Private Function MeasureContentSize() As System.Drawing.Size
         Using bmp As New Bitmap(1, 1)
             Using g As Graphics = Graphics.FromImage(bmp)
@@ -95,13 +109,21 @@ Friend Class Overlay
         End Using
     End Function
     Private Sub DrawContent()
+        Debug.WriteLine("DrawContent: hWnd=" & hWnd.ToString())
         Dim rc As RECT
-        GetClientRect(hWnd, rc)
+        If Not GetClientRect(hWnd, rc) Then
+            Debug.WriteLine("GetClientRect failed")
+            Return
+        End If
 
         Dim w As Integer = rc.Right - rc.Left
         Dim h As Integer = rc.Bottom - rc.Top
 
         Dim hDC As IntPtr = GetDC(hWnd)
+        If hDC = IntPtr.Zero Then
+            Debug.WriteLine("GetDC returned zero")
+            Return
+        End If
         If hDC = IntPtr.Zero Then Exit Sub
 
         Using g As Graphics = Graphics.FromHdc(hDC)

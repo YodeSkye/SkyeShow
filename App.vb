@@ -1059,16 +1059,16 @@ Namespace My
 
 			OverlayTimer.Stop()
 
-			If overlayParent <> String.Empty Then
+			'If overlayParent <> String.Empty Then
 
-				' Bring Pics/Vids back to front if needed
-				If FrmPics IsNot Nothing AndAlso FrmPics.Name = overlayParent Then
-					FrmPics.BringToFront()
-				ElseIf FrmVids IsNot Nothing AndAlso FrmVids.Name = overlayParent Then
-					FrmVids.BringToFront()
-				End If
+			'	'Bring Pics / Vids back to front if needed
+			'	If FrmPics IsNot Nothing AndAlso FrmPics.Name = overlayParent Then
+			'		FrmPics.BringToFront()
+			'	ElseIf FrmVids IsNot Nothing AndAlso FrmVids.Name = overlayParent Then
+			'		FrmVids.BringToFront()
+			'	End If
 
-			End If
+			'End If
 
 			overlayParent = String.Empty
 			Overlay.HideOverlay()

@@ -611,6 +611,7 @@ Partial Friend Class Vids
                     _player.Stop()
                     FadeOutStarted = False
                     FadeCancelled = False
+                    App.HideOverlay()
                     If App.VidFadeEnabled AndAlso CallingOpt = App.PlayOption.ByPlayMode Then
                         Opacity = 0
                         _player.Play(App.VideoFiles(App.VideoIndex).Path)
@@ -860,18 +861,19 @@ Partial Friend Class Vids
         Dim s As String = String.Empty
         Dim i As IO.FileInfo
         Dim t As TimeSpan = TimeSpan.FromSeconds(_player.Duration)
-        i = Microsoft.VisualBasic.FileIO.FileSystem.GetFileInfo(My.App.VideoFiles(My.App.VideoIndex).Path)
+        i = Microsoft.VisualBasic.FileIO.FileSystem.GetFileInfo(App.VideoFiles(App.VideoIndex).Path)
         s += IIf(t.Hours > 0, t.Hours.ToString.PadLeft(2, "0"c) + ":", "").ToString + t.Minutes.ToString.PadLeft(2, "0"c) + ":" + t.Seconds.ToString.PadLeft(2, "0"c)
         s += vbCr
         s += Skye.Common.FormatFileSize(i.Length, Skye.Common.FormatFileSizeUnits.Auto, 1)
         s += vbCr
         s += _player.VideoWidth.ToString + "x" + _player.VideoHeight.ToString
         s += " ("
-        s += My.App.FormatVideoAspectRatio(New Size(_player.VideoWidth, _player.VideoHeight))
+        s += App.FormatVideoAspectRatio(New Size(_player.VideoWidth, _player.VideoHeight))
         s += ") "
         s += vbCr
         s += i.DirectoryName
-        My.App.ShowBalloon(Me, My.Resources.Resources.imageVideo32, i.Name, s)
+        'App.ShowBalloon(Me, My.Resources.Resources.ImageVideo32, i.Name, s)
+        App.ShowOverlay(Me, My.Resources.Resources.ImageVideo32, i.Name, s)
     End Sub
     Friend Sub SetVolume()
         If _player.HasMedia Then

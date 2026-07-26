@@ -635,6 +635,7 @@ Partial Friend Class Pics
                         Dim path As String = App.ImageFiles(App.ImageIndex)
                         imageRaw = Image.FromFile(path)
                         Dim doFade As Boolean = My.App.PicFadeEnabled AndAlso (callingopt = My.App.PlayOption.ByPlayMode) AndAlso firstImageDone
+                        App.HideOverlay()
                         If doFade Then Await FadeOutAsync()
                         DrawImage()
                         If doFade Then Await FadeInAsync()

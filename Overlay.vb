@@ -24,16 +24,7 @@ Friend Class Overlay
 
         Dim style As Integer = WS_POPUP
 
-        hWnd = CreateWindowEx(
-        exStyle,
-        "STATIC",
-        String.Empty,
-        style,
-        0, 0, 200, 80,
-        IntPtr.Zero,
-        IntPtr.Zero,
-        IntPtr.Zero,
-        IntPtr.Zero)
+        hWnd = CreateWindowEx(exStyle, "STATIC", String.Empty, style, 0, 0, 200, 80, IntPtr.Zero, IntPtr.Zero, IntPtr.Zero, IntPtr.Zero)
 
         If hWnd = IntPtr.Zero Then
             Throw New Exception("Overlay window creation failed.")
@@ -80,26 +71,27 @@ Friend Class Overlay
 
         ShowWindow(hWnd, SW_SHOWNOACTIVATE)
 
-        ' Raise above FrmPics (which is also topmost)
         SetWindowPos(hWnd, HWND_TOPMOST, 0, 0, 0, 0,
                  SWP_NOMOVE Or SWP_NOSIZE Or SWP_NOACTIVATE Or SWP_SHOWWINDOW)
 
         UpdateWindow(hWnd)
         DrawContent()
     End Sub
-
     Private Function MeasureContentSize() As System.Drawing.Size
         Using bmp As New Bitmap(1, 1)
             Using g As Graphics = Graphics.FromImage(bmp)
-                Dim titleSize As SizeF = g.MeasureString(_title, TitleFont)
-                Dim textSize As SizeF = g.MeasureString(_text, TextFont)
 
-                Dim width As Single =
-                    Math.Max(IconSize + PaddingSize * 2 + titleSize.Width,
-                             PaddingSize * 2 + textSize.Width)
+                Dim titleToMeasure As String = _title.Replace(vbCr, vbCrLf)
+                Dim textToMeasure As String = _text.Replace(vbCr, vbCrLf)
 
-                Dim height As Single =
-                    PaddingSize * 2 + IconSize + PaddingSize + textSize.Height
+                Dim titleSize As SizeF = g.MeasureString(titleToMeasure, TitleFont)
+                Dim textSize As SizeF = g.MeasureString(textToMeasure, TextFont)
+
+                Dim titleWidth As Single = PaddingSize + IconSize + PaddingSize + titleSize.Width + PaddingSize
+                Dim textWidth As Single = PaddingSize + textSize.Width + PaddingSize
+
+                Dim width As Single = Math.Max(titleWidth, textWidth)
+                Dim height As Single = PaddingSize + Math.Max(IconSize, titleSize.Height) + PaddingSize + textSize.Height + PaddingSize
 
                 Return New System.Drawing.Size(CInt(Math.Ceiling(width)), CInt(Math.Ceiling(height)))
             End Using
@@ -136,9 +128,12 @@ Friend Class Overlay
             Dim titleX As Integer = x + IconSize + PaddingSize
             Dim titleY As Integer = y + CInt((IconSize - TitleFont.GetHeight(g)) / 2)
 
+            Dim titleToDraw As String = _title.Replace(vbCr, vbCrLf)
+            Dim textToDraw As String = _text.Replace(vbCr, vbCrLf)
+
             Using br As New SolidBrush(TextColor)
-                g.DrawString(_title, TitleFont, br, titleX, titleY)
-                g.DrawString(_text, TextFont, br, x, y + IconSize + PaddingSize)
+                g.DrawString(titleToDraw, TitleFont, br, titleX, titleY)
+                g.DrawString(textToDraw, TextFont, br, x, y + IconSize + PaddingSize)
             End Using
         End Using
 

@@ -54,9 +54,7 @@ Friend Class Overlay
     Private Sub CreateWindow()
         If hWnd <> IntPtr.Zero Then Exit Sub
 
-        Dim exStyle As Integer =
-        WS_EX_TOPMOST Or WS_EX_TOOLWINDOW Or WS_EX_NOACTIVATE Or WS_EX_LAYERED
-
+        Dim exStyle As Integer = WS_EX_TOPMOST Or WS_EX_TOOLWINDOW Or WS_EX_NOACTIVATE Or WS_EX_LAYERED
         Dim style As Integer = WS_POPUP
 
         hWnd = CreateWindowEx(exStyle, "STATIC", String.Empty, style, 0, 0, 200, 80, IntPtr.Zero, IntPtr.Zero, IntPtr.Zero, IntPtr.Zero)
@@ -65,9 +63,12 @@ Friend Class Overlay
             Throw New Exception("Overlay window creation failed.")
         End If
 
-        ' Remove STATIC border
+        ' Remove STATIC border + client edge
+        Dim HResult As Integer
         Dim s As Integer = GetWindowLong(hWnd, GWL_STYLE)
-        Dim HResult As Integer = SetWindowLong(hWnd, GWL_STYLE, s And Not WS_BORDER)
+        HResult = SetWindowLong(hWnd, GWL_STYLE, s And Not WS_BORDER)
+        Dim es As Integer = GetWindowLong(hWnd, GWL_EXSTYLE)
+        HResult = SetWindowLong(hWnd, GWL_EXSTYLE, es And Not WS_EX_CLIENTEDGE)
 
         ' Set opacity to fully visible
         SetLayeredWindowAttributes(hWnd, 0, 255, LWA_ALPHA)

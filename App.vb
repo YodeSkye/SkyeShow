@@ -525,9 +525,9 @@ Namespace My
 				Me.KeyMod = keymod
 			End Sub
 		End Structure
-		Friend ReadOnly AdjustScreenBoundsNormalWindow As Byte = 8 'AdjustScreenBoundsNormalWindow is the number of pixels to adjust the screen bounds for normal windows.
-		Friend ReadOnly AdjustScreenBoundsDialogWindow As Byte = 10 'AdjustScreenBoundsDialogWindow is the number of pixels to adjust the screen bounds for dialog windows.
-		Friend ReadOnly MenuFont As New Font("Segoe UI", 12, FontStyle.Regular) ' MenuFont is the font used for context menus.
+		Friend ReadOnly AdjustScreenBoundsNormalWindow As Byte = 8 ' The number of pixels to adjust the screen bounds for normal windows.
+		Friend ReadOnly AdjustScreenBoundsDialogWindow As Byte = 10 ' The number of pixels to adjust the screen bounds for dialog windows.
+		Friend ReadOnly MenuFont As New Font("Segoe UI", 12, FontStyle.Regular) ' The font used for context menus.
 		Friend NeedsSaved As Boolean = False
 		Friend ErrorAlert As Boolean = False
 		Friend IsGeneratingFileList As Boolean
@@ -543,9 +543,9 @@ Namespace My
 		'Private WithEvents FrmBalloonTimer As New Timer
 		Private ReadOnly Overlay As New Overlay()
 		Private OverlayParent As String = String.Empty
-		Private WithEvents OverlayTimer As New Timer With {.Interval = 6000} ' or whatever you used
-		Private WithEvents ScreenSaverWatcher As New Timer
-		Private ScreenSaverRunning As Boolean = False
+        Private WithEvents OverlayTimer As New Timer With {.Interval = 6000}
+        Private WithEvents ScreenSaverWatcher As New Timer With {.Interval = 1000}
+        Private ScreenSaverRunning As Boolean = False
 		Private WorkStationLocked As Boolean = False
 		Private ReadOnly RandomFileIndex As New Random
 
@@ -623,8 +623,6 @@ Namespace My
 #End If
 
 			WriteToLog(My.Application.Info.ProductName & " Started")
-			'FrmBalloonTimer.Interval = 6000
-			ScreenSaverWatcher.Interval = 1000
 			ImageExtensions = New List(Of String) From {".jpg", ".jpeg", ".bmp", ".gif", ".png", ".tif", ".tiff", ".exif"}
 			VideoExtensionDictionary.Add(".mkv", "Matroska")
 			VideoExtensionDictionary.Add(".ogv", "OGG Video")

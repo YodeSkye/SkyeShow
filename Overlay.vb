@@ -5,17 +5,13 @@ Imports Skye.WinAPI
 Friend Class Overlay
 
     Private hWnd As IntPtr = IntPtr.Zero
-
     Private _icon As Image
     Private _title As String
     Private _text As String
-
     Private ReadOnly TitleFont As New Font("Segoe UI", 12.0F, FontStyle.Bold)
     Private ReadOnly TextFont As New Font("Segoe UI", 12.0F, FontStyle.Regular)
-
     Private Const PaddingSize As Integer = 12
     Private Const IconSize As Integer = 32
-
     Private _isVisible As Boolean = False
     Friend ReadOnly Property IsVisible As Boolean
         Get
@@ -23,41 +19,6 @@ Friend Class Overlay
         End Get
     End Property
 
-    Friend Sub CreateWindow()
-        If hWnd <> IntPtr.Zero Then Exit Sub
-
-        Dim exStyle As Integer =
-        WS_EX_TOPMOST Or WS_EX_TOOLWINDOW Or WS_EX_NOACTIVATE Or WS_EX_LAYERED
-
-        Dim style As Integer = WS_POPUP
-
-        hWnd = CreateWindowEx(exStyle, "STATIC", String.Empty, style, 0, 0, 200, 80, IntPtr.Zero, IntPtr.Zero, IntPtr.Zero, IntPtr.Zero)
-
-        If hWnd = IntPtr.Zero Then
-            Throw New Exception("Overlay window creation failed.")
-        End If
-
-        ' Remove STATIC border
-        Dim s As Integer = GetWindowLong(hWnd, GWL_STYLE)
-        Dim HResult As Integer = SetWindowLong(hWnd, GWL_STYLE, s And Not WS_BORDER)
-
-        ' Set opacity to fully visible
-        SetLayeredWindowAttributes(hWnd, 0, 255, LWA_ALPHA)
-
-        ApplyDwmAttributes()
-    End Sub
-    Private Sub ApplyDwmAttributes()
-        Const DWMWA_WINDOW_CORNER_PREFERENCE As Integer = 33
-        Const DWMWCP_ROUND As Integer = 2
-        Const DWMWA_USE_IMMERSIVE_DARK_MODE As Integer = 20
-        Dim HResult As Integer
-
-        Dim cornerPref As Integer = DWMWCP_ROUND
-        HResult = DwmSetWindowAttribute(hWnd, DWMWA_WINDOW_CORNER_PREFERENCE, cornerPref, 4)
-
-        Dim darkMode As Integer = 1
-        HResult = DwmSetWindowAttribute(hWnd, DWMWA_USE_IMMERSIVE_DARK_MODE, darkMode, 4)
-    End Sub
     Friend Sub ShowOverlay(parent As Form, icon As Image, title As String, text As String)
         If hWnd = IntPtr.Zero Then CreateWindow()
 
@@ -83,26 +44,36 @@ Friend Class Overlay
         UpdateWindow(hWnd)
         DrawContent()
     End Sub
-    Private Function MeasureContentSize() As System.Drawing.Size
-        Using bmp As New Bitmap(1, 1)
-            Using g As Graphics = Graphics.FromImage(bmp)
+    Friend Sub HideOverlay()
+        If hWnd <> IntPtr.Zero Then
+            ShowWindow(hWnd, SW_HIDE)
+            _isVisible = False
+        End If
+    End Sub
 
-                Dim titleToMeasure As String = _title.Replace(vbCr, vbCrLf)
-                Dim textToMeasure As String = _text.Replace(vbCr, vbCrLf)
+    Private Sub CreateWindow()
+        If hWnd <> IntPtr.Zero Then Exit Sub
 
-                Dim titleSize As SizeF = g.MeasureString(titleToMeasure, TitleFont)
-                Dim textSize As SizeF = g.MeasureString(textToMeasure, TextFont)
+        Dim exStyle As Integer =
+        WS_EX_TOPMOST Or WS_EX_TOOLWINDOW Or WS_EX_NOACTIVATE Or WS_EX_LAYERED
 
-                Dim titleWidth As Single = PaddingSize + IconSize + PaddingSize + titleSize.Width + PaddingSize
-                Dim textWidth As Single = PaddingSize + textSize.Width + PaddingSize
+        Dim style As Integer = WS_POPUP
 
-                Dim width As Single = Math.Max(titleWidth, textWidth)
-                Dim height As Single = PaddingSize + Math.Max(IconSize, titleSize.Height) + PaddingSize + textSize.Height + PaddingSize
+        hWnd = CreateWindowEx(exStyle, "STATIC", String.Empty, style, 0, 0, 200, 80, IntPtr.Zero, IntPtr.Zero, IntPtr.Zero, IntPtr.Zero)
 
-                Return New System.Drawing.Size(CInt(Math.Ceiling(width)), CInt(Math.Ceiling(height)))
-            End Using
-        End Using
-    End Function
+        If hWnd = IntPtr.Zero Then
+            Throw New Exception("Overlay window creation failed.")
+        End If
+
+        ' Remove STATIC border
+        Dim s As Integer = GetWindowLong(hWnd, GWL_STYLE)
+        Dim HResult As Integer = SetWindowLong(hWnd, GWL_STYLE, s And Not WS_BORDER)
+
+        ' Set opacity to fully visible
+        SetLayeredWindowAttributes(hWnd, 0, 255, LWA_ALPHA)
+
+        ApplyDwmAttributes()
+    End Sub
     Private Sub DrawContent()
 
         Dim BackColor As Color = Skye.UI.ThemeManager.CurrentTheme.TextBack
@@ -145,17 +116,44 @@ Friend Class Overlay
 
         Dim HResult As Integer = ReleaseDC(hWnd, hDC)
     End Sub
+
+    Private Sub ApplyDwmAttributes()
+        Const DWMWA_WINDOW_CORNER_PREFERENCE As Integer = 33
+        Const DWMWCP_ROUND As Integer = 2
+        Const DWMWA_USE_IMMERSIVE_DARK_MODE As Integer = 20
+        Dim HResult As Integer
+
+        Dim cornerPref As Integer = DWMWCP_ROUND
+        HResult = DwmSetWindowAttribute(hWnd, DWMWA_WINDOW_CORNER_PREFERENCE, cornerPref, 4)
+
+        Dim darkMode As Integer = 1
+        HResult = DwmSetWindowAttribute(hWnd, DWMWA_USE_IMMERSIVE_DARK_MODE, darkMode, 4)
+    End Sub
+    Private Function MeasureContentSize() As System.Drawing.Size
+        Using bmp As New Bitmap(1, 1)
+            Using g As Graphics = Graphics.FromImage(bmp)
+
+                Dim titleToMeasure As String = _title.Replace(vbCr, vbCrLf)
+                Dim textToMeasure As String = _text.Replace(vbCr, vbCrLf)
+
+                Dim titleSize As SizeF = g.MeasureString(titleToMeasure, TitleFont)
+                Dim textSize As SizeF = g.MeasureString(textToMeasure, TextFont)
+
+                Dim titleWidth As Single = PaddingSize + IconSize + PaddingSize + titleSize.Width + PaddingSize
+                Dim textWidth As Single = PaddingSize + textSize.Width + PaddingSize
+
+                Dim width As Single = Math.Max(titleWidth, textWidth)
+                Dim height As Single = PaddingSize + Math.Max(IconSize, titleSize.Height) + PaddingSize + textSize.Height + PaddingSize
+
+                Return New System.Drawing.Size(CInt(Math.Ceiling(width)), CInt(Math.Ceiling(height)))
+            End Using
+        End Using
+    End Function
     Private Shared Sub ClampToScreen(ByRef x As Integer, ByRef y As Integer, ByVal w As Integer, ByVal h As Integer)
         Dim wa As Rectangle = Screen.PrimaryScreen.WorkingArea
 
         If x + w > wa.Right Then x = wa.Right - w
         If y + h > wa.Bottom Then y = wa.Bottom - h
-    End Sub
-    Friend Sub HideOverlay()
-        If hWnd <> IntPtr.Zero Then
-            ShowWindow(hWnd, SW_HIDE)
-            _isVisible = False
-        End If
     End Sub
 
 End Class

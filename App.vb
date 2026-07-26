@@ -538,11 +538,11 @@ Namespace My
 		Friend FrmMain As MainForm
 		Friend FrmHelp As Help
 		Friend FrmLog As Log
-		Private ReadOnly FrmBalloon As New Balloon
-		Private frmBalloonParent As String = String.Empty
-		Private WithEvents FrmBalloonTimer As New Timer
+		'Private ReadOnly FrmBalloon As New Balloon
+		'Private frmBalloonParent As String = String.Empty
+		'Private WithEvents FrmBalloonTimer As New Timer
 		Private ReadOnly Overlay As New Overlay()
-		Private overlayParent As String = String.Empty
+		Private OverlayParent As String = String.Empty
 		Private WithEvents OverlayTimer As New Timer With {.Interval = 6000} ' or whatever you used
 		Private WithEvents ScreenSaverWatcher As New Timer
 		Private ScreenSaverRunning As Boolean = False
@@ -572,9 +572,9 @@ Namespace My
 				ThemeManager.ApplyTheme(f)
 			Next
 		End Sub
-		Private Sub FrmBalloonTimerTick(ByVal sender As Object, ByVal e As EventArgs) Handles FrmBalloonTimer.Tick
-			HideBalloon()
-		End Sub
+		'Private Sub FrmBalloonTimerTick(ByVal sender As Object, ByVal e As EventArgs) Handles FrmBalloonTimer.Tick
+		'	HideBalloon()
+		'End Sub
 		Private Sub OverlayTimer_Tick(sender As Object, e As EventArgs) Handles OverlayTimer.Tick
 			HideOverlay()
 		End Sub
@@ -623,7 +623,7 @@ Namespace My
 #End If
 
 			WriteToLog(My.Application.Info.ProductName & " Started")
-			FrmBalloonTimer.Interval = 6000
+			'FrmBalloonTimer.Interval = 6000
 			ScreenSaverWatcher.Interval = 1000
 			ImageExtensions = New List(Of String) From {".jpg", ".jpeg", ".bmp", ".gif", ".png", ".tif", ".tiff", ".exif"}
 			VideoExtensionDictionary.Add(".mkv", "Matroska")
@@ -995,55 +995,55 @@ Namespace My
 			HotKeys.Add(HKVidToggleFullScreen)
 			HotKeys.Add(HKVidShowFileInfo)
 		End Sub
-		Friend Sub ShowBalloon(ByRef sender As Form, image As Image, title As String, text As String)
-			If FrmBalloon.Visible And frmBalloonParent = sender.Name Then : HideBalloon() 'This allows for toggle of balloon
-			Else
-				HideBalloon()
-				frmBalloonParent = sender.Name
-				If image Is Nothing Then : FrmBalloon.picbxIcon.Image = My.Resources.Resources.ImageInfo32
-				Else : FrmBalloon.picbxIcon.Image = image
-				End If
-				FrmBalloon.lblTitle.Text = title
-				FrmBalloon.lblText.Text = text
-				FrmBalloon.Location = sender.Location
-				If FrmBalloon.Right > My.Computer.Screen.WorkingArea.Right Then FrmBalloon.Left -= FrmBalloon.Right - My.Computer.Screen.WorkingArea.Right
-				If FrmBalloon.Bottom > My.Computer.Screen.WorkingArea.Bottom Then FrmBalloon.Top -= FrmBalloon.Bottom - My.Computer.Screen.WorkingArea.Bottom
-				BalloonLoading = True
-				FrmBalloon.Show()
-				BalloonLoading = False
-				FrmBalloonTimer.Start()
-			End If
-		End Sub
-		Friend Sub HideBalloon()
-			If FrmBalloon.Visible Then
-				FrmBalloonTimer.Stop()
-				If FrmPics IsNot Nothing AndAlso FrmPics.Name = frmBalloonParent Then
-					FrmPics.BringToFront()
-				ElseIf FrmVids IsNot Nothing AndAlso FrmVids.Name = frmBalloonParent Then
-					FrmVids.BringToFront()
-				End If
-				frmBalloonParent = String.Empty
-				FrmBalloon.Hide()
-			End If
-		End Sub
-		Friend Sub BalloonPreviewKeyDown(ByVal sender As Object, ByVal e As PreviewKeyDownEventArgs)
-			If FrmPics IsNot Nothing AndAlso FrmPics.Name = frmBalloonParent Then
-				FrmPics.FrmPreviewKeyDown(sender, e)
-			ElseIf FrmVids IsNot Nothing AndAlso FrmVids.Name = frmBalloonParent Then
-				FrmVids.FrmPreviewKeyDown(sender, e)
-			End If
-			HideBalloon()
-		End Sub
+		'Friend Sub ShowBalloon(ByRef sender As Form, image As Image, title As String, text As String)
+		'	If FrmBalloon.Visible And frmBalloonParent = sender.Name Then : HideBalloon() 'This allows for toggle of balloon
+		'	Else
+		'		HideBalloon()
+		'		frmBalloonParent = sender.Name
+		'		If image Is Nothing Then : FrmBalloon.picbxIcon.Image = My.Resources.Resources.ImageInfo32
+		'		Else : FrmBalloon.picbxIcon.Image = image
+		'		End If
+		'		FrmBalloon.lblTitle.Text = title
+		'		FrmBalloon.lblText.Text = text
+		'		FrmBalloon.Location = sender.Location
+		'		If FrmBalloon.Right > My.Computer.Screen.WorkingArea.Right Then FrmBalloon.Left -= FrmBalloon.Right - My.Computer.Screen.WorkingArea.Right
+		'		If FrmBalloon.Bottom > My.Computer.Screen.WorkingArea.Bottom Then FrmBalloon.Top -= FrmBalloon.Bottom - My.Computer.Screen.WorkingArea.Bottom
+		'		BalloonLoading = True
+		'		FrmBalloon.Show()
+		'		BalloonLoading = False
+		'		FrmBalloonTimer.Start()
+		'	End If
+		'End Sub
+		'Friend Sub HideBalloon()
+		'	If FrmBalloon.Visible Then
+		'		FrmBalloonTimer.Stop()
+		'		If FrmPics IsNot Nothing AndAlso FrmPics.Name = frmBalloonParent Then
+		'			FrmPics.BringToFront()
+		'		ElseIf FrmVids IsNot Nothing AndAlso FrmVids.Name = frmBalloonParent Then
+		'			FrmVids.BringToFront()
+		'		End If
+		'		frmBalloonParent = String.Empty
+		'		FrmBalloon.Hide()
+		'	End If
+		'End Sub
+		'Friend Sub BalloonPreviewKeyDown(ByVal sender As Object, ByVal e As PreviewKeyDownEventArgs)
+		'	If FrmPics IsNot Nothing AndAlso FrmPics.Name = frmBalloonParent Then
+		'		FrmPics.FrmPreviewKeyDown(sender, e)
+		'	ElseIf FrmVids IsNot Nothing AndAlso FrmVids.Name = frmBalloonParent Then
+		'		FrmVids.FrmPreviewKeyDown(sender, e)
+		'	End If
+		'	HideBalloon()
+		'End Sub
 		Friend Sub ShowOverlay(ByRef sender As Form, image As Image, title As String, text As String)
 
 			' Toggle behavior
-			If overlayParent = sender.Name Then
+			If OverlayParent = sender.Name Then
 				HideOverlay()
 				Exit Sub
 			End If
 
 			HideOverlay()
-			overlayParent = sender.Name
+			OverlayParent = sender.Name
 
 			' Default icon if nothing provided
 			Dim iconToUse As Image = If(image, My.Resources.Resources.ImageInfo32)
@@ -1070,7 +1070,7 @@ Namespace My
 
 			'End If
 
-			overlayParent = String.Empty
+			OverlayParent = String.Empty
 			Overlay.HideOverlay()
 
 		End Sub
@@ -1166,8 +1166,8 @@ Namespace My
 				GenerateUsedKeyList.Add(hk.Key)
 			Next
 		End Function
-		Friend Function BalloonVisible() As Boolean
-			Return FrmBalloon.Visible
+		Friend Function OverlayVisible() As Boolean
+			Return Overlay.IsVisible
 		End Function
 		Friend Function IsPicFile(file As String) As Boolean
 			Return ImageExtensions.Any(Function(ext) file.EndsWith(ext, StringComparison.CurrentCultureIgnoreCase))

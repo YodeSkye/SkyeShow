@@ -46,7 +46,7 @@ Inherits System.Windows.Forms.Form
         CMVids.Name = "contextmenuVideo"
         CMVids.RenderMode = ToolStripRenderMode.Professional
         CMVids.ShowItemToolTips = False
-        CMVids.Size = New Size(233, 314)
+        CMVids.Size = New Size(233, 336)
         ' 
         ' cmiFullScreen
         ' 

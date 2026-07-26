@@ -245,7 +245,8 @@ Partial Friend Class Vids
     End Sub
     Private Sub FrmClosing(ByVal sender As Object, ByVal e As FormClosingEventArgs) Handles MyBase.FormClosing
         FadeCancelled = True
-        App.HideBalloon()
+        'App.HideBalloon()
+        App.HideOverlay()
         ShowCursor()
         RemoveHandler LostFocus, AddressOf FrmLostFocus
         TimerCheckPlayState.Stop()
@@ -265,7 +266,8 @@ Partial Friend Class Vids
         If FullScreen And Not My.App.VidLockFullScreen And Not My.App.BalloonLoading And Not My.App.IgnoreFocusChange Then ToggleFullScreen()
     End Sub
     Friend Sub FrmPreviewKeyDown(sender As Object, e As PreviewKeyDownEventArgs) Handles MyBase.PreviewKeyDown
-        My.App.HideBalloon()
+        'App.HideBalloon()
+        App.HideOverlay()
         If e.Alt Then
         ElseIf e.Control Then
             Select Case e.KeyCode
@@ -392,6 +394,7 @@ Partial Friend Class Vids
         End If
     End Sub
     Private Sub FrmMouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles MyBase.MouseUp, lblTime.MouseUp
+        App.HideOverlay()
         If mMove Then
             mMove = False
             If mMoveMode = 1 Then
@@ -438,6 +441,9 @@ Partial Friend Class Vids
     End Sub
     Private Sub VLCViewer_RightClick(clientPoint As Point)
         CMVids.Show(VLCViewer, clientPoint)
+    End Sub
+    Private Sub CMVids_Opening(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles CMVids.Opening
+        App.HideOverlay()
     End Sub
     Private Sub CMVidsClosing(sender As Object, e As ToolStripDropDownClosingEventArgs) Handles CMVids.Closing
         If Me.CMVids.Items(Me.CMVids.Items.IndexOfKey(Me.cmiDeleteVideo.Name)).Selected Then : If Not Me.DeleteVideoConfirm Then e.Cancel = True
@@ -537,7 +543,8 @@ Partial Friend Class Vids
     Private Sub OnPlaybackEnded()
         Debug.Print("PlaybackEnded")
         SetDeleteVideoConfirm(True)
-        App.HideBalloon()
+        'App.HideBalloon()
+        App.HideOverlay()
         If Not FadeOutStarted Then NextVideo(App.PlayOption.ByPlayMode)
     End Sub
     Private Sub TimerCheckPlayStateTick(ByVal sender As Object, ByVal e As EventArgs) Handles TimerCheckPlayState.Tick
@@ -797,6 +804,7 @@ Partial Friend Class Vids
         End If
     End Sub
     Friend Sub ToggleFullScreen()
+        'App.HideOverlay()
         FullScreen = Not FullScreen
         Me.cmiFullScreen.Checked = Not Me.cmiFullScreen.Checked
         If Not FullScreen Then ShowCursor()

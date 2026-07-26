@@ -10,11 +10,18 @@ Friend Class Overlay
     Private _title As String
     Private _text As String
 
-    Private ReadOnly TitleFont As New Font("Segoe UI", 10.5F, FontStyle.Bold)
-    Private ReadOnly TextFont As New Font("Segoe UI", 10.0F, FontStyle.Regular)
+    Private ReadOnly TitleFont As New Font("Segoe UI", 12.0F, FontStyle.Bold)
+    Private ReadOnly TextFont As New Font("Segoe UI", 12.0F, FontStyle.Regular)
 
     Private Const PaddingSize As Integer = 12
     Private Const IconSize As Integer = 32
+
+    Private _isVisible As Boolean = False
+    Friend ReadOnly Property IsVisible As Boolean
+        Get
+            Return _isVisible
+        End Get
+    End Property
 
     Friend Sub CreateWindow()
         If hWnd <> IntPtr.Zero Then Exit Sub
@@ -39,8 +46,6 @@ Friend Class Overlay
 
         ApplyDwmAttributes()
     End Sub
-
-
     Private Sub ApplyDwmAttributes()
         Const DWMWA_WINDOW_CORNER_PREFERENCE As Integer = 33
         Const DWMWCP_ROUND As Integer = 2
@@ -70,6 +75,7 @@ Friend Class Overlay
         MoveWindow(hWnd, x, y, size.Width, size.Height, True)
 
         ShowWindow(hWnd, SW_SHOWNOACTIVATE)
+        _isVisible = True
 
         SetWindowPos(hWnd, HWND_TOPMOST, 0, 0, 0, 0,
                  SWP_NOMOVE Or SWP_NOSIZE Or SWP_NOACTIVATE Or SWP_SHOWWINDOW)
@@ -148,6 +154,7 @@ Friend Class Overlay
     Friend Sub HideOverlay()
         If hWnd <> IntPtr.Zero Then
             ShowWindow(hWnd, SW_HIDE)
+            _isVisible = False
         End If
     End Sub
 

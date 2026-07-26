@@ -58,7 +58,8 @@ Partial Friend Class Pics
         NextImage(My.App.PlayOption.ByPlayMode)
     End Sub
     Private Sub FrmClosing(ByVal sender As Object, ByVal e As FormClosingEventArgs) Handles MyBase.FormClosing
-        My.App.HideBalloon()
+        'App.HideBalloon()
+        App.HideOverlay()
         ShowCursor()
         RemoveHandler Me.LostFocus, AddressOf FrmLostFocus
         TimerImageAdvance.Stop()
@@ -78,7 +79,9 @@ Partial Friend Class Pics
         If FullScreen And Not My.App.PicLockFullScreen And Not My.App.BalloonLoading And Not My.App.IgnoreFocusChange Then ToggleFullScreen()
     End Sub
     Friend Sub FrmPreviewKeyDown(ByVal sender As Object, ByVal e As PreviewKeyDownEventArgs) Handles MyBase.PreviewKeyDown
-        My.App.HideBalloon()
+        'App.HideBalloon()
+        App.HideOverlay()
+
         If e.Alt Then
         ElseIf e.Control Then
         ElseIf e.Shift Then
@@ -204,8 +207,9 @@ Partial Friend Class Pics
         End If
     End Sub
     Private Sub FrmMouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles PicMain.MouseUp, lblCountdown.MouseUp
-        Debug.Print("frmMouseUp")
-        My.App.HideBalloon()
+        'Debug.Print("frmMouseUp")
+        'App.HideBalloon()
+        App.HideOverlay()
         If mMove Then
             mMove = False
             If mMoveMode = 1 Then
@@ -234,6 +238,9 @@ Partial Friend Class Pics
     Private Sub PicMain_MouseLeave(sender As Object, e As EventArgs) Handles PicMain.MouseLeave
         'If App.PicTimerAutoStart Then SetTimerAutoStart()
         EnableImageTimer()
+    End Sub
+    Private Sub CMPics_Opening(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles CMPics.Opening
+        App.HideOverlay()
     End Sub
     Private Sub CMPicsClosing(sender As Object, e As ToolStripDropDownClosingEventArgs) Handles CMPics.Closing
         If CMPics.Items(CMPics.Items.IndexOfKey(cmiDeleteImage.Name)).Selected Then : If Not DeleteImageConfirm Then e.Cancel = True
@@ -333,7 +340,7 @@ Partial Friend Class Pics
         If Me.timerImageAdvanceCount = My.App.PicTimerInterval Then
             Me.timerImageAdvanceCount = 0
             SetDeleteImageConfirm(True)
-            If Not CMPics.Visible AndAlso Not App.BalloonVisible Then NextImage(My.App.PlayOption.ByPlayMode)
+            If Not CMPics.Visible AndAlso Not App.OverlayVisible Then NextImage(My.App.PlayOption.ByPlayMode)
         End If
         ShowImageTimerCountdown()
     End Sub

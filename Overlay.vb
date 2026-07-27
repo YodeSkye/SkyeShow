@@ -10,6 +10,7 @@ Friend Class Overlay
     Private _text As String
     Private ReadOnly TitleFont As New Font("Segoe UI", 12.0F, FontStyle.Bold)
     Private ReadOnly TextFont As New Font("Segoe UI", 12.0F, FontStyle.Regular)
+    Private Const Inset As Integer = 5
     Private Const PaddingSize As Integer = 12
     Private Const IconSize As Integer = 32
     Private _isVisible As Boolean = False
@@ -28,8 +29,8 @@ Friend Class Overlay
 
         Dim size As System.Drawing.Size = MeasureContentSize()
 
-        Dim x As Integer = parent.Left
-        Dim y As Integer = parent.Top
+        Dim x As Integer = parent.Left + Inset
+        Dim y As Integer = parent.Top + Inset
 
         ClampToScreen(x, y, size.Width, size.Height)
 
@@ -153,8 +154,8 @@ Friend Class Overlay
     Private Shared Sub ClampToScreen(ByRef x As Integer, ByRef y As Integer, ByVal w As Integer, ByVal h As Integer)
         Dim wa As Rectangle = Screen.PrimaryScreen.WorkingArea
 
-        If x + w > wa.Right Then x = wa.Right - w
-        If y + h > wa.Bottom Then y = wa.Bottom - h
+        If x + w > wa.Right Then x = wa.Right - w - Inset
+        If y + h > wa.Bottom Then y = wa.Bottom - h - Inset
     End Sub
 
 End Class

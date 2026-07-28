@@ -538,9 +538,6 @@ Namespace My
 		Friend FrmMain As MainForm
 		Friend FrmHelp As Help
 		Friend FrmLog As Log
-		'Private ReadOnly FrmBalloon As New Balloon
-		'Private frmBalloonParent As String = String.Empty
-		'Private WithEvents FrmBalloonTimer As New Timer
 		Private ReadOnly Overlay As New Overlay()
 		Private OverlayParent As String = String.Empty
         Private WithEvents OverlayTimer As New Timer With {.Interval = 6000}
@@ -572,11 +569,10 @@ Namespace My
 				ThemeManager.ApplyTheme(f)
 			Next
 		End Sub
-		'Private Sub FrmBalloonTimerTick(ByVal sender As Object, ByVal e As EventArgs) Handles FrmBalloonTimer.Tick
-		'	HideBalloon()
-		'End Sub
 		Private Sub OverlayTimer_Tick(sender As Object, e As EventArgs) Handles OverlayTimer.Tick
-			HideOverlay()
+			OverlayTimer.Stop()
+			OverlayParent = String.Empty
+			Overlay.HideOverlayWithFade()
 		End Sub
 		Private Sub ScreenSaverWatcherTick(ByVal sender As Object, ByVal e As EventArgs) Handles ScreenSaverWatcher.Tick
 			Static ssStatus As Boolean
@@ -993,45 +989,6 @@ Namespace My
 			HotKeys.Add(HKVidToggleFullScreen)
 			HotKeys.Add(HKVidShowFileInfo)
 		End Sub
-		'Friend Sub ShowBalloon(ByRef sender As Form, image As Image, title As String, text As String)
-		'	If FrmBalloon.Visible And frmBalloonParent = sender.Name Then : HideBalloon() 'This allows for toggle of balloon
-		'	Else
-		'		HideBalloon()
-		'		frmBalloonParent = sender.Name
-		'		If image Is Nothing Then : FrmBalloon.picbxIcon.Image = My.Resources.Resources.ImageInfo32
-		'		Else : FrmBalloon.picbxIcon.Image = image
-		'		End If
-		'		FrmBalloon.lblTitle.Text = title
-		'		FrmBalloon.lblText.Text = text
-		'		FrmBalloon.Location = sender.Location
-		'		If FrmBalloon.Right > My.Computer.Screen.WorkingArea.Right Then FrmBalloon.Left -= FrmBalloon.Right - My.Computer.Screen.WorkingArea.Right
-		'		If FrmBalloon.Bottom > My.Computer.Screen.WorkingArea.Bottom Then FrmBalloon.Top -= FrmBalloon.Bottom - My.Computer.Screen.WorkingArea.Bottom
-		'		BalloonLoading = True
-		'		FrmBalloon.Show()
-		'		BalloonLoading = False
-		'		FrmBalloonTimer.Start()
-		'	End If
-		'End Sub
-		'Friend Sub HideBalloon()
-		'	If FrmBalloon.Visible Then
-		'		FrmBalloonTimer.Stop()
-		'		If FrmPics IsNot Nothing AndAlso FrmPics.Name = frmBalloonParent Then
-		'			FrmPics.BringToFront()
-		'		ElseIf FrmVids IsNot Nothing AndAlso FrmVids.Name = frmBalloonParent Then
-		'			FrmVids.BringToFront()
-		'		End If
-		'		frmBalloonParent = String.Empty
-		'		FrmBalloon.Hide()
-		'	End If
-		'End Sub
-		'Friend Sub BalloonPreviewKeyDown(ByVal sender As Object, ByVal e As PreviewKeyDownEventArgs)
-		'	If FrmPics IsNot Nothing AndAlso FrmPics.Name = frmBalloonParent Then
-		'		FrmPics.FrmPreviewKeyDown(sender, e)
-		'	ElseIf FrmVids IsNot Nothing AndAlso FrmVids.Name = frmBalloonParent Then
-		'		FrmVids.FrmPreviewKeyDown(sender, e)
-		'	End If
-		'	HideBalloon()
-		'End Sub
 		Friend Sub ShowOverlay(ByRef sender As Form, image As Image, title As String, text As String)
 
 			' Toggle behavior
@@ -1054,23 +1011,9 @@ Namespace My
 
 		End Sub
 		Friend Sub HideOverlay()
-
 			OverlayTimer.Stop()
-
-			'If overlayParent <> String.Empty Then
-
-			'	'Bring Pics / Vids back to front if needed
-			'	If FrmPics IsNot Nothing AndAlso FrmPics.Name = overlayParent Then
-			'		FrmPics.BringToFront()
-			'	ElseIf FrmVids IsNot Nothing AndAlso FrmVids.Name = overlayParent Then
-			'		FrmVids.BringToFront()
-			'	End If
-
-			'End If
-
 			OverlayParent = String.Empty
 			Overlay.HideOverlay()
-
 		End Sub
 		Friend Sub ShowHelp(Optional showmaximized As Boolean = False)
 			Dim logtext As String = String.Empty

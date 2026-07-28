@@ -19,6 +19,8 @@ Friend Class Overlay
             Return _isVisible
         End Get
     End Property
+    Private _isFadingOut As Boolean = False
+    Private _cancelFade As Boolean = False
 
     Friend Sub ShowOverlay(parent As Form, icon As Image, title As String, text As String)
         If hWnd = IntPtr.Zero Then CreateWindow()
@@ -46,10 +48,41 @@ Friend Class Overlay
         DrawContent()
     End Sub
     Friend Sub HideOverlay()
-        If hWnd <> IntPtr.Zero Then
-            ShowWindow(hWnd, SW_HIDE)
-            _isVisible = False
+        If hWnd = IntPtr.Zero Then Exit Sub
+        _cancelFade = True
+
+        ShowWindow(hWnd, SW_HIDE)
+        SetLayeredWindowAttributes(hWnd, 0, 255, LWA_ALPHA)
+
+        _isVisible = False
+        _isFadingOut = False
+    End Sub
+    Friend Async Sub HideOverlayWithFade()
+        If hWnd = IntPtr.Zero Then Exit Sub
+        If Not _isVisible Then Exit Sub
+        If _isFadingOut Then Exit Sub
+
+        _isFadingOut = True
+        _cancelFade = False
+
+        For a As Integer = 255 To 0 Step -5
+            If _cancelFade Then Exit For
+            SetLayeredWindowAttributes(hWnd, 0, CByte(a), LWA_ALPHA)
+            Await Task.Delay(15)
+        Next
+
+        If _cancelFade Then
+            SetLayeredWindowAttributes(hWnd, 0, 255, LWA_ALPHA)
+            _isFadingOut = False
+            Return
         End If
+
+        ' Fade completed normally
+        ShowWindow(hWnd, SW_HIDE)
+        SetLayeredWindowAttributes(hWnd, 0, 255, LWA_ALPHA)
+
+        _isVisible = False
+        _isFadingOut = False
     End Sub
 
     Private Sub CreateWindow()

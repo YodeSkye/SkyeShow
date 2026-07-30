@@ -633,7 +633,7 @@ Namespace My
 			VideoExtensionDictionary.Add(".mpe", "MPEG")
 			VideoExtensionDictionary.Add(".mpv", "MPEG")
 			VideoExtensionDictionary.Add(".m2v", "MPEG")
-			VideoExtensionDictionary.Add(".flv", "Flash Video")
+            VideoExtensionDictionary.Add(".flv", "Flash Video")
 			GetSettings()
 			'#If DEBUG Then
 			'			GetDebugSettings()

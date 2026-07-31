@@ -427,7 +427,7 @@ Namespace My
 		Friend Const LocationModeManualAnchorThreshold As Byte = 50 'Percent of screen width/height that determines when the manual mode anchor should be right/bottom of form.
 		Friend Const GeneratingFileListAlertText As String = "Generating File List ... Please Wait"
 		Private Const DisabledPrefix As String = "DISABLED:"
-		Friend ReadOnly UserPath As String = My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\Skye\" 'UserPath is the base path for user-specific files.
+		Friend ReadOnly UserPath As String = Skye.Common.StorageManager.GetAppDirectory 'UserPath is the base path for user-specific files.
 #If DEBUG Then
 		Friend ReadOnly ImageFilesPath As String = UserPath & My.Application.Info.ProductName & "ImagesDEV.xml"
 		Friend ReadOnly ImageRepeatListPath As String = UserPath & My.Application.Info.ProductName & "ImagesViewedDEV.xml"
@@ -540,9 +540,9 @@ Namespace My
 		Friend FrmLog As Log
 		Private ReadOnly Overlay As New Overlay()
 		Private OverlayParent As String = String.Empty
-        Private WithEvents OverlayTimer As New Timer With {.Interval = 6000}
-        Private WithEvents ScreenSaverWatcher As New Timer With {.Interval = 1000}
-        Private ScreenSaverRunning As Boolean = False
+		Private WithEvents OverlayTimer As New Timer With {.Interval = 6000}
+		Private WithEvents ScreenSaverWatcher As New Timer With {.Interval = 1000}
+		Private ScreenSaverRunning As Boolean = False
 		Private WorkStationLocked As Boolean = False
 		Private ReadOnly RandomFileIndex As New Random
 
@@ -619,6 +619,22 @@ Namespace My
 #End If
 
 			WriteToLog(My.Application.Info.ProductName & " Started")
+
+			' Check for storage lockout
+			If String.IsNullOrEmpty(App.UserPath) Then
+				MessageBox.Show(
+				$"Critical Error: {My.Application.Info.ProductName} was unable to access its local storage directory." & vbCrLf & vbCrLf &
+				"This is usually caused by temporary file locks, security software, or folder permission issues." & vbCrLf & vbCrLf &
+				"The application will now exit.",
+				$"{My.Application.Info.ProductName} - Storage Access Error",
+				MessageBoxButtons.OK,
+				MessageBoxIcon.Stop
+			)
+				' Cleanly terminate startup before any modules try to load broken paths
+				Environment.Exit(1)
+				Return
+			End If
+
 			ImageExtensions = New List(Of String) From {".jpg", ".jpeg", ".bmp", ".gif", ".png", ".tif", ".tiff", ".exif"}
 			VideoExtensionDictionary.Add(".mkv", "Matroska")
 			VideoExtensionDictionary.Add(".ogv", "OGG Video")

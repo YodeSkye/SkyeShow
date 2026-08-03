@@ -535,8 +535,8 @@ Partial Friend Class Vids
     End Sub
     Private Async Sub OnPlaybackStarted()
         Debug.Print("PlaybackStarted")
-        SetVolume()
         Await Task.Delay(200)
+        SetVolume()
         SetSize()
         ShowVideoTime()
     End Sub
@@ -885,13 +885,13 @@ Partial Friend Class Vids
     End Sub
     Friend Sub SetVolume()
         If _player.HasMedia Then
-            Select Case My.App.VidVolumeMute
+            Select Case App.VidVolumeMute
                 Case True
                     _player.Volume = 0
-                    Me.cmiMuteVideo.Checked = True
+                    cmiMuteVideo.Checked = True
                 Case False
                     _player.Volume = 100
-                    Me.cmiMuteVideo.Checked = False
+                    cmiMuteVideo.Checked = False
             End Select
         End If
     End Sub
